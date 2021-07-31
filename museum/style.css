@@ -8,3 +8,13 @@
 body{
 margin:0;    
 }
+.container{
+margin:0;
+max-width: 1440px;
+width: calc(100% - 40px);    
+}
+section{
+border: 1px solid red;   
+padding-top:75px;
+padding-bottom:75px; 
+}
