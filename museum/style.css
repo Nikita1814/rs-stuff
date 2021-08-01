@@ -213,4 +213,20 @@ font-size: 22px;
 line-height: 26px;
 color:#000000;
   }
+  .explore-container{
+  display:flex;
+  gap:60px;  
+  }
+  .explore-container p{
+    padding-top:25px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 200;
+    font-size: 22px;
+    line-height: 38px;
+    color: #FFFFFF;  
+  }
+  .explore-container span{
+    color:#9D8665
+  }
   
