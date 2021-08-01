@@ -15,9 +15,9 @@ body{
 
 }
 .container{
-border:1px solid blue;    
+border:1px solid blue;
+width: 1440px;    
 margin:0 auto;
-width:1920px;
 padding-left:240px;
 padding-right:240px;
 }  
@@ -25,24 +25,14 @@ padding-right:240px;
 section{
 border: 1px solid red;
 padding-top:75px;
-padding-bottom:75px;
-width: 100vw; 
-}
-.image-container{
-
-width:1920px;
-background-image:url(assets/img/background.jpg);
-background-repeat: no-repeat;
-background-position:top right;
-background-size:1215 750;    
+padding-bottom:75px; 
 }
 .header{ 
-border:1px solid blue;
-margin:0;
-width: 1440px;
-margin:74px 240px 76px 240px;
+border:1px solid greenyellow;
+width:1920;
+padding-top:74px;
+padding-bottom:76px ;
 color:white;
-height: 50px;;
 }
 .header p{
     font-family: Forum;
@@ -88,10 +78,7 @@ padding-right:38px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 1440px;
     height:50px;
-    margin:0;
-    padding:0;
 }
   
   .logo{
@@ -109,7 +96,12 @@ width:100%;
 }
   .welcome{
 height:750px; 
-  
+background-image:url(assets/img/background.jpg);
+background-repeat: no-repeat;
+background-position:top right;
+background-size:1215 750;
+overflow: hidden;
+background-position: calc(50% + 352px) 100%;
   }
 
   .text-field{
