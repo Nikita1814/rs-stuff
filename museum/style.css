@@ -94,8 +94,7 @@ main{
 width:100%;
    
 }
-  .welcome{
-height:750px; 
+  .welcome{ 
 background-image:url(assets/img/background.jpg);
 background-repeat: no-repeat;
 background-position:top right;
@@ -155,5 +154,63 @@ border-radius:10px;
     letter-spacing: 2px;
     color: #FFFFFF;    
   }
-   
+   .section-white{
+    background-color: #E5E5E5 ;
+   }
+   .section-title-white{
+   color: #9D8665;  
+   }
+   .underline-title {
+    position: relative;
+  }
+  .underline-title::after {
+    content: "";
+    position: absolute;
+    bottom: -25px;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background-color: #710707;
+  }
+  .underline-card {
+    position: relative;
+  }
+  .underline-card::after {
+    content: "";
+    position: absolute;
+    bottom: -9px;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background-color: #710707;
+  }
+  .card-container{
+  padding-top:75px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:77px 60px;
+  }
+  .card{
+  width:440px;
+  height:422px;  
+  }
+  .card h3{
+    padding-top:25px;
+  font-family: Forum;
+font-style: normal;
+font-weight: normal;
+font-size: 32px;
+line-height: 35px;
+letter-spacing: 5px;
+color:#000000;
+  }
+  .card p{
+ padding-top:10px;   
+font-family: Roboto;
+font-style: normal;
+font-weight: 200;
+font-size: 22px;
+line-height: 26px;
+color:#000000;
+  }
   
