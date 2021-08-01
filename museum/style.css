@@ -113,7 +113,7 @@ background-position: calc(50% + 352px) 100%;
   }
   .section-title{
     font-family: Forum;
-    font-style: normal;
+    font-style: 400;
     font-weight: normal;
     font-size:80px;
     line-height: 90px;
@@ -228,5 +228,83 @@ color:#000000;
   }
   .explore-container span{
     color:#9D8665
+  }
+  .video-poster{
+    margin-top:15px;
+  background-image:url(assets/video/poster.png) ;
+  width:1440px;
+  height:629px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  }
+  .video-description{
+  border:1px solid green; 
+  width:1440px;
+  height:90px;
+  margin-top:40px;
+  display:flex;
+  align-items:flex-end;
+  justify-content: space-around;
+  }
+
+  .video-description h2{
+  height:90px;
+  border:1px solid black;
+  overflow-wrap: break-word;
+
+  
+  }
+  .video-description p{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 22px;
+    line-height: 38px;
+    width:720px;
+    
+  }
+  .controls{
+  height:85px;
+  width:1440px;  
+  display:flex;
+  
+  background-color:#000000;
+  }
+  .video-journey button{
+  background:transparent;
+  box-shadow: 0px 0px 0px transparent;
+  border: 0px solid transparent;
+  text-shadow: 0px 0px 0px transparent;  
+  }
+  .playforward-button img{
+  transform:rotate(180deg)  
+  }
+  .playback-button {
+  padding-left:41px;
+  padding-right:41.86px;
+  }
+  .play-button {
+   }
+   .playforward-button{
+    padding-left:41.65px;
+    padding-right:41.85px;
+    }
+  .progress-bar {
+  width:820px;
+
+  }
+  .volume-button {
+  padding-left:41px;
+  padding-right:20.94px;
+
+    }
+  .volume-bar {
+  width:155px;
+  }
+  .fulscreen-button {
+padding-left:48px;
+padding-right:42.14px;
   }
   
