@@ -14,10 +14,11 @@
    }
 body{
  background-color: #030303;
+ margin:0 auto
 
 }
 .container{
-border:1px solid blue;
+
 width: 1440px;    
 margin:0 auto;
 padding-left:240px;
@@ -25,12 +26,12 @@ padding-right:240px;
 }  
 
 section{
-border: 1px solid red;
+
 padding-top:75px;
 padding-bottom:75px; 
 }
 .header{ 
-border:1px solid greenyellow;
+
 width:1920;
 padding-top:74px;
 padding-bottom:76px ;
@@ -47,7 +48,7 @@ color:white;
     color: #FFFFFF;   
 }
 .header-nav-list {
-border:1px solid purple;    
+    
 display:flex;
 justify-content:center;
 align-items:center;
@@ -57,7 +58,7 @@ color:white;
 
 }
 .navigation{
-border:1px solid orange;
+
 width: 720px;
 }
 
@@ -78,7 +79,7 @@ padding-right:38px;
 }
 
 .header-container{
-    border:1px solid yellow;
+    
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -92,7 +93,7 @@ padding-right:38px;
   }
   .logo-image{
   margin-right:20px;
-  border:1px solid white;
+  
   }
 main{
 width:100%;
@@ -108,7 +109,7 @@ background-position: calc(50% + 352px) 100%;
   }
 
   .text-field{
-    border:1px solid white;
+    
     height:390px;
     width:598px;
     margin-bottom:171px;
@@ -201,7 +202,7 @@ color: #FFFFFF;
   width:440px;
   }
   .card-container{
-  padding-top:75px;
+  margin-top:103px;
   display:flex;
   flex-wrap:wrap;
   gap:77px 60px;
@@ -219,8 +220,9 @@ font-size: 32px;
 line-height: 35px;
 letter-spacing: 5px;
 color:#000000;
+margin-bottom:11px;
   }
-  .card p{
+  .card-p-major{
  padding-top:10px;   
 font-family: Roboto;
 font-style: normal;
@@ -229,9 +231,26 @@ font-size: 22px;
 line-height: 26px;
 color:#000000;
   }
+  .card-p-smaller{
+font-size:18px;
+line-height:21.09px;
+padding-top:10px;   
+font-family: Roboto;
+font-style: normal;
+font-weight: 200;
+color:#000000;
+  }
   .explore-container{
   display:flex;
   gap:60px;  
+  }
+  .las-meninas{
+  padding-top:15px;  
+  }
+  .picture-explore-text{
+  margin-top:75px;
+  text-align:left;
+  padding-right:50px;  
   }
   .explore-container p{
     padding-top:25px;
@@ -256,21 +275,17 @@ color:#000000;
 
   }
   .video-description{
-  border:1px solid green; 
+  
   width:1440px;
   height:90px;
   margin-top:40px;
   display:flex;
   align-items:flex-end;
-  justify-content: space-around;
   }
 
   .video-description h2{
   height:90px;
   border:1px solid black;
-  overflow-wrap: break-word;
-
-  
   }
   .video-description p{
     font-family: Roboto;
@@ -279,7 +294,8 @@ color:#000000;
     font-size: 22px;
     line-height: 38px;
     width:720px;
-    
+    padding-left:110px;
+    vertical-align: center;
   }
   .controls{
   height:85px;
@@ -306,9 +322,12 @@ color:#000000;
     padding-left:41.65px;
     padding-right:41.85px;
     }
+    .play-button{
+    padding:0 0 0 0  
+    }
   .progress-bar {
   width:820px;
-
+  padding:auto 0
   }
   .volume-button {
   padding-left:41px;
@@ -317,9 +336,10 @@ color:#000000;
     }
   .volume-bar {
   width:155px;
+  padding:0
   }
-  .fulscreen-button {
-padding-left:48px;
+  .fullscreen-button {
+margin-left:48px;
 padding-right:42.14px;
   }
   .tickets-container{
@@ -347,7 +367,6 @@ padding-right:42.14px;
     .ticket-type{
     height:262px;
     width:270px;
-    border:1px solid blue;
     margin-left:60px;
     margin-top:103px;
     }
@@ -365,10 +384,11 @@ padding-right:42.14px;
     .custom-radio input {
       position:absolute;
       opacity: 0;
-      cursor: pointer
+      cursor: pointer;
     }
     .checkmark{
     position:absolute;
+    margin-top:5px;
     border:2px solid #FFFFFF;
     top: 0;
     left: 0;
@@ -395,8 +415,10 @@ padding-right:42.14px;
      background: white;
      
    }
+   
+   
    .amount{
-   border:1px solid green;
+  
    width:150px;
    height: 342px;
    margin-left:240px; 
@@ -408,19 +430,24 @@ flex-direction:column;
   }
   .number {
     all: unset;
-    padding-left:10px;
-    text-align: center;
-    border:1px solid red;
-  }
-  button {border: 1px solid red;}
 
+    text-align: center;
+    
+  }
+  
+.btn-container button{
+  background:transparent;
+  box-shadow: 0px 0px 0px transparent;
+  border: 0px solid transparent;
+  text-shadow: 0px 0px 0px transparent;  
+}
   .btn-container{
-    width:150px;
-    height:50px;
+    width:144x;
+    height:44px;
     display:flex;
-    justify-content: space-between;
-    border:2px solid white;
+    border:4px solid white;
     margin-bottom:35px;
+    justify-content: space-between;
   }
   .number-btn{
     width:45px;
@@ -432,6 +459,9 @@ font-weight: bold;
 font-size: 28px;
 line-height: 33px;
 letter-spacing: 1.65px;
+padding:5px 0;
+text-align: center;
+vertical-align: center;
   }
   
   .amount p{
@@ -452,13 +482,13 @@ font-size: 28px;
 line-height: 33px;
 letter-spacing: 1.65px;
 padding-bottom:11px;
-padding-top:15px;
-
-
+  }
+  .total{
+    padding-top:15px;
   }
   .buy{
-  margin-top:49px;
-  margin-right:50px;
+  margin-top:40px;
+  margin-right:60px;
   height:50px;
   width:175px;
   text-align: center;
@@ -467,7 +497,12 @@ font-style: normal;
 font-weight: 300;
 font-size: 22px;
 line-height: 26px;
-letter-spacing: 2px
+letter-spacing: 2px;
+border:none;
+padding:0;
+position:relative;
+right:20px;
+border-radius: 1%;
   }
   
     .contacts-container{
@@ -494,7 +529,7 @@ letter-spacing: 2px
     .contacts-info h3{
   font-family: Roboto;
   font-style: normal;
-  font-weight: 500;
+  font-weight: bold;
   font-size: 28px;
   line-height: 33px;
   padding-bottom:16px;
@@ -504,7 +539,7 @@ letter-spacing: 2px
     padding-bottom:75px;
     width:1920px;
     height:300px;
-    border:1px solid green;  
+      
     }
     .footer-container{
     display:flex;  

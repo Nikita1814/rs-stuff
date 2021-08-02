@@ -42,28 +42,28 @@
     <div class="container">
       <h2 class="section-title section-title-white underline-title">Virtual Tour</h2> 
       <div class="card-container">
-       <a href="" class="card"> <img src="assets/img/Royal_palace (1).jpg" alt="Royal Palace" class="card-image"><h3 class="underline-card">ROYAL PALACE</h3><p>360° Virtual Tour Google</p> <p>Street Panorama View</p></a>
-       <a href="" class="card"> <img src="assets/img/Denon_wing.jpg" alt="Dennon wing" class="card-image"><h3 class="underline-card">DENNON WING</h3><p>360° Virtual Tour Google</p> <p>Street Panorama View</p></a>
-       <a href=""class="card"> <img src="assets/img/Colonnade_perrault.jpg" alt="Colonnade Perrault" class="card-image"><h3 class="underline-card">COLONNADE PERRAULT</h3><p>360° Virtual Tour Google</p> <p>Street Panorama View</p></a>
-       <a href="" class="card"> <img src="assets/img/Greek_hall.jpg" alt="Greek Hall" class="card-image"><h3 class="underline-card">GREEK HALL</h3><p>360° Virtual Tour Google</p> <p>Street Panorama View</p></a>
-       <a href="" class="card"> <img src="assets/img/Mona_lisa.jpg" alt="Mona Lisa" class="card-image"><h3 class="underline-card">MONA LISA</h3><p>360° Virtual Tour Google</p> <p>Street Panorama View</p></a>
-       <a href="" class="card"> <img src="assets/img/Night_palace.jpg" alt="Nigth Palace" class="card-image"><h3 class="underline-card">NIGHT PALACE</h3><p>360° Virtual Tour Google</p> <p>Street Panorama View</p></a>
+       <a href="" class="card"> <img src="assets/img/Royal_palace (1).jpg" alt="Royal Palace" class="card-image"><h3 class="underline-card">ROYAL PALACE</h3><p class="card-p-major">360° Virtual Tour</p> <p class="card-p-smaller"> Google Street Panorama View</p></a>
+       <a href="" class="card"> <img src="assets/img/Denon_wing.jpg" alt="Dennon wing" class="card-image"><h3 class="underline-card">DENON WING</h3><p class="card-p-major" >360° Virtual Tour </p> <p class="card-p-smaller"> Google Street Panorama View</p></a>
+       <a href=""class="card"> <img src="assets/img/Colonnade_perrault.jpg" alt="Colonnade Perrault" class="card-image"><h3 class="underline-card">COLONNADE PERRAULT</h3><p class="card-p-major">360° Virtual Tour Google</p> <pp class="card-p-smaller"> Google Street Panorama View</pp></a>
+       <a href="" class="card"> <img src="assets/img/Greek_hall.jpg" alt="Greek Hall" class="card-image"><h3 class="underline-card">GREEK HALL</h3><p class="card-p-major">360° Virtual Tour </p> <p class="card-p-smaller"> Google Street Panorama View</p></a>
+       <a href="" class="card"> <img src="assets/img/Mona_lisa.jpg" alt="Mona Lisa" class="card-image"><h3 class="underline-card">MONA LISA</h3><p class="card-p-major">360° Virtual Tour </p> <p class="card-p-smaller"> Google Street Panorama View</p></a>
+       <a href="" class="card"> <img src="assets/img/Night_palace.jpg" alt="Nigth Palace" class="card-image"><h3 class="underline-card">NIGHT PALACE</h3><p class="card-p-major">360° Virtual Tour </p> <p class="card-p-smaller"> Google Street Panorama View</p></a>
     </div>
 </section>
 <section class="picture-explore" id="explore">
     <div class="container explore-container">
         <div class="explore-text">
         <h3 class="section-title underline-title" >PICTURE EXPLORE</h3>
-        <section>
+        <div class="picture-explore-text">
         <p>Las Meninas is a 1656 painting by Diego Velázquez, the leading 
         artist of the Spanish Golden Age</p>
         <p>It was cleaned in 1984 to remove a <span>"yellow veil"</span> of dust that had 
             gathered since the previous restoration in the 19th century</p>
         <p>The cleaning provoked furious protests, not because the picture had 
             been damaged in any way, but because it looked different</p>
-            </section>
         </div>
-        <img src="assets/img/Explore image.jpg" alt="Las Meninas">
+        </div>
+        <img class="las-meninas"src="assets/img/Explore image.jpg" alt="Las Meninas">
     </div>
 </section>
 <section class="video-journey section-white" id="video">
@@ -93,7 +93,7 @@
         <div class="video-description">
         <h2 class="section-title section-title-white">VIDEO JOURNEY</h2>
         <p>Enter and visit one of the most famous museums in the world and enjoy masterpieces such as Mona Lisa or Hammurabi's Code</p>
-        </h2>
+        
     </div>
 </section>
 <section class="buy-tickets" id="tickets">
@@ -105,7 +105,7 @@
            <h3>Ticket Type</h3>
            <p>
             <label class="custom-radio">Permanent exhibition
-           <input type="radio" name="ticket-type" value="permanent">
+           <input type="radio" name="ticket-type" value="permanent" checked>
            <span class="checkmark"></span> 
            
            </label>
@@ -138,10 +138,10 @@
             <input type="number" min="0" max="20" value="1" readonly class="number">
             <button class="number-btn" type="button" onclick="this.previousElementSibling.stepUp()">+</button>
         </div>
-            <h3>Total €220</h3>
+            <h3 class="total">Total €220</h3>
             <p>
-            <button class="buy">Buy Now</button>
-            </p>
+                <button class="buy">Buy Now</button>
+                </p>
          </div>
          </div>
     </div>
