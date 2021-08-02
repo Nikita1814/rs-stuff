@@ -44,7 +44,7 @@ color:white;
     text-transform: uppercase;
     color: #FFFFFF;   
 }
-.navigation ul {
+.header-nav-list {
 border:1px solid purple;    
 display:flex;
 justify-content:center;
@@ -60,7 +60,9 @@ width: 720px;
 }
 
 
-.header-nav-list a {
+.header-nav-list a,
+.footer-nav-list a
+ {
 text-decoration:none;
 font-family: Roboto;
 font-style: normal;
@@ -137,8 +139,15 @@ margin-top:76px;
 background-color:#710707;
 width: 360px;
 height: 75px;
-  
-border-radius:10px;    
+border-radius:10px;
+text-align:center;
+font-family: Roboto;
+font-style: normal;
+font-weight: 200;
+font-size: 22px;
+line-height: 26px;
+letter-spacing: 2px;
+color: #FFFFFF;    
   }
   button > span{
     display:flex;
@@ -483,3 +492,54 @@ letter-spacing: 2px
   line-height: 33px;
   padding-bottom:16px;
     }
+    footer{
+    padding-top:75px;
+    padding-bottom:75px;
+    width:1920px;
+    height:300px;
+    border:1px solid green;  
+    }
+    .footer-container{
+    display:flex;  
+    }
+    .logo-bottom{
+      font-family: Forum;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 28px;
+      line-height: 50px;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: #FFFFFF;
+      padding-bottom:100px;   
+    }
+    .navigation-bottom{
+      width:366px;
+     height:150px;
+     margin-left:145px;
+    }
+    .footer-nav-list{
+      width:366px;
+      height:150px;
+      display:flex;
+      justify-content:space-between; 
+    }
+    .social{
+    display:inline-block;
+    display:flex;
+    justify-content:space-between;
+     width:336px;
+     height:48px;
+     padding-bottom:14px;
+     margin-left:398px;
+     margin-top:88px; 
+    }
+
+    .column {
+      width:107px;
+    }
+    .column a {
+    padding:0;
+    margin:0;
+    }
+    
