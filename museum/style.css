@@ -9,7 +9,9 @@
     margin:0;
     padding: 0;    
     }
-   
+   html{
+   scroll-behavior: smooth;  
+   }
 body{
  background-color: #030303;
 
@@ -94,7 +96,7 @@ padding-right:38px;
   }
 main{
 width:100%;
-   
+scroll-behavior:smooth;   
 }
   .welcome{ 
 background-image:url(assets/img/background.jpg);
@@ -164,7 +166,7 @@ color: #FFFFFF;
     color: #FFFFFF;    
   }
    .section-white{
-    background-color: #E5E5E5 ;
+    background-color:#FFFFFF ;
    }
    .section-title-white{
    color: #9D8665;  
@@ -191,7 +193,12 @@ color: #FFFFFF;
     left: 0;
     right: 0;
     height: 3px;
+    width:300px;
     background-color: #710707;
+    transition: width 1.2s;
+  }
+  .card:hover .underline-card::after{
+  width:440px;
   }
   .card-container{
   padding-top:75px;
@@ -240,7 +247,7 @@ color:#000000;
   }
   .video-poster{
     margin-top:15px;
-  background-image:url(assets/video/poster.png) ;
+  background-image:url(assets/video/poster.jpg) ;
   width:1440px;
   height:629px;
   display:flex;
@@ -524,16 +531,18 @@ letter-spacing: 2px
       display:flex;
       justify-content:space-between; 
     }
-    .social{
+    .social-list{
     display:inline-block;
     display:flex;
     justify-content:space-between;
-     width:336px;
-     height:48px;
-     padding-bottom:14px;
-     margin-left:398px;
-     margin-top:88px; 
+     
     }
+    .social{
+      width:336px;
+      height:48px;
+      padding-bottom:14px;
+      margin-left:398px;
+      margin-top:88px; }
 
     .column {
       width:107px;
@@ -542,4 +551,18 @@ letter-spacing: 2px
     padding:0;
     margin:0;
     }
-    
+    nav a:hover{ 
+    color:#9D8665;
+    }
+    nav a:active{
+    color:#9D8665  
+    }
+    .text-field button:hover{
+    background-color: #9D8665;  
+    }
+    .buy:hover{
+    background-color: #9D8665;   
+    }
+    a{
+      text-decoration: none;
+    }
