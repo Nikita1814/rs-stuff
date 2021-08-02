@@ -285,8 +285,7 @@ color:#000000;
   padding-left:41px;
   padding-right:41.86px;
   }
-  .play-button {
-   }
+  
    .playforward-button{
     padding-left:41.65px;
     padding-right:41.85px;
@@ -307,4 +306,180 @@ color:#000000;
 padding-left:48px;
 padding-right:42.14px;
   }
+  .tickets-container{
+    display:flex;
+    color: #FFFFFF;
+    
+    }
+    .tickets-container p{
+      font-family: Roboto;
+      font-style: normal;
+      font-weight: 300;
+      font-size: 22px;
+      line-height: 26px;  
+    }
+    .tickets-container h3{
+      font-family: Roboto;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 28px;
+      line-height: 33px; 
+    }
+    .tickets-image{
+    padding-top:103px;  
+    } 
+    .ticket-type{
+    height:262px;
+    width:270px;
+    border:1px solid blue;
+    margin-left:60px;
+    margin-top:103px;
+    }
+    .ticket-type h3{
+    padding-bottom:50px;  
+    }
+    .custom-radio{
+    display: block;
+    position: relative;
+    padding-left: 40px;
+    margin-bottom: 49px;
+    cursor: pointer;  
+    }
+    
+    .custom-radio input {
+      position:absolute;
+      opacity: 0;
+      cursor: pointer
+    }
+    .checkmark{
+    position:absolute;
+    border:2px solid #FFFFFF;
+    top: 0;
+    left: 0;
+    width:14px;
+    height:14px;
+    background-color:#030303;
+    border-radius:50%  
+    }
+    .checkmark:after {
+      content: "";
+      position: absolute;
+      display: none;
+    }
+    .custom-radio input:checked ~ .checkmark:after {
+      display: block;
+    }
+    
+    .custom-radio .checkmark:after {
+    top: 3.5px;
+    right: 3.5px;
+     width: 7px;
+     height: 7px;
+     border-radius: 50%;
+     background: white;
+     
+   }
+   .amount{
+   border:1px solid green;
+   width:150px;
+   height: 342px;
+   margin-left:240px; 
+   margin-bottom:208px;
+   margin-top:103px;
+   display:flex;
+flex-direction:column;
+ 
+  }
+  .number {
+    all: unset;
+    padding-left:10px;
+    text-align: center;
+    border:1px solid red;
+  }
+  button {border: 1px solid red;}
+
+  .btn-container{
+    width:150px;
+    height:50px;
+    display:flex;
+    justify-content: space-between;
+    border:2px solid white;
+    margin-bottom:35px;
+  }
+  .number-btn{
+    width:45px;
+    background-color:#030303;
+    color:#FFFFFF;
+    font-family: Roboto;
+font-style: normal;
+font-weight: bold;
+font-size: 28px;
+line-height: 33px;
+letter-spacing: 1.65px;
+  }
   
+  .amount p{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 22px;
+    line-height: 26px;
+    padding-bottom:14px;
+
+     
+  }
+  .amount h3 {
+font-family: Roboto;
+font-style: normal;
+font-weight: bold;
+font-size: 28px;
+line-height: 33px;
+letter-spacing: 1.65px;
+padding-bottom:11px;
+padding-top:15px;
+
+
+  }
+  .buy{
+  margin-top:49px;
+  margin-right:50px;
+  height:50px;
+  width:175px;
+  text-align: center;
+  font-family: Roboto;
+font-style: normal;
+font-weight: 300;
+font-size: 22px;
+line-height: 26px;
+letter-spacing: 2px
+  }
+  
+    .contacts-container{
+    display:flex;  
+    }
+    .map{
+    padding-top:103px;
+    padding-left:198px;
+    }
+    .contacts-info{
+    width:281px;
+    height:221px;
+    font-family:Roboto;
+    margin-top:113px;  
+    }
+    .contacts-info p{
+      font-family: Roboto;
+      font-style: normal;
+      font-weight: 300;
+      font-size: 22px;
+      line-height: 26px;
+      padding-top:20px;
+    }
+    .contacts-info h3{
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 28px;
+  line-height: 33px;
+  padding-bottom:16px;
+    }

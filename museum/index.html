@@ -66,7 +66,7 @@
         <img src="assets/img/Explore image.jpg" alt="Las Meninas">
     </div>
 </section>
-<section class="video-journey section-white">
+<section class="video-journey section-white" id="video">
     <div class="container video-container">
         <div class="video-poster">
             <button class="video-button"><img src="assets/svg/Big-play-button.svg" alt="big play button" class="big-play-icon"></button>
@@ -96,11 +96,70 @@
         </h2>
     </div>
 </section>
-<section class="buy-tickets">
-    <div class="container"></div>
+<section class="buy-tickets" id="tickets">
+    <div class="container">
+        <h2 class="section-title underline-title">BUY TICKETS</h2>
+        <div class="tickets-container">
+         <img src="assets/img/tickets-image.png" alt="a somewhat charming painting" class="tickets-image" width="720" height="550">
+         <div class="ticket-type">
+           <h3>Ticket Type</h3>
+           <p>
+            <label class="custom-radio">Permanent exhibition
+           <input type="radio" name="ticket-type" value="permanent">
+           <span class="checkmark"></span> 
+           
+           </label>
+           </p> 
+            <p>
+            <label class="custom-radio"> Temporary exhibition
+            <input type="radio" name="ticket-type" value="temporary">
+            <span class="checkmark"></span> 
+            </label>
+            </p> 
+            <p>
+                <label class="custom-radio">Combined Admission
+                <input type="radio" name="ticket-type" value="combined">
+                <span class="checkmark"></span>  
+            </label>
+            </p> 
+         </div>
+         <div class="amount">
+             <h3>&emsp;&nbsp;Amount</h3>
+            <p> Basic 18+</p> 
+                <div class="btn-container">
+                <button class="number-btn" type="button" onclick="this.nextElementSibling.stepDown()">–</button>
+            <input type="number" min="0" max="20" value="1" readonly class="number">
+            <button class="number-btn" type="button" onclick="this.previousElementSibling.stepUp()">+</button>
+                </div>
+            
+            <p>Senior 65+</p>
+                <div class="btn-container">
+            <button class="number-btn" type="button" onclick="this.nextElementSibling.stepDown()">–</button>
+            <input type="number" min="0" max="20" value="1" readonly class="number">
+            <button class="number-btn" type="button" onclick="this.previousElementSibling.stepUp()">+</button>
+        </div>
+            <h3>Total €220</h3>
+            <p>
+            <button class="buy">Buy Now</button>
+            </p>
+         </div>
+         </div>
+    </div>
 </section>
-<section class="contacts">
-    <div class="container"></div>
+<section class="contacts section-white" id="contacts">
+    <div class="container">
+        <h2 class="section-title underline-title section-title-white">CONTACTS</h2>
+        <div class="contacts-container">
+        <div class="contacts-info">
+            <h3>Palais Royal<br> 
+            Musee du Louvre</h3>
+            <p>adres:75001 Paris, France</p>
+            <p>phone:+33(0) 1 40 20 50 50</p>
+            <p>mail:info@louvre.fr</p>
+        </div>
+        <img class="map" src="assets/img/map.png" alt="map" width="960" height="620">
+        </div>
+    </div>
 </section> 
 </main>
 <footer class="footer">
