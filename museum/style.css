@@ -559,12 +559,13 @@ border-radius: 1%;
       width:366px;
      height:150px;
      margin-left:145px;
+     width:366px;
+     height:150px;
+     display:flex;
+     justify-content:space-between; 
     }
     .footer-nav-list{
-      width:366px;
-      height:150px;
-      display:flex;
-      justify-content:space-between; 
+     
     }
     .social-list{
     display:inline-block;
