@@ -142,13 +142,13 @@ background-position: calc(50% + 352px) 100%;
     color: #FFFFFF;    
   }
   .text-field p{
-    padding-top:21px;
+    padding-top:26px;
     font-family: Roboto;
     font-style: normal;
     font-weight: 300;
     font-size: 30px;
     line-height: 33px;
-    letter-spacing: 2.4px;
+    letter-spacing: 2px;
     color: #FFFFFF;
   }
   
@@ -267,7 +267,7 @@ color:#000000;
   padding-top:15px;  
   }
   .picture-explore-text{
-  margin-top:75px;
+  margin-top:80px;
   text-align:left;
   padding-right:50px;  
   }
@@ -314,7 +314,7 @@ color:#000000;
     line-height: 38px;
     width:720px;
     padding-left:110px;
-    vertical-align: center;
+    vertical-align:center;
   }
   .controls{
   height:85px;
