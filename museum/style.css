@@ -37,7 +37,20 @@ padding-top:74px;
 padding-bottom:76px ;
 color:white;
 }
-.header p{
+.header h1{
+  
+font-family: Forum;
+font-style: normal;
+font-weight: normal;
+font-size: 28px;
+line-height: 50px;
+
+letter-spacing: 5px;
+text-transform: uppercase;
+
+color: #FFFFFF;
+}
+.header p {
     font-family: Forum;
     font-style: normal;
     font-weight: normal;
@@ -76,6 +89,7 @@ letter-spacing: 2px;
 color: #FFFFFF;
 padding-left:38px;
 padding-right:38px;
+transition: color 1.2s;
 }
 
 .header-container{
@@ -153,7 +167,8 @@ letter-spacing: 2px;
 color: #FFFFFF;
 box-shadow: 0px 0px 0px transparent;
   border: 0px solid transparent;
-  text-shadow: 0px 0px 0px transparent;      
+  text-shadow: 0px 0px 0px transparent;
+  transition: background-color 1.2s;      
   }
   button > span{
     display:flex;
@@ -311,7 +326,10 @@ color:#000000;
   background:transparent;
   box-shadow: 0px 0px 0px transparent;
   border: 0px solid transparent;
-  text-shadow: 0px 0px 0px transparent;  
+  text-shadow: 0px 0px 0px transparent; 
+  }
+  .video-journey button img{
+    transition: opacity 1s;  
   }
   .playforward-button img{
   transform:rotate(180deg)  
@@ -357,7 +375,7 @@ padding-right:42.14px;
       font-size: 22px;
       line-height: 26px;  
     }
-    .tickets-container h3{
+    .tickets-container h4{
       font-family: Roboto;
       font-style: normal;
       font-weight: bold;
@@ -373,7 +391,7 @@ padding-right:42.14px;
     margin-left:60px;
     margin-top:103px;
     }
-    .ticket-type h3{
+    .ticket-type h4{
     padding-bottom:50px;  
     }
     .custom-radio{
@@ -477,7 +495,7 @@ vertical-align: center;
 
      
   }
-  .amount h3 {
+  .amount h4 {
 font-family: Roboto;
 font-style: normal;
 font-weight: bold;
@@ -506,6 +524,7 @@ padding:0;
 position:relative;
 right:20px;
 border-radius: 1%;
+transition: background-color 1.2s;
   }
   
     .contacts-container{
@@ -529,7 +548,7 @@ border-radius: 1%;
       line-height: 26px;
       padding-top:20px;
     }
-    .contacts-info h3{
+    .contacts-info h4{
   font-family: Roboto;
   font-style: normal;
   font-weight: bold;
@@ -601,4 +620,7 @@ border-radius: 1%;
     }
     a{
       text-decoration: none;
+    }
+    .video-journey button:hover img{
+    opacity:0.75;  
     }
