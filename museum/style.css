@@ -28,7 +28,8 @@ padding-right:240px;
 section{
 
 padding-top:75px;
-padding-bottom:75px; 
+padding-bottom:75px;
+background-color:#030303; 
 }
 .header{ 
 
@@ -351,13 +352,14 @@ color:#000000;
   padding:auto 0
   }
   .volume-button {
-  padding-left:41px;
+  margin-left:41px;
   padding-right:20.94px;
 
     }
   .volume-bar {
   width:155px;
-  padding:0
+  padding:0;
+  margin:0;
   }
   .fullscreen-button {
 margin-left:48px;
@@ -433,8 +435,7 @@ padding-right:42.14px;
      width: 7px;
      height: 7px;
      border-radius: 50%;
-     background: white;
-     
+     background: white; 
    }
    
    
@@ -624,3 +625,5 @@ transition: background-color 1.2s;
     .video-journey button:hover img{
     opacity:0.75;  
     }
+    
+    
