@@ -126,24 +126,80 @@ background-position: calc(50% + 352px) 100%;*/
 .welcome-container{
  position:relative; 
 }
-.welcome-slider{
+.welcome-slider-viewer{
 position:absolute;
 top:0;
 right:240px;
 width:1000px;
 height:750;
 z-index:1;
-
+overflow:hidden;
+}
+.welcome-slider{
+display:flex;
 }
 .welcome-slider-controls{
 position:absolute;
 bottom:0;
 right:240px;
 z-index:2;
+display:flex;
+justify-content:space-around;
+align-items:center;
   width:600px;
   height:120px;
-  background-color:blue;
+  background-color:darkred;
+  color:white;
 }
+.visual-transition{
+  transition: transform 0.5s ease-in;  
+}
+
+.slider-counters{
+ font-size:22px;
+ height:40px;
+ width:75px;
+
+ vertical-align:center;
+ text-align: center;
+background:black;
+font-family:Roboto ;
+}
+
+.welcome-slider-controls button{
+  background:transparent;
+  box-shadow: 0px 0px 0px transparent;
+  border: 0px solid transparent;
+  text-shadow: 0px 0px 0px transparent;
+  background-color:black;
+  color:white; 
+  width:40px;
+}
+.slider-button-right{
+transform:rotate(180deg);  
+}
+.slider-markers{
+display:flex;
+justify-content:space-around; 
+
+width:180px;
+}
+.slider-marker{
+  width:16px;
+  height:16px;
+  background-color:white;
+}
+/*.slider-counters input{
+  background:black;
+  width:25px;
+  color:white;
+  font-size:22px;
+  height:40px;
+  font-family: Roboto;
+  font-style: normal;
+  text-align:center;
+  vertical-align:center;
+}*/
   
   .text-field{
     position:relative;
