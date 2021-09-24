@@ -131,11 +131,15 @@ position:absolute;
 top:0;
 right:240px;
 width:1000px;
-height:750;
+height:750px;
 z-index:1;
 overflow:hidden;
 }
 .welcome-slider{
+position:absolute;
+height:750px;
+z-index:1;
+/*overflow:hidden;*/
 display:flex;
 }
 .welcome-slider-controls{
