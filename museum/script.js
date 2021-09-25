@@ -3,9 +3,13 @@ const rightBtn = document.querySelector(".slider-button-right")
 const viewWindow = document.querySelector(".welcome-slider-viewer")
 const slider = document.querySelector(".welcome-slider")
 const sliderLen = slider.querySelectorAll(".welcome-slider-image").length
+const markerList = document.querySelectorAll(".slider-marker")
+const counter = document.querySelector(".slider-counter")
 const viewWidth = viewWindow.clientWidth
 
 
+activeMarker = markerList[0]
+activeMarker.style.backgroundColor = '#9D8665'
 let activeSlide = 0
 slider.style.left = "-1000px"
 
@@ -19,30 +23,57 @@ rightBtn.addEventListener('click', () => {
 
 slider.addEventListener('transitionend', CheckI)
 
-
+markerList.forEach((el) => el.addEventListener('click', (e) => {
+activeMarker.style.backgroundColor = 'white'
+activeMarker = e.target
+/*alert(markerList.indexOf(e.target))*/
+activeMarker.style.backgroundColor = '#9D8665'
+/*activeSlide = (-markerList.indexOf(e.target))
+slider.style.transform = `translateX(${activeSlide * viewWidth}px)`*/
+}))
 
 function switchSlides(direction){
 slider.classList.add('visual-transition')
 
 if (direction === "left"){
     activeSlide ++
+    
 }
 
 if (direction === "right"){
     activeSlide --
+    
 }
+
 slider.style.transform = `translateX(${activeSlide * viewWidth}px)`
+activeMarker.style.backgroundColor = '#9D8665'
+
+
+
 }
 
 
 function  CheckI(){
 slider.classList.remove('visual-transition')
 if(activeSlide > 0 ){
+    activeMarker.style.backgroundColor = 'white'
     activeSlide = -4
+    activeMarker = markerList[4]
+    counter.textContent = `0 ${-activeSlide}| 05`
+    activeMarker.style.backgroundColor = '#9D8665'
     slider.style.transform = `translateX(${activeSlide * viewWidth}px)`
-}
-if(activeSlide < -4 ){
+    
+} else if(activeSlide < -4 ){
+activeMarker.style.backgroundColor = 'white'
 activeSlide = 0
+activeMarker = markerList[0]
+counter.textContent = `0 ${-activeSlide +1}| 05`
+activeMarker.style.backgroundColor = '#9D8665'
 slider.style.transform = `translateX(${activeSlide * viewWidth}px)`
+} else {
+    counter.textContent = `0 ${-activeSlide +1}| 05`
+    activeMarker.style.backgroundColor = 'white'
+    activeMarker = markerList[-activeSlide]
+    activeMarker.style.backgroundColor = '#9D8665'
 }
 }

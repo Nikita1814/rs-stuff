@@ -156,7 +156,7 @@ align-items:center;
   color:white;
 }
 .visual-transition{
-  transition: transform 0.5s ease-in;  
+  transition: transform 0.5s ease-in-out;  
 }
 
 .slider-counters{
@@ -192,6 +192,7 @@ width:180px;
   width:16px;
   height:16px;
   background-color:white;
+  transition: background-color 0.5s ease-in-out
 }
 /*.slider-counters input{
   background:black;
@@ -254,6 +255,7 @@ box-shadow: 0px 0px 0px transparent;
   text-shadow: 0px 0px 0px transparent;
   transition: background-color 1.2s;      
   }
+
   button > span{
     display:flex;
     align-items:center;
@@ -366,11 +368,14 @@ color:#000000;
   .explore-container span{
     color:#9D8665
   }
+
   .video-poster{
     margin-top:15px;
   background-image:url(assets/video/poster.jpg) ;
+  background-repeat: no-repeat;
+  background-size: cover;
   width:1440px;
-  height:629px;
+  height:650px;
   display:flex;
   justify-content:center;
   align-items:center;
@@ -380,7 +385,7 @@ color:#000000;
   
   width:1440px;
   height:90px;
-  margin-top:40px;
+  margin-bottom:75px;
   display:flex;
   align-items:flex-end;
   }
@@ -403,7 +408,8 @@ color:#000000;
   height:85px;
   width:1440px;  
   display:flex;
-  
+  justify-content: space-around;
+  align-items:center;
   background-color:#000000;
   }
   .video-journey button{
@@ -418,36 +424,126 @@ color:#000000;
   .playforward-button img{
   transform:rotate(180deg)  
   }
-  .playback-button {
+  /*.playback-button {
   padding-left:41px;
   padding-right:41.86px;
-  }
+  }*/
   
-   .playforward-button{
+   /*.playforward-button{
     padding-left:41.65px;
     padding-right:41.85px;
-    }
+    }*/
     .play-button{
     padding:0 0 0 0  
     }
-  .progress-bar {
-  width:820px;
-  padding:auto 0
-  }
-  .volume-button {
-  margin-left:41px;
-  padding-right:20.94px;
 
+    input[type='range'] {
+      overflow: hidden;
+      /*width: 80px;*/
+      -webkit-appearance: none;
+      background-color: #C4C4C4;
+      
     }
+    /*input[type='range']::-webkit-slider-runnable-track {
+      height:8px;
+      width:100%;
+      -webkit-appearance: none;
+      color: #710707;
+      margin-top: -1px;
+    }*/
+
+    input[type='range']::-webkit-slider-runnable-track {
+      height: 8px;
+      -webkit-appearance: none;
+      color:   #710707;
+      /*margin-top: -1px;*/
+      
+    }
+
+    input[type='range']::-webkit-slider-thumb {
+      width: 15px;
+      -webkit-appearance: none;
+      height: 35px;
+      cursor: ew-resize;
+      background: white;
+      box-shadow: -920px 0 0 920px ;
+    }
+  .progress-bar {
+  width:920px;
+  padding:auto 0;
+  overflow: visible;
+  }
+  /*.volume-button {
+  /*margin-left:41px;
+  padding-right:20.94px;*/
+
+    
   .volume-bar {
+
   width:155px;
   padding:0;
   margin:0;
   }
-  .fullscreen-button {
-margin-left:48px;
-padding-right:42.14px;
+  /*.fullscreen-button {
+/*margin-left:48px;
+padding-right:42.14px;*/
+
+.video-controls-wrapper{
+  margin-top:40px;
+  display:flex;
+  justify-content: center;
+}
+  .video-slider{
+   margin-top:40px;
+    width:1440px;
+    height:254px;
+    
   }
+  .video-placeholder{
+    position:relative;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+  }
+  .yt-placeholder{
+  position:absolute;
+  z-index:2;
+  }
+  .video-slider-controls{
+    width:210px;
+    height:12px;
+    
+    display:flex;
+    justify-content: space-between;
+  }
+  .video-sliding{
+    display:flex;
+    justify-content: space-between;
+  }
+
+  .video-slider-right,
+  .video-slider-left
+  {
+    width:10px;
+    height:10px;
+    box-shadow: 0px 0px 0px transparent;
+    border: 0px solid transparent;
+    text-shadow: 0px 0px 0px transparent;
+
+  }
+.video-slider-marker{
+  width:12px;
+  height:12px;
+  border-radius:50%;
+  background-color:#999999;
+}
+
+.gallery{
+  padding-bottom:0px;
+}
+.gallery-container{
+ height:2125px; 
+}
   .tickets-container{
     display:flex;
     color: #FFFFFF;
@@ -523,7 +619,6 @@ padding-right:42.14px;
    
    
    .amount{
-  
    width:150px;
    height: 342px;
    margin-left:240px; 
@@ -535,9 +630,7 @@ flex-direction:column;
   }
   .number {
     all: unset;
-
     text-align: center;
-    
   }
   
 .btn-container button{
