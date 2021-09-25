@@ -543,6 +543,47 @@ padding-right:42.14px;*/
 }
 .gallery-container{
  height:2125px; 
+ overflow-y: hidden;
+}
+.picture-container{
+  margin-top:75px;
+/*display:grid;
+ grid-template-columns: 456px 456px 456px;
+ grid-auto-rows: max-content;
+ grid-auto-columns: min-content;
+row-gap:24px;
+column-gap:36px;*/
+column-count:3;
+column-gap:36px;
+}
+.picture-container div:nth-child(1){
+padding-top:50px;
+}
+.picture-container div:nth-child(11){
+  padding-top:50px;
+}
+
+.picture-container div{
+  margin-bottom:24px;
+  box-sizing:border-box;
+}
+/*.picture-bigger{
+  width:456px;
+  height:574px;
+}
+.picture-smaller{
+  width:456px;
+  height:456px;
+}*/
+
+.img-smaller{
+  width:456px;
+  height:456px;
+}
+
+.img-bigger{
+  width:456px;
+  height:570px;
 }
   .tickets-container{
     display:flex;
