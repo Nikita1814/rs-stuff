@@ -229,14 +229,14 @@
             <p> Basic 18+</p> 
                 <div class="btn-container">
                 <button class="number-btn" type="button" onclick="this.nextElementSibling.stepDown()">–</button>
-            <input type="number" min="0" max="20" value="1" readonly class="number">
+            <input type="number" name ="ticket-counter" min="0" max="20" value="1" readonly class="number">
             <button class="number-btn" type="button" onclick="this.previousElementSibling.stepUp()">+</button>
                 </div>
             
             <p>Senior 65+</p>
                 <div class="btn-container">
-            <button class="number-btn" type="button" onclick="this.nextElementSibling.stepDown()">–</button>
-            <input type="number" min="0" max="20" value="1" readonly class="number">
+            <button class="number-btn"  type="button" onclick="this.nextElementSibling.stepDown()">–</button>
+            <input type="number" name ="ticket-counter" min="0" max="20" value="1" readonly class="number">
             <button class="number-btn" type="button" onclick="this.previousElementSibling.stepUp()">+</button>
         </div>
             <h4 class="total">Total €220</h4>
@@ -269,10 +269,54 @@
        </form>
        <div class="entry-ticket">
         <p class="underline-p">Entry Ticket</p>
-        
+        <div class= "btn-container-form">
+            <div><p>Basic 18+ (20 €)</p></div>
+             <div class="form-button-inputs">
+            <button class="number-btn-form" type="button" onclick="this.nextElementSibling.stepDown()">–</button>
+        <input type="number" name ="ticket-counter" min="0" max="20" value="2" readonly class="number">
+        <button class="number-btn-form" type="button" onclick="this.previousElementSibling.stepUp()">+</button>
+    </div>
+            </div>
+            <div class= "btn-container-form">
+                <div><p>Senior 65+ (10 €)</p></div>
+                 <div class="form-button-inputs">
+                <button class="number-btn-form" type="button" onclick="this.nextElementSibling.stepDown()">–</button>
+            <input type="number" name ="ticket-counter" min="0" max="20" value="2" readonly class="number">
+            <button class="number-btn-form" type="button" onclick="this.previousElementSibling.stepUp()">+</button>
+        </div>
     </div>
     </div>
-    <div class="ticket-form-overview"></div>
+  
+</div>
+<div class="ticket-form-overview">
+    <div class="overview-top">
+        <div class="overview-text">
+            <h4>Overview</h4>
+            <p class ="tour-name">Tour to Louvre</p>
+            <p class="overview-date">Friday, August 19</p>
+            <p class="overview-time">16 : 30</p>
+            <p class="overview-type">Temporary exhibition</p>
+        </div>
+        <img src="assets/img/louvre-small.jpg" alt="a small image of the pyramid outside of louvre">        
+    </div>
+    <div class="overview-mid">
+        <div class="ticket-info"><div><input type="number" min="0" max="20" value="2" readonly class="number"><p>Basic (20 €)</p></div><p>40 €</p></div>  
+        <div class="ticket-info"><div><input type="number" min="0" max="20" value="2" readonly class="number"><p>Senior (10 €)</p></div><p>20 €</p></div>  
+        <div class="overview-total"><p>Total:</p><p>60 €</p></div>   
+    </div>
+    <div class="overview-bottom">
+        <div class="card-top">
+            <input type="text" name ="card-num" id="card-num">
+           <!-- <div> <input type="number" min="01" max="31" value="03" readonly name="exp-date" id ="exp-date"> <input type="number" min="2021" max="2024" value ="2024" name="exp-year" id ="exp-year" ></div> -->
+            <input type="text" name ="card-name" id="card-name">
+        </div>
+        <div class="card-back">
+            <input type="text" name="CVCCVV" id ="CVCCVV">
+        </div>
+        <button class="overview-book">Book</button>
+    </div>
+    
+</div>
 </div>
 </div>
 </div>
@@ -291,6 +335,7 @@
         </div>
     </div>
 </section> 
+
 </main>
 <footer class="footer">
     <div class="container footer-container">

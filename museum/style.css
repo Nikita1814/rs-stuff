@@ -25,6 +25,11 @@ padding-right:240px;
 height:100%;
 }  
 
+button{
+  box-shadow: 0px 0px 0px transparent;
+  border: 0px solid transparent;
+  text-shadow: 0px 0px 0px transparent;  
+}
 section{
 
 padding-top:75px;
@@ -825,7 +830,7 @@ width: 190px;
   height:45px;
   box-sizing:border-box;
   border:1px solid black;
-  background-image:url(assets/svg/ticket-form/tel.svg);
+  background-image:url(assets/svg/ticket-form/ballot.svg);
   background-repeat: no-repeat;
   text-indent: 20px;
   background-position: 11px;
@@ -868,6 +873,7 @@ width: 190px;
 }
 
 .entry-ticket .underline-p{
+  margin-top:0;
   font-size:18px;
 line-height:20px;
 font-weight: 400;
@@ -881,10 +887,54 @@ width:400px;
 height:135px;  
 box-sizing:border-box;
 }
-.brn-container-form{
-  width:105px;
+.btn-container-form{
   height:25px;
+  display:flex;
+  justify-content:space-between;
+  align-items: center;
+  margin-top:22px;
 }
+.form-button-inputs{
+  display:flex;
+ 
+}
+
+.btn-container-form p{
+font-size:18px;
+color:black;
+}
+.form-button-inputs button,
+.form-button-inputs input{
+width:35px;  
+height:25px;  
+vertical-align:middle;
+text-align: center;
+margin:0;
+}
+
+.form-button-inputs button{
+  background:transparent;
+  box-shadow: 0px 0px 0px transparent;
+  border: 0px solid transparent;
+  text-shadow: 0px 0px 0px transparent;
+  color:white;
+  background-color:black;
+  font-size:20px;  
+}
+.form-button-inputs input{
+  box-sizing: border-box;
+  /*padding-left:11px;*/
+  text-align:center;
+  font-size:18px;
+  font-family:Roboto;
+  
+}
+input[name ="ticket-counter"]::-webkit-inner-spin-button, 
+input[name ="ticket-counter"]::-webkit-outer-spin-button { 
+    -webkit-appearance:none;
+    margin:0;
+}
+
 .ticket-form-container{
 position:relative
 }
@@ -907,10 +957,188 @@ border:2px solid black;
    border:2px solid black;
   }
   .ticket-form-overview{
+box-sizing:border-box;
+padding:25px 30px;    
 width:530px;
 height:663px;
 border:2px solid black;
   }
+  .overview-top{
+    
+    position:relative;
+  }
+  .overview-top img{
+    position:absolute;
+    top:0;
+    right:0;
+  }
+  .overview-text h4{
+    font-family:Roboto;
+    font-weight:500;
+    font-size:32px;
+    line-height:38px;
+  }
+  .overview-text .tour-name{
+    font-family:Roboto;
+    font-weight:500;
+    font-size:22px;
+    line-height:26px;
+    color:#740C11;
+    margin-top:2px;
+    margin-bottom:11px;
+  }
+  .overview-text p{
+    font-family:Roboto;
+    font-weight:300;
+    font-size:18px;
+    line-height:21px;
+    margin-top:5px;
+  }
+ .overview-date{
+    background-image:url(assets/svg/ticket-form/date.svg);
+    background-repeat: no-repeat;
+    text-indent: 30px;
+    background-position: left;
+    
+  }
+    
+ .overview-time{
+    background-image:url(assets/svg/ticket-form/time.svg);
+    background-repeat: no-repeat;
+    text-indent: 30px;
+    background-position: left;
+  }
+    
+  .overview-type{
+    background-image:url(assets/svg/ticket-form/tick.svg);
+    background-repeat: no-repeat;
+    text-indent: 30px;
+    background-position: left;
+  }
+    
+  .ticket-info{
+    display:flex;
+    justify-content:space-between;
+    font-family:Roboto;
+    font-weight:400;
+   font-size:22px;
+   line-height:26px;
+   margin-bottom:9px;
+  }
+  .ticket-info input{
+    color:#A4A4A3;
+    background-color:black;
+    width:32px;
+    text-align:center;
+    height:20px;
+    border-radius:20%;
+  margin-right:10px;
+  }
+  .ticket-info div{
+  display:flex;  
+  align-items:center;
+  
+  }
+  .overview-total{
+    margin-top:3px;
+    display:flex;
+    justify-content:space-between;
+    border-top:3px solid #740C11;
+    font-family:Roboto;
+    font-weight:400;
+   font-size:35px;
+   line-height:26px;
+   padding-top:15px;
+   box-sizing: border-box;
+  }
+
+  .overview-mid{
+    margin-top:22px;
+    margin-bottom:20px;
+  }
+  
+  .overview-bottom{
+  height:313px;
+  width:470px;
+  border:1px solid black;  
+  position:relative;
+  }
+  .card-top{
+  width:360px;
+  height:211px;
+  background-image: url(assets/img/card-top.jpg);
+  position:absolute;
+  top:0;
+  left:0;
+  z-index:2 ;
+  }
+
+  /*input[name="exp-date"]::-webkit-inner-spin-button,
+  input[name="exp-year"]::-webkit-inner-spin-button,
+  input[name="exp-date"]::-webkit-outer-spin-button, 
+  input[name="exp-year"]::-webkit-outer-spin-button{ 
+     opacity:1;
+     height:35px;
+     width:28px;
+  } */
+
+.card-top input{
+  height:35px;
+  border:0;
+  padding:0;
+  margin:0;
+  margin-left:20px;
+}
+  #card-num{
+    margin-top:34px;
+    margin-bottom:92px;
+    width:215px;
+
+  }
+  /*#exp-date{
+    width:100px;
+    padding-left:6px;
+    box-sizing:border-box;
+  }
+  #exp-year{
+    width:100px;
+    margin-left:15px;
+    padding-left:1px;
+    box-sizing:border-box;
+  }*/
+  #card-name{
+  width:320px;
+}
+  #CVCCVV{
+    width:75px;
+   height:35px;
+   margin-top:105px;
+   margin-left:260px;
+  }
+  .card-back{
+  width:360px;
+  height:211px;
+  background-image: url(assets/img/card-bottom.jpg);
+  position:absolute;
+  right:0;
+  top:30px;
+  z-index: 0;
+  }
+  .overview-book{
+  color:white;
+  background-color:#740C11;
+  text-align:center;
+  vertical-align:middle;
+  width:220px;
+  height: 45px;
+  position:absolute;
+  bottom:0;
+  right:0; 
+  font-family:Roboto;
+  font-weight:400;
+  font-size:22px;
+  line-height:26px;
+ }
     .contacts-container{
     display:flex;  
     }
