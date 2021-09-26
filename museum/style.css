@@ -681,7 +681,7 @@ flex-direction:column;
   text-shadow: 0px 0px 0px transparent;  
 }
   .btn-container{
-    width:144x;
+    width:144px;
     height:44px;
     display:flex;
     border:4px solid #030303;
@@ -747,11 +747,170 @@ background-color:#030303;
 transition: background-color 1.2s;
   }
   .paralax-connector{
-    width:1920px;
+    width:100%;
     height:400px;
-    background-color:grey;
+    background-image:url(assets/img/parallax.jpg);
+    background-size:cover;
+   
+    background-attachment: fixed;
   }
-  
+  .ticket-form{
+  width:1440px;
+  height:845px;
+  background-color:#FFFFFF; 
+  display:flex;
+  justify-content: space-between;
+  }
+.booking-fields{
+  display:flex;
+  justify-content: space-between;
+  padding:95px 235px;
+  width:970px;
+  height:663px;
+}
+.ticket-form-forms h4{
+font-size:50px;
+line-height:55px;
+font-weight: 400;
+font-family:Forum;
+color:#9D8665;
+}
+.ticket-form-forms form{
+  margin-top:67px;
+}
+.ticket-form input[type=date],
+.ticket-form input[type=time]{
+width: 190px; 
+}
+.ticket-form input#name {
+  background-image:url(assets/svg/ticket-form/name.svg);
+  background-repeat: no-repeat;
+  text-indent: 20px;
+  background-position: 11px;
+  margin-right:14px;
+}
+.ticket-form input[type=date]{
+  background-image:url(assets/svg/ticket-form/date.svg);
+  background-repeat: no-repeat;
+  text-indent: 20px;
+  background-position: 11px;
+  margin-right:14px;
+}
+.ticket-form input[type=time]{
+  background-image:url(assets/svg/ticket-form/time.svg);
+  background-repeat: no-repeat;
+  text-indent: 20px;
+  background-position: 11px;
+
+}
+.ticket-form input[type=email]{
+  background-image:url(assets/svg/ticket-form/email.svg);
+  background-repeat: no-repeat;
+  text-indent: 20px;
+  background-position: 11px;
+ 
+}
+.ticket-form input[type=tel]{
+  background-image:url(assets/svg/ticket-form/tel.svg);
+  background-repeat: no-repeat;
+  text-indent: 20px;
+  background-position: 11px;
+
+}
+#TicketType{
+  width:400px;
+  padding:0;
+  margin:0;
+  margin-bottom:20px;
+  height:45px;
+  box-sizing:border-box;
+  border:1px solid black;
+  background-image:url(assets/svg/ticket-form/tel.svg);
+  background-repeat: no-repeat;
+  text-indent: 20px;
+  background-position: 11px;
+}
+
+
+.ticket-form-forms input{
+  width:400px;
+  padding:0;
+  margin:0;
+  margin-bottom:20px;
+  height:45px;
+  box-sizing:border-box;
+  border:1px solid black;
+
+
+}
+.underline-p{
+  margin-top:15px;
+  position:relative;
+}
+
+.underline-p::after{
+     content: "";
+    position: absolute;
+    width:100%;
+    bottom: -10px;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background-color: #710707;
+}
+.ticket-form-forms p{
+  color:#710707;
+  font-family:Roboto;
+  font-weight:400;
+  font-size:18px;
+  line-height:22px;
+
+}
+
+.entry-ticket .underline-p{
+  font-size:18px;
+line-height:20px;
+font-weight: 400;
+font-family:Forum;
+color:#9D8665;
+}
+.entry-ticket{
+padding:10px 15px;
+border: 1px solid black;
+width:400px;
+height:135px;  
+box-sizing:border-box;
+}
+.brn-container-form{
+  width:105px;
+  height:25px;
+}
+.ticket-form-container{
+position:relative
+}
+
+.exitbtn{
+  position:absolute;
+  top:0;
+  right:0;
+  background-image:url(assets/svg/Close.svg);
+  box-shadow: 0px 0px 0px transparent;
+  border: 0px solid transparent;
+  text-shadow: 0px 0px 0px transparent;  
+  width:25px;
+  height:25px;
+border:2px solid black;
+}
+  .ticket-form-forms{
+   width:400px;
+   height:663px;
+   border:2px solid black;
+  }
+  .ticket-form-overview{
+width:530px;
+height:663px;
+border:2px solid black;
+  }
     .contacts-container{
     display:flex;  
     }
@@ -760,10 +919,10 @@ transition: background-color 1.2s;
     padding-left:198px;
     }
     .contacts-info{
-    width:281px;
-    height:221px;
+    width:282px;
+    height:244px;
     font-family:Roboto;
-    margin-top:113px;  
+    margin-top:103px;  
     }
     .contacts-info p{
       font-family: Roboto;
@@ -771,7 +930,7 @@ transition: background-color 1.2s;
       font-weight: 300;
       font-size: 22px;
       line-height: 26px;
-      padding-top:20px;
+      padding-top:25px;
     }
     .contacts-info h4{
   font-family: Roboto;
@@ -779,7 +938,7 @@ transition: background-color 1.2s;
   font-weight: bold;
   font-size: 28px;
   line-height: 33px;
-  padding-bottom:16px;
+  padding-bottom:20px;
     }
     footer{
     padding-top:75px;
