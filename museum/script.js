@@ -10,7 +10,7 @@ const ticketOpen = document.querySelector('.buy')
 const ticketClose = document.querySelector('.exitbtn')
 const ticketForm = document.querySelector('.ticket-form')
 const overLay = document.querySelector('.overlay')
-
+const allProgress = document.querySelectorAll('.progress')
 
 activeMarker = markerList[0]
 activeMarker.style.backgroundColor = '#9D8665'
@@ -40,6 +40,10 @@ overLay.addEventListener('click', () => {
     closeTicketForm()
 })
 
+/*.progressAll.forEach((el) => el.addEventListener('input', function(e) {
+    const value = e.target.value;
+  this.style.background = `linear-gradient(to right, #710707 0%, #710707 ${value}%, #fff ${value}%, white 100%)`
+}))*/
 
 
 
