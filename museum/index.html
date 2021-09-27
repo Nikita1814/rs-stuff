@@ -259,12 +259,12 @@
        <h4 >BOOKING TICKETS </h4>
        <p class="underline-p">Tour to Louvre</p>
        <form action="">
-       <p> <input type="date" name="date" placeholder = "Date"><input type="time" name="time" id = "" placeholder = "Time"></p>
-       <p> <input type="text" name="name" id="name" placeholder = "Name"></p>
-       <p> <input type="email" name="e-mail"></p>
-       <p> <input type="tel" name="phone"></p>
-       <p> <select name="Ticket Type" id="TicketType"></p>
-           <option></option>
+       <p> <input type ="text" value = "Date" onfocus= "(this.type='date')" onblur ="(this.type='text')" name="form-date"  id = "form-date-text" onfocus="(this.id='form-date')" onblur="(this.id='form-date-text')"><input type="text" value ="Time"  onfocus= "(this.type='time')" name="form-time" id = "form-time" value = "Time"></p>
+       <p> <input type="text" name="name" id="name" value = "Name"></p>
+       <p> <input type="email" name="e-mail" value = "E-mail"></p>
+       <p> <input type="tel" name="phone" value = "Phone"></p>
+       <p> <select name="Ticket Type" id="TicketType" value = "Ticket Type"></p>
+           <option selected><p>Ticket Type</p></option>
        </select>
        </form>
        <div class="entry-ticket">
@@ -300,8 +300,8 @@
         <img src="assets/img/louvre-small.jpg" alt="a small image of the pyramid outside of louvre">        
     </div>
     <div class="overview-mid">
-        <div class="ticket-info"><div><input type="number" min="0" max="20" value="2" readonly class="number"><p>Basic (20 €)</p></div><p>40 €</p></div>  
-        <div class="ticket-info"><div><input type="number" min="0" max="20" value="2" readonly class="number"><p>Senior (10 €)</p></div><p>20 €</p></div>  
+        <div class="ticket-info"><div><input type="number" name ="ticket-counter" min="0" max="20" value="2" readonly class="number"><p>Basic (20 €)</p></div><p>40 €</p></div>  
+        <div class="ticket-info"><div><input type="number" name ="ticket-counter" min="0" max="20" value="2" readonly class="number"><p>Senior (10 €)</p></div><p>20 €</p></div>  
         <div class="overview-total"><p>Total:</p><p>60 €</p></div>   
     </div>
     <div class="overview-bottom">
