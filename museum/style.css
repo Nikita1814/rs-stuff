@@ -14,8 +14,8 @@
    }
 body{
  background-color: #030303;
- margin:0 auto
-
+ margin:0 auto;
+ overflow-x:hidden;
 }
 .container{
 width: 1440px;    
@@ -37,10 +37,11 @@ padding-bottom:75px;
 background-color:#030303; 
 }
 .header{ 
-width:1920px;
+/*width:1920px;*/
 padding-top:50px;
 padding-bottom:50px ;
 color:white;
+margin:0;
 }
 .header h1{
   
@@ -654,7 +655,7 @@ padding-top:50px;
     position:relative;
     
     }
-    .buys-tickets{
+    .buy-tickets{
       position:relative;
     }
     .tickets-container p{
@@ -823,7 +824,13 @@ transition: color 1.2s;
    
     background-attachment: fixed;
   }
+
+  /*Ticket form*/
   .ticket-form{
+  position:fixed;
+  top:5%;
+  left:10%;
+  z-index:1;
   width:1440px;
   height:845px;
   background-color:#FFFFFF; 
