@@ -1383,6 +1383,9 @@ transition:background-color, 0.5s ease-in;
       line-height: 26px;
       padding-top:25px;
     }
+    .contacts-info a{
+      color:black;
+    }
     .contacts-info h4{
   font-family: Roboto;
   font-style: normal;
@@ -1405,6 +1408,7 @@ transition:background-color, 0.5s ease-in;
   
     .plug{
       height:124px;
+      width:1440px;
       border-top:3px solid #666666;
       padding-left:240px;
       padding-right:240px;
@@ -1414,8 +1418,12 @@ transition:background-color, 0.5s ease-in;
     }
 
     .forgive-me-for-I-have-sinned{
-      padding-left:10px;
+      padding-left:35px;
     }
+    /*
+    .ends-justify-the-means{
+      padding-left:46px;
+    }*/
     .plug p {
       display:inline-block;
       color:white;
