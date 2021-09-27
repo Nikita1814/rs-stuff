@@ -39,7 +39,7 @@
       <h2 class="section-title">WELCOME</h2> 
       <h2 class="section-title">TO THE LOUVRE</h2>
       <p class= "section-paragraph">From the castle to the museum</p>
-      <button>Discover the Louvre </button>  
+      <a href="tours/tour7.html" class ="discover-link">Discover the Louvre </a>  
      </div>
      <div class="welcome-slider-viewer">
      <div class="welcome-slider">
@@ -53,9 +53,11 @@
      </div>
     </div>
      <div class="welcome-slider-controls">
-         <div class="slider-counters">
-             <p class ="slider-counter">01 | 05</p>
-         </div>
+            <div class="slider-counters">
+             <p class ="slider-counter">01</p>
+             <p class ="slider-counter">| </p>
+             <p class ="slider-counter">05</p>
+            </div>
          <div class="slider-markers">
              <div class="slider-marker" ></div>
              <div class="slider-marker"></div>
@@ -65,7 +67,7 @@
          </div>
          <div class="slider-buttons">
           <button class="slider-button-left">←</button>
-          <button class="slider-button-right">←</button>
+          <button class="slider-button-right">→</button>
          </div>
      </div>
 </section>
@@ -111,7 +113,7 @@
         </div>
         <div class="controls">
         <button class="play-button">
-            <img src="assets/svg/play-button.svg" alt="play-button">
+            <img src="assets/svg/play-button.svg"  alt="play-button">
            </button>
            
            <input class="progress-bar" type="range" value="55" min="0" step="1" max="100">
@@ -145,7 +147,7 @@
         <div class="video-controls-wrapper">
      <div class="video-slider-controls">
          <button class="video-slider-left"><img src="assets/svg/vid-slider-left.svg" alt="left-video-slider-button"></button>
-         <div class="video-slider-marker"></div>
+         <div class="video-slider-marker marked"></div>
          <div class="video-slider-marker"></div>
          <div class="video-slider-marker"></div>
          <div class="video-slider-marker"></div>
@@ -194,7 +196,7 @@
             <img src="assets/img/gallery/galery13.jpg" alt="idk">
             <img src="assets/img/gallery/galery14.jpg" alt="idk">
             <img src="assets/img/gallery/galery15.jpg" alt="idk"> -->
-        
+        <div class="gallery-fade"></div>
     </div>
 </section>
 <section class="buy-tickets section-white" id="tickets">
@@ -259,14 +261,18 @@
        <h4 >BOOKING TICKETS </h4>
        <p class="underline-p">Tour to Louvre</p>
        <form action="">
-       <p> <input type ="text" value = "Date" onfocus= "(this.type='date')" onblur ="(this.type='text')" name="form-date"  id = "form-date-text" onfocus="(this.id='form-date')" onblur="(this.id='form-date-text')"><input type="text" value ="Time"  onfocus= "(this.type='time')" name="form-time" id = "form-time" value = "Time"></p>
+       <p> <input class ="date-input"type ="text" value = "Date" onfocus= "(this.type='date')" onblur ="(this.type='text')" name="form-date-text" onfocus="(this.name='form-date')" id="time-input"  ><input class="time-input" type="text" value ="Time"  onfocus= "(this.type='time')" name="form-time-text" onfocus ="(this.name='form-time')" value = "Time"></p>
        <p> <input type="text" name="name" id="name" value = "Name"></p>
        <p> <input type="email" name="e-mail" value = "E-mail"></p>
        <p> <input type="tel" name="phone" value = "Phone"></p>
        <p> <select name="Ticket Type" id="TicketType" value = "Ticket Type"></p>
            <option selected><p>Ticket Type</p></option>
+           <option><p>Option 2</p></option>
        </select>
        </form>
+       <div class="fake-bg-date"></div>
+       <div class="fake-bg-time"></div>
+       <div class="fake-bg-select"></div>
        <div class="entry-ticket">
         <p class="underline-p">Entry Ticket</p>
         <div class= "btn-container-form">
@@ -302,7 +308,7 @@
     <div class="overview-mid">
         <div class="ticket-info"><div><input type="number" name ="ticket-counter" min="0" max="20" value="2" readonly class="number"><p>Basic (20 €)</p></div><p>40 €</p></div>  
         <div class="ticket-info"><div><input type="number" name ="ticket-counter" min="0" max="20" value="2" readonly class="number"><p>Senior (10 €)</p></div><p>20 €</p></div>  
-        <div class="overview-total"><p>Total:</p><p>60 €</p></div>   
+        <div class="overview-total"><p>Total:</p><p class="total-cost">60 €</p></div>   
     </div>
     <div class="overview-bottom">
         <div class="card-top">
