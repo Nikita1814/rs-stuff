@@ -6,6 +6,10 @@ const sliderLen = slider.querySelectorAll(".welcome-slider-image").length
 const markerList = document.querySelectorAll(".slider-marker")
 const counter = document.querySelector(".slider-counter")
 const viewWidth = viewWindow.clientWidth
+const ticketOpen = document.querySelector('.buy')
+const ticketClose = document.querySelector('.exitbtn')
+const ticketForm = document.querySelector('.ticket-form')
+const overLay = document.querySelector('.overlay')
 
 
 activeMarker = markerList[0]
@@ -21,7 +25,23 @@ rightBtn.addEventListener('click', () => {
     switchSlides('right')
     })
 
+
 slider.addEventListener('transitionend', CheckI)
+
+
+ticketOpen.addEventListener('click', () =>{
+closeTicketForm()
+})
+
+ticketClose.addEventListener('click', () =>{
+closeTicketForm()    
+})
+overLay.addEventListener('click', () => {
+    closeTicketForm()
+})
+
+
+
 
 markerList.forEach((el) => el.addEventListener('click', (e) => {
 activeMarker.style.backgroundColor = 'white'
@@ -77,3 +97,8 @@ slider.style.transform = `translateX(${activeSlide * viewWidth}px)`
     activeMarker.style.backgroundColor = '#9D8665'
 }
 }
+
+function closeTicketForm () {
+ticketForm.classList.toggle('hide-left')  
+overLay.classList.toggle('hidden')  
+} 
