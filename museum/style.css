@@ -1407,14 +1407,23 @@ transition:background-color, 0.5s ease-in;
     }
   
     .plug{
+      margin:0;
       height:124px;
-      width:1440px;
+      /*width:1440px;
       border-top:3px solid #666666;
-      padding-left:240px;
-      padding-right:240px;
       display:flex;
       justify-content: space-between;
       align-items:center;
+      padding-left:240px;
+      padding-right:240px;*/
+    }
+    .plug-container{
+      border-top:3px solid #666666;
+      display:flex;
+      justify-content: space-between;
+      align-items:center;
+      padding-left:240px;
+      padding-right:240px;
     }
 
     .forgive-me-for-I-have-sinned{
