@@ -1408,14 +1408,15 @@ transition:background-color, 0.5s ease-in;
   
     .plug{
       height:124px;
-      width:1440px;
+      /*width:1440px;*/
       border-top:3px solid #666666;
-      padding-left:240px;
-      padding-right:240px;
       display:flex;
       justify-content: space-between;
       align-items:center;
+      padding-left:240px;
+      padding-right:240px;
     }
+    
 
     .forgive-me-for-I-have-sinned{
       padding-left:35px;
