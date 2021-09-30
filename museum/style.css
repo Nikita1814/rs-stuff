@@ -1553,6 +1553,7 @@ transition:background-color, 0.5s ease-in;
     }
     
      .card h3{
+       padding-top:20px;
       font-size:28px;
       line-height:40px;
       letter-spacing:3px;
@@ -1560,6 +1561,10 @@ transition:background-color, 0.5s ease-in;
      .card-p-major{
       font-size:20px;
       line-height:23px;
+     }
+     .card-p-smaller{
+       font-size:16px;
+       line-height:19px;
      }
      .explore-container p{
       font-size:20px;
@@ -1624,5 +1629,28 @@ transition:background-color, 0.5s ease-in;
        padding-right:75px;
 
      }
-    
+    .card-container{
+      margin-top:84px;
+      box-sizing: border-box;
+      padding-left:108px;
+      padding-right:108px;
+      width:100%;
+      gap: 60px 108px;
+    }
+    .card{
+      width:330px;
+      height:345px;
+    }
+    .underline-card::after{
+      width:150px;
+    }
+    .card:hover .underline-card::after{
+      width:330px;
+    }
+
+    .card-image{
+      width:330px;
+      height:215px;
+    }
+
     }
