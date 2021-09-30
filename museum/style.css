@@ -1567,6 +1567,7 @@ transition:background-color, 0.5s ease-in;
        line-height:19px;
      }
      .explore-container p{
+       padding-top:0;
       font-size:20px;
       line-height:39px;
      }
@@ -1652,5 +1653,20 @@ transition:background-color, 0.5s ease-in;
       width:330px;
       height:215px;
     }
-
+   .explore-container{
+     flex-direction: column;
+   }
+   .picture-explore-text{
+     width:100%;
+   }
+   .picture-explore-text p:nth-child(3){
+     display:none;
+   } 
+   .las-meninas{
+     padding-top:2px;
+     width:720px;
+     height:700px;
+     margin-left:132px;
+     margin-right:132px;
+   }
     }
