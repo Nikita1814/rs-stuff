@@ -1829,4 +1829,15 @@ transition:background-color, 0.5s ease-in;
     .social{
       margin-left: 90px;
     }
+    .ticket-form{
+      left:0;
+      width:1024px;
+      height:768px;
+    }
+    .hide-left{
+      left:-1024px;
+    }
+    .booking-fields{
+      padding:75px 20px 30px 20px
+    }
   }
