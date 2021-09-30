@@ -18,12 +18,14 @@ body{
  overflow-x:hidden;
 }
 .container{
-width: 1440px;    
+max-width: 1440px;    
 margin:0 auto;
 padding-left:240px;
 padding-right:240px;
 height:100%;
 }  
+
+
 .overlay{
 position:fixed;
 top:0;
@@ -1518,3 +1520,73 @@ transition:background-color, 0.5s ease-in;
     }
     
     
+
+    @media (max-width: 1024px){
+      .container{
+      padding :0 20px;
+
+      }
+      .section{
+        padding-top: 60px;
+        padding-bottom:60px;
+      }
+
+      .header-nav-list a,
+      .footer-nav-list a{
+       font-weight: 300px;
+       font-size:20px;
+       line-height:23px;
+       letter-spacing:2px;
+       }
+
+      .section-title{
+        font-size:50px;
+        line-height:75px;
+      }
+    .welcome .section-title{
+      line-height:90px;
+    }
+    .text-field p{
+      font-size:24px;
+      line-height:28px;
+      letter-spacing:2px;
+    }
+    
+     .card h3{
+      font-size:28px;
+      line-height:40px;
+      letter-spacing:3px;
+     }
+     .card-p-major{
+      font-size:20px;
+      line-height:23px;
+     }
+     .explore-container p{
+      font-size:20px;
+      line-height:39px;
+     }
+     .video-description p{
+       display: none;
+     }
+     .ticket-type{
+      display: none; 
+     }
+     /*.video-description h2{}
+     .tickets-container p {}
+    .tickets-contianer h4 {}
+    .ticket-type h4 {}
+     .amount h4{}
+     .amount p {}*/
+     .contacts-info h4{
+       font-size:24px;
+       line-height:28px;
+     }
+     .contacts-info p {
+       font-size:20px;
+       line-height:23px;
+     }
+     /*.plug p {}*/
+
+     .welcome-slider-viewer{}    
+    
+    }
