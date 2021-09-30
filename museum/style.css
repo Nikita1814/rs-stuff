@@ -718,7 +718,10 @@ padding-top:50px;
       line-height: 33px; 
     }
     .tickets-image{
-    padding-top:103px;  
+      background-image: url(assets/img/tickets-image.jpg) ;
+      width:720px;
+      height:550px;
+    margin-top:103px;  
     } 
     .ticket-type{
     height:262px;
@@ -833,7 +836,7 @@ font-weight: bold;
 font-size: 28px;
 line-height: 33px;
 letter-spacing: 1.65px;
-padding-bottom:25px;
+margin-bottom:25px;
   }
   .total{
     padding-top:35px;
@@ -1581,7 +1584,7 @@ transition:background-color, 0.5s ease-in;
      .tickets-container p {}
     .tickets-contianer h4 {}
     .ticket-type h4 {}
-     .amount h4{}
+    
      .amount p {}*/
      .contacts-info h4{
        font-size:24px;
@@ -1728,7 +1731,7 @@ transition:background-color, 0.5s ease-in;
     /*May Allah forgive me for what I am about to do*/
 
     .gallery-container{
-      height:1460px;
+      height:1400px;
       background-image: url(assets/img/gallery/gallery-placeholder-1024p.png);
       background-repeat: no-repeat;
       background-size: 90% contain;
@@ -1748,5 +1751,42 @@ transition:background-color, 0.5s ease-in;
     width:304px;
     height: 304px;
     }
-    
+    .tickets-image{
+      background-image: url(assets/img/tickets\ -image-1024p.png) ;
+      background-size: contain;
+      background-repeat: no-repeat;
+    width:700px;
+    height:440px;
+    margin-top:83px;
+    }
+    .amount{
+      width:175px;
+      margin-top:80px;
+    margin-left:80px;
+    margin-bottom:50px;
+    justify-content: left;
+
+    }
+    .amount h4{
+      margin-bottom:34px;
+      
+    }
+    .amount p{
+      padding-bottom:10px;
+    }
+    .amount p{
+     margin-top:10px; 
+    }
+    .btn-container{
+      width:100%;
+    }
+
+    .total{
+      padding-top:0;
+      margin-top:10px;
+    }
+    .buy{
+      right:23px;
+      bottom:0
+    }
   }
