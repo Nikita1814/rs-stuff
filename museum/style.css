@@ -1526,7 +1526,7 @@ transition:background-color, 0.5s ease-in;
       padding :0 20px;
 
       }
-      .section{
+      section{
         padding-top: 60px;
         padding-bottom:60px;
       }
@@ -1586,7 +1586,43 @@ transition:background-color, 0.5s ease-in;
        line-height:23px;
      }
      /*.plug p {}*/
+.header{
+  padding-bottom:40px;
+  padding-top:40px;
+}
+     .welcome-slider-viewer{
+       width:700px;
+       height:525px;
+       right:20px;
+     }
+     .welcome-slider{
+       height:525px;
+     }
+     .welcome-slider-image{
+      width:700px;
+      height:525px;
+     }
+     .slider-marker{
+       width:12px;
+       height:12px;
+     }
+     .text-field{
+       padding-bottom:142px;
+       padding-top:50px;
+     }
+     .text-field .discover-link{
+       width:300px;
+       height:60px;
+       margin-top:46px;
+       font-size:20px;
+       line-height:23px;
+     }
+     .welcome-slider-controls{
+       width:700px;
+       right:20px;
+       padding-left:224px;
+       padding-right:75px;
 
-     .welcome-slider-viewer{}    
+     }
     
     }

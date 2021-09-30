@@ -15,7 +15,7 @@ const allProgress = document.querySelectorAll('.progress')
 activeMarker = markerList[0]
 activeMarker.style.backgroundColor = '#9D8665'
 let activeSlide = 0
-slider.style.left = "-1000px"
+slider.style.left = `-${viewWindow.offsetWidth}px` /*-1000px*/
 
 leftBtn.addEventListener('click', () => {
 switchSlides('left')
