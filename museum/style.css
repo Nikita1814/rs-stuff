@@ -1724,4 +1724,29 @@ transition:background-color, 0.5s ease-in;
       width:68px;
       height:48px;
     }
+
+    /*May Allah forgive me for what I am about to do*/
+
+    .gallery-container{
+      height:1460px;
+      background-image: url(assets/img/gallery/gallery-placeholder-1024p.png);
+      background-repeat: no-repeat;
+      background-size: 90% contain;
+      background-position-x: center;
+    }
+    .gallery-container h2,
+    .picture-container,
+    .gallery-fade{
+      display: none;
+    }
+    .picture-bigger{
+    width:304px;
+    height:380px;
+
+    }
+    .picture-smaller{
+    width:304px;
+    height: 304px;
+    }
+    
   }
