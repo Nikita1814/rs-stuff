@@ -397,7 +397,11 @@ color:#000000;
   gap:60px;  
   }
   .las-meninas{
-  padding-top:15px;
+    width:720px;
+    height:700px;
+    background-image: url(assets/img/Explore-image.png);
+    background-size: cover;
+  margin-top:15px;
   
   }
   .picture-explore-text{
@@ -1528,6 +1532,13 @@ transition:background-color, 0.5s ease-in;
     
     
 
+
+
+
+
+
+
+
     @media (max-width: 1024px){
       .container{
       padding :0 20px;
@@ -1670,7 +1681,8 @@ transition:background-color, 0.5s ease-in;
      display:none;
    } 
    .las-meninas{
-     padding-top:2px;
+     background-image: url(assets/img/Explore-image.png);
+     margin-top:2px;
      width:720px;
      height:700px;
      margin-left:132px;
@@ -1985,12 +1997,13 @@ transition:background-color, 0.5s ease-in;
       padding-right:56px;
       width:100%;
       gap: 40px 56px;
+      margin-bottom:38px;
     }
     .card{
       width:280px;
       height:301px;
     }
-    .underline-title::after{
+    .card-container.underline-title::after{
       bottom:-20px;
     }
     .underline-card::after{
@@ -2009,17 +2022,18 @@ transition:background-color, 0.5s ease-in;
      flex-direction: column;
    }
    .picture-explore-text{
-     width:100%;
+     display:none;
    }
-   .picture-explore-text p:nth-child(3){
+   .picture-explore-text p{
      display:none;
    } 
    .las-meninas{
-     padding-top:2px;
-     width:720px;
-     height:700px;
-     margin-left:132px;
-     margin-right:132px;
+     background-image: url(assets/img/Las-meninas-768p-placeholder.png);
+     /*margin-top:10px;*/
+     width:728px;
+     height:705px;
+     margin-left:0;
+     margin-right:0;
    }
    .video-description{
      margin-bottom:20px;
