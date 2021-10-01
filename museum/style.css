@@ -1979,27 +1979,31 @@ transition:background-color, 0.5s ease-in;
 
      }
     .card-container{
-      margin-top:84px;
+      margin-top:60px;
       box-sizing: border-box;
-      padding-left:108px;
-      padding-right:108px;
+      padding-left:56px;
+      padding-right:56px;
       width:100%;
-      gap: 60px 108px;
+      gap: 40px 56px;
     }
     .card{
-      width:330px;
-      height:345px;
+      width:280px;
+      height:301px;
+    }
+    .underline-title::after{
+      bottom:-20px;
     }
     .underline-card::after{
+      bottom:-11px;
       width:150px;
     }
     .card:hover .underline-card::after{
-      width:330px;
+      width:280px;
     }
 
     .card-image{
-      width:330px;
-      height:215px;
+      width:280px;
+      height:180px;
     }
    .explore-container{
      flex-direction: column;
