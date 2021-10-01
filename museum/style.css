@@ -2143,23 +2143,24 @@ transition:background-color, 0.5s ease-in;
     height: 304px;
     }
     .tickets-image{
-      background-image: url(assets/img/tickets\ -image-1024p.png) ;
-      background-size: contain;
-      background-repeat: no-repeat;
-    width:700px;
-    height:440px;
-    margin-top:83px;
+      background-image: url(assets/img/tickets-image.jpg); 
+      background-size:cover;
+    width:440px;
+    height:340px;
+    margin-top:65px;
     }
     .amount{
+    
       width:175px;
-      margin-top:80px;
-    margin-left:80px;
-    margin-bottom:50px;
+      margin-top:60px;
+    margin-left:60px;
+    margin-bottom:93px;
     justify-content: left;
 
     }
-    .amount h4{
-      margin-bottom:34px;
+    .amount h4:nth-child(1){
+      margin-top: 4px;
+      margin-bottom:30px;
       
     }
     .amount p{
@@ -2174,14 +2175,17 @@ transition:background-color, 0.5s ease-in;
 
     .total{
       padding-top:0;
-      margin-top:10px;
+      margin-left:5px;
+      margin-top:20px;
+      margin-bottom:0;
     }
     .buy{
-      right:23px;
+      right:46px;
       bottom:0
     }
     .paralax-connector{
-      width:1024px;
+      width:768px;
+      height:300px;
       background-size:cover;
       background-repeat: no-repeat;
 
