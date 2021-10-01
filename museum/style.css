@@ -2200,7 +2200,7 @@ transition:background-color, 0.5s ease-in;
      height:476px;
      margin-top:0;
      margin-left:0;
-     margin-bottom:26px;
+     margin-bottom:30px;
     }
     .contacts-info{
       height:215px;
@@ -2212,19 +2212,37 @@ transition:background-color, 0.5s ease-in;
       margin-bottom:5px;
     }
     .footer{
+      position: relative;
+      height:411px;
       padding-top: 40px;
       padding-bottom: 40px;
     }
     .footer-container{
       justify-content:flex-start;
+      flex-wrap: wrap;
     }
     .navigation-bottom{
-    width:316px;
-    margin-left:45px;
+      margin-top:20px;
+    width:393px;
+    margin-left:75px;
     justify-content:space-between;  
     }
+    .footer .column:nth-child(1){
+      margin-left:20px;
+    }
+    .footer-nav-list{
+      display:flex;
+      flex-direction: column;
+      row-gap: 25px;
+    }
     .social{
-      margin-left: 90px;
+      margin-left: 300px;
+      margin-top: 10px;
+    }
+    .plug{
+      height:110px;
+    margin-top:80px;
+    padding-bottom:10px;
     }
     .ticket-form{
       left:0;
