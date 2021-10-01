@@ -2035,62 +2035,88 @@ transition:background-color, 0.5s ease-in;
      margin-left:0;
      margin-right:0;
    }
-   .video-description{
-     margin-bottom:20px;
+   .video-description {
+     box-sizing: border-box ;
+     padding-top:8px;
+     margin-bottom:0;
+     height:84px;
+   }
+   .video-description h2 {
+    height:84px;
    }
    .video-poster{
      margin-top:0;
-     width:984px;
-     height:444px;
+     width:728px;
+     height:329px;
    }
   
    .controls{
+     position: relative;
      box-sizing: border-box;
      align-items: center;
      align-content: center;
      padding-left:10px;
      padding-right:10px;
-     width:984px;
-     height:60px;
+     width:728px;
+     height:53px;
      margin-bottom:10px;
    }
    .volume-button img{
-     width:26px;
-     height:20px;
+     width:27px;
+     height:21px;
    }
    .fullscreen-button img{
      width:26px;
      height:26px;
    }
    .progress-bar{
-     width:564px;
+     position: absolute;
+     top:-7px;
+     width:728px;
      height:5px;
+     background:linear-gradient(to right, #710707 0%, #710707 30%, #C4C4C4 30%, #C4C4C4 100%);
    }
+
    .volume-bar{
-     width:137px;
+     width:486px;
    }
    .big-play-icon{
-     width: 152px;
-     height: 152px;
+     width: 80px;
+     height: 80px;
    }
    .video-slider{
      width:100%;
-     height:170px;
+     height:199px;
+     margin-top:20px;
    }
-   .video-placeholder{
-     width:300px;
-     height:170px;
 
+   .video-placeholder{
+     width:354px;
+     height:199px;
+    }
+    .video-placeholder:nth-child(3) {
+    display: none;
     }
     .video-placeholder img:nth-child(1){
-      width:300px;
-      height:170px;
+      width:354px;
+      height:199px;
     }
     .yt-placeholder{
       width:68px;
       height:48px;
     }
-
+    .video-controls-wrapper{
+      margin-top:20px;
+      margin-bottom:40px;
+    }
+    .video-slider-controls{
+      width:190px;
+      align-self: center;
+    }
+    .video-slider-marker{
+      width:9px;
+      height:9px;
+    }
     /*May Allah forgive me for what I am about to do*/
 
     .gallery-container{
