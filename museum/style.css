@@ -2190,24 +2190,30 @@ transition:background-color, 0.5s ease-in;
       background-repeat: no-repeat;
 
     }
+    .contacts-container{
+      flex-direction: column;
+    }
     .map{
-    background-image: url(assets/img/map-1024p.png);
-     width:694px;
-     height:454px;
-     margin-top:80px;
-     margin-left:15px;
+    background-image: url(assets/img/map-768p.png);
+     background-size: contain;
+     width:728px;
+     height:476px;
+     margin-top:0;
+     margin-left:0;
+     margin-bottom:26px;
     }
     .contacts-info{
-      margin-top:83px;
+      height:215px;
+      margin-top:63px;
     }
     .contacts-info p{
       padding-top:0 ;
-      margin-top:13px;
+      margin-top:15px;
       margin-bottom:5px;
     }
     .footer{
-      padding-top: 60px;
-      padding-bottom: 60px;
+      padding-top: 40px;
+      padding-bottom: 40px;
     }
     .footer-container{
       justify-content:flex-start;
