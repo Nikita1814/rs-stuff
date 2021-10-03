@@ -2530,4 +2530,12 @@ height:18px;
   margin-bottom:0;
 }
 
+.gallery-container{
+  height:757px;
+  background-image: url(assets/img/gallery/gallery-placeholder-420p.png);
+  background-repeat: no-repeat;
+  background-size: 90% contain;
+  background-position-x: center;
+}
+
 }
