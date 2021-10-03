@@ -2402,6 +2402,7 @@ letter-spacing:5px;
 .card-p-major{
 font-size:16px;
 line-height:19px;
+padding-top:14px;
 }
 .card-p-smaller{
  font-size:16px;
@@ -2453,6 +2454,18 @@ display: none;
   font-size: 16px;
   width:50px;
   
+}
+.card-container{
+  padding-left:50px;
+  margin-bottom:0;
+  gap:40px
+}
+.card{
+  height:295px;
+}
+.las-meninas{
+  width:380px;
+  height:368px;
 }
 
 }
