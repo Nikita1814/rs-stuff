@@ -2245,15 +2245,99 @@ transition:background-color, 0.5s ease-in;
     padding-bottom:10px;
     }
     .ticket-form{
-      left:0;
-      width:1024px;
-      height:768px;
+      padding:30px 30px;
+      position:fixed;
+      display:flex;
+      justify-content: center;
+      left:4%;
+      width:590px;
+      height:1479px;
     }
+    .ticket-form-continer{
+  padding-top:45px;
+    }
+    .exitbtn{
+      top:0;
+      right:0;
+    }
+    .ticket-form-forms{
+      width:100%;
+      margin-bottom:0;
+    }
+    .ticket-form-forms input{
+      width:100%;
+    }
+    .ticket-form-forms form{
+      margin-top:54px;
+    }
+    #time-input{
+      margin-right:28px;
+    }
+    input[name="form-date-text"]{
+      background-position: 215px;
+    }
+    input[name="form-time-text"]{
+      background-position: 215px;
+    }
+    .fake-bg-date{
+      top:207px;
+    }
+    .fake-bg-select{
+      top:467px;
+    }
+    .fake-bg-time{
+      top:207px;
+      left:294px;
+    }
+
+    .ticket-form input[name= "form-date"], 
+    .ticket-form input[name= "form-time"], 
+    .ticket-form input[name= "form-time-text"], 
+    .ticket-form input[name= "form-date-text"]{
+    width: 251px;;
+    }
+    #TicketType{
+      width:100%;
+      margin-bottom:17px;
+      background-position: 499px;
+    }
+    .entry-ticket{
+      width:100%;
+    }
+    .entry-ticket .number{
+      width:35px;
+      border:1px solid black;
+    }
+    .ticket-form-overview{
+      margin-top:39px;
+    padding:25px 15px;
+    }
+   .overview-text .tour-name{
+      margin-top:0;
+      margin-bottom:10px;
+    }
+    .ticket-info{
+      margin-bottom:0;
+    }
+    .overview-total{
+      margin-top:9px;
+      margin-bottom:9px;
+      font-size:32px;
+    }
+    .overview-bottom{
+      margin-right:0;
+    width:100%;
+    }
+    
     .hide-left{
       left:-1024px;
     }
     .booking-fields{
-      padding:75px 20px 30px 20px
+      width:100%;
+      flex-direction:column;
+      justify-content:start ;
+      height:100%;
+      padding:0
     }
 
 
