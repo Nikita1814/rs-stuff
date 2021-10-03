@@ -57,6 +57,10 @@ padding-bottom:50px ;
 color:white;
 margin:0;
 }
+.logo-image{
+  width:49px; 
+  height:26px;
+}
 .header h1{
 display:block;
 align-items:flex-end;
@@ -2343,3 +2347,112 @@ transition:background-color, 0.5s ease-in;
 
 
   }
+
+
+
+
+
+
+
+@media (max-width:420px){
+
+  .container{
+    padding :0 20px;
+
+    }
+    section{
+      padding-top: 40px;
+      padding-bottom:40px;
+    }
+    .header{
+      padding-bottom:25px;
+      padding-top:20px;
+    }
+.logo-image{
+  width:26px;
+  height:16px;
+  margin-right:25px;
+} 
+.logo h1{
+  font-size:16px;
+  line-height:18px;
+}
+
+.section-title{
+  font-size:28px;
+  line-height:40px;
+}
+.welcome .section-title{
+  font-size:28px;
+  line-height:40px;
+}
+.text-field p{
+
+font-size:16px;
+line-height:19px;
+letter-spacing:2px;
+}
+
+.card h3{
+ padding-top:20px;
+font-size:18px;
+line-height:20px;
+letter-spacing:5px;
+}
+.card-p-major{
+font-size:16px;
+line-height:19px;
+}
+.card-p-smaller{
+ font-size:16px;
+ line-height:19px;
+}
+.explore-container p{
+display: none;
+}
+
+
+
+
+.welcome-slider-viewer{
+  position:relative;
+  margin-left:30px;
+  width:380px;
+  height:285px;
+}
+.welcome-slider{
+  height:285px;
+}
+.text-field{
+}
+.welcome-slider-image{
+ width:380px;
+ height:285px;
+}
+.slider-marker{
+  width:7px;
+  height:7px;
+}
+.slider-markers{
+  width:75px;     
+ }
+.welcome-slider-controls button{
+  font-size:20px;
+}
+.slider-buttons{
+  width:55px;
+}
+ .welcome-slider-controls{
+  position:static;
+  width:100%;
+  height:80px;
+  padding:30px 76px;
+ 
+}
+.slider-counters{
+  font-size: 16px;
+  width:50px;
+  
+}
+
+}
