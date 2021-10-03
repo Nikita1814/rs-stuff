@@ -2354,6 +2354,11 @@ transition:background-color, 0.5s ease-in;
 
 
 
+
+
+
+
+
 @media (max-width:420px){
 
   .container{
@@ -2466,6 +2471,63 @@ display: none;
 .las-meninas{
   width:380px;
   height:368px;
+}
+
+.video-description{
+ height: 60px;
+}
+.video-description h2{
+height: 60px;
+}
+
+.video-poster{
+  margin-top:0;
+  width:380px;
+  height:172px;
+}
+.big-play-icon{
+  width:50px;
+  height:50px;
+}
+.progress-bar{
+  width:100%;
+  height:4px;
+}
+.volume-bar{
+  width:200px;
+  height:10px;
+}
+.play-button img{
+width:14px;
+height:18px;
+}
+.volume-button img{
+  width:18px;
+  height:14px;
+}
+.fullscreen-button img{
+  width:18px;
+  height:18px;
+}
+.controls{
+  padding-left:0;
+  padding-right:0;
+  width:380px;
+  height:53px;
+  margin-bottom:20px;
+}
+.video-slider{
+  height:101px;
+  margin-top:40px;
+}
+.video-placeholder,
+.video-placeholder img:nth-child(1){
+  height:101px;
+  width:180px;
+}
+.video-controls-wrapper{
+  margin-top:40px;
+  margin-bottom:0;
 }
 
 }
