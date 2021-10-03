@@ -2378,7 +2378,8 @@ transition:background-color, 0.5s ease-in;
   height:16px;
   margin-right:25px;
 } 
-.logo h1{
+.logo h1,
+.logo p{
   font-size:16px;
   line-height:18px;
 }
@@ -2429,8 +2430,7 @@ display: none;
 .welcome-slider{
   height:285px;
 }
-.text-field{
-}
+
 .welcome-slider-image{
  width:380px;
  height:285px;
@@ -2536,6 +2536,98 @@ height:18px;
   background-repeat: no-repeat;
   background-size: 90% contain;
   background-position-x: center;
+}
+.tickets-container{
+ flex-direction: column;
+ align-items: center;
+}
+.tickets-image{
+  background-image: url(assets/img/tickets-image-420p.png);
+  margin-top: 60px;
+  width:380px;
+  height:160px;
+}
+
+.amount h4:nth-child(1){
+  margin-top:40px;
+  margin-bottom:15px;
+  text-align: center;
+  font-weight: 700;
+  font-size:16px;
+  line-height: 19px;
+  letter-spacing: normal;
+}
+.amount p{
+font-size:16px;
+line-height:19px;
+}
+.btn-container{
+width:170px;
+}
+.amount .total{
+  margin-top:25px;
+  letter-spacing: normal;
+  font-weight: 700;
+  text-align: center ;
+  font-size:16px;
+  line-height:19px;
+}
+
+
+.amount{
+  margin-top:0;
+  margin-left:0;
+
+}
+.buy{
+  right:105px;
+  bottom:19px;
+  font-size: 16px;
+
+}
+.buy-tickets{
+  padding-bottom:20px;
+}
+.paralax-connector{
+  height:300px;
+  width:420px;
+}
+.contacts-info{
+  height:205px;
+}
+.contacts-info h4{
+  font-size:16px;
+  line-height: 19px;
+}
+.contacts-info p {
+  font-size:16px;
+  margin-bottom:0;
+}
+.contacts-info p:nth-child(4){
+  margin-top:10px;
+}
+
+.map {
+  background-image: url(assets/img/map-420p.png);
+  width:380px;
+  height:248px;
+  margin-bottom:0;
+}
+.logo-bottom{
+  padding:0;
+  margin:0;
+align-self: flex-start;
+}
+.navigation-bottom{
+  margin:0;
+}
+
+.social{
+  margin:0;
+}
+.footer-container{
+  flex-direction: column;
+  flex-wrap: nowrap;
 }
 
 }
