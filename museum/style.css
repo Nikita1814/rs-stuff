@@ -2685,4 +2685,117 @@ letter-spacing: 2px;
 .plug p:nth-child(2){
   display: none;
 }
+
+
+.ticket-form{
+left:0;
+  width:420px;
+  height:1754px;
+ padding-left:30px;
+ padding-right:30px;
+ box-sizing: border-box;
+}
+ .hide-left{
+  left:-420px
+}
+.ticket-form-continer{
+  width:420px;
+}
+.ticket-form h4{
+  font-size:32px;
+  line-height:35px;
+}
+
+.booking-fields{
+  width:360px;
+  height:100%;
+}
+
+.ticket-form-forms{
+  height:689px;
+}
+.ticket-form-forms form{
+  width:360px;
+  margin-top:55px;
+}
+.ticket-form input[type=tel]{
+background-position: 12px 5px;
+}
+input#name{
+  background-position: 12px 5px;
+}
+.ticket-form input[type=email]{
+  background-position: 12px 10px;
+}
+.ticket-form input[name= "form-date"], 
+    .ticket-form input[name= "form-time"], 
+    .ticket-form input[name= "form-time-text"], 
+    .ticket-form input[name= "form-date-text"]{
+      width:100%;
+    }
+    .fake-bg-time{
+      left:16px;
+      top:250px;
+    }
+    .fake-bg-date{
+     top:185px;
+    }
+    .fake-bg-select{
+      left:16px;
+      top:512px;
+    }
+
+    input[name="form-date-text"]{
+      background-position: 325px;
+    }
+    input[name="form-time-text"]{
+      background-position: 325px;
+    }
+    #TicketType{
+      background-position: 325px;
+    }
+    .ticket-form-overview{
+      margin-top:49px;
+      width:360px;
+      height:885px;
+    }
+    .overview-text h4{
+     margin-bottom: 10px; 
+    }
+    .overview-top img{
+      width:120px;
+      height:96px;
+    }
+    .overview-bottom{
+      height:535px;
+    }
+    .card-top{
+      margin-top:10px;
+      width:330px;
+      height:209px;
+      position:static;
+      background-size: contain;
+    }
+    .card-back{
+      margin-top:30px;
+      width:330px;
+      height:209px;
+      position:static;
+      background-size: contain;
+    }
+    #card-num{
+width:195px;
+margin-bottom: 82px;
+    }
+    #card-name{
+    width:290px;
+    }
+    #CVCCVV{
+    margin-top:95px;
+    margin-left:240px;
+    }
+    .overview-book{
+      bottom:7px;
+      right:-2px;
+    }
 }
