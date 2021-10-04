@@ -1001,11 +1001,7 @@ input[name="form-date-text"]{
   background-repeat: no-repeat;
   text-indent: 43px;
   background-position: 15px;
-
-
 }
-
-
 
 .fake-bg-date{
   width:15px;
@@ -1784,6 +1780,10 @@ transition:background-color, 0.5s ease-in;
      width:564px;
      height:5px;
    }
+   input[type="range"]::-webkit-slider-thumb {
+    width:13px;
+    height:13px;
+  }
    .volume-bar{
      width:137px;
    }
@@ -2000,10 +2000,22 @@ transition:background-color, 0.5s ease-in;
         border-bottom:1px solid  #666666;
       }
       .header-nav-big-img{
+        background-image:url(assets/img/nav-img-two.png);
+        width:658px;
+        height:194px;
         top:343px;
         position:absolute;
       }
-
+    .header-image-one{
+     background-image: url(assets/img/nav-img-one.jpg);
+     width:319px;
+     height:161px;
+    }
+    .header-image-three{
+   background-image: url(assets/img/nav-img-three.png);
+   width:319px;
+   height:161px; 
+    }
 
 
      .hide-menu{
@@ -2223,12 +2235,16 @@ transition:background-color, 0.5s ease-in;
      top:-7px;
      width:728px;
      height:5px;
-     background:linear-gradient(to right, #710707 0%, #710707 30%, #C4C4C4 30%, #C4C4C4 100%);
+    
    }
 
    .volume-bar{
      width:486px;
    }
+   input[type="range"]::-webkit-slider-thumb {
+    width:13px;
+    height:13px;
+  }
    .big-play-icon{
      width: 80px;
      height: 80px;
@@ -2540,6 +2556,9 @@ transition:background-color, 0.5s ease-in;
 }
 .header-nav-big-img{
   position:static;
+  background-image: url(assets/img/nav-img-two-smaller.png);
+  width:95px;
+  height:95px;
 }
 .head-nav .social{
   margin-left:0;
@@ -2559,6 +2578,17 @@ margin-left:60px;
 width:95px;
 height:95px;
 }
+.header-image-one{
+  background-image: url(assets/img/nav-img-one-smaller.png);
+  width:95px;
+  height:95px;
+ }
+ .header-image-three{
+background-image: url(assets/img/nav-img-three-smaller.png);
+width:95px;
+height:95px; 
+ }
+
 
 .section-title{
   font-size:28px;
@@ -2669,9 +2699,14 @@ height: 60px;
   width:100%;
   height:4px;
 }
+input[type="range"]::-webkit-slider-thumb {
+  width:10px;
+  height:10px;
+}
+
 .volume-bar{
   width:200px;
-  height:10px;
+  height:4px;
 }
 .play-button img{
 width:14px;
@@ -2827,7 +2862,7 @@ width:217px;
 }
 .column2 .footer-nav-list li:nth-child(1){
   position:absolute;
-  right:169px;
+  right:173px;
   top:90px;
 }
 
