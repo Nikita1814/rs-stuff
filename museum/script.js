@@ -17,6 +17,9 @@ const topNav = document.querySelector('.head-nav')
 activeMarker = markerList[0]
 activeMarker.style.backgroundColor = '#9D8665'
 let activeSlide = 0
+window.addEventListener('resize', () =>{
+ slider.style.left = `-${viewWindow.offsetWidth}px` /*-1000px*/  
+})
 slider.style.left = `-${viewWindow.offsetWidth}px` /*-1000px*/
 
 leftBtn.addEventListener('click', () => {
