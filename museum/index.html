@@ -17,10 +17,10 @@
 <header class="header">
     <div class="container header-container">
       <div class="logo">
-          <img src="assets/svg/logo.svg" alt="logo" class="logo-image" width="49" height="26">
+          <img src="assets/svg/logo.svg" alt="logo" class="logo-image" >
           <h1>Louvre</h1>
       </div>
-      <nav class="navigation">
+      <nav class="navigation head-nav hide-menu" id="head-nav" >
         <ul class="header-nav-list">
         <li><a href="#visiting">Visiting</a></li>
         <li><a href="#explore">Explore</a></li>
@@ -29,8 +29,25 @@
         <li><a href="#tickets">Tickets</a></li>
         <li><a href="#contacts">Contacts</a></li>
         </ul>
+        
+      <div class ="social-pics">
+          <img src="assets/img/nav-img-one.jpg" alt="a photo of the Louvre">
+          <img src="assets/img/nav-img-two.png" class ="header-nav-big-img"alt="a photo of the Louvre">
+          <img src="assets/img/nav-img-three.png" alt="a photo of the Louvre">
+      </div>
+      <div class="social social-header">
+        <ul class=social-list>
+          <li><a href=""><img src="assets/svg/Youtube.svg" alt="youtube"></a></li>
+          <li><a href=""><img src="assets/svg/Instagram.svg" alt="instaagram"></a></li>
+          <li><a href=""><img src="assets/svg/Facebook.svg" alt="facebook"></a></li>
+          <li><a href=""><img src="assets/svg/Twitter.svg" alt="twitter"></a></li>
+          <li><a href=""><img src="assets/svg/Pinterest.svg" alt="pintrest"></a></li>
+      </ul>
+  </div> 
       </nav> 
+      <button class="burger-button"></button>
     </div> 
+    
 </header>
 <main class="main">
     
@@ -99,7 +116,7 @@
             been damaged in any way, but because it looked different</p>
         </div>
         </div>
-        <img class="las-meninas" src="assets/img/Explore-image.png" alt="Las Meninas">
+        <div class="las-meninas" >
     </div>
 </section>
 <section class="video-journey section-white" id="video">
@@ -135,6 +152,7 @@
          <div class="video-sliding">
              <div class="video-placeholder">
                  <img src="assets/video/Video-slider-poster-one.jpg" alt="Le Corps et l'Ame">
+                 <img class ="yt-placeholder" src="assets/video/yt-ico.png" alt="yt-ico-placeholder">
              </div>
              <div class="video-placeholder">
                 <img src="assets/video/Video-slider-poster-two.jpg" alt="Au Louvre!">
@@ -281,7 +299,7 @@
     <div class="container">
         <h2 class="section-title section-title-white underline-title">BUY TICKETS</h2>
         <div class="tickets-container">
-         <img src="assets/img/tickets-image.jpg" alt="a somewhat charming painting" class="tickets-image" width="720" height="550">
+         <div class="tickets-image" ></div>
          <div class="ticket-type">
            <h4>Ticket Type</h4>
            <p>
@@ -305,7 +323,7 @@
             </p> 
          </div>
          <div class="amount">
-             <h4>&emsp;&nbsp;Amount</h4>
+             <h4>Amount</h4>
             <p> Basic 18+</p> 
                 <div class="btn-container">
                 <button class="number-btn" type="button" onclick="this.nextElementSibling.stepDown()">–</button>
@@ -319,7 +337,7 @@
             <input type="number" name ="ticket-counter" min="0" max="20" value="1" readonly class="number">
             <button class="number-btn" type="button" onclick="this.previousElementSibling.stepUp()">+</button>
         </div>
-            <h4 class="total">Total €220</h4>
+            <h4 class="total">Total € 220</h4>
             <p>
                 <button class="buy">Buy Now</button>
                 </p>
@@ -340,7 +358,7 @@
             <p><a href= "tel:+33(0)140205050">phone: +33(0) 1 40 20 50 50</a></p>
             <p><a href="mailto:info@louvre.fr">mail: info@louvre.fr</a></p>
         </div>
-        <img class="map" src="assets/img/map.png" alt="map" width="960" height="620">
+        <div class="map" ></div>
         </div>
     </div>
 </section> 

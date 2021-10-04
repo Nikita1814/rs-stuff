@@ -11,11 +11,16 @@ const ticketClose = document.querySelector('.exitbtn')
 const ticketForm = document.querySelector('.ticket-form')
 const overLay = document.querySelector('.overlay')
 const allProgress = document.querySelectorAll('.progress')
+const burgerBtn = document.querySelector('.burger-button')
+const topNav = document.querySelector('.head-nav')
 
 activeMarker = markerList[0]
 activeMarker.style.backgroundColor = '#9D8665'
 let activeSlide = 0
-slider.style.left = "-1000px"
+window.addEventListener('resize', () =>{
+ slider.style.left = `-${viewWindow.offsetWidth}px` /*-1000px*/  
+})
+slider.style.left = `-${viewWindow.offsetWidth}px` /*-1000px*/
 
 leftBtn.addEventListener('click', () => {
 switchSlides('left')
@@ -38,6 +43,11 @@ closeTicketForm()
 })
 overLay.addEventListener('click', () => {
     closeTicketForm()
+})
+
+burgerBtn.addEventListener('click', () =>{
+burgerBtn.classList.toggle('cross')
+topNav.classList.toggle('hide-menu')    
 })
 
 /*.progressAll.forEach((el) => el.addEventListener('input', function(e) {
