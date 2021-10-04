@@ -2523,10 +2523,41 @@ transition:background-color, 0.5s ease-in;
   height:16px;
   margin-right:25px;
 } 
+
+
 .logo h1,
 .logo p{
   font-size:16px;
   line-height:18px;
+}
+
+.head-nav{
+  width:420px;
+  height:534px;
+}
+.head-nav .header-nav-list{
+  margin-top:24px;
+}
+.header-nav-big-img{
+  position:static;
+}
+.head-nav .social{
+  margin-left:0;
+  margin-top: 20px;
+}
+.social-header .social-list{
+justify-content: space-between;
+width:260px;
+margin-left:60px;
+}
+.social-pics{
+  width:311px;
+  margin-top:35px;
+  padding-bottom:20px;
+}
+.social-pics img{
+width:95px;
+height:95px;
 }
 
 .section-title{
@@ -2800,10 +2831,10 @@ width:217px;
   top:90px;
 }
 
-.social{
+.footer .social{
   margin:0;
 }
-.social-list{
+.footer .social-list{
 margin-top:40px;
 margin-left:60px;
 justify-content: space-between;
