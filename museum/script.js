@@ -11,6 +11,8 @@ const ticketClose = document.querySelector('.exitbtn')
 const ticketForm = document.querySelector('.ticket-form')
 const overLay = document.querySelector('.overlay')
 const allProgress = document.querySelectorAll('.progress')
+const burgerBtn = document.querySelector('.burger-button')
+const topNav = document.querySelector('.head-nav')
 
 activeMarker = markerList[0]
 activeMarker.style.backgroundColor = '#9D8665'
@@ -38,6 +40,11 @@ closeTicketForm()
 })
 overLay.addEventListener('click', () => {
     closeTicketForm()
+})
+
+burgerBtn.addEventListener('click', () =>{
+burgerBtn.classList.toggle('cross')
+topNav.classList.toggle('hide-menu')    
 })
 
 /*.progressAll.forEach((el) => el.addEventListener('input', function(e) {

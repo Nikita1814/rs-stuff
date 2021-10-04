@@ -98,7 +98,15 @@ color:white;
 
 width: 775px;
 }
-
+.burger-button{
+  display:hidden;
+  background-image:url(assets/svg/burger-button.svg);
+  width:35px;
+  height:18px;
+  position:absolute;
+  right:20px;
+  background-color: #000000;
+}
 
 .header-nav-list a,
 .footer-nav-list a
@@ -1552,7 +1560,53 @@ transition:background-color, 0.5s ease-in;
         padding-top: 60px;
         padding-bottom:60px;
       }
-
+      .burger-button{
+        display:block;
+      }
+      .cross{
+   background-image:url(assets/svg/white-cross.svg);
+   width:25px;
+   height:25px;
+   background-repeat: no-repeat;
+   background-size: contain;
+      }
+      .head-nav{
+       display: flex;
+       align-items: flex-start;
+        background-color:#030303;
+        left:20px;
+        z-index:5;
+        top:100px;
+        position:absolute;
+        width:300px;
+        height:585px;
+        transition:left 1s ease-in-out 
+      }
+     .hide-menu{
+        left:-1024px;
+      }
+      .hide-menu #head-nav{
+        left:-1024px;
+      }
+      .head-nav .header-nav-list{
+        margin-top:63px;
+        margin-left:35px;
+        height:265px;
+        flex-direction:column;
+        align-items: flex-start;
+        justify-content: space-between;
+        position: relative;
+      }
+      .head-nav .header-nav-list li{
+       
+      }
+      .head-nav .header-nav-list li:after{
+        color:white;
+        content:url(assets/svg/menu-arrow.svg);
+        position:absolute;
+        right:-27px;
+      }
+    
       .header-nav-list a
       {
        font-weight: 300px;
