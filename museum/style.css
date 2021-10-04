@@ -2235,7 +2235,7 @@ transition:background-color, 0.5s ease-in;
      top:-7px;
      width:728px;
      height:5px;
-     background:linear-gradient(to right, #710707 0%, #710707 30%, #C4C4C4 30%, #C4C4C4 100%);
+    
    }
 
    .volume-bar{
