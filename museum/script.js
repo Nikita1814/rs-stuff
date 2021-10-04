@@ -13,12 +13,15 @@ const overLay = document.querySelector('.overlay')
 const allProgress = document.querySelectorAll('.progress')
 const burgerBtn = document.querySelector('.burger-button')
 const topNav = document.querySelector('.head-nav')
+const menuLinks = document.querySelectorAll('.menu-link')
 
 activeMarker = markerList[0]
 activeMarker.style.backgroundColor = '#9D8665'
 let activeSlide = 0
+
 window.addEventListener('resize', () =>{
  slider.style.left = `-${viewWindow.offsetWidth}px` /*-1000px*/  
+
 })
 slider.style.left = `-${viewWindow.offsetWidth}px` /*-1000px*/
 
@@ -48,6 +51,17 @@ overLay.addEventListener('click', () => {
 burgerBtn.addEventListener('click', () =>{
 burgerBtn.classList.toggle('cross')
 topNav.classList.toggle('hide-menu')    
+})
+menuLinks.forEach((el) => el.addEventListener('click', () =>{
+    burgerBtn.classList.toggle('cross')
+    topNav.classList.toggle('hide-menu')    
+    }  
+))
+document.addEventListener('click', function(e) {
+    if(!e.target.classList.contains('head-nav') && !e.target.classList.contains('burger-button')  && !e.target.classList.contains('social-pics')){
+        burgerBtn.classList.remove('cross')
+        topNav.classList.add('hide-menu')  
+    }
 })
 
 /*.progressAll.forEach((el) => el.addEventListener('input', function(e) {

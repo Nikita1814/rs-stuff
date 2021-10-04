@@ -1001,11 +1001,7 @@ input[name="form-date-text"]{
   background-repeat: no-repeat;
   text-indent: 43px;
   background-position: 15px;
-
-
 }
-
-
 
 .fake-bg-date{
   width:15px;
@@ -2000,10 +1996,22 @@ transition:background-color, 0.5s ease-in;
         border-bottom:1px solid  #666666;
       }
       .header-nav-big-img{
+        background-image:url(assets/img/nav-img-two.png);
+        width:658px;
+        height:194px;
         top:343px;
         position:absolute;
       }
-
+    .header-image-one{
+     background-image: url(assets/img/nav-img-one.jpg);
+     width:319px;
+     height:161px;
+    }
+    .header-image-three{
+   background-image: url(assets/img/nav-img-three.png);
+   width:319px;
+   height:161px; 
+    }
 
 
      .hide-menu{
@@ -2540,6 +2548,9 @@ transition:background-color, 0.5s ease-in;
 }
 .header-nav-big-img{
   position:static;
+  background-image: url(assets/img/nav-img-two-smaller.png);
+  width:95px;
+  height:95px;
 }
 .head-nav .social{
   margin-left:0;
@@ -2559,6 +2570,17 @@ margin-left:60px;
 width:95px;
 height:95px;
 }
+.header-image-one{
+  background-image: url(assets/img/nav-img-one-smaller.png);
+  width:95px;
+  height:95px;
+ }
+ .header-image-three{
+background-image: url(assets/img/nav-img-three-smaller.png);
+width:95px;
+height:95px; 
+ }
+
 
 .section-title{
   font-size:28px;
