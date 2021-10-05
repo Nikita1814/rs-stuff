@@ -6,6 +6,7 @@ const sliderLen = slider.querySelectorAll(".welcome-slider-image").length
 const markerList = document.querySelectorAll(".slider-marker")
 const counter = document.querySelector(".slider-counter")
 const viewWidth = viewWindow.clientWidth
+
 const ticketOpen = document.querySelector('.buy')
 const ticketClose = document.querySelector('.exitbtn')
 const ticketForm = document.querySelector('.ticket-form')
@@ -14,6 +15,8 @@ const allProgress = document.querySelectorAll('.progress')
 const burgerBtn = document.querySelector('.burger-button')
 const topNav = document.querySelector('.head-nav')
 const menuLinks = document.querySelectorAll('.menu-link')
+
+//Welcome Slider 
 
 activeMarker = markerList[0]
 activeMarker.style.backgroundColor = '#9D8665'
@@ -36,6 +39,7 @@ rightBtn.addEventListener('click', () => {
 
 slider.addEventListener('transitionend', CheckI)
 
+//Ticket Form
 
 ticketOpen.addEventListener('click', () =>{
 closeTicketForm()
@@ -48,6 +52,8 @@ overLay.addEventListener('click', () => {
     closeTicketForm()
 })
 
+
+// Burger button
 burgerBtn.addEventListener('click', () =>{
 burgerBtn.classList.toggle('cross')
 topNav.classList.toggle('hide-menu')    
@@ -71,14 +77,14 @@ document.addEventListener('click', function(e) {
 
 
 
-markerList.forEach((el) => el.addEventListener('click', (e) => {
+/*markerList.forEach((el) => el.addEventListener('click', (e) => {
 activeMarker.style.backgroundColor = 'white'
 activeMarker = e.target
-/*alert(markerList.indexOf(e.target))*/
+console.log(markerList.findIndex((el) => {if (el === activeMarker) {return el}}))
 activeMarker.style.backgroundColor = '#9D8665'
 /*activeSlide = (-markerList.indexOf(e.target))
-slider.style.transform = `translateX(${activeSlide * viewWidth}px)`*/
-}))
+slider.style.transform = `translateX(${activeSlide * viewWidth}px)`
+}))*/
 
 function switchSlides(direction){
 slider.classList.add('visual-transition')
@@ -107,7 +113,7 @@ if(activeSlide > 0 ){
     activeMarker.style.backgroundColor = 'white'
     activeSlide = -4
     activeMarker = markerList[4]
-    counter.textContent = `0 ${-activeSlide}| 05`
+    counter.textContent = `0${-activeSlide}`
     activeMarker.style.backgroundColor = '#9D8665'
     slider.style.transform = `translateX(${activeSlide * viewWidth}px)`
     
@@ -115,11 +121,11 @@ if(activeSlide > 0 ){
 activeMarker.style.backgroundColor = 'white'
 activeSlide = 0
 activeMarker = markerList[0]
-counter.textContent = `0 ${-activeSlide +1}| 05`
+counter.textContent = `0${-activeSlide +1}`
 activeMarker.style.backgroundColor = '#9D8665'
 slider.style.transform = `translateX(${activeSlide * viewWidth}px)`
 } else {
-    counter.textContent = `0 ${-activeSlide +1}| 05`
+    counter.textContent = `0${-activeSlide +1}`
     activeMarker.style.backgroundColor = 'white'
     activeMarker = markerList[-activeSlide]
     activeMarker.style.backgroundColor = '#9D8665'
@@ -130,3 +136,21 @@ function closeTicketForm () {
 ticketForm.classList.toggle('hide-left')  
 overLay.classList.toggle('hidden')  
 } 
+function detectSwipe(e){
+let surface = e;
+let startX = 0
+let distX = 0;
+
+surface.addEventListener('mousedown', function(e) {
+    startX = e.offsetX;
+})
+surface.addEventListener('mouseup', function(e) {
+    distX = e.offsetX
+    if(distX > startX){
+        switchSlides('left')
+    } else {
+        switchSlides('right')
+    }
+})
+}
+detectSwipe(viewWindow)

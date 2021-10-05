@@ -247,6 +247,16 @@ justify-content:space-between;
 
 width:180px;
 }
+.welcome-slider-image{
+  -webkit-user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  width:1000px;
+  height:750px;
+}
+
 .slider-marker{
   width:16px;
   height:16px;
