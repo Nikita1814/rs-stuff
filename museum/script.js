@@ -1,3 +1,4 @@
+//Welcome Slider vars
 const leftBtn = document.querySelector(".slider-button-left")
 const rightBtn = document.querySelector(".slider-button-right")
 const viewWindow = document.querySelector(".welcome-slider-viewer")
@@ -6,15 +7,18 @@ const sliderLen = slider.querySelectorAll(".welcome-slider-image").length
 const markerList = document.querySelectorAll(".slider-marker")
 const counter = document.querySelector(".slider-counter")
 const viewWidth = viewWindow.clientWidth
-
+//Ticket form vars
 const ticketOpen = document.querySelector('.buy')
 const ticketClose = document.querySelector('.exitbtn')
 const ticketForm = document.querySelector('.ticket-form')
 const overLay = document.querySelector('.overlay')
-const allProgress = document.querySelectorAll('.progress')
+//Burger button vars
 const burgerBtn = document.querySelector('.burger-button')
 const topNav = document.querySelector('.head-nav')
 const menuLinks = document.querySelectorAll('.menu-link')
+//Video-player vars
+let video = document.querySelector('.vid')
+const progressAll = document.querySelectorAll('.progress')
 
 //Welcome Slider 
 
@@ -70,10 +74,10 @@ document.addEventListener('click', function(e) {
     }
 })
 
-/*.progressAll.forEach((el) => el.addEventListener('input', function(e) {
+progressAll.forEach((el) => el.addEventListener('input', function(e) {
     const value = e.target.value;
   this.style.background = `linear-gradient(to right, #710707 0%, #710707 ${value}%, #fff ${value}%, white 100%)`
-}))*/
+}))
 
 
 
