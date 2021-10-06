@@ -26,7 +26,7 @@ const progressBar = document.querySelector(".progress-bar")
 const volumeBtn = document.querySelector(".volume-button")
 const volumeBar = document.querySelector(".volume-bar")
 const fullScrBtn = document.querySelector(".fullscreen-button")
-
+//Explore comparison sllider vars
 
 //Welcome Slider 
 
@@ -293,3 +293,11 @@ progressBar.addEventListener("mouseup", updateVid);
 
 
 fullScrBtn.addEventListener("click", toggleFlScr);
+
+//Explore comparison Listeeners and functions
+const expSlider = document.querySelector('.comparison-slider')
+const comparedImg = document.querySelector('.sliding-image')
+
+expSlider.addEventListener('input', function(){
+  comparedImg.style.width = this.value + "%"
+})

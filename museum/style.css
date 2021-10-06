@@ -425,14 +425,41 @@ color:#000000;
   display:flex;
   gap:60px;  
   }
+  /*Slider Stylles*/
   .las-meninas{
+    position:relative;
     width:720px;
     height:700px;
-    background-image: url(assets/img/Explore-image.png);
-    background-size: cover;
+    background-image: url(assets/img/meninas-blue.png);
+    display:flex;
+    background-size: 720px 700px;
+    background-position:0 center;
   margin-top:15px;
-  
   }
+
+.las-meninas .comparison-slider{
+  -webkit-appearance: none;
+  width:100%;
+  background:none;
+  z-index: 1;
+}
+
+.las-meninas .comparison-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height:700px;
+  width:40px;
+  background-image: url(assets/img/explore-slider.png);
+  cursor:pointer;
+}
+.sliding-image{
+  position:absolute;
+  left:0;
+  width:20%;
+  height:100%;
+  background-image: url(assets/img/meninas-gold.jpg);
+  background-size: 720px 700px;
+    background-position:0 center;
+}
   .picture-explore-text{
     width:640px;
   margin-top:80px;
@@ -583,7 +610,7 @@ color:#000000;
 }*/
 
 
-input[type="range"]::-webkit-slider-thumb {
+.controls input[type="range"]::-webkit-slider-thumb {
   width: 15px;
   height: 15px;
   border-radius: 50%;
