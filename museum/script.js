@@ -17,7 +17,7 @@ const burgerBtn = document.querySelector('.burger-button')
 const topNav = document.querySelector('.head-nav')
 const menuLinks = document.querySelectorAll('.menu-link')
 //Video-player vars
-let video = document.querySelector('.vid')
+const video = document.querySelector('.vid')
 const player = document.querySelector('.player')
 const progressAll = document.querySelectorAll('.progress')
 const bigPlayBtn = document.querySelector(".big-play-icon")
@@ -251,7 +251,8 @@ function togglePlay() {
         }
         
       }
-      function updRangeBG (elem){
+     
+      /* function updRangeBG (elem){
           const value = elem.value;
           this.style.background = `linear-gradient(to right, #710707 0%, #710707 ${value}%, #fff ${value}%, white 100%)`
       }
@@ -259,7 +260,7 @@ function togglePlay() {
       // Video Player Event Listeners
 
       progressAll.forEach((el) => el.addEventListener('input', (e) => updRangeBG(e.target)    
-      ))
+      ))*/
 
 
       document.addEventListener("keypress", (e) => {
