@@ -1,31 +1,31 @@
 //Welcome Slider vars
-const leftBtn = document.querySelector(".slider-button-left")
-const rightBtn = document.querySelector(".slider-button-right")
-const viewWindow = document.querySelector(".welcome-slider-viewer")
-const slider = document.querySelector(".welcome-slider")
-const sliderLen = slider.querySelectorAll(".welcome-slider-image").length
-const markerList = document.querySelectorAll(".slider-marker")
-const counter = document.querySelector(".slider-counter")
-const viewWidth = viewWindow.clientWidth
+const leftBtn = document.querySelector(".slider-button-left");
+const rightBtn = document.querySelector(".slider-button-right");
+const viewWindow = document.querySelector(".welcome-slider-viewer");
+const slider = document.querySelector(".welcome-slider");
+const sliderLen = slider.querySelectorAll(".welcome-slider-image").length;
+const markerList = document.querySelectorAll(".slider-marker");
+const counter = document.querySelector(".slider-counter");
+const viewWidth = viewWindow.clientWidth;
 //Ticket form vars
-const ticketOpen = document.querySelector('.buy')
-const ticketClose = document.querySelector('.exitbtn')
-const ticketForm = document.querySelector('.ticket-form')
-const overLay = document.querySelector('.overlay')
+const ticketOpen = document.querySelector('.buy');
+const ticketClose = document.querySelector('.exitbtn');
+const ticketForm = document.querySelector('.ticket-form');
+const overLay = document.querySelector('.overlay');
 //Burger button vars
-const burgerBtn = document.querySelector('.burger-button')
-const topNav = document.querySelector('.head-nav')
-const menuLinks = document.querySelectorAll('.menu-link')
+const burgerBtn = document.querySelector('.burger-button');
+const topNav = document.querySelector('.head-nav');
+const menuLinks = document.querySelectorAll('.menu-link');
 //Video-player vars
-const video = document.querySelector('.vid')
-const player = document.querySelector('.player')
-const progressAll = document.querySelectorAll('.progress')
-const bigPlayBtn = document.querySelector(".big-play-icon")
-const playBtn = document.querySelector(".play-button")
-const progressBar = document.querySelector(".progress-bar")
-const volumeBtn = document.querySelector(".volume-button")
-const volumeBar = document.querySelector(".volume-bar")
-const fullScrBtn = document.querySelector(".fullscreen-button")
+
+const player = document.querySelector('.player');
+const progressAll = document.querySelectorAll('.progress');
+const bigPlayBtn = document.querySelector(".big-play-icon");
+const playBtn = document.querySelector(".play-button");
+const progressBar = document.querySelector(".progress-bar");
+const volumeBtn = document.querySelector(".volume-button");
+const volumeBar = document.querySelector(".volume-bar");
+const fullScrBtn = document.querySelector(".fullscreen-button");
 //Explore comparison sllider vars
 
 //Welcome Slider 
@@ -166,6 +166,7 @@ detectSwipe(viewWindow)
 
 
 //Custom video listeners and functions
+let video = document.querySelector(".vid");
 
 let currentVol = video.volume;
 progressBar.setAttribute("max", video.duration);
