@@ -1437,11 +1437,17 @@ transition:background-color, 0.5s ease-in;
     display:flex;  
     }
     .map{
+      
       width:960px; 
       height:620px;
     margin-top:103px;
     margin-left:198px;
-    background-image: url(assets/img/map.png);
+    /*background-image: url(assets/img/map.png);*/
+    }
+    .map-nav{
+      position:absolute;
+      top:0;
+      right:0;
     }
     
     .contacts-info{

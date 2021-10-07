@@ -11,6 +11,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Forum&family=Roboto&display=swap" rel="stylesheet" />
+  <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.5.0/mapbox-gl.js'></script>
+  <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v2.5.0/mapbox-gl.css' rel='stylesheet' />
 </head>
 <body>
     <div class="overlay hidden"></div>
@@ -363,7 +365,7 @@
             <p><a href= "tel:+33(0)140205050">phone: +33(0) 1 40 20 50 50</a></p>
             <p><a href="mailto:info@louvre.fr">mail: info@louvre.fr</a></p>
         </div>
-        <div class="map" ></div>
+        <div class="map" id= 'map'></div>
         </div>
     </div>
 </section> 
@@ -411,5 +413,6 @@
     </div>
 </footer>
 <script src="script.js"></script>
+<script src="js/map-script.js"></script>
 </body>
 </html>
