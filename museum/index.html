@@ -309,42 +309,44 @@
          <div class="tickets-image" ></div>
          <div class="ticket-type">
            <h4>Ticket Type</h4>
+           
            <p>
             <label class="custom-radio">Permanent exhibition
-           <input type="radio" name="ticket-type" value="permanent" checked>
+           <input class="section-ticket-check" type="radio" name="ticket-type" value="permanent" checked>
            <span class="checkmark"></span> 
            
            </label>
            </p> 
             <p>
             <label class="custom-radio"> Temporary exhibition
-            <input type="radio" name="ticket-type" value="temporary">
+            <input class="section-ticket-check" type="radio" name="ticket-type" value="temporary" >
             <span class="checkmark"></span> 
             </label>
             </p> 
             <p>
                 <label class="custom-radio">Combined Admission
-                <input type="radio" name="ticket-type" value="combined">
+                <input class="section-ticket-check" type="radio" name="ticket-type" value="combined">
                 <span class="checkmark"></span>  
             </label>
             </p> 
+   
          </div>
          <div class="amount">
              <h4>Amount</h4>
             <p> Basic 18+</p> 
                 <div class="btn-container">
                 <button class="number-btn" type="button" onclick="this.nextElementSibling.stepDown()">–</button>
-            <input type="number" name ="ticket-counter" min="0" max="20" value="1" readonly class="number">
+            <input type="number" name ="ticket-counter" min="0" max="20" value="1" readonly class="number basic-tickets">
             <button class="number-btn" type="button" onclick="this.previousElementSibling.stepUp()">+</button>
                 </div>
             
             <p>Senior 65+</p>
                 <div class="btn-container">
             <button class="number-btn"  type="button" onclick="this.nextElementSibling.stepDown()">–</button>
-            <input type="number" name ="ticket-counter" min="0" max="20" value="1" readonly class="number">
+            <input type="number" name ="ticket-counter" min="0" max="20" value="1" readonly class="number senior-tickets">
             <button class="number-btn" type="button" onclick="this.previousElementSibling.stepUp()">+</button>
         </div>
-            <h4 class="total">Total € 220</h4>
+            <h4 class="total total-in-section">Total € 220</h4>
             <p>
                 <button class="buy">Buy Now</button>
                 </p>
@@ -415,5 +417,6 @@
 </footer>
 <script src="script.js"></script>
 <script src="js/map-script.js"></script>
+<script src="js/ticket-calculator-script.js" ></script>
 </body>
 </html>
