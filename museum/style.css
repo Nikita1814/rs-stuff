@@ -1437,13 +1437,14 @@ transition:background-color, 0.5s ease-in;
     display:flex;  
     }
     .map{
-      
+      position: relative;
       width:960px; 
       height:620px;
     margin-top:103px;
     margin-left:198px;
     /*background-image: url(assets/img/map.png);*/
     }
+  
     .map-nav{
       position:absolute;
       top:0;
@@ -1930,7 +1931,7 @@ transition:background-color, 0.5s ease-in;
 
     }
     .map{
-    background-image: url(assets/img/map-1024p.png);
+    /*background-image: url(assets/img/map-1024p.png);*/
      width:694px;
      height:454px;
      margin-top:80px;
@@ -2412,8 +2413,8 @@ transition:background-color, 0.5s ease-in;
       flex-direction: column;
     }
     .map{
-    background-image: url(assets/img/map-768p.png);
-     background-size: contain;
+    /*background-image: url(assets/img/map-768p.png);*/
+    /* background-size: contain;*/
      width:728px;
      height:476px;
      margin-top:0;
@@ -2872,7 +2873,7 @@ width:170px;
 }
 
 .map {
-  background-image: url(assets/img/map-420p.png);
+  /*background-image: url(assets/img/map-420p.png);*/
   width:380px;
   height:248px;
   margin-bottom:0;

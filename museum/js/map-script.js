@@ -4,8 +4,8 @@ let map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/light-v10',
     zoom:16,
-    center: [2.336374, 48.860914]
-
+    center: [2.336374, 48.860914],
+    showZoom: true
 })
 
 
@@ -28,3 +28,10 @@ let marker4 = new mapboxgl.Marker({color: 'gray'})
 let marker5 = new mapboxgl.Marker({color: 'gray'})
 .setLngLat([ 2.333049, 48.861936])
 .addTo(map);
+
+let cntrls = new mapboxgl.NavigationControl({
+    showCompass: true,
+    showZoom: true 
+})
+
+map.addControl(cntrls, 'top-right')
