@@ -17,7 +17,7 @@ const burgerBtn = document.querySelector('.burger-button');
 const topNav = document.querySelector('.head-nav');
 const menuLinks = document.querySelectorAll('.menu-link');
 //Video-player vars
-
+let video = document.querySelector(".vid");
 const player = document.querySelector('.player');
 const progressAll = document.querySelectorAll('.progress');
 const bigPlayBtn = document.querySelector(".big-play-icon");
@@ -26,6 +26,13 @@ const progressBar = document.querySelector(".progress-bar");
 const volumeBtn = document.querySelector(".volume-button");
 const volumeBar = document.querySelector(".volume-bar");
 const fullScrBtn = document.querySelector(".fullscreen-button");
+
+/*let vidLoadProgUpdate = function(){
+  let video = document.querySelector(".vid")
+  alert (video.duration)
+  progressBar.setAttribute("max", video.duration);
+  }
+vidLoadProgUpdate()*/
 //Explore comparison sllider vars
 
 //Welcome Slider 
@@ -166,12 +173,15 @@ detectSwipe(viewWindow)
 
 
 //Custom video listeners and functions
-let video = document.querySelector(".vid");
+
+
+
 
 let currentVol = video.volume;
-progressBar.setAttribute("max", video.duration);
+
 
 function togglePlay() {
+  progressBar.setAttribute("max", video.duration)
     if (video.paused) {
       video.play();
       bigPlayBtn.setAttribute("hidden", true);
