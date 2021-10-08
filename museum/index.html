@@ -243,8 +243,9 @@
            <p> <input type="email" name="e-mail" value = "E-mail"></p>
            <p> <input type="tel" name="phone" value = "Phone"> </p>
             <select name="Ticket Type" id="TicketType" > 
-               <option selected>Ticket Type</option>
-               <option>Option 2</option>
+               <option value ="temporary" selected>Temporary Exhibition</option>
+               <option value = "permanent">Permanent Exhibition </option>
+               <option value="combined"> Combined Admission</option>
            </select>
            </form>
            <div class="fake-bg-date"></div>
@@ -253,18 +254,18 @@
            <div class="entry-ticket">
             <p class="underline-p">Entry Ticket</p>
             <div class= "btn-container-form">
-                <div><p>Basic 18+ (20 €)</p></div>
+                <div><p class ="form-basic">Basic 18+ (20 €)</p></div>
                  <div class="form-button-inputs">
                 <button class="number-btn-form" type="button" onclick="this.nextElementSibling.stepDown()">–</button>
-            <input type="number" name ="ticket-counter" min="0" max="20" value="2" readonly class="number">
+            <input type="number" name ="ticket-counter" min="0" max="20" value="1" readonly class="number basic-tickets">
             <button class="number-btn-form" type="button" onclick="this.previousElementSibling.stepUp()">+</button>
         </div>
                 </div>
                 <div class= "btn-container-form">
-                    <div><p>Senior 65+ (10 €)</p></div>
+                    <div><p class="form-senior">Senior 65+ (10 €)</p></div>
                      <div class="form-button-inputs">
                     <button class="number-btn-form" type="button" onclick="this.nextElementSibling.stepDown()">–</button>
-                <input type="number" name ="ticket-counter" min="0" max="20" value="2" readonly class="number">
+                <input type="number" name ="ticket-counter" min="0" max="20" value="1" readonly class="number senior-tickets">
                 <button class="number-btn-form" type="button" onclick="this.previousElementSibling.stepUp()">+</button>
             </div>
         </div>
@@ -283,9 +284,9 @@
             <img src="assets/img/louvre-small.jpg" alt="a small image of the pyramid outside of louvre">        
         </div>
         <div class="overview-mid">
-            <div class="ticket-info"><div><input type="number" name ="ticket-counter" min="0" max="20" value="2" readonly class="number"><p>Basic (20 €)</p></div><p>40 €</p></div>  
-            <div class="ticket-info"><div><input type="number" name ="ticket-counter" min="0" max="20" value="2" readonly class="number"><p>Senior (10 €)</p></div><p>20 €</p></div>  
-            <div class="overview-total"><p>Total:</p><p class="total-cost">60 €</p></div>   
+            <div class="ticket-info"><div><input type="number" name ="ticket-counter" min="0" max="20" value="1" readonly class="number"><p class="form-basic">Basic (20 €)</p></div><p class="form-total-basic">40 €</p></div>  
+            <div class="ticket-info"><div><input type="number" name ="ticket-counter" min="0" max="20" value="1" readonly class="number"><p class ="form-senior">Senior (10 €)</p></div><p class ="form-total-senior">20 €</p></div>  
+            <div class="overview-total"><p>Total:</p><p class="form-total-cost">60 €</p></div>   
         </div>
         <div class="overview-bottom">
             <div class="card-top">
