@@ -6,8 +6,11 @@ const senTicketCount = document.querySelectorAll('.senior-tickets')
 const baseTicketCount = document.querySelectorAll('.basic-tickets')
 
 //Form-vars
+
 const formTicketBtns = document.querySelectorAll('.number-btn-form')
-const typeOptions = document.getElementById('TicketType')
+const typeOptions = document.querySelectorAll('.select-type-option')
+const typeSelect = document.getElementById('TicketType')
+const totalTypeName = document.querySelector('.overview-type')
 const formBase = document.querySelectorAll('.form-basic')
 const formSen = document.querySelectorAll('.form-senior')
 const formBaseTotal = document.querySelector('.form-total-basic')
@@ -21,6 +24,15 @@ temporary: 25,
 combined: 40,
 }
 
+types.forEach((el) => el.addEventListener('click', () =>{
+  typeOptions.forEach((option) => {if (option.value === el.value) {option.selected = true}} )
+  totalUpd()
+}))
+
+typeSelect.addEventListener('change' , () =>{
+ types.forEach((t) => {if (t.value === typeSelect.value){t.checked = true}})
+ totalUpd()   
+} )
 
 ticketBtns.forEach((el) => el.addEventListener('click', () =>{
     if(el.classList.contains('basic-minus')){
@@ -53,13 +65,15 @@ formTicketBtns.forEach((el) => el.addEventListener('click', () =>{
 
 function totalUpd(){    
 let ticketType
-types.forEach((el) => {if (el.checked) {ticketType = el.value}})
+let selectedEl
+types.forEach((el) => {if (el.checked) {ticketType = el.value; selectedEl = el}})
 formBase.forEach((el) => el.innerText = `Basic (${priceList[ticketType]} €)`)
 formSen.forEach((el) => el.innerText = `Senior (${priceList[ticketType]/2} €)`)
 formBaseTotal.innerText = `${priceList[ticketType] * baseTicketCount[0].value} €`
 formSenTotal.innerText = `${priceList[ticketType]/2 * senTicketCount[0].value} €`
 formTotal.innerText = ` ${priceList[ticketType] * baseTicketCount[0].value + priceList[ticketType]/2 * senTicketCount[0].value} €`
 sectionTotal.innerText = `Total ${priceList[ticketType] * baseTicketCount[0].value + priceList[ticketType]/2 * senTicketCount[0].value}€`
+totalTypeName.innerText = selectedEl.parentNode.innerText
 }
 
 
