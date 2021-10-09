@@ -16,8 +16,19 @@ const formSen = document.querySelectorAll('.form-senior')
 const formBaseTotal = document.querySelector('.form-total-basic')
 const formSenTotal = document.querySelector('.form-total-senior')
 const formTotal = document.querySelector('.form-total-cost')
+const formDate = document.querySelector('.date-input')
+const totalDate = document.querySelector('.overview-date')
+const formTime = document.querySelector('.time-input')
+const totalTime = document.querySelector('.overview-time')
+const options = {weekday : 'long', month: 'long', day: 'numeric'}
+let dat
+formTime.addEventListener('change', () => {
+    totalTime.innerText = formTime.value 
+})
 
-
+formDate.addEventListener('change', () => {
+    totalDate.innerText = new Date(formDate.value).toLocaleDateString('en-us', options)
+})
 const priceList = {
 permanent: 20,
 temporary: 25,
