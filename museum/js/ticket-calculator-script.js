@@ -21,7 +21,8 @@ const totalDate = document.querySelector('.overview-date')
 const formTime = document.querySelector('.time-input')
 const totalTime = document.querySelector('.overview-time')
 const options = {weekday : 'long', month: 'long', day: 'numeric'}
-let dat
+let today = new Date().toISOString().split('T')[0];
+formDate.setAttribute('min', today)
 formTime.addEventListener('change', () => {
     totalTime.innerText = formTime.value 
 })
