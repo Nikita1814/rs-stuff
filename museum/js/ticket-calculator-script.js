@@ -21,6 +21,12 @@ const totalDate = document.querySelector('.overview-date')
 const formTime = document.querySelector('.time-input')
 const totalTime = document.querySelector('.overview-time')
 const options = {weekday : 'long', month: 'long', day: 'numeric'}
+
+// Form-validation-vars
+
+const name = document.querySelector('.name-input')
+const email = document.querySelector('.email-input')
+const tel = document.querySelector('.tel-input')
 let today = new Date().toISOString().split('T')[0];
 formDate.setAttribute('min', today)
 formTime.addEventListener('change', () => {

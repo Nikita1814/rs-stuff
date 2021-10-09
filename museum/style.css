@@ -706,6 +706,9 @@ padding-right:42.14px;*/
   background-color:#333333;
 }
 
+input:invalid {
+  box-shadow: 0 0 5px 1px red;
+}
 .gallery{
   padding-bottom:0px;
 }
