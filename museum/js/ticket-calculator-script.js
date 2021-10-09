@@ -24,9 +24,33 @@ const options = {weekday : 'long', month: 'long', day: 'numeric'}
 
 // Form-validation-vars
 
-const name = document.querySelector('.name-input')
-const email = document.querySelector('.email-input')
-const tel = document.querySelector('.tel-input')
+const nameImp = document.querySelector('.name-input')
+const emailImp = document.querySelector('.email-input')
+const telImp = document.querySelector('.tel-input')
+nameImp.addEventListener("input", () =>{
+    if (!nameImp.validity.valid){
+        nameImp.setCustomValidity("please fill in your name (3-15 symbols including letters from cyrilic or latin alphabet and spaces)")
+    } else {
+        nameImp.setCustomValidity('') 
+    }
+})
+emailImp.addEventListener("input", () =>{
+    if (!emailImp.validity.valid){
+        emailImp.setCustomValidity("please fill in your email in the following format : username@mail.net")
+    } else {
+        emailImp.setCustomValidity('') 
+    }
+})
+
+telImp.addEventListener("input", () =>{
+    if (!telImp.validity.valid){
+        telImp.setCustomValidity("please fill in your phone number in one of the following formats:1234567890 or 123-456-78-90 or 123 456 78 90 ")
+    } else {
+        nameImp.setCustomValidity('') 
+    }
+})
+
+
 let today = new Date().toISOString().split('T')[0];
 formDate.setAttribute('min', today)
 formTime.addEventListener('change', () => {
