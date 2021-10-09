@@ -256,17 +256,17 @@
             <div class= "btn-container-form">
                 <div><p class ="form-basic">Basic 18+ (20 €)</p></div>
                  <div class="form-button-inputs">
-                <button class="number-btn-form" type="button" onclick="this.nextElementSibling.stepDown()">–</button>
+                <button class="number-btn-form basic-minus" type="button" >–</button>
             <input type="number" name ="ticket-counter" min="0" max="20" value="1" readonly class="number basic-tickets">
-            <button class="number-btn-form" type="button" onclick="this.previousElementSibling.stepUp()">+</button>
+            <button class="number-btn-form basic-plus" type="button" >+</button>
         </div>
                 </div>
                 <div class= "btn-container-form">
                     <div><p class="form-senior">Senior 65+ (10 €)</p></div>
                      <div class="form-button-inputs">
-                    <button class="number-btn-form" type="button" onclick="this.nextElementSibling.stepDown()">–</button>
+                    <button class="number-btn-form senior-minus" type="button" >–</button>
                 <input type="number" name ="ticket-counter" min="0" max="20" value="1" readonly class="number senior-tickets">
-                <button class="number-btn-form" type="button" onclick="this.previousElementSibling.stepUp()">+</button>
+                <button class="number-btn-form senior-plus" type="button">+</button>
             </div>
         </div>
         </div>
@@ -284,8 +284,8 @@
             <img src="assets/img/louvre-small.jpg" alt="a small image of the pyramid outside of louvre">        
         </div>
         <div class="overview-mid">
-            <div class="ticket-info"><div><input type="number" name ="ticket-counter" min="0" max="20" value="1" readonly class="number"><p class="form-basic">Basic (20 €)</p></div><p class="form-total-basic">40 €</p></div>  
-            <div class="ticket-info"><div><input type="number" name ="ticket-counter" min="0" max="20" value="1" readonly class="number"><p class ="form-senior">Senior (10 €)</p></div><p class ="form-total-senior">20 €</p></div>  
+            <div class="ticket-info"><div><input type="number" name ="ticket-counter" min="0" max="20" value="1" readonly class="number basic-tickets"><p class="form-basic">Basic (20 €)</p></div><p class="form-total-basic">40 €</p></div>  
+            <div class="ticket-info"><div><input type="number" name ="ticket-counter" min="0" max="20" value="1" readonly class="number senior-tickets"><p class ="form-senior">Senior (10 €)</p></div><p class ="form-total-senior">20 €</p></div>  
             <div class="overview-total"><p>Total:</p><p class="form-total-cost">60 €</p></div>   
         </div>
         <div class="overview-bottom">
@@ -336,16 +336,16 @@
              <h4>Amount</h4>
             <p> Basic 18+</p> 
                 <div class="btn-container">
-                <button class="number-btn" type="button" onclick="this.nextElementSibling.stepDown()">–</button>
-            <input type="number" name ="ticket-counter" min="0" max="20" value="1" readonly class="number basic-tickets">
-            <button class="number-btn" type="button" onclick="this.previousElementSibling.stepUp()">+</button>
+                <button class="number-btn basic-minus" type="button" >–</button>
+            <input type="number" name ="ticket-counter basic-counter" min="0" max="20" value="1" readonly class="number basic-tickets">
+            <button class="number-btn basic-plus" type="button" >+</button>
                 </div>
             
             <p>Senior 65+</p>
                 <div class="btn-container">
-            <button class="number-btn"  type="button" onclick="this.nextElementSibling.stepDown()">–</button>
+            <button class="number-btn senior-minus"  type="button" >–</button>
             <input type="number" name ="ticket-counter" min="0" max="20" value="1" readonly class="number senior-tickets">
-            <button class="number-btn" type="button" onclick="this.previousElementSibling.stepUp()">+</button>
+            <button class="number-btn senior-plus" type="button" >+</button>
         </div>
             <h4 class="total total-in-section">Total € 220</h4>
             <p>

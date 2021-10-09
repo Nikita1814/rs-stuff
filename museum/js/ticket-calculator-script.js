@@ -2,8 +2,8 @@
 const ticketBtns = document.querySelectorAll('.number-btn')
 const sectionTotal = document.querySelector('.total-in-section')
 const types = document.querySelectorAll('.section-ticket-check')
-const senTicketCount = document.querySelector('.senior-tickets')
-const baseTicketCount = document.querySelector('.basic-tickets')
+const senTicketCount = document.querySelectorAll('.senior-tickets')
+const baseTicketCount = document.querySelectorAll('.basic-tickets')
 
 //Form-vars
 const formTicketBtns = document.querySelectorAll('.number-btn-form')
@@ -22,18 +22,44 @@ combined: 40,
 }
 
 
-ticketBtns.forEach((el) => el.addEventListener('click', () =>{totalUpd()}))
-formTicketBtns.forEach((el) => el.addEventListener('click', () =>{totalUpd()}))
+ticketBtns.forEach((el) => el.addEventListener('click', () =>{
+    if(el.classList.contains('basic-minus')){
+        baseTicketCount.forEach((c) => c.value--)
+    }
+    if(el.classList.contains('basic-plus')){
+        baseTicketCount.forEach((c) => c.value++)
+    }
+    if(el.classList.contains('senior-minus')){
+        senTicketCount.forEach((c) => c.value--)
+    }
+    if(el.classList.contains('senior-plus')){
+        senTicketCount.forEach((c) => c.value++)
+    }
+    totalUpd()}))
+formTicketBtns.forEach((el) => el.addEventListener('click', () =>{
+    if(el.classList.contains('basic-minus')){
+        baseTicketCount.forEach((c) => c.value--)
+    }
+    if(el.classList.contains('basic-plus')){
+        baseTicketCount.forEach((c) => c.value++)
+    }
+    if(el.classList.contains('senior-minus')){
+        senTicketCount.forEach((c) => c.value--)
+    }
+    if(el.classList.contains('senior-plus')){
+        senTicketCount.forEach((c) => c.value++)
+    }
+    totalUpd()}))
 
 function totalUpd(){    
 let ticketType
 types.forEach((el) => {if (el.checked) {ticketType = el.value}})
 formBase.forEach((el) => el.innerText = `Basic (${priceList[ticketType]} €)`)
 formSen.forEach((el) => el.innerText = `Senior (${priceList[ticketType]/2} €)`)
-formBaseTotal.innerText = `${priceList[ticketType] * baseTicketCount.value} €`
-formSenTotal.innerText = `${priceList[ticketType]/2 * senTicketCount.value} €`
-formTotal.innerText = ` ${priceList[ticketType] * baseTicketCount.value + priceList[ticketType]/2 * senTicketCount.value} €`
-sectionTotal.innerText = `Total ${priceList[ticketType] * baseTicketCount.value + priceList[ticketType]/2 * senTicketCount.value}€`
+formBaseTotal.innerText = `${priceList[ticketType] * baseTicketCount[0].value} €`
+formSenTotal.innerText = `${priceList[ticketType]/2 * senTicketCount[0].value} €`
+formTotal.innerText = ` ${priceList[ticketType] * baseTicketCount[0].value + priceList[ticketType]/2 * senTicketCount[0].value} €`
+sectionTotal.innerText = `Total ${priceList[ticketType] * baseTicketCount[0].value + priceList[ticketType]/2 * senTicketCount[0].value}€`
 }
 
 
