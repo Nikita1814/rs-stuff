@@ -26,6 +26,7 @@ const progressBar = document.querySelector(".progress-bar");
 const volumeBtn = document.querySelector(".volume-button");
 const volumeBar = document.querySelector(".volume-bar");
 const fullScrBtn = document.querySelector(".fullscreen-button");
+const speedDiv = document.querySelector(".speed")
 
 /*let vidLoadProgUpdate = function(){
   let video = document.querySelector(".vid")
@@ -257,12 +258,11 @@ function togglePlay() {
         if (direction === "speed-up") {
           video.playbackRate -= 0.25;
           
-      
-        }
-        if (direction === "slow-down") {
+        } 
+         if (direction === "slow-down") {
           video.playbackRate += 0.25;
           
-        }
+        } 
         if (video.playbackRate < 0.25 || video.playbackRate > 2) {
           video.playbackRate = 1;
         }
@@ -276,7 +276,15 @@ function togglePlay() {
             elem.style.background = `linear-gradient(to right, #710707 0%, #710707 ${value*100}%, #fff ${value}%, white 100%)`
           }
         }
-      
+        function updateSpeedBtn (){
+          if (video.playbackRate === 1) {
+            speedDiv.setAttribute('hidden', true)
+          } else
+          if (video.playbackRate !==1) {
+            speedDiv.removeAttribute('hidden')
+            speedDiv.textContent = `Current speed : x${video.playbackRate}`
+          }
+        }
 
       // Video Player Event Listeners
 
@@ -288,21 +296,21 @@ function togglePlay() {
         if (e.code === "Space") {
           togglePlay();
         }
-        if (e.key === "m" || e.key === "M") {
+        if (e.key === "m" || e.key === "M" || e.key ==="ь" || e.key ==="Ь") {
           muteVid();
         }
-        if (e.key === "<") {
+        if (e.shiftKey && (e.key === "<"|| e.key === "б" || e.key === "Б")) {
           changePlayBackRate("speed-up");
         }
-        if (e.key === ">") {
+        if (e.shiftKey && (e.key === ">" || e.key === "ю" || e.key === "Ю")) {
           changePlayBackRate("slow-down");
         }
-        if (e.key === "f" || e.key === "F") {
+        if (e.key === "f" || e.key === "F" || e.key === "а" || e.key ==="А" ) {
           toggleFlScr();
         }
         
       });
- video.addEventListener("volumechange", updateVolBtn);
+video.addEventListener("volumechange", updateVolBtn);
 video.addEventListener("click", togglePlay);
 video.addEventListener("timeupdate", ()=>{
   updateProgress()
@@ -314,6 +322,7 @@ video.addEventListener("ended", () => {
   playBtn.innerHTML =
     '<img src="assets/svg/play-button.svg" alt="play-button">';
 })
+video.addEventListener("ratechange",  updateSpeedBtn);
 playBtn.addEventListener("click", togglePlay);
 
 bigPlayBtn.addEventListener("click", togglePlay);

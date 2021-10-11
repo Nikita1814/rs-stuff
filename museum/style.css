@@ -638,7 +638,20 @@ color:#000000;
   margin-left:35px;
   
   }*/
-    
+  .speed{
+    position:absolute;
+    z-index:11;
+    left:43%;
+    right:41%;
+    top:10%;
+    background-color:black;
+    text-align:center;
+    border-radius:10%;
+    font-size:20px;
+    opacity:0.5;
+    color:white;
+  }  
+
   .volume-bar {
   width:11%;
   padding:0;
