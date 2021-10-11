@@ -247,6 +247,16 @@ justify-content:space-between;
 
 width:180px;
 }
+.welcome-slider-image{
+  -webkit-user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  width:1000px;
+  height:750px;
+}
+
 .slider-marker{
   width:16px;
   height:16px;
@@ -415,14 +425,41 @@ color:#000000;
   display:flex;
   gap:60px;  
   }
+  /*Slider Stylles*/
   .las-meninas{
+    position:relative;
     width:720px;
     height:700px;
-    background-image: url(assets/img/Explore-image.png);
-    background-size: cover;
+    background-image: url(assets/img/meninas-blue.png);
+    display:flex;
+    background-size: 720px 700px;
+    background-position:0 center;
   margin-top:15px;
-  
   }
+
+.las-meninas .comparison-slider{
+  -webkit-appearance: none;
+  width:100%;
+  background:none;
+  z-index: 1;
+}
+
+.las-meninas .comparison-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height:700px;
+  width:40px;
+  background-image: url(assets/img/explore-slider.png);
+  cursor:pointer;
+}
+.sliding-image{
+  position:absolute;
+  left:0;
+  width:20%;
+  height:100%;
+  background-image: url(assets/img/meninas-gold.jpg);
+  background-size: 720px 700px;
+    background-position:0 center;
+}
   .picture-explore-text{
     width:640px;
   margin-top:80px;
@@ -446,16 +483,28 @@ color:#000000;
   }
 
   .video-poster{
+    position: relative;
     margin-top:15px;
   background-image:url(assets/video/poster.jpg) ;
   background-repeat: no-repeat;
   background-size: cover;
-  width:1440px;
-  height:650px;
+  width:100%;
+  height:88%;
   display:flex;
   justify-content:center;
   align-items:center;
 
+  }
+
+  .vid{
+    position: absolute;
+    width:100%;
+    height:100%;
+    
+  }
+  .player{
+    width:100%;
+    height: 735px;
   }
   .video-description{
   
@@ -484,14 +533,16 @@ color:#000000;
     vertical-align:center;
   }
   .controls{
-  height:85px;
-  width:1440px;  
+  height:12%;
+  width:100%;  
   display:flex;
   justify-content: space-around;
   align-items:center;
   background-color:#000000;
   }
   .video-journey button{
+    position: relative;
+    z-index:1;
   background:transparent;
   box-shadow: 0px 0px 0px transparent;
   border: 0px solid transparent;
@@ -563,7 +614,7 @@ color:#000000;
 }*/
 
 
-input[type="range"]::-webkit-slider-thumb {
+.controls input[type="range"]::-webkit-slider-thumb {
   width: 15px;
   height: 15px;
   border-radius: 50%;
@@ -573,7 +624,8 @@ input[type="range"]::-webkit-slider-thumb {
 }
 
   .progress-bar {
-  width:933px;
+  /*width:933px;*/
+  width:65%;
   padding:auto 0;
   overflow: visible;
   background: linear-gradient(to right, #710707 0%, #710707 54%, #fff 54%, #fff 100%);
@@ -586,9 +638,22 @@ input[type="range"]::-webkit-slider-thumb {
   margin-left:35px;
   
   }*/
-    
+  .speed{
+    position:absolute;
+    z-index:11;
+    left:43%;
+    right:41%;
+    top:10%;
+    background-color:black;
+    text-align:center;
+    border-radius:10%;
+    font-size:20px;
+    opacity:0.5;
+    color:white;
+  }  
+
   .volume-bar {
-  width:155px;
+  width:11%;
   padding:0;
   margin:0;
   background: linear-gradient(to right, #710707 0%, #710707 45%, #fff 45%, #fff 100%);
@@ -607,20 +672,31 @@ padding-right:42.14px;*/
   justify-content: center;
 }
   .video-slider{
+    position:relative;
+    z-index:1;
    margin-top:40px;
     width:1440px;
     height:254px;
-    
+    overflow:hidden; 
   }
 
   .video-placeholder{
+    width:452px;
+    height:254px;
     position:relative;
     display:flex;
     justify-content:center;
     align-items:center;
+    margin-right:45px;
   }
-  .yt-placeholder{
+  iframe{
+    width:452px;
+    height:254px;
+  }
+  .yt-play{
   position:absolute;
+  right:50%;
+  top:0;
   z-index:2;
   }
   .video-slider-controls{
@@ -631,8 +707,11 @@ padding-right:42.14px;*/
     justify-content: space-between;
   }
   .video-sliding{
+    position:absolute;
     display:flex;
-    justify-content: space-between;
+   
+    height:254px;
+    transition: transform 0.5s ease-in-out;  
   }
 
   .video-slider-right,
@@ -659,6 +738,9 @@ padding-right:42.14px;*/
   background-color:#333333;
 }
 
+input:invalid {
+  box-shadow: 0 0 5px 1px red;
+}
 .gallery{
   padding-bottom:0px;
 }
@@ -959,7 +1041,48 @@ input[name="form-date-text"]::-webkit-calendar-picker-indicator {
   text-indent: 43px;
   background-position: 15px;
   margin-right:14px;
+ position:relative;
 }
+.name-p{ position:relative;}
+.em-p{position:relative;}
+.tel-p{position:relative;}
+
+
+
+
+.invalid-E::after{
+  position:absolute;
+  content: "please fill in your email in the following format : username@mail.net";
+  background-color:red;
+  color:white;
+ right:-400px;
+ top:0;
+ width:400px;
+z-index:4;
+}
+
+.invalid-Name::after{
+  position:absolute;
+  content: "Must contain 3-15 symbols of Latin or Cyrilic alphabet and spaces";
+  background-color:red;
+  color:white;
+ right:-400px;
+ top:0;
+ width:400px;
+z-index:4;
+}
+
+.invalid-Tel::after{
+  position:absolute;
+  content: "please fill in your phone number in one of the following formats:1234567890 or 123-456-78-90 or 123 456 78 90";
+  background-color:red;
+  color:white;
+ right:-400px;
+ top:0;
+ width:400px;
+z-index:4;
+}
+
 /*.ticket-form #form-date{
   background-image:url(assets/svg/ticket-form/date.svg);
   background-repeat: no-repeat;
@@ -1390,11 +1513,18 @@ transition:background-color, 0.5s ease-in;
     display:flex;  
     }
     .map{
+      position: relative;
       width:960px; 
       height:620px;
     margin-top:103px;
     margin-left:198px;
-    background-image: url(assets/img/map.png);
+    /*background-image: url(assets/img/map.png);*/
+    }
+  
+    .map-nav{
+      position:absolute;
+      top:0;
+      right:0;
     }
     
     .contacts-info{
@@ -1877,7 +2007,7 @@ transition:background-color, 0.5s ease-in;
 
     }
     .map{
-    background-image: url(assets/img/map-1024p.png);
+    /*background-image: url(assets/img/map-1024p.png);*/
      width:694px;
      height:454px;
      margin-top:80px;
@@ -2359,8 +2489,8 @@ transition:background-color, 0.5s ease-in;
       flex-direction: column;
     }
     .map{
-    background-image: url(assets/img/map-768p.png);
-     background-size: contain;
+    /*background-image: url(assets/img/map-768p.png);*/
+    /* background-size: contain;*/
      width:728px;
      height:476px;
      margin-top:0;
@@ -2819,7 +2949,7 @@ width:170px;
 }
 
 .map {
-  background-image: url(assets/img/map-420p.png);
+  /*background-image: url(assets/img/map-420p.png);*/
   width:380px;
   height:248px;
   margin-bottom:0;

@@ -11,6 +11,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Forum&family=Roboto&display=swap" rel="stylesheet" />
+  <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.5.0/mapbox-gl.js'></script>
+  <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v2.5.0/mapbox-gl.css' rel='stylesheet' />
 </head>
 <body>
     <div class="overlay hidden"></div>
@@ -116,7 +118,9 @@
             been damaged in any way, but because it looked different</p>
         </div>
         </div>
-        <div class="las-meninas" >
+        <div class="las-meninas">
+            <div class="sliding-image"></div>
+            <input class="comparison-slider" type="range" value="20" max ="100">
     </div>
 </section>
 <section class="video-journey section-white" id="video">
@@ -127,47 +131,58 @@
             <p>Enter and visit one of the most famous museums in the world and enjoy masterpieces such as Mona Lisa or Hammurabi's Code</p>
             
         </div>
+        <div class="player">
         <div class="video-poster">
+            <video src="assets/video/video0.mp4" class="vid" poster="assets/video/poster.jpg"></video>
             <button class="video-button"><img src="assets/svg/Big-play-button.svg" alt="big play button" class="big-play-icon"></button>
+            <div class="speed" hidden="true">Current speed:</div>
         </div>
+       
         <div class="controls">
         <button class="play-button">
             <img src="assets/svg/play-button.svg"  alt="play-button">
            </button>
            
-           <input class="progress-bar progress" type="range" value="54" min="0" step="1" max="100">
+           <input class="progress-bar progress" type="range" value="0" min="0" step="1" max="100">
     
            <button class="volume-button">
             <img src="assets/svg/volume-button.svg" alt="volume-button">
            </button>
           
-           <input class="volume-bar progress" type="range" value="43" min="0" step="1" max="100">
+           <input class="volume-bar progress" type="range" value="1"  min="0" step="0.1" max="1">
        
            <button class="fullscreen-button">
             <img src="assets/svg/Fullscreen-icon.svg" alt="fullscreen-button">
            </button>
         </div>
+    </div>
       
         <div class="video-slider">
          <div class="video-sliding">
              <div class="video-placeholder">
-                 <img src="assets/video/Video-slider-poster-one.jpg" alt="Le Corps et l'Ame">
-                 <img class ="yt-placeholder" src="assets/video/yt-ico.png" alt="yt-ico-placeholder">
+                <iframe  src="https://www.youtube.com/embed/zp1BXPX8jcU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                 
              </div>
              <div class="video-placeholder">
-                <img src="assets/video/Video-slider-poster-two.jpg" alt="Au Louvre!">
-                <img class ="yt-placeholder" src="assets/video/yt-ico.png" alt="yt-ico-placeholder">
+                <iframe  src="https://www.youtube.com/embed/Vi5D6FKhRmo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+               
             </div>
             <div class="video-placeholder">
-                <img src="assets/video/Video-slider-poster-three.png" alt="Promenade">
-                <img class ="yt-placeholder" src="assets/video/yt-ico.png" alt="yt-ico-placeholder">
+                <iframe  src="https://www.youtube.com/embed/NOhDysLnTvY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
+            <div class="video-placeholder">
+                <iframe  src="https://www.youtube.com/embed/aWmJ5DgyWPI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> 
+             </div>
+             <div class="video-placeholder">
+                <iframe  src="https://www.youtube.com/embed/2OR0OCr6uRE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+           
          </div>
         </div>
         <div class="video-controls-wrapper">
      <div class="video-slider-controls">
          <button class="video-slider-left"><img src="assets/svg/vid-slider-left.svg" alt="left-video-slider-button"></button>
-         <div class="video-slider-marker marked"></div>
+         <div class="video-slider-marker"></div>
          <div class="video-slider-marker"></div>
          <div class="video-slider-marker"></div>
          <div class="video-slider-marker"></div>
@@ -231,13 +246,14 @@
            <h4 >BOOKING TICKETS </h4>
            <p class="underline-p">Tour to Louvre</p>
            <form action="eh">
-           <p> <input class ="date-input" type ="text" value = "Date" onfocus="(this.type='date')" onblur ="(this.type='text')" name="form-date-text"  id="time-input" ><input class="time-input" type="text" value ="Time"  onfocus= "(this.type='time')" name="form-time-text"  ></p>
-           <p> <input type="text" name="name" id="name" value = "Name"></p>
-           <p> <input type="email" name="e-mail" value = "E-mail"></p>
-           <p> <input type="tel" name="phone" value = "Phone"> </p>
+           <p> <input class ="date-input" type ="text" value = "Date"  min = "2021-10-08" onfocus="(this.type='date')" onblur ="(this.type='text')" name="form-date-text"  id="time-input" ><input class="time-input" type = "text"  step= "1800" min= "09:00" max= "18:00" onfocus= "(this.type='time')"  onblur ="(this.type='text')"  name="form-time-text"  ></p>
+           <p class="name-p invalid-Name"> <input type="text" class="name-input" name="name" id="name" placeholder= "Name" minlength ="3" maxlength="15" pattern="^[A-zА-я\s]*" required></p>
+           <p class="em-p invalid-E" > <input type="email" class="email-input" name="e-mail" placeholder= "E-mail" pattern = "^[A-z0-9_\-^\s]{3,15}@[^.]+[A-Za-z0-9]{3,}\.\D{2,}" required></p>
+           <p class ="tel-p invalid-Tel"> <input type="tel" class="tel-input" name="phone" placeholder = "Phone" pattern ="[0-9]{3}[\-\s]{1}[0-9]{3}[\-\s]{1}[0-9]{2}[\-\s]{1}[0-9]{2}|[0-9]{10}" required ></p>
             <select name="Ticket Type" id="TicketType" > 
-               <option selected>Ticket Type</option>
-               <option>Option 2</option>
+               <option class="select-type-option" value ="temporary" selected>Temporary Exhibition</option>
+               <option  class="select-type-option" value = "permanent">Permanent Exhibition </option>
+               <option  class="select-type-option" value="combined"> Combined Admission</option>
            </select>
            </form>
            <div class="fake-bg-date"></div>
@@ -246,19 +262,19 @@
            <div class="entry-ticket">
             <p class="underline-p">Entry Ticket</p>
             <div class= "btn-container-form">
-                <div><p>Basic 18+ (20 €)</p></div>
+                <div><p class ="form-basic">Basic 18+ (20 €)</p></div>
                  <div class="form-button-inputs">
-                <button class="number-btn-form" type="button" onclick="this.nextElementSibling.stepDown()">–</button>
-            <input type="number" name ="ticket-counter" min="0" max="20" value="2" readonly class="number">
-            <button class="number-btn-form" type="button" onclick="this.previousElementSibling.stepUp()">+</button>
+                <button class="number-btn-form basic-minus" type="button" >–</button>
+            <input type="number" name ="ticket-counter" min="0" max="20" value="1" readonly class="number basic-tickets">
+            <button class="number-btn-form basic-plus" type="button" >+</button>
         </div>
                 </div>
                 <div class= "btn-container-form">
-                    <div><p>Senior 65+ (10 €)</p></div>
+                    <div><p class="form-senior">Senior 65+ (10 €)</p></div>
                      <div class="form-button-inputs">
-                    <button class="number-btn-form" type="button" onclick="this.nextElementSibling.stepDown()">–</button>
-                <input type="number" name ="ticket-counter" min="0" max="20" value="2" readonly class="number">
-                <button class="number-btn-form" type="button" onclick="this.previousElementSibling.stepUp()">+</button>
+                    <button class="number-btn-form senior-minus" type="button" >–</button>
+                <input type="number" name ="ticket-counter" min="0" max="20" value="1" readonly class="number senior-tickets">
+                <button class="number-btn-form senior-plus" type="button">+</button>
             </div>
         </div>
         </div>
@@ -276,9 +292,9 @@
             <img src="assets/img/louvre-small.jpg" alt="a small image of the pyramid outside of louvre">        
         </div>
         <div class="overview-mid">
-            <div class="ticket-info"><div><input type="number" name ="ticket-counter" min="0" max="20" value="2" readonly class="number"><p>Basic (20 €)</p></div><p>40 €</p></div>  
-            <div class="ticket-info"><div><input type="number" name ="ticket-counter" min="0" max="20" value="2" readonly class="number"><p>Senior (10 €)</p></div><p>20 €</p></div>  
-            <div class="overview-total"><p>Total:</p><p class="total-cost">60 €</p></div>   
+            <div class="ticket-info"><div><input type="number" name ="ticket-counter" min="0" max="20" value="1" readonly class="number basic-tickets"><p class="form-basic">Basic (20 €)</p></div><p class="form-total-basic">40 €</p></div>  
+            <div class="ticket-info"><div><input type="number" name ="ticket-counter" min="0" max="20" value="1" readonly class="number senior-tickets"><p class ="form-senior">Senior (10 €)</p></div><p class ="form-total-senior">20 €</p></div>  
+            <div class="overview-total"><p>Total:</p><p class="form-total-cost">60 €</p></div>   
         </div>
         <div class="overview-bottom">
             <div class="card-top">
@@ -302,42 +318,44 @@
          <div class="tickets-image" ></div>
          <div class="ticket-type">
            <h4>Ticket Type</h4>
+           
            <p>
             <label class="custom-radio">Permanent exhibition
-           <input type="radio" name="ticket-type" value="permanent" checked>
+           <input class="section-ticket-check" type="radio" name="ticket-type" value="permanent" checked>
            <span class="checkmark"></span> 
            
            </label>
            </p> 
             <p>
             <label class="custom-radio"> Temporary exhibition
-            <input type="radio" name="ticket-type" value="temporary">
+            <input class="section-ticket-check" type="radio" name="ticket-type" value="temporary" >
             <span class="checkmark"></span> 
             </label>
             </p> 
             <p>
                 <label class="custom-radio">Combined Admission
-                <input type="radio" name="ticket-type" value="combined">
+                <input class="section-ticket-check" type="radio" name="ticket-type" value="combined">
                 <span class="checkmark"></span>  
             </label>
             </p> 
+   
          </div>
          <div class="amount">
              <h4>Amount</h4>
             <p> Basic 18+</p> 
                 <div class="btn-container">
-                <button class="number-btn" type="button" onclick="this.nextElementSibling.stepDown()">–</button>
-            <input type="number" name ="ticket-counter" min="0" max="20" value="1" readonly class="number">
-            <button class="number-btn" type="button" onclick="this.previousElementSibling.stepUp()">+</button>
+                <button class="number-btn basic-minus" type="button" >–</button>
+            <input type="number" name ="ticket-counter basic-counter" min="0" max="20" value="1" readonly class="number basic-tickets">
+            <button class="number-btn basic-plus" type="button" >+</button>
                 </div>
             
             <p>Senior 65+</p>
                 <div class="btn-container">
-            <button class="number-btn"  type="button" onclick="this.nextElementSibling.stepDown()">–</button>
-            <input type="number" name ="ticket-counter" min="0" max="20" value="1" readonly class="number">
-            <button class="number-btn" type="button" onclick="this.previousElementSibling.stepUp()">+</button>
+            <button class="number-btn senior-minus"  type="button" >–</button>
+            <input type="number" name ="ticket-counter" min="0" max="20" value="1" readonly class="number senior-tickets">
+            <button class="number-btn senior-plus" type="button" >+</button>
         </div>
-            <h4 class="total">Total € 220</h4>
+            <h4 class="total total-in-section">Total € 220</h4>
             <p>
                 <button class="buy">Buy Now</button>
                 </p>
@@ -358,7 +376,8 @@
             <p><a href= "tel:+33(0)140205050">phone: +33(0) 1 40 20 50 50</a></p>
             <p><a href="mailto:info@louvre.fr">mail: info@louvre.fr</a></p>
         </div>
-        <div class="map" ></div>
+        <div class="map" id= 'map'>
+        </div>
         </div>
     </div>
 </section> 
@@ -406,5 +425,8 @@
     </div>
 </footer>
 <script src="script.js"></script>
+<script src="js/map-script.js"></script>
+<script src="js/ticket-calculator-script.js" ></script>
+<script src ="js/Playlist-slider-script.js"></script>
 </body>
 </html>
