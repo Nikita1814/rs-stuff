@@ -675,17 +675,26 @@ padding-right:42.14px;*/
    margin-top:40px;
     width:1440px;
     height:254px;
-    
+    overflow:hidden; 
   }
 
   .video-placeholder{
+    width:452px;
+    height:254px;
     position:relative;
     display:flex;
     justify-content:center;
     align-items:center;
+    margin-right:45px;
   }
-  .yt-placeholder{
+  iframe{
+    width:452px;
+    height:254px;
+  }
+  .yt-play{
   position:absolute;
+  right:50%;
+  top:0;
   z-index:2;
   }
   .video-slider-controls{
@@ -697,7 +706,7 @@ padding-right:42.14px;*/
   }
   .video-sliding{
     display:flex;
-    justify-content: space-between;
+    height:254px;
   }
 
   .video-slider-right,
