@@ -672,6 +672,8 @@ padding-right:42.14px;*/
   justify-content: center;
 }
   .video-slider{
+    position:relative;
+    z-index:1;
    margin-top:40px;
     width:1440px;
     height:254px;
@@ -705,8 +707,11 @@ padding-right:42.14px;*/
     justify-content: space-between;
   }
   .video-sliding{
+    position:absolute;
     display:flex;
+   
     height:254px;
+    transition: transform 0.5s ease-in-out;  
   }
 
   .video-slider-right,

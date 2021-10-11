@@ -136,3 +136,4 @@ progressBar.addEventListener("mouseup", updateVid);
 
 
 fullScrBtn.addEventListener("click", toggleFlScr);
+  
