@@ -1041,7 +1041,48 @@ input[name="form-date-text"]::-webkit-calendar-picker-indicator {
   text-indent: 43px;
   background-position: 15px;
   margin-right:14px;
+ position:relative;
 }
+.name-p{ position:relative;}
+.em-p{position:relative;}
+.tel-p{position:relative;}
+
+
+
+
+.invalid-E::after{
+  position:absolute;
+  content: "please fill in your email in the following format : username@mail.net";
+  background-color:red;
+  color:white;
+ right:-400px;
+ top:0;
+ width:400px;
+z-index:4;
+}
+
+.invalid-Name::after{
+  position:absolute;
+  content: "Must contain 3-15 symbols of Latin or Cyrilic alphabet and spaces";
+  background-color:red;
+  color:white;
+ right:-400px;
+ top:0;
+ width:400px;
+z-index:4;
+}
+
+.invalid-Tel::after{
+  position:absolute;
+  content: "please fill in your phone number in one of the following formats:1234567890 or 123-456-78-90 or 123 456 78 90";
+  background-color:red;
+  color:white;
+ right:-400px;
+ top:0;
+ width:400px;
+z-index:4;
+}
+
 /*.ticket-form #form-date{
   background-image:url(assets/svg/ticket-form/date.svg);
   background-repeat: no-repeat;

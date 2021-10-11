@@ -21,32 +21,36 @@ const totalDate = document.querySelector('.overview-date')
 const formTime = document.querySelector('.time-input')
 const totalTime = document.querySelector('.overview-time')
 const options = {weekday : 'long', month: 'long', day: 'numeric'}
+const nameWarn = document.querySelector('.name-p::after')
+const emWarn = document.querySelector('.em-p::after')
+const telWarn = document.querySelector('.em-p::after')
 
 // Form-validation-vars
 
 const nameImp = document.querySelector('.name-input')
 const emailImp = document.querySelector('.email-input')
 const telImp = document.querySelector('.tel-input')
+
 nameImp.addEventListener("input", () =>{
-    if (!nameImp.validity.valid){
-        nameImp.setCustomValidity("please fill in your name (3-15 symbols including letters from cyrilic or latin alphabet and spaces)")
+    if (nameImp.validity.valid){
+        document.querySelector('.name-p').classList.remove('invalid-Name')
     } else {
-        nameImp.setCustomValidity('') 
+        document.querySelector('.name-p').classList.add('invalid-Name')
     }
 })
 emailImp.addEventListener("input", () =>{
-    if (!emailImp.validity.valid){
-        emailImp.setCustomValidity("please fill in your email in the following format : username@mail.net")
+    if (emailImp.validity.valid){
+        document.querySelector('.em-p').classList.remove('invalid-E')
     } else {
-        emailImp.setCustomValidity('') 
+        document.querySelector('.em-p').classList.add('invalid-E')
     }
 })
 
 telImp.addEventListener("input", () =>{
-    if (!telImp.validity.valid){
-        telImp.setCustomValidity("please fill in your phone number in one of the following formats:1234567890 or 123-456-78-90 or 123 456 78 90 ")
+    if (telImp.validity.valid){
+        document.querySelector('.tel-p').classList.remove('invalid-Tel')
     } else {
-        nameImp.setCustomValidity('') 
+        document.querySelector('.tel-p').classList.add('invalid-Tel')
     }
 })
 
