@@ -181,10 +181,13 @@ let currentVol = video.volume;
 
 
 function togglePlay() {
+  
   progressBar.setAttribute("max", video.duration)
+  updRangeBG(progressBar)
     if (video.paused) {
       video.play();
       bigPlayBtn.setAttribute("hidden", true);
+      updRangeBG(volumeBar)
       playBtn.innerHTML = '<img src="assets/svg/pause.svg" alt="pause-button">';
     } else {
       video.pause();
@@ -207,6 +210,7 @@ function togglePlay() {
     console.log(volumeBar.value);
     video.volume = volumeBar.value;
     currentVol = video.volume;
+    updRangeBG(volumeBar)
     
   }
 
@@ -215,8 +219,10 @@ function togglePlay() {
     if (video.volume > 0) {
       volumeBtn.innerHTML =
         '<img src="assets/svg/volume-button.svg" alt="volume-button">';
+        updRangeBG(volumeBar)
     } else {
       volumeBtn.innerHTML = '<img src="assets/svg/mute.svg" alt="mute-button">';
+      updRangeBG(volumeBar)
     }
     }
   
@@ -263,15 +269,19 @@ function togglePlay() {
         
       }
      
-      /* function updRangeBG (elem){
+       function updRangeBG (elem){
           const value = elem.value;
-          this.style.background = `linear-gradient(to right, #710707 0%, #710707 ${value}%, #fff ${value}%, white 100%)`
-      }
+          elem.style.background = `linear-gradient(to right, #710707 0%, #710707 ${value / (video.duration/100)}%, #fff ${value}%, white 100%)`
+          if (elem.classList.contains('volume-bar')){
+            elem.style.background = `linear-gradient(to right, #710707 0%, #710707 ${value*100}%, #fff ${value}%, white 100%)`
+          }
+        }
+      
 
       // Video Player Event Listeners
 
       progressAll.forEach((el) => el.addEventListener('input', (e) => updRangeBG(e.target)    
-      ))*/
+      ))
 
 
       document.addEventListener("keypress", (e) => {
@@ -294,7 +304,16 @@ function togglePlay() {
       });
  video.addEventListener("volumechange", updateVolBtn);
 video.addEventListener("click", togglePlay);
-video.addEventListener("timeupdate", updateProgress);
+video.addEventListener("timeupdate", ()=>{
+  updateProgress()
+  updRangeBG(progressBar)
+
+});
+video.addEventListener("ended", () => {
+  bigPlayBtn.removeAttribute("hidden");
+  playBtn.innerHTML =
+    '<img src="assets/svg/play-button.svg" alt="play-button">';
+})
 playBtn.addEventListener("click", togglePlay);
 
 bigPlayBtn.addEventListener("click", togglePlay);
