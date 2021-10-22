@@ -4,7 +4,9 @@ const dateOptions = {weekday:'long', month: 'long', day: 'numeric', hour: 'numer
 let lang = "en-US"
 const greetSpan = document.querySelector('.greeting')
 const nom = document.querySelector('.name')
-
+const quoteDiv = document.querySelector('.quote')
+const authorDiv = document.querySelector('.author')
+const changeQuote = document.querySelector('.change-quote')
 // time setting function 
 function loadTime (){
 let date = new Date
@@ -51,3 +53,20 @@ function loadStorage (){
 }
 window.addEventListener('beforeunload', setStorage)
 window.addEventListener('load', loadStorage)
+
+// quotes
+
+async function loadQuotes(){
+    const quotes = 'quotes.json'
+    const res = await fetch(quotes)
+    const data = await res.json();
+    let quote = data[Math.round(Math.random() * ((data.length -1) - 0) + 0)]
+    quoteDiv.textContent = quote.text
+    authorDiv.textContent =quote.author 
+    changeQuote.addEventListener('click', () =>{
+        quote = data[Math.round(Math.random() * ((data.length -1) - 0) + 0)]
+    quoteDiv.textContent = quote.text
+    authorDiv.textContent =quote.author 
+    }) 
+}
+loadQuotes()
