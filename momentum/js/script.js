@@ -39,6 +39,37 @@ const rightBtn = document.querySelector(".slide-next");
 let collection = "evening";
 let bgImgNum = RandNumGen();
 
+//Audio player vars
+const audio = document.querySelector('.audio')
+const playBtn = document.querySelector('.play')
+const nextTrack = document.querySelector('.play-next')
+const prevTrack = document.querySelector('.play-prev')
+const playList = [
+  {      
+    title: 'Aqua Caelestis',
+    src: 'assets/sounds/Aqua-Caelestis.mp3',
+    duration: '00:58'
+  },  
+  {      
+    title: 'River Flows In You',
+    src: 'assets/sounds/River-Flows-In-You.mp3',
+    duration: '03:50'
+  },
+  {      
+    title: 'Ennio Morricone',
+    src: 'assets/sounds/Ennio-Morricone.mp3',
+    duration: '01:37'
+  },
+  {      
+    title: 'Summer Wind',
+    src: 'assets/sounds/Summer-Wind.mp3',
+    duration: '01:50'
+  }
+]
+let playNum = 0
+
+
+
 // time setting function
 function loadTime() {
   let date = new Date();
@@ -206,5 +237,47 @@ rightBtn.addEventListener('click', ()=>{
 
 console.log(Number("01"));
 
-/*console.log(`${lang[0]}${lang[1]}`)
-console.log(`${cityInput.value}`)*/
+//Audio player
+audio.currentTime = 0;
+
+
+audio.src = playList[playNum].src
+function playAudio() {
+  
+  if (audio.paused) {
+    audio.play();
+    playBtn.classList.add('pause')
+  } else {
+    audio.pause();
+    playBtn.classList.remove('pause')
+  }
+}
+
+playBtn.addEventListener('click', playAudio)
+
+audio.addEventListener('ended', () =>{
+playNum++
+if(playNum > 3){
+playNum = 0  
+}
+audio.src = playList[playNum].src
+playAudio()
+})
+
+nextTrack.addEventListener('click', () =>{
+playNum++
+if(playNum > 3){
+playNum = 0  
+}
+audio.src = playList[playNum].src
+playAudio()
+})
+prevTrack.addEventListener('click', () =>{
+  playNum--
+  if(playNum < 0){
+  playNum = 3  
+  }
+  audio.src = playList[playNum].src
+  playAudio()
+  })
+  console.log(playList[playNum].src)

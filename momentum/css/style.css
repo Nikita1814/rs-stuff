@@ -164,6 +164,18 @@ body {
   opacity: .6;
 }
 
+li {
+  opacity: 0.75;
+  list-style-type: none;
+  padding-bottom:10px;
+  transition: opacity 0.3s ease-in-out;
+}
+li:hover 
+{
+  cursor: pointer;
+  opacity:1;
+}
+
 .main {
   position: relative;
   display: flex;
