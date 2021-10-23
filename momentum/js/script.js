@@ -60,15 +60,27 @@ function loadGreeting() {
   if (hr >= 6 && hr < 12) {
     collection = "morning";
     greeting = "Good morning,";
+    if(lang === 'ru-RU'){
+      greeting = "Доброе Утро, "
+    }
   } else if (hr >= 12 && hr < 18) {
     collection = "afternoon";
     greeting = "Good afternoon,";
+    if(lang === 'ru-RU'){
+      greeting = "Добрый День, "
+    }
   } else if (hr >= 18 && hr <= 23) {
     collection = "evening";
     greeting = "Good evening,";
+    if(lang === 'ru-RU'){
+      greeting = "Добрый Вечер, "
+    }
   } else if (hr >= 0 && hr < 6) {
     collection = "night";
     greeting = "Good night,";
+    if(lang === 'ru-RU'){
+      greeting = "Доброй Ночи, "
+    }
   }
   greetSpan.textContent = greeting;
 }
@@ -91,7 +103,13 @@ window.addEventListener("load", loadStorage);
 // quotes
 
 async function loadQuotes() {
-  const quotes = "quotes.json";
+  let quotes
+  if(lang ==="ru-RU"){
+   quotes = "quotes.json";
+  }
+  if (lang === "en-US"){
+  quotes = "quotes-eng.json"  
+  }
   const res = await fetch(quotes);
   const data = await res.json();
   let quote = data[Math.round(Math.random() * (data.length - 1 - 0) + 0)];
