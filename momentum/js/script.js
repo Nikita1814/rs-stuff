@@ -1,10 +1,11 @@
 //State vars
-const state = {
+let state = {
   language: 'en-US',
   photoSource: 'github',
   blocks: ['time', 'date','greeting', 'quote', 'weather', 'audio', 'todolist']
 }
-let lang = "en-US";
+/*let lang = "en-US";*/
+const langSelect = document.querySelector('.lang-select')
 
 //date vars
 
@@ -81,7 +82,7 @@ const settingElems = document.querySelectorAll('.setting')
 // time setting function
 function loadTime() {
   let date = new Date();
-  let dateStr = date.toLocaleString(`${lang}`, dateOptions);
+  let dateStr = date.toLocaleString(`${state.language}`, dateOptions);
   let dateSplitArr = dateStr.split(",");
   clock.textContent = `${dateSplitArr[2]}`;
   dateDiv.textContent = `${dateSplitArr[0]}, ${dateSplitArr[1]} `;
@@ -129,7 +130,7 @@ loadGreeting();
 
 function setStorage() {
   localStorage.setItem("name", nom.value);
-  localStorage.setItem("settings", state)
+  localStorage.setItem("settings", JSON.stringify(state))
 }
 
 function loadStorage() {
@@ -137,7 +138,8 @@ function loadStorage() {
     nom.value = localStorage.getItem("name");
   }
   if (localStorage.getItem("settings")) {
-    nom.value = localStorage.getItem("settings");
+    state = JSON.parse(localStorage.getItem("settings"));
+    console.log( typeof state)
   }
 }
 window.addEventListener("beforeunload", setStorage);
@@ -305,3 +307,20 @@ prevTrack.addEventListener('click', () =>{
     el.classList.toggle('settings-seen')
   })
   })
+
+  function updLang(){
+    state.language = langSelect.value
+    console.log(state.language)
+  }
+
+  langSelect.addEventListener('change', () =>{
+    updLang()
+    updPage()
+  })
+
+
+function updPage(){
+  loadWeather();
+  loadQuotes();
+  loadGreeting();
+}
