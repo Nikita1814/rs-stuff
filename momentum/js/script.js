@@ -1,4 +1,4 @@
-//lang var
+//State vars
 let lang = "en-US";
 
 //date vars
@@ -68,7 +68,10 @@ const playList = [
 ]
 let playNum = 0
 
-
+//Settings menu vars
+const settingBtn = document.querySelector('.settings-btn')
+const settingMenu = document.querySelector('.settings-menu')
+const settingElems = document.querySelectorAll('.setting')
 
 // time setting function
 function loadTime() {
@@ -281,3 +284,15 @@ prevTrack.addEventListener('click', () =>{
   playAudio()
   })
   console.log(playList[playNum].src)
+
+
+  //Setting menu functions
+
+  settingBtn.addEventListener('click', () =>{
+  console.log(`doing stuff`)  
+  settingBtn.classList.toggle('buttn-rotate')
+  settingMenu.classList.toggle('settings-seen')
+  settingElems.forEach((el) => {
+    el.classList.toggle('settings-seen')
+  })
+  })

@@ -5,10 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link href="assets/favicon.ico" rel="shortcut icon" />
   <link rel="stylesheet" href="css/owfont-regular.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
   <link rel="stylesheet" href="css/style.css" />
   <title>momentum</title>
 </head>
 <body>
+  <div class="settings-menu">
+    <p class="setting"> Select a language </p>
+    <p class="setting"><select name="lang" id="">
+      <option value="en-US"selected>English </option>
+      <option value="ru-RU">Русский</option>
+    </select>
+  </p>
+  </div>
   <header class="header">
     <div class="player">
       <audio src="" class="audio"></audio>
@@ -54,6 +63,7 @@
       <div class="quote"></div>
       <div class="author"></div>
     </div>
+    <button class="settings-btn"><i class="fas fa-cog"></i></button>
   </footer>
   <script src="js/script.js"></script>
 </body>
