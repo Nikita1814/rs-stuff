@@ -1,4 +1,9 @@
 //State vars
+const state = {
+  language: 'en-US',
+  photoSource: 'github',
+  blocks: ['time', 'date','greeting', 'quote', 'weather', 'audio', 'todolist']
+}
 let lang = "en-US";
 
 //date vars
@@ -94,25 +99,25 @@ function loadGreeting() {
   if (hr >= 6 && hr < 12) {
     collection = "morning";
     greeting = "Good morning,";
-    if(lang === 'ru-RU'){
+    if(state.language === 'ru-RU'){
       greeting = "Доброе Утро, "
     }
   } else if (hr >= 12 && hr < 18) {
     collection = "afternoon";
     greeting = "Good afternoon,";
-    if(lang === 'ru-RU'){
+    if(state.language === 'ru-RU'){
       greeting = "Добрый День, "
     }
   } else if (hr >= 18 && hr <= 23) {
     collection = "evening";
     greeting = "Good evening,";
-    if(lang === 'ru-RU'){
+    if(state.language === 'ru-RU'){
       greeting = "Добрый Вечер, "
     }
   } else if (hr >= 0 && hr < 6) {
     collection = "night";
     greeting = "Good night,";
-    if(lang === 'ru-RU'){
+    if(state.language === 'ru-RU'){
       greeting = "Доброй Ночи, "
     }
   }
@@ -120,15 +125,19 @@ function loadGreeting() {
 }
 loadGreeting();
 
-// functions and listeners for  saving the name to local storage and loading it
+// functions and listeners for  saving the name and settings  to local storage and loading it
 
 function setStorage() {
   localStorage.setItem("name", nom.value);
+  localStorage.setItem("settings", state)
 }
 
 function loadStorage() {
   if (localStorage.getItem("name")) {
     nom.value = localStorage.getItem("name");
+  }
+  if (localStorage.getItem("settings")) {
+    nom.value = localStorage.getItem("settings");
   }
 }
 window.addEventListener("beforeunload", setStorage);
@@ -138,10 +147,10 @@ window.addEventListener("load", loadStorage);
 
 async function loadQuotes() {
   let quotes
-  if(lang ==="ru-RU"){
+  if(state.language ==="ru-RU"){
    quotes = "quotes.json";
   }
-  if (lang === "en-US"){
+  if (state.language === "en-US"){
   quotes = "quotes-eng.json"  
   }
   const res = await fetch(quotes);
@@ -160,7 +169,7 @@ loadQuotes();
 //weather widget
 
 async function loadWeather() {
-  let url = `https://api.openweathermap.org/data/2.5/weather?q=${cityInput.value}&lang=${lang[0]}${lang[1]}&appid=14ea945df3b3517b12a5d7dfc6a3f40b&units=metric`;
+  let url = `https://api.openweathermap.org/data/2.5/weather?q=${cityInput.value}&lang=${state.language[0]}${state.language[1]}&appid=14ea945df3b3517b12a5d7dfc6a3f40b&units=metric`;
   let res = await fetch(url);
   if (!res.ok) {
     weatherError.textContent = `Error! city not found for "${cityInput.value}"`;
@@ -180,14 +189,14 @@ async function loadWeather() {
       data.main.humidity,
       data.wind.speed
     );
-    if (lang === "en-US") {
+    if (state.language === "en-US") {
       weatherIcon.classList.add(`owf-${data.weather[0].id}`);
       weatherIcon.classList.add(`owf`);
       temperature.textContent = `${data.main.temp}°C`;
       weatherDesc.textContent = data.weather[0].description;
       wind.textContent = `Wind speed: ${data.wind.speed} m/s `;
       humidity.textContent = `Humidity: ${data.main.humidity}`;
-    } else if (lang === "ru-RU") {
+    } else if (state.language === "ru-RU") {
       weatherIcon.classList.add(`owf-${data.weather[0].id}`);
       weatherIcon.classList.add(`owf`);
       temperature.textContent = `${data.main.temp}°C`;
