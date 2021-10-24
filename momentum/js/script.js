@@ -78,6 +78,9 @@ let playNum = 0
 const settingBtn = document.querySelector('.settings-btn')
 const settingMenu = document.querySelector('.settings-menu')
 const settingElems = document.querySelectorAll('.setting')
+const settingChecks = document.querySelectorAll('.check') 
+
+
 
 // time setting function
 function loadTime() {
@@ -324,3 +327,7 @@ function updPage(){
   loadQuotes();
   loadGreeting();
 }
+
+settingChecks.forEach((el) => el.addEventListener('click', () =>{
+document.querySelector(`.${el.value}`).classList.toggle('hidden-elem')
+}))

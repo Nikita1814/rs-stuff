@@ -10,6 +10,7 @@
   <title>momentum</title>
 </head>
 <body>
+  <button class="settings-btn"><i class="fas fa-cog"></i></button>
   <div class="settings-menu">
     <p class="setting"> Select a language </p>
     <p class="setting"><select name="lang" id="" class="lang-select">
@@ -17,6 +18,13 @@
       <option value="ru-RU">Русский</option>
     </select>
   </p>
+  <p class ="setting">Select elements to hide</p>
+  <label><input type="checkbox" class= "check" value="time"> Time </label>
+  <label><input type="checkbox" class= "check" value="date"> Date </label>
+  <label><input type="checkbox" class= "check" value= "greeting-container"> Greeting  </label>
+  <label><input type="checkbox" class= "check" value ="footer"> Quote of the day </label>
+  <label><input type="checkbox" class= "check" value ="weather"> Weather info</label>
+  <label><input type="checkbox" class= "check" value="player"> Audio player </label>
   </div>
   <header class="header">
     <div class="player">
@@ -63,7 +71,7 @@
       <div class="quote"></div>
       <div class="author"></div>
     </div>
-    <button class="settings-btn"><i class="fas fa-cog"></i></button>
+   
   </footer>
   <script src="js/script.js"></script>
 </body>
