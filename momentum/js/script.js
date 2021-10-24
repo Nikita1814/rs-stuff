@@ -2,7 +2,8 @@
 let state = {
   language: 'en-US',
   photoSource: 'github',
-  blocks: ['time', 'date','greeting', 'quote', 'weather', 'audio', 'todolist']
+  blocks: [],
+  boxes: [],
 }
 /*let lang = "en-US";*/
 const langSelect = document.querySelector('.lang-select')
@@ -82,6 +83,11 @@ const settingChecks = document.querySelectorAll('.check')
 
 
 
+
+
+
+
+
 // time setting function
 function loadTime() {
   let date = new Date();
@@ -146,7 +152,11 @@ function loadStorage() {
   }
 }
 window.addEventListener("beforeunload", setStorage);
-window.addEventListener("load", loadStorage);
+window.addEventListener("load", () =>{
+loadStorage()
+updHide()
+updPage()
+});
 
 // quotes
 
@@ -328,6 +338,29 @@ function updPage(){
   loadGreeting();
 }
 
+function updHide(){
+  state.blocks.forEach((b) => {
+  document.querySelector(`.${b}`).classList.add('hidden-elem')
+  })
+
+  state.boxes.forEach((x) => {
+    console.log(x)
+  document.getElementById(`${x}`).checked = true
+  })
+}
+
+
 settingChecks.forEach((el) => el.addEventListener('click', () =>{
-document.querySelector(`.${el.value}`).classList.toggle('hidden-elem')
+  if(el.checked){
+document.querySelector(`.${el.value}`).classList.add('hidden-elem')
+state.blocks.push(el.value)
+state.boxes.push(el.id)
+
+  } else {
+    document.querySelector(`.${el.value}`).classList.remove('hidden-elem')
+state.blocks = state.blocks.filter((b) =>{return b !== el.value})  
+
+state.boxes =  state.boxes.filter((x) =>{return x !== el.id})  
+
+  }
 }))
