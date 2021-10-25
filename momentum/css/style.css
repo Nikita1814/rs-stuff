@@ -304,29 +304,30 @@ transition: transform 0.5s ease-in-out;
   opacity: 1;
 }
 .settings-menu{
-  z-index: 1;
+  z-index: -1;
   position: fixed;
   display: flex;
   flex-direction: column;
   left:0;
   bottom:0;
-  visibility: hidden;
   width:60%;
   height:60%;
   background-color:black;
-  opacity:0.75;
+  opacity:0;
   padding:4%;
   text-align: left;
+  transition:opacity 0.5s ease-in-out;
 }
 
 .setting {
-  visibility: hidden;
+opacity: 0;
   text-align: left;
   margin-bottom:2%;
   margin-top: 2%;
 }
 .settings-seen{
- visibility: visible;
+ opacity:0.75;
+ z-index: 1;
 }
 select{
   background-color: transparent;
@@ -336,7 +337,6 @@ select{
 option{
   background-color: black;
   color:white;
-  opacity:0.5;
 }
 .buttn-rotate{
   transform: rotate(180deg) ;
