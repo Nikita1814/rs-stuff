@@ -158,6 +158,8 @@ function loadStorage() {
 window.addEventListener("beforeunload", setStorage);
 window.addEventListener("load", () =>{
 loadStorage()
+updSelects()
+updLang()
 updHide()
 updPage()
 setBg();
@@ -378,6 +380,7 @@ function updPage(){
 
 function updSelects(){
   sourceSelect.value = state.photoSource
+  langSelect.value = state.language
 }
 sourceSelect.addEventListener('change', () =>{
   updImgSrc()
