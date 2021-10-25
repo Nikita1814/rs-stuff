@@ -241,7 +241,12 @@ async function getFlickImgLink() {
   let url = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=97fe91d2316327d228a3f52674e786bd&tags=${state.tag}&extras=url_l&format=json&nojsoncallback=1`
   let res =  await fetch(url)
   let data = await res.json()
-  document.body.style.backgroundImage = `url(${data.photos.photo[Math.round(Math.random() * ((data.photos.photo.length -1 -0) + 0))]["url_l"]})`;
+  let img = new Image();
+  img.src = `${data.photos.photo[Math.round(Math.random() * ((data.photos.photo.length -1 -0) + 0))]["url_l"]}`;
+  img.onload = () => {      
+  document.body.style.backgroundImage = `url(${img.src})`;  
+  document.body.style.bacgroundSize = 'cover'
+  }
   }
  
 
@@ -250,7 +255,7 @@ async function getFlickImgLink() {
  }
 function setBg() {
   if(state.photoSource === 'github') {
-  const img = new Image();
+  let img = new Image();
   img.src = `https://raw.githubusercontent.com/Nikita1814/stage1-tasks/assets/images/${collection}/${bgImgNum}.jpg`;
   img.onload = () => {      
   document.body.style.backgroundImage = `url(${img.src})`;  
