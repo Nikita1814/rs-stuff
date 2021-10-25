@@ -83,7 +83,7 @@ const settingMenu = document.querySelector('.settings-menu')
 const settingElems = document.querySelectorAll('.setting')
 const settingChecks = document.querySelectorAll('.check') 
 
-
+/*localStorage.clear()*/
 
 
 
@@ -237,19 +237,26 @@ function RandNumGen() {
 function RandNumFlick(){
   let randFlickNum = Math.round(Math.random() * ((data.photos.phto.length -1 -0) + 0))
 }
-function getFlickImgLink() {
+async function getFlickImgLink() {
   let url = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=97fe91d2316327d228a3f52674e786bd&tags=${state.tag}&extras=url_l&format=json&nojsoncallback=1`
-fetch(url)
-   .then(res => res.json())
-   .then(data => {
-   document.body.style.backgroundImage = `url(${data.photos.photo[Math.round(Math.random() * ((data.photos.photo.length -1 -0) + 0))]["url_l"]})`;
-  });
- }
+  let res =  await fetch(url)
+  let data = await res.json()
+  document.body.style.backgroundImage = `url(${data.photos.photo[Math.round(Math.random() * ((data.photos.photo.length -1 -0) + 0))]["url_l"]})`;
+  }
+ 
 
+ function getUnsplashLink(){
+ 
+ }
 function setBg() {
   if(state.photoSource === 'github') {
-  document.body.style.backgroundImage = `url('https://raw.githubusercontent.com/Nikita1814/stage1-tasks/assets/images/${collection}/${bgImgNum}.jpg')`;
+  const img = new Image();
+  img.src = `https://raw.githubusercontent.com/Nikita1814/stage1-tasks/assets/images/${collection}/${bgImgNum}.jpg`;
+  img.onload = () => {      
+  document.body.style.backgroundImage = `url(${img.src})`;  
+  document.body.style.bacgroundSize = 'cover'
   }
+}
   if(state.photoSource === 'flickr'){
     getFlickImgLink()
 }
@@ -269,7 +276,8 @@ function slideBg(direction) {
       bgImgNum = "01";
     }
   }
-  document.body.style.backgroundImage = `url('https://raw.githubusercontent.com/Nikita1814/stage1-tasks/assets/images/${collection}/${bgImgNum}.jpg')`;
+  /*document.body.style.backgroundImage = `url('https://raw.githubusercontent.com/Nikita1814/stage1-tasks/assets/images/${collection}/${bgImgNum}.jpg')`;*/
+  setBg()
 }
 if(state.photoSource === 'flickr'){
 getFlickImgLink()
