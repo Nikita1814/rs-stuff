@@ -82,6 +82,8 @@ const settingBtn = document.querySelector('.settings-btn')
 const settingMenu = document.querySelector('.settings-menu')
 const settingElems = document.querySelectorAll('.setting')
 const settingChecks = document.querySelectorAll('.check') 
+const sourceSelect = document.querySelector('.source-select')
+
 
 /*localStorage.clear()*/
 
@@ -234,9 +236,7 @@ function RandNumGen() {
   let randNum = `${Math.round(Math.random() * (20 - 1 - 1) + 1)}`.padStart(2,"0");
   return randNum;
 }
-function RandNumFlick(){
-  let randFlickNum = Math.round(Math.random() * ((data.photos.phto.length -1 -0) + 0))
-}
+
 async function getFlickImgLink() {
   let url = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=97fe91d2316327d228a3f52674e786bd&tags=${state.tag}&extras=url_l&format=json&nojsoncallback=1`
   let res =  await fetch(url)
@@ -365,12 +365,25 @@ prevTrack.addEventListener('click', () =>{
     updPage()
   })
 
+  function updImgSrc(){
+    state.photoSource = sourceSelect.value
+  }
 
 function updPage(){
   loadWeather();
   loadQuotes();
   loadGreeting();
+  setBg()
 }
+
+function updSelects(){
+  sourceSelect.value = state.photoSource
+}
+sourceSelect.addEventListener('change', () =>{
+  updImgSrc()
+  updPage()
+  console.log(state.photoSource)
+})
 
 function updHide(){
   state.blocks.forEach((b) => {
