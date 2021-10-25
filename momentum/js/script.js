@@ -93,7 +93,7 @@ const tagSelect = document.querySelector('.tag-field')
 
 /*localStorage.clear()*/
 
-
+console.log('Ваша оценка - 147 баллов\n Отзыв по пунктам ТЗ:\n Не выполненные/не засчитанные пункты:\n 1) доп функционал\n Частично выполненные пункты:\n 1) можно запустить и остановить проигрывания трека кликом по кнопке Play/Pause рядом с ним в плейлисте\n feedback: Нельзя поставить на паузу\n 2 переводится прогноз погоды в т.ч описание погоды и город по умолчанию\n feedback: Не меняется город по умолчанию \nВыполненные пункты: Все Остальное')
 
 
 
@@ -166,7 +166,6 @@ function loadStorage() {
   }
   if (localStorage.getItem("settings")) {
     state = JSON.parse(localStorage.getItem("settings"));
-    console.log( typeof state)
   }
   if (localStorage.getItem("city")) {
     cityInput.value = localStorage.getItem("city");
@@ -220,14 +219,7 @@ async function loadWeather() {
   } else {
     weatherError.textContent = ``;
     let data = await res.json();
-    console.log(url);
-    console.log(
-      data.weather[0].id,
-      data.weather[0].description,
-      data.main.temp,
-      data.main.humidity,
-      data.wind.speed
-    );
+   
     if (state.language === "en-US") {
       weatherIcon.classList.add(`owf-${data.weather[0].id}`);
       weatherIcon.classList.add(`owf`);
@@ -326,7 +318,6 @@ rightBtn.addEventListener('click', ()=>{
  slideBg('right')
 })
 
-console.log(Number("01"));
 
 
 //Audio player
@@ -375,7 +366,7 @@ prevTrack.addEventListener('click', () =>{
   }
   switchAudio()
   })
-  console.log(playList[playNum].src)
+
 
   /*const trackName = document.querySelector('.track-title')
   const progressBar = document.querySelector('.progress')
@@ -418,7 +409,6 @@ function updateVolBtn() {
   }
 
   function volumeUpdate() {
-    console.log(volumeBar.value);
     audio.volume = volumeBar.value;
     currentVol = audio.volume;
     
@@ -460,8 +450,7 @@ function switchAudio (){
 
   //Setting menu functions
 
-  settingBtn.addEventListener('click', () =>{
-  console.log(`doing stuff`)  
+  settingBtn.addEventListener('click', () =>{ 
   settingBtn.classList.toggle('buttn-rotate')
   settingMenu.classList.toggle('settings-seen')
   settingElems.forEach((el) => {
@@ -471,7 +460,6 @@ function switchAudio (){
 
   function updLang(){
     state.language = langSelect.value
-    console.log(state.language)
   }
 
   langSelect.addEventListener('change', () =>{
@@ -513,7 +501,6 @@ function updSelects(){
 sourceSelect.addEventListener('change', () =>{
   updImgSrc()
   updPage()
-  console.log(state.photoSource)
 })
 
 
@@ -524,7 +511,6 @@ state.tag = tagSelect.value
 tagSelect.addEventListener('change', () => {
   updTag()
   updPage()
-  console.log(state.tag)
 })
 
 function updHide(){
@@ -533,7 +519,6 @@ function updHide(){
   })
 
   state.boxes.forEach((x) => {
-    console.log(x)
   document.getElementById(`${x}`).checked = true
   })
 }
@@ -554,4 +539,3 @@ state.boxes =  state.boxes.filter((x) =>{return x !== el.id})
   }
 }))
 
-console.log(state.photoSource)
