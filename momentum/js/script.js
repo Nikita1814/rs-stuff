@@ -117,6 +117,12 @@ function loadGreeting() {
   let date = new Date();
   let hr = date.getHours();
   let greeting = "Good";
+  if(state.language === 'ru-RU'){
+    document.querySelector('.name').setAttribute('placeholder', '[Введите Имя]')
+  }
+  if(state.language === 'en-US'){
+    document.querySelector('.name').setAttribute('placeholder', '[Enter Name]')
+  }
   if (hr >= 6 && hr < 12) {
     collection = "morning";
     greeting = "Good morning,";
@@ -151,6 +157,7 @@ loadGreeting();
 function setStorage() {
   localStorage.setItem("name", nom.value);
   localStorage.setItem("settings", JSON.stringify(state))
+  localStorage.setItem('city', cityInput.value)
 }
 
 function loadStorage() {
@@ -160,6 +167,9 @@ function loadStorage() {
   if (localStorage.getItem("settings")) {
     state = JSON.parse(localStorage.getItem("settings"));
     console.log( typeof state)
+  }
+  if (localStorage.getItem("city")) {
+    cityInput.value = localStorage.getItem("city");
   }
 }
 window.addEventListener("beforeunload", setStorage);
@@ -221,10 +231,10 @@ async function loadWeather() {
     if (state.language === "en-US") {
       weatherIcon.classList.add(`owf-${data.weather[0].id}`);
       weatherIcon.classList.add(`owf`);
-      temperature.textContent = `${data.main.temp}°C`;
+      temperature.textContent = `${Math.round(data.main.temp)}°C`;
       weatherDesc.textContent = data.weather[0].description;
-      wind.textContent = `Wind speed: ${data.wind.speed} m/s `;
-      humidity.textContent = `Humidity: ${data.main.humidity}`;
+      wind.textContent = `Wind speed: ${Math.round(data.wind.speed)} m/s `;
+      humidity.textContent = `Humidity: ${Math.round(data.main.humidity)}%`;
     } else if (state.language === "ru-RU") {
       weatherIcon.classList.add(`owf-${data.weather[0].id}`);
       weatherIcon.classList.add(`owf`);
@@ -474,10 +484,24 @@ function switchAudio (){
   }
 
 function updPage(){
+  translateSettings()
   loadWeather();
   loadQuotes();
   loadGreeting();
   setBg()
+}
+
+function translateSettings(){
+  if (state.language === "en-US"){
+    document.querySelector('.pick-lang').textContent="Select a language"
+    document.querySelector('.hide-show').textContent="Select elements to hide/show"
+    document.querySelector('.pick-source').textContent="Select image source and search query (for Flickr and Unsplash)"
+  }
+  if (state.language === "ru-RU"){
+    document.querySelector('.pick-lang').textContent="Выберите язык"
+    document.querySelector('.hide-show').textContent="Скрытые элементы"
+    document.querySelector('.pick-source').textContent="Выберите источник для изображений фона и тему поиска - тег (для Unsplash и Flickr)"
+  }
 }
 
 function updSelects(){
