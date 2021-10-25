@@ -409,6 +409,9 @@ function updateVolBtn() {
 audio.addEventListener("timeupdate", setProgress)
 audio.addEventListener("volumechange", updateVolBtn);
 progressBar.addEventListener("mouseup",updAudio )
+progressBar.addEventListener('input', ()=>{
+  audio.currentTime = progressBar.value;
+})
 muteBtn.addEventListener("click", muteAudio);
 volumeBar.addEventListener("mousemove", volumeUpdate);
 trackBtns.forEach((el, index) => {
@@ -423,9 +426,13 @@ function switchAudio (){
   trackName.textContent = playList[playNum].title
   UpdBars()
   trackBtns.forEach((el) => {
-  el.classList.remove('chosen')  
+  el.classList.remove('chosen')
+  el.querySelector('.fas').classList.remove(`fa-pause`)
+  el.querySelector('.fas').classList.add(`fa-play`)   
   })
   trackBtns[playNum].classList.add('chosen')
+  trackBtns[playNum].querySelector('.fas').classList.remove(`fa-play`)
+  trackBtns[playNum].querySelector('.fas').classList.add(`fa-pause`)
   playAudio()
 }
 

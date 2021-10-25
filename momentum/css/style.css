@@ -31,7 +31,10 @@ body {
   min-height: 220px;  
   padding: 20px;
 }
-
+.player{
+  position:relative; 
+  z-index:2;
+}
 .player-controls {
   display: flex;
   align-items: center;
