@@ -81,6 +81,7 @@ const progressBar = document.querySelector('.progress')
 const durationDiv = document.querySelector('.duration')
 const muteBtn = document.querySelector('.mute')
 const volumeBar = document.querySelector('.volume')
+const trackBtns = document.querySelectorAll('.track-name')
 
 //Settings menu vars
 const settingBtn = document.querySelector('.settings-btn')
@@ -307,10 +308,14 @@ console.log(Number("01"));
 
 
 //Audio player
+
 audio.currentTime = 0;
 let currentVol = audio.volume;
 
 audio.src = playList[playNum].src
+trackName.textContent =playList[playNum].title
+trackBtns[playNum].classList.add('chosen')
+
 function playAudio() {
   
   if (audio.paused) {
@@ -329,8 +334,7 @@ playNum++
 if(playNum > 3){
 playNum = 0  
 }
-audio.src = playList[playNum].src
-playAudio()
+switchAudio()
 })
 
 nextTrack.addEventListener('click', () =>{
@@ -338,16 +342,16 @@ playNum++
 if(playNum > 3){
 playNum = 0  
 }
-audio.src = playList[playNum].src
-playAudio()
+switchAudio()
 })
+
+
 prevTrack.addEventListener('click', () =>{
   playNum--
   if(playNum < 0){
   playNum = 3  
   }
-  audio.src = playList[playNum].src
-  playAudio()
+  switchAudio()
   })
   console.log(playList[playNum].src)
 
@@ -361,7 +365,7 @@ prevTrack.addEventListener('click', () =>{
 function setProgress(){
 progressBar.setAttribute('max', audio.duration)  
 progressBar.value = audio.currentTime
-durationDiv.textContent = `${audio.currentTime}/${audio.duration}`
+durationDiv.textContent = `${(audio.currentTime / 60).toFixed(2)}/${(audio.duration / 60).toFixed(2)}`
 }
 
 function updAudio(){
@@ -382,12 +386,12 @@ function updateVolBtn() {
     if (audio.volume > 0) {
       audio.volume = 0;
       volumeBar.value = 0;
-      muteBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
+      muteBtn.innerHTML = '<i class="fas fa-volume-up">';
     } else {
-      video.volume = currentVol;
+      audio.volume = currentVol;
       volumeBar.value = currentVol;
-      volumeBtn.innerHTML =
-        '<img src="assets/svg/volume-button.svg" alt="volume-button">';
+      muteBtn.innerHTML =
+        '<i class="fas fa-volume-mute"></i>';
     }
   }
 
@@ -397,13 +401,33 @@ function updateVolBtn() {
     currentVol = audio.volume;
     
   }
+  function UpdBars(){
+    setProgress()
+    updateVolBtn()
+  }
 
 audio.addEventListener("timeupdate", setProgress)
+audio.addEventListener("volumechange", updateVolBtn);
 progressBar.addEventListener("mouseup",updAudio )
+muteBtn.addEventListener("click", muteAudio);
+volumeBar.addEventListener("mousemove", volumeUpdate);
+trackBtns.forEach((el, index) => {
+  el.addEventListener('click', () =>{
+  playNum = index
+  switchAudio()
+  })
+})
 
-
-
-
+function switchAudio (){
+  audio.src = playList[playNum].src
+  trackName.textContent = playList[playNum].title
+  UpdBars()
+  trackBtns.forEach((el) => {
+  el.classList.remove('chosen')  
+  })
+  trackBtns[playNum].classList.add('chosen')
+  playAudio()
+}
 
   //Setting menu functions
 
