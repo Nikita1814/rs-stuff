@@ -257,12 +257,20 @@ async function getFlickImgLink() {
   document.body.style.bacgroundSize = 'cover'
   }
   }
-  
- 
 
- function getUnsplashLink(){
+  async function getUnsImgLink(){
+  let url = `https://api.unsplash.com/photos/random?orientation=landscape&query=${state.tag}&client_id=CJSX2iFY_K9ntKQhu69T-sf1R9Acb3j_HRTVknGgi34`
+  let res =  await fetch(url)
+  data = await res.json()
+  let img = new Image();
+  img.src = `${data.urls.regular}`;
+  img.onload = () => {      
+  document.body.style.backgroundImage = `url(${img.src})`;  
+  document.body.style.bacgroundSize = 'cover'
+  }
+}
  
- }
+ 
 function setBg() {
   if(state.photoSource === 'github') {
   let img = new Image();
@@ -272,8 +280,11 @@ function setBg() {
   document.body.style.bacgroundSize = 'cover'
   }
 }
-  if(state.photoSource === 'flickr'){
+ if(state.photoSource === 'flickr'){
     getFlickImgLink()
+}
+if(state.photoSource === "unsplash"){
+  getUnsImgLink()
 }
 }
 
@@ -294,8 +305,8 @@ function slideBg(direction) {
   /*document.body.style.backgroundImage = `url('https://raw.githubusercontent.com/Nikita1814/stage1-tasks/assets/images/${collection}/${bgImgNum}.jpg')`;*/
   setBg()
 }
-if(state.photoSource === 'flickr'){
-getFlickImgLink()
+if(state.photoSource === "unsplash"){
+  getUnsImgLink()
 }
 }
 leftBtn.addEventListener('click', ()=>{
