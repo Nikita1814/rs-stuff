@@ -76,6 +76,11 @@ const playList = [
   }
 ]
 let playNum = 0
+const trackName = document.querySelector('.track-title')
+const progressBar = document.querySelector('.progress')
+const durationDiv = document.querySelector('.duration')
+const muteBtn = document.querySelector('.mute')
+const volumeBar = document.querySelector('.volume')
 
 //Settings menu vars
 const settingBtn = document.querySelector('.settings-btn')
@@ -86,6 +91,7 @@ const sourceSelect = document.querySelector('.source-select')
 const tagSelect = document.querySelector('.tag-field')
 
 /*localStorage.clear()*/
+
 
 
 
@@ -302,7 +308,7 @@ console.log(Number("01"));
 
 //Audio player
 audio.currentTime = 0;
-
+let currentVol = audio.volume;
 
 audio.src = playList[playNum].src
 function playAudio() {
@@ -344,6 +350,59 @@ prevTrack.addEventListener('click', () =>{
   playAudio()
   })
   console.log(playList[playNum].src)
+
+  /*const trackName = document.querySelector('.track-title')
+  const progressBar = document.querySelector('.progress')
+  const durationDiv = document.querySelector('.duration')
+  const muteBtn = document.querySelector('.mute')
+  const volumeBar = document.querySelector('.volume')*/
+
+
+function setProgress(){
+progressBar.setAttribute('max', audio.duration)  
+progressBar.value = audio.currentTime
+durationDiv.textContent = `${audio.currentTime}/${audio.duration}`
+}
+
+function updAudio(){
+audio.currentTime = progressBar.value;
+}
+
+function updateVolBtn() {
+  volumeBar.value = audio.volume;
+  if (audio.volume > 0) {
+    muteBtn.innerHTML =
+      '<i class="fas fa-volume-up">';
+  } else {
+    muteBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
+  }
+  }
+
+  function muteAudio() {
+    if (audio.volume > 0) {
+      audio.volume = 0;
+      volumeBar.value = 0;
+      muteBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
+    } else {
+      video.volume = currentVol;
+      volumeBar.value = currentVol;
+      volumeBtn.innerHTML =
+        '<img src="assets/svg/volume-button.svg" alt="volume-button">';
+    }
+  }
+
+  function volumeUpdate() {
+    console.log(volumeBar.value);
+    audio.volume = volumeBar.value;
+    currentVol = audio.volume;
+    
+  }
+
+audio.addEventListener("timeupdate", setProgress)
+progressBar.addEventListener("mouseup",updAudio )
+
+
+
 
 
   //Setting menu functions
