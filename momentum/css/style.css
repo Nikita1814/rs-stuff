@@ -341,6 +341,12 @@ option{
 .hidden-elem{
   opacity: 0;
 }
+
+.tag-field{
+  background-color: transparent;
+  color:white;
+  width:100%;
+}
 @media (max-width: 768px) {
   .time {
     min-height: 80px;

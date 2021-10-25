@@ -83,7 +83,7 @@ const settingMenu = document.querySelector('.settings-menu')
 const settingElems = document.querySelectorAll('.setting')
 const settingChecks = document.querySelectorAll('.check') 
 const sourceSelect = document.querySelector('.source-select')
-
+const tagSelect = document.querySelector('.tag-field')
 
 /*localStorage.clear()*/
 
@@ -223,7 +223,7 @@ async function loadWeather() {
       weatherIcon.classList.add(`owf`);
       temperature.textContent = `${data.main.temp}°C`;
       weatherDesc.textContent = data.weather[0].description;
-      wind.textContent = `Скорость ветра: ${data.wind.speed} м/с `;
+      wind.textContent = `Скорость ветра: ${data.wind.speed}м/с `;
       humidity.textContent = `Влажность: ${data.main.humidity}`;
     }
   }
@@ -381,11 +381,24 @@ function updPage(){
 function updSelects(){
   sourceSelect.value = state.photoSource
   langSelect.value = state.language
+  tagSelect.value = state.tag
 }
+
 sourceSelect.addEventListener('change', () =>{
   updImgSrc()
   updPage()
   console.log(state.photoSource)
+})
+
+
+function updTag () {
+state.tag = tagSelect.value 
+}
+
+tagSelect.addEventListener('change', () => {
+  updTag()
+  updPage()
+  console.log(state.tag)
 })
 
 function updHide(){
