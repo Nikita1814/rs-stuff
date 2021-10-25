@@ -4,6 +4,7 @@ let state = {
   photoSource: 'github',
   blocks: [],
   boxes: [],
+  tag:`nature`
 }
 /*let lang = "en-US";*/
 const langSelect = document.querySelector('.lang-select')
@@ -45,6 +46,7 @@ const leftBtn = document.querySelector(".slide-prev");
 const rightBtn = document.querySelector(".slide-next");
 let collection = "evening";
 let bgImgNum = RandNumGen();
+let img
 
 //Audio player vars
 const audio = document.querySelector('.audio')
@@ -156,6 +158,7 @@ window.addEventListener("load", () =>{
 loadStorage()
 updHide()
 updPage()
+setBg();
 });
 
 // quotes
@@ -228,19 +231,32 @@ cityInput.addEventListener("input", loadWeather);
 
 // bg image slider
 function RandNumGen() {
-  let randNum = `${Math.round(Math.random() * (20 - 1 - 1) + 1)}`.padStart(
-    2,
-    "0"
-  );
+  let randNum = `${Math.round(Math.random() * (20 - 1 - 1) + 1)}`.padStart(2,"0");
   return randNum;
 }
+function RandNumFlick(){
+  let randFlickNum = Math.round(Math.random() * ((data.photos.phto.length -1 -0) + 0))
+}
+function getFlickImgLink() {
+  let url = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=97fe91d2316327d228a3f52674e786bd&tags=${state.tag}&extras=url_l&format=json&nojsoncallback=1`
+fetch(url)
+   .then(res => res.json())
+   .then(data => {
+   document.body.style.backgroundImage = `url(${data.photos.photo[Math.round(Math.random() * ((data.photos.photo.length -1 -0) + 0))]["url_l"]})`;
+  });
+ }
 
 function setBg() {
+  if(state.photoSource === 'github') {
   document.body.style.backgroundImage = `url('https://raw.githubusercontent.com/Nikita1814/stage1-tasks/assets/images/${collection}/${bgImgNum}.jpg')`;
+  }
+  if(state.photoSource === 'flickr'){
+    getFlickImgLink()
 }
-setBg();
+}
 
 function slideBg(direction) {
+  if(state.photoSource === 'github'){
   if (direction === "left") {
     bgImgNum = `${Number(bgImgNum) - 1}`.padStart(2, "0");
     if (Number(bgImgNum) === 0) {
@@ -255,14 +271,19 @@ function slideBg(direction) {
   }
   document.body.style.backgroundImage = `url('https://raw.githubusercontent.com/Nikita1814/stage1-tasks/assets/images/${collection}/${bgImgNum}.jpg')`;
 }
+if(state.photoSource === 'flickr'){
+getFlickImgLink()
+}
+}
 leftBtn.addEventListener('click', ()=>{
     slideBg('left') 
 })
 rightBtn.addEventListener('click', ()=>{
-    slideBg('right') 
+ slideBg('right')
 })
 
 console.log(Number("01"));
+
 
 //Audio player
 audio.currentTime = 0;
@@ -364,3 +385,5 @@ state.boxes =  state.boxes.filter((x) =>{return x !== el.id})
 
   }
 }))
+
+console.log(state.photoSource)
