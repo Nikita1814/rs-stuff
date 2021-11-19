@@ -1,7 +1,8 @@
 
 
-const Home = {
-  html: /*html*/ `
+class Home  {
+    constructor(){
+  this.html = /*html*/ `
 <div class="content-container">
             <div class="main-page">
                 <div class="menu">
@@ -27,7 +28,7 @@ const Home = {
                 </div>
             </div>
         </div>
-`,
+`}
  
 };
 

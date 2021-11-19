@@ -1,5 +1,6 @@
-const Settings = {
-  html: /*html*/ `
+class Settings {
+    constructor() {
+  this.html= /*html*/ `
     <div class="content-container">
     <div class="settings">
     <div class="menu">
@@ -33,7 +34,8 @@ const Settings = {
     </div>
 </div>
             </div>
-    `,
+    `
+    }
 };
 
 export default Settings;
