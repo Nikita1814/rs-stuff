@@ -69,34 +69,61 @@ function addListeners() {
      document.querySelector(".categories-wrapper").addEventListener("click", (e) => {
         if(e.target.id){
            catType.catId = e.target.id
+           catType.qTracker[e.target.id] = []
            let question =new Question(catType, e.target.id, 0)
            SwitchPage(question)
-
-           if(document.getElementById(`#ans-${question.correctAnswer}`)){
-              question.setCorrect()
-           }
+           question.setCorrect()
         }   
      })
   }
   if(document.querySelector(".question-wrapper")){
      document.querySelector(".question-wrapper").addEventListener('click', (e)=>{
         if (e.target.classList.contains('correct')){
-         catType.qid += 1 
          catType.updQtracker(catType.catId,'correct')
-         let question =new Question(catType, catType.catId, catType.qid)
-         question.testfun()
          console.log(catType.qTracker[catType.catId])
-         SwitchPage(question)
+         alert(catType.qTracker[catType.catId])
 
         } else{
-         catType.qid += 1 
          catType.updQtracker(catType.catId,'wrong')
-         let question =new Question(catType, catType.catId, catType.qid)
+         console.log(catType.qTracker[catType.catId])
          alert(catType.qTracker[catType.catId])
-         SwitchPage(question)
+        }
+
+        catType.qid += 1
+        if(catType.qid === 10){
+          catType.qid = 0
+          SwitchPage(catType)
+        } else{
+        let question =new Question(catType, catType.catId, catType.qid)
+        SwitchPage(question)
+        question.setCorrect()
+        question.updPagination()
         }
      } )
   }
 }
 
 // 
+
+
+
+  
+/*if (e.target.classList.contains('correct')){
+  currentCat.updQtracker(dataStorage[currentCat.catType].catId,'correct')
+  alert(dataStorage[currentCat.catType].qTracker[dataStorage[currentCat.catType].catId])
+ } else{
+   currentCat.updQtracker(dataStorage[currentCat.catType].catId,'correct')
+   alert(dataStorage[currentCat.catType].qTracker[dataStorage[currentCat.catType].catId])
+ }
+
+ dataStorage[currentCat.catType].qid += 1 
+ console.log(dataStorage[currentCat.catType].qid)
+ if(dataStorage[currentCat.catType].qid === 10){
+   dataStorage[currentCat.catType].qid  = 0
+   currentCat = new Category(`picturesCat`)
+   SwitchPage(currentCat)
+ }
+ let question =new Question(currentCat, dataStorage[currentCat.catType].catId, dataStorage[currentCat.catType].qid, dataStorage)
+ SwitchPage(question)
+ question.setCorrect()
+} )*/

@@ -153,12 +153,13 @@ import images from "./images.js"
                   <div class="score-point"></div>
                   <div class="score-point"></div> 
                   <div class="score-point"></div> 
+                  <div class="score-point"></div> 
               </div>
               <div class="answer-grid">
-                 <div class="name-answer" id ="ans-0"><p>${Category.answers.pictureAnswers[Math.floor(Math.random() * (11 - 0 + 1) + 0)][Math.floor(Math.random() * (10 - 0 + 1) + 0)]}</p></div>
-                 <div class="name-answer" id ="ans-1"><p>${Category.answers.pictureAnswers[Math.floor(Math.random() * (11 - 0 + 1) + 0)][Math.floor(Math.random() * (10 - 0 + 1) + 0)]}</p></div>
-                 <div class="name-answer" id ="ans-2"><p>${Category.answers.pictureAnswers[Math.floor(Math.random() * (11 - 0 + 1) + 0)][Math.floor(Math.random() * (10 - 0 + 1) + 0)]}</p></div>
-                 <div class="name-answer" id ="ans-3"><p>${Category.answers.pictureAnswers[Math.floor(Math.random() * (11 - 0 + 1) + 0)][Math.floor(Math.random() * (10 - 0 + 1) + 0)]}</p></div>
+                 <div class="name-answer" id ="ans-0">${Category.answers.pictureAnswers[Math.floor(Math.random() * (11 - 0 + 1) + 0)][Math.floor(Math.random() * (9 - 0 + 1) + 0)]}</div>
+                 <div class="name-answer" id ="ans-1">${Category.answers.pictureAnswers[Math.floor(Math.random() * (11 - 0 + 1) + 0)][Math.floor(Math.random() * (9 - 0 + 1) + 0)]}</div>
+                 <div class="name-answer" id ="ans-2">${Category.answers.pictureAnswers[Math.floor(Math.random() * (11 - 0 + 1) + 0)][Math.floor(Math.random() * (9 - 0 + 1) + 0)]}</div>
+                 <div class="name-answer" id ="ans-3">${Category.answers.pictureAnswers[Math.floor(Math.random() * (11 - 0 + 1) + 0)][Math.floor(Math.random() * (9 - 0 + 1) + 0)]}</div>
               </div>
           </div>
       </div>`
@@ -169,12 +170,27 @@ import images from "./images.js"
         console.log(`ans-${this.correctAnswer}`)    
         }
         setCorrect(){
-            let correctOption = document.getElementById(`#ans-${this.correctAnswer}`)
+            let correctOption = document.getElementById(`ans-${this.correctAnswer}`)
              console.log(correctOption)
-            /*correctOption.classList.toggle(`correct`)*/
-             correctOption.innerHTML = `<p>${this.category.answers.pictureAnswers[this.catId][this.qid]}</p>`
+             correctOption.classList.toggle(`correct`)
+             correctOption.innerHTML = `${this.category.answers.pictureAnswers[this.catId][this.qid]}`
          }
-
+        updPagination(){
+            let pagCollection = document.querySelectorAll(`.score-point`)
+            console.log(this.category.qTracker[this.catId])
+            this.category.qTracker[this.catId].forEach((el, index)=>{ 
+                if(el === 'correct'){
+                    console.log(pagCollection[index])
+                    pagCollection[index].classList.add('right')
+                }
+                if (el === 'wrong'){
+                    console.log(pagCollection[index])
+                    pagCollection[index].classList.add('wrong')
+                }  
+                return el
+                }
+            )
+        }
      }
     export {  
       Category,

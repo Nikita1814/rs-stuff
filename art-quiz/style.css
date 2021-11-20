@@ -299,6 +299,14 @@ display:flex;
     border-radius:50%;
     border: 1px solid black;
 }
+
+
+.right{
+  background-color: green;
+}
+.wrong{
+  background-color: red;
+}
 /*Total*/
 
 .total{
