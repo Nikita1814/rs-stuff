@@ -33,8 +33,8 @@ import images from "./images.js"
     const pictureAnswers = genAnswers(pictureQuestions)
     
      const answers = {
-        artistAnswers:  artistAnswers,
-        pictureAnswers: pictureAnswers
+        artistAnswers:  splitArr(artistAnswers,10),
+        pictureAnswers: splitArr(pictureAnswers,10)
      }
      /*splitArr(authorQuestions,12),*/
      const questions = {
@@ -47,9 +47,12 @@ import images from "./images.js"
 
     class Category {
         constructor(catType){
+            this.qTracker = [...Array(12)].map((e)=> new Array)
             this.catType = catType
             this.questions = questions
             this.answers = answers
+            this.catId = 0
+            this.qid = 0
             this.html = `<div class="categories">
             <div class="categories-wrapper">
                 <div class="settings-top">
@@ -60,51 +63,51 @@ import images from "./images.js"
                 </div>
 
                 <div class="category-item ">
-                    <div class="category-image cat-item-1" style="background-image: url(assets/img/${this.questions[this.catType][0][0].imageNum}.jpg);"></div>
+                    <div class="category-image" id="0" style="background-image: url(assets/img/${this.questions[this.catType][0][0].imageNum}.jpg);"></div>
                     <h2>Portrait</h2>
                 </div>
                 <div class="category-item ">
-                    <div class="category-image cat-item-2" style="background-image: url(assets/img/${this.questions[this.catType][1][0].imageNum}.jpg);"></div>
+                    <div class="category-image" id="1" style="background-image: url(assets/img/${this.questions[this.catType][1][0].imageNum}.jpg);"></div>
                     <h2>Landcape</h2>
                 </div>
                 <div class="category-item">
-                    <div class="category-image cat-item-3" style="background-image: url(assets/img/${this.questions[this.catType][2][0].imageNum}.jpg);"></div>
+                    <div class="category-image" id="2" style="background-image: url(assets/img/${this.questions[this.catType][2][0].imageNum}.jpg);"></div>
                     <h2>Still Life</h2>
                 </div>
                 <div class="category-item">
-                    <div class="category-image cat-item-4" style="background-image: url(assets/img/${this.questions[this.catType][3][0].imageNum}.jpg);"></div>
+                    <div class="category-image" id="3" style="background-image: url(assets/img/${this.questions[this.catType][3][0].imageNum}.jpg);"></div>
                     <h2>Graphic</h2>
                 </div>
                 <div class="category-item">
-                    <div class="category-image cat-item-5" style="background-image: url(assets/img/${this.questions[this.catType][4][0].imageNum}.jpg);"></div>
+                    <div class="category-image" id="4" style="background-image: url(assets/img/${this.questions[this.catType][4][0].imageNum}.jpg);"></div>
                     <h2>Antique</h2>
                 </div>
                 <div class="category-item">
-                    <div class="category-image cat-item-6" style="background-image: url(assets/img/${this.questions[this.catType][5][0].imageNum}.jpg);"></div>
+                    <div class="category-image" id="5" style="background-image: url(assets/img/${this.questions[this.catType][5][0].imageNum}.jpg);"></div>
                     <h2>Avant-Garde</h2>
                 </div>
                 <div class="category-item">
-                    <div class="category-image cat-item-7" style="background-image: url(assets/img/${this.questions[this.catType][6][0].imageNum}.jpg);"></div>
+                    <div class="category-image" id="6" style="background-image: url(assets/img/${this.questions[this.catType][6][0].imageNum}.jpg);"></div>
                     <h2>Renaissance</h2>
                 </div>
                 <div class="category-item">
-                    <div class="category-image cat-item-8" style="background-image: url(assets/img/${this.questions[this.catType][7][0].imageNum}.jpg);"></div>
+                    <div class="category-image" id="7" style="background-image: url(assets/img/${this.questions[this.catType][7][0].imageNum}.jpg);"></div>
                     <h2>Surrealism</h2>
                 </div>
                 <div class="category-item ">
-                    <div class="category-image cat-item-9" style="background-image: url(assets/img/${this.questions[this.catType][8][0].imageNum}.jpg);"></div>
+                    <div class="category-image" id="8" style="background-image: url(assets/img/${this.questions[this.catType][8][0].imageNum}.jpg);"></div>
                     <h2>Kitsch</h2>
                 </div>
                 <div class="category-item ">
-                    <div class="category-image cat-item-10" style="background-image: url(assets/img/${this.questions[this.catType][9][0].imageNum}.jpg);"></div>
+                    <div class="category-image" id="9" style="background-image: url(assets/img/${this.questions[this.catType][9][0].imageNum}.jpg);"></div>
                     <h2>Minimalism</h2>
                 </div>
                 <div class="category-item">
-                    <div class="category-image cat-item-11" style="background-image: url(assets/img/${this.questions[this.catType][10][0].imageNum}.jpg);"></div>
+                    <div class="category-image" id="10" style="background-image: url(assets/img/${this.questions[this.catType][10][0].imageNum}.jpg);"></div>
                     <h2>Avangard</h2>
                 </div>
                 <div class="category-item">
-                    <div class="category-image cat-item-12" style="background-image: url(assets/img/${this.questions[this.catType][11][0].imageNum}.jpg);""></div>
+                    <div class="category-image" id="11" style="background-image: url(assets/img/${this.questions[this.catType][11][0].imageNum}.jpg);""></div>
                     <h2>Industrial</h2>
                 </div>
             </div>
@@ -112,9 +115,68 @@ import images from "./images.js"
      
         }
         testfun (){
-
+             console.log(this.questions.pictureQuestions)
+             console.log(this.answers.pictureAnswers)
             /*console.log(questions.paintingQuestions)*/
-
+        }
+        updQtracker(id, answer){
+        this.qTracker[id].push(answer)    
         }
     }
-    export default Category
+
+
+     class Question {
+         constructor(Category, catId, qid){
+                this.category = Category
+                this.catId = catId
+                this.qid = qid
+                this.correctAnswer = Math.floor(
+                Math.random() * (3 - 0 + 1) + 0
+              )
+            
+         if(Category.catType === 'pictureQuestions'){
+          this.html =   `<div class="question ">
+          <div class="buttons-div">
+              <div class="question-btn"> <i class="fas fa-home"></i></div>
+              <div class="question-btn"><i class="fas fa-bars"></i></div>
+          </div>
+          <h1>Кто автор этой картины</h1>
+          <div class="question-wrapper">
+              <div class="question-image" style="background-image:url(assets/img/${Category.questions[Category.catType][catId][qid].imageNum}.jpg);"></div>
+              <div class="score">
+                  <div class="score-point"></div>
+                  <div class="score-point"></div>  
+                  <div class="score-point"></div>
+                  <div class="score-point"></div>  
+                  <div class="score-point"></div>
+                  <div class="score-point"></div>  
+                  <div class="score-point"></div>
+                  <div class="score-point"></div> 
+                  <div class="score-point"></div> 
+              </div>
+              <div class="answer-grid">
+                 <div class="name-answer" id ="ans-0"><p>${Category.answers.pictureAnswers[Math.floor(Math.random() * (11 - 0 + 1) + 0)][Math.floor(Math.random() * (10 - 0 + 1) + 0)]}</p></div>
+                 <div class="name-answer" id ="ans-1"><p>${Category.answers.pictureAnswers[Math.floor(Math.random() * (11 - 0 + 1) + 0)][Math.floor(Math.random() * (10 - 0 + 1) + 0)]}</p></div>
+                 <div class="name-answer" id ="ans-2"><p>${Category.answers.pictureAnswers[Math.floor(Math.random() * (11 - 0 + 1) + 0)][Math.floor(Math.random() * (10 - 0 + 1) + 0)]}</p></div>
+                 <div class="name-answer" id ="ans-3"><p>${Category.answers.pictureAnswers[Math.floor(Math.random() * (11 - 0 + 1) + 0)][Math.floor(Math.random() * (10 - 0 + 1) + 0)]}</p></div>
+              </div>
+          </div>
+      </div>`
+         }
+
+        }
+        testfun(){
+        console.log(`ans-${this.correctAnswer}`)    
+        }
+        setCorrect(){
+            let correctOption = document.getElementById(`#ans-${this.correctAnswer}`)
+             console.log(correctOption)
+            /*correctOption.classList.toggle(`correct`)*/
+             correctOption.innerHTML = `<p>${this.category.answers.pictureAnswers[this.catId][this.qid]}</p>`
+         }
+
+     }
+    export {  
+      Category,
+      Question,
+    }

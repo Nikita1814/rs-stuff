@@ -247,7 +247,7 @@ i {
 .question-image{
     width:250px;
     height:250px;
-    background-image: url(assets/img/0.jpg);
+    /*background-image: url(assets/img/0.jpg);*/
 
     background-size: cover;
     background-repeat: no-repeat;
@@ -256,7 +256,7 @@ i {
     display:grid;
     height:40%;
     grid-template-columns: 50% 50%;
-    grid-template-rows: 30% 30%;
+    grid-template-rows: 50% 50%;
     width:100%;
 }
 
