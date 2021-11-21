@@ -149,11 +149,7 @@ import images from "./images.js"
                 <div class="total-result hide-elem ">
                     <p>Поздравляем</p>
                     <i class=" star-icon fas fa-star"></i>
-                    <p>${document.querySelectorAll('.right').length}/10</p>
-                    <div class="buttons-div">
-                    <div class="question-btn"> <i class="fas fa-home"></i></div>
-                    <div class="question-btn"><i class="fas fa-bars"></i></div>
-                </div>
+                    <p class = result-num>${document.querySelectorAll('.right').length}/10</p>
                     <div class="question-btn"> <i class="fas fa-arrow-right"></i> </div>
                 </div>
                
@@ -200,10 +196,7 @@ import images from "./images.js"
             <p>Поздравляем</p>
             <i class=" star-icon fas fa-star"></i>
             <p>${document.querySelectorAll('.right').length}/10</p>
-            <div class="buttons-div">
-            <div class="question-btn"> <i class="fas fa-home"></i></div>
-            <div class="question-btn"><i class="fas fa-bars"></i></div>
-        </div>
+           
             <div class="question-btn"> <i class="fas fa-arrow-right"></i> </div>
         </div>
             <div class="buttons-div">

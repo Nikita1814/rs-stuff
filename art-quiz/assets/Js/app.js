@@ -102,8 +102,9 @@ function addListeners() {
       document.querySelector(".answer-result").addEventListener('click', ()=>{
         catType.qid += 1
         if(catType.qid === 10){
-          catType.qid = 0
-          SwitchPage(catType)
+      document.querySelector('.result-num').innerHTML = `${document.querySelectorAll('.right').length}/10`
+     document.querySelector(".total-result").classList.toggle('hide-elm')
+     document.querySelector(".total-result").style="z-index:3; opacity:1;"
         } else{
         let question =new Question(catType, catType.catId, catType.qid)
         SwitchPage(question)
@@ -112,6 +113,12 @@ function addListeners() {
         }
       })
   }
+ if (document.querySelector(".total-result")){
+  document.querySelector(".total-result").addEventListener('click', ()=>{
+    catType.qid = 0
+    SwitchPage(catType)
+  })
+}
 }
 
 // 
