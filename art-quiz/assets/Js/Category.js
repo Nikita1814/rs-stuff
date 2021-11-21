@@ -140,7 +140,7 @@ import images from "./images.js"
           this.html =   `<div class="question ">
           <div class="answer-result hide-elem">
                     <div class="answer-symbol"><i class="ans-icon fas fa-check"></i></div>
-                    <div class="question-image"></div>
+                    <div class="question-image" style="background-image:url(assets/img/${Category.questions[Category.catType][catId][qid].imageNum}.jpg);"></div>
                     <p> ${Category.questions[Category.catType][catId][qid].name}</p>
                     <p> ${Category.questions[Category.catType][catId][qid].author}</p>
                     <p> ${Category.questions[Category.catType][catId][qid].year}</p>
@@ -188,13 +188,13 @@ import images from "./images.js"
          if (Category.catType === 'artistQuestions') {
             this.html = ` <div class="content-container">
             <div class="question picture-question ">
-            <div class="answer-result" hide-elem>
+            <div class="answer-result hide-elem" >
             <div class="answer-symbol"><i class="ans-icon fas fa-check"></i></div>
-            <div class="question-image" style = "background-image:url(assets/img/${this.category.questions.artistQuestions[this.catId][this.qid].imageNum}.jpg);"></div>
+            <div class="question-image" style="background-image:url(assets/img/${this.category.questions.artistQuestions[this.catId][this.qid].imageNum}.jpg);"></div>
             <p> ${Category.questions[Category.catType][catId][qid].name}</p>
             <p> ${Category.questions[Category.catType][catId][qid].author}</p>
             <p> ${Category.questions[Category.catType][catId][qid].year}</p>
-            <div class="question-btn"><i class="fas fa-arrow-right"></i></div>
+            <div class="question-btn next-question"><i class="fas fa-arrow-right"></i></div>
         </div>
         <div class="total-result hide-elem ">
             <p>Поздравляем</p>

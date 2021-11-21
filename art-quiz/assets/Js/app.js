@@ -81,15 +81,25 @@ function addListeners() {
      document.querySelector(".question-wrapper").addEventListener('click', (e)=>{
         if (e.target.classList.contains('correct')){
          catType.updQtracker(catType.catId,'correct')
-         console.log(catType.qTracker[catType.catId])
-         alert(catType.qTracker[catType.catId])
+         /*console.log(catType.qTracker[catType.catId])
+         alert(catType.qTracker[catType.catId])*/
+         document.querySelector('.answer-result').classList.toggle('hide-elem')
+         document.querySelector('.answer-symbol').innerHTML = `<i class="ans-icon fas fa-check"></i>`
+         document.querySelector('.answer-result').style = `z-index:2; opacity:1;`
 
-        } else{
+        } else {
          catType.updQtracker(catType.catId,'wrong')
-         console.log(catType.qTracker[catType.catId])
-         alert(catType.qTracker[catType.catId])
+         /*console.log(catType.qTracker[catType.catId])
+         alert(catType.qTracker[catType.catId])*/
+         document.querySelector('.answer-result').classList.toggle('hide-elem')
+         document.querySelector('.answer-symbol').innerHTML = `<i class="ans-icon fas fa-times"></i>`
+         document.querySelector('.answer-result').style = `z-index:2; opacity:1;`
         }
 
+     } )
+  }
+  if (document.querySelector(".answer-result")){
+      document.querySelector(".answer-result").addEventListener('click', ()=>{
         catType.qid += 1
         if(catType.qid === 10){
           catType.qid = 0
@@ -100,7 +110,7 @@ function addListeners() {
         question.setCorrect()
         question.updPagination()
         }
-     } )
+      })
   }
 }
 
