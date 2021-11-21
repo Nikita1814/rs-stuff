@@ -151,7 +151,7 @@ h1 {
 .volume-image {
   background-image: url(assets/Ui/volume-on.png);
 }
-.volume-range {
+.range {
   width: 80%;
 }
 .setting-option-wrapper {
