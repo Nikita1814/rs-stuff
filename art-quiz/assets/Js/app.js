@@ -4,7 +4,15 @@ import Home from "./Home.js";
 import Settings from "./Settings.js";
 import {Category, Question } from "./Category.js";
 
+
+
 //variables
+let settingValues = {
+volume: 'yes',
+volumeVal: 1,
+timer: 'no',
+val:30,
+}
 const home = new Home
 const settings = new Settings
 const artistsCat = new Category('artistQuestions')
@@ -29,12 +37,22 @@ function SwitchPage(curPage) {
   addListeners();
 }
 
+//audio playing
+function playAudio(url) {
+  new Audio(url).play();
+}
+
 SwitchPage(home);
 
 
 
 // listener set-up
 function addListeners() {
+  document.querySelector('.app').addEventListener('click', ()=>{
+    if(settingValues.volume === 'yes'){
+   playAudio(`assets/audio/menu click.wav`)
+    }
+  })
   if (document.querySelector(".open-settings")) {
     document.querySelector(".open-settings").addEventListener("click", () => {
   
@@ -84,6 +102,9 @@ function addListeners() {
          /*console.log(catType.qTracker[catType.catId])
          alert(catType.qTracker[catType.catId])*/
          document.querySelector('.answer-result').classList.toggle('hide-elem')
+         if(settingValues.volume === 'yes'){
+           playAudio(`assets/audio/Good-answer.mp3`)
+         }
          document.querySelector('.answer-symbol').innerHTML = `<i class="ans-icon fas fa-check"></i>`
          document.querySelector('.answer-result').style = `z-index:2; opacity:1;`
 
@@ -91,6 +112,9 @@ function addListeners() {
          catType.updQtracker(catType.catId,'wrong')
          /*console.log(catType.qTracker[catType.catId])
          alert(catType.qTracker[catType.catId])*/
+         if(settingValues.volume === 'yes'){
+          playAudio(`assets/audio/Wrong-answer.mp3`)
+        }
          document.querySelector('.answer-result').classList.toggle('hide-elem')
          document.querySelector('.answer-symbol').innerHTML = `<i class="ans-icon fas fa-times"></i>`
          document.querySelector('.answer-result').style = `z-index:2; opacity:1;`
@@ -103,6 +127,9 @@ function addListeners() {
         catType.qid += 1
         if(catType.qid === 10){
       document.querySelector('.result-num').innerHTML = `${document.querySelectorAll('.right').length}/10`
+      if(settingValues.volume === 'yes'){
+        playAudio(`assets/audio/cheering.wav`)
+      }
      document.querySelector(".total-result").classList.toggle('hide-elm')
      document.querySelector(".total-result").style="z-index:3; opacity:1;"
         } else{
