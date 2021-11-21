@@ -138,6 +138,25 @@ import images from "./images.js"
             
          if(Category.catType === 'pictureQuestions'){
           this.html =   `<div class="question ">
+          <div class="answer-result hide-elem">
+                    <div class="answer-symbol"><i class="ans-icon fas fa-check"></i></div>
+                    <div class="question-image"></div>
+                    <p> ${Category.questions[Category.catType][catId][qid].name}</p>
+                    <p> ${Category.questions[Category.catType][catId][qid].author}</p>
+                    <p> ${Category.questions[Category.catType][catId][qid].year}</p>
+                    <div class="question-btn"><i class="fas fa-arrow-right"></i></div>
+                </div>
+                <div class="total-result hide-elem ">
+                    <p>Поздравляем</p>
+                    <i class=" star-icon fas fa-star"></i>
+                    <p>${document.querySelectorAll('.right').length}/10</p>
+                    <div class="buttons-div">
+                    <div class="question-btn"> <i class="fas fa-home"></i></div>
+                    <div class="question-btn"><i class="fas fa-bars"></i></div>
+                </div>
+                    <div class="question-btn"> <i class="fas fa-arrow-right"></i> </div>
+                </div>
+               
           <div class="buttons-div">
               <div class="question-btn home-btn"> <i class="fas fa-home"></i></div>
               <div class="question-btn"><i class="fas fa-bars"></i></div>
@@ -169,20 +188,24 @@ import images from "./images.js"
          if (Category.catType === 'artistQuestions') {
             this.html = ` <div class="content-container">
             <div class="question picture-question ">
-            <div class="answer-result hide-elem">
-                <div class="answer-symbol"><i class="ans-icon fas fa-check"></i></div>
-                <div class="question-image"></div>
-                <p> Сватовство Майора</p>
-                <p>Павел Федотов</p>
-                <p>год</p>
-                <div class="question-btn"><i class="fas fa-arrow-right"></i></div>
-            </div>
-            <div class="total-result hide-elem ">
-                <p>Поздравляем</p>
-                <i class=" star-icon fas fa-star"></i>
-                <p>10/10</p>
-                <div class="question-btn"> <i class="fas fa-arrow-right"></i> </div>
-            </div>
+            <div class="answer-result" hide-elem>
+            <div class="answer-symbol"><i class="ans-icon fas fa-check"></i></div>
+            <div class="question-image" style = "background-image:url(assets/img/${this.category.questions.artistQuestions[this.catId][this.qid].imageNum}.jpg);"></div>
+            <p> ${Category.questions[Category.catType][catId][qid].name}</p>
+            <p> ${Category.questions[Category.catType][catId][qid].author}</p>
+            <p> ${Category.questions[Category.catType][catId][qid].year}</p>
+            <div class="question-btn"><i class="fas fa-arrow-right"></i></div>
+        </div>
+        <div class="total-result hide-elem ">
+            <p>Поздравляем</p>
+            <i class=" star-icon fas fa-star"></i>
+            <p>${document.querySelectorAll('.right').length}/10</p>
+            <div class="buttons-div">
+            <div class="question-btn"> <i class="fas fa-home"></i></div>
+            <div class="question-btn"><i class="fas fa-bars"></i></div>
+        </div>
+            <div class="question-btn"> <i class="fas fa-arrow-right"></i> </div>
+        </div>
             <div class="buttons-div">
                 <div class="question-btn"> <i class="fas fa-home"></i></div>
                 <div class="question-btn"><i class="fas fa-bars"></i></div>
