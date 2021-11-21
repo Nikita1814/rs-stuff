@@ -115,8 +115,10 @@ import images from "./images.js"
      
         }
         testfun (){
-             console.log(this.questions.pictureQuestions)
-             console.log(this.answers.pictureAnswers)
+            console.log(this.questions.pictureQuestions)
+            console.log(this.answers.pictureAnswers)
+             console.log(this.questions.artistQuestions)
+             console.log(this.answers.artistAnswers)
             /*console.log(questions.paintingQuestions)*/
         }
         updQtracker(id, answer){
@@ -164,36 +166,51 @@ import images from "./images.js"
           </div>
       </div>`
          }
-         /*if (Category.catType === 'artistQuestions') {
-            this.html =   `<div class="question ">
+         if (Category.catType === 'artistQuestions') {
+            this.html = ` <div class="content-container">
+            <div class="question picture-question ">
+            <div class="answer-result hide-elem">
+                <div class="answer-symbol"><i class="ans-icon fas fa-check"></i></div>
+                <div class="question-image"></div>
+                <p> Сватовство Майора</p>
+                <p>Павел Федотов</p>
+                <p>год</p>
+                <div class="question-btn"><i class="fas fa-arrow-right"></i></div>
+            </div>
+            <div class="total-result hide-elem ">
+                <p>Поздравляем</p>
+                <i class=" star-icon fas fa-star"></i>
+                <p>10/10</p>
+                <div class="question-btn"> <i class="fas fa-arrow-right"></i> </div>
+            </div>
             <div class="buttons-div">
-                <div class="question-btn home-btn"> <i class="fas fa-home"></i></div>
+                <div class="question-btn"> <i class="fas fa-home"></i></div>
                 <div class="question-btn"><i class="fas fa-bars"></i></div>
             </div>
-            <h1>Кто автор этой картины</h1>
             <div class="question-wrapper">
-                <div class="question-image" style="background-image:url(assets/img/${Category.questions[Category.catType][catId][qid].imageNum}.jpg);"></div>
+                <h1>Какую Картину написал ${Category.answers.artistAnswers[catId][qid]}</h1>
                 <div class="score">
                     <div class="score-point"></div>
-                    <div class="score-point"></div>  
                     <div class="score-point"></div>
-                    <div class="score-point"></div>  
                     <div class="score-point"></div>
-                    <div class="score-point"></div>  
                     <div class="score-point"></div>
-                    <div class="score-point"></div> 
-                    <div class="score-point"></div> 
-                    <div class="score-point"></div> 
+                    <div class="score-point"></div>
+                    <div class="score-point"></div>
+                    <div class="score-point"></div>
+                    <div class="score-point"></div>
+                    <div class="score-point"></div>
+                    <div class="score-point"></div>
                 </div>
                 <div class="answer-grid">
-                   <div class="name-answer" id ="ans-0">${Category.answers.pictureAnswers[Math.floor(Math.random() * (11 - 0 + 1) + 0)][Math.floor(Math.random() * (9 - 0 + 1) + 0)]}</div>
-                   <div class="name-answer" id ="ans-1">${Category.answers.pictureAnswers[Math.floor(Math.random() * (11 - 0 + 1) + 0)][Math.floor(Math.random() * (9 - 0 + 1) + 0)]}</div>
-                   <div class="name-answer" id ="ans-2">${Category.answers.pictureAnswers[Math.floor(Math.random() * (11 - 0 + 1) + 0)][Math.floor(Math.random() * (9 - 0 + 1) + 0)]}</div>
-                   <div class="name-answer" id ="ans-3">${Category.answers.pictureAnswers[Math.floor(Math.random() * (11 - 0 + 1) + 0)][Math.floor(Math.random() * (9 - 0 + 1) + 0)]}</div>
+                    <div class="picture-answer" style="background-image:url(assets/img/${Category.questions[Category.catType][Math.floor(Math.random() * (11 - 0 + 1) + 0)][Math.floor(Math.random() * (9 - 0 + 1) + 0)].imageNum}.jpg);" id ="ans-0"></div>
+                    <div class="picture-answer" style="background-image:url(assets/img/${Category.questions[Category.catType][Math.floor(Math.random() * (11 - 0 + 1) + 0)][Math.floor(Math.random() * (9 - 0 + 1) + 0)].imageNum}.jpg);" id ="ans-1"></div>
+                    <div class="picture-answer" style="background-image:url(assets/img/${Category.questions[Category.catType][Math.floor(Math.random() * (11 - 0 + 1) + 0)][Math.floor(Math.random() * (9 - 0 + 1) + 0)].imageNum}.jpg);" id ="ans-2"></div>
+                    <div class="picture-answer" style="background-image:url(assets/img/${Category.questions[Category.catType][Math.floor(Math.random() * (11 - 0 + 1) + 0)][Math.floor(Math.random() * (9 - 0 + 1) + 0)].imageNum}.jpg);" id ="ans-3"></div>
                 </div>
             </div>
+        </div>
         </div>`
-         }*/
+         }
 
         }
         testfun(){
@@ -203,8 +220,18 @@ import images from "./images.js"
             let correctOption = document.getElementById(`ans-${this.correctAnswer}`)
              console.log(correctOption)
              correctOption.classList.toggle(`correct`)
+
+             if(this.category.catType === `pictureQuestions`){
              correctOption.innerHTML = `${this.category.answers.pictureAnswers[this.catId][this.qid]}`
-         }
+            }
+            
+            if(this.category.catType === `artistQuestions`){
+                correctOption.style = `background-image:url(assets/img/${this.category.questions.artistQuestions[this.catId][this.qid].imageNum}.jpg);`
+               }
+
+            }
+
+            
         updPagination(){
             let pagCollection = document.querySelectorAll(`.score-point`)
             console.log(this.category.qTracker[this.catId])

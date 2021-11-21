@@ -57,6 +57,7 @@ function addListeners() {
   if(document.querySelector(".pictures")){
    document.querySelector(".pictures").addEventListener("click", () => {
       catType = picturesCat
+      catType.testfun()
       SwitchPage(picturesCat);
     });
   }

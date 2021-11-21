@@ -355,7 +355,8 @@ align-items:flex-end;
   flex-direction:column;
   justify-content: space-around;
   align-items: center;
-  z-index:5;
+  /*z-index:5;*/
+  z-index:-1;
 }
 .answer-result p{
   padding:10px;
@@ -397,7 +398,8 @@ align-items:flex-end;
   flex-direction:column;
   justify-content: space-around;
   align-items: center;
-  z-index:5;
+  /*z-index:5;*/
+  z-index:-1;
 }
 .star-icon{
   margin: 0 auto;
