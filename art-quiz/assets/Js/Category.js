@@ -137,7 +137,7 @@ import images from "./images.js"
          if(Category.catType === 'pictureQuestions'){
           this.html =   `<div class="question ">
           <div class="buttons-div">
-              <div class="question-btn"> <i class="fas fa-home"></i></div>
+              <div class="question-btn home-btn"> <i class="fas fa-home"></i></div>
               <div class="question-btn"><i class="fas fa-bars"></i></div>
           </div>
           <h1>Кто автор этой картины</h1>
@@ -164,6 +164,36 @@ import images from "./images.js"
           </div>
       </div>`
          }
+         /*if (Category.catType === 'artistQuestions') {
+            this.html =   `<div class="question ">
+            <div class="buttons-div">
+                <div class="question-btn home-btn"> <i class="fas fa-home"></i></div>
+                <div class="question-btn"><i class="fas fa-bars"></i></div>
+            </div>
+            <h1>Кто автор этой картины</h1>
+            <div class="question-wrapper">
+                <div class="question-image" style="background-image:url(assets/img/${Category.questions[Category.catType][catId][qid].imageNum}.jpg);"></div>
+                <div class="score">
+                    <div class="score-point"></div>
+                    <div class="score-point"></div>  
+                    <div class="score-point"></div>
+                    <div class="score-point"></div>  
+                    <div class="score-point"></div>
+                    <div class="score-point"></div>  
+                    <div class="score-point"></div>
+                    <div class="score-point"></div> 
+                    <div class="score-point"></div> 
+                    <div class="score-point"></div> 
+                </div>
+                <div class="answer-grid">
+                   <div class="name-answer" id ="ans-0">${Category.answers.pictureAnswers[Math.floor(Math.random() * (11 - 0 + 1) + 0)][Math.floor(Math.random() * (9 - 0 + 1) + 0)]}</div>
+                   <div class="name-answer" id ="ans-1">${Category.answers.pictureAnswers[Math.floor(Math.random() * (11 - 0 + 1) + 0)][Math.floor(Math.random() * (9 - 0 + 1) + 0)]}</div>
+                   <div class="name-answer" id ="ans-2">${Category.answers.pictureAnswers[Math.floor(Math.random() * (11 - 0 + 1) + 0)][Math.floor(Math.random() * (9 - 0 + 1) + 0)]}</div>
+                   <div class="name-answer" id ="ans-3">${Category.answers.pictureAnswers[Math.floor(Math.random() * (11 - 0 + 1) + 0)][Math.floor(Math.random() * (9 - 0 + 1) + 0)]}</div>
+                </div>
+            </div>
+        </div>`
+         }*/
 
         }
         testfun(){
