@@ -312,6 +312,9 @@ display:flex;
 }
 /*Total*/
 
+.grey-Bg{
+  filter:grayscale(100%);
+}
 .total{
  width:100%;   
 }
@@ -327,6 +330,9 @@ height:210px;
 background-color:lightgray;
 display:flex;
 align-items:flex-end;
+background-repeat: no-repeat;
+background-size: cover;
+background-position: center;
 }
 .total-image p{
     background-color: #661004 ;

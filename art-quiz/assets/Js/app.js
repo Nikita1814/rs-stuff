@@ -3,7 +3,7 @@
 import Home from "./Home.js";
 import Settings from "./Settings.js";
 import {Category, Question } from "./Category.js";
-
+import Score from "./Score.js"
 
 
 //variables
@@ -97,6 +97,7 @@ function addListeners() {
   if(document.querySelector(".pictures")){
    document.querySelector(".pictures").addEventListener("click", () => {
       catType = new Category('pictureQuestions', state)
+      console.log(state.qTracker[catType.catType][0])
       SwitchPage(catType);
     });
   }
@@ -119,9 +120,17 @@ function addListeners() {
      SwitchPage(home);
    });
   }
+   if (document.querySelector(".cat-btn")) {
+    document.querySelector(".cat-btn").addEventListener("click", () => {
+      catType.qid = 0
+      let temp = catType.catType
+      catType = new Category(temp, state)
+      SwitchPage(catType)
+    });
+  }
   if (document.querySelector(".categories-wrapper")){
      document.querySelector(".categories-wrapper").addEventListener("click", (e) => {
-        if(e.target.id){
+        if(e.target.id && e.target.classList.contains('category-image')){
            catType.catId = e.target.id
            console.log(`${catType.catType}`)
            console.log(state.qTracker[`pictureQuestions`])
@@ -131,6 +140,18 @@ function addListeners() {
            SwitchPage(question)
            question.setCorrect()
         }   
+        if(e.target.id && e.target.classList.contains('score-total')){
+          catType.catId = e.target.id
+          console.log(`${catType.catType}`)
+          console.log(state.qTracker[`pictureQuestions`])
+          console.log(state.qTracker[`${catType.catType}`])
+          
+          let score = new Score(catType, e.target.id, state)
+          SwitchPage(score)
+          score.colorIn()
+       }   
+       console.log(e.target.id)
+       console.log(e.target)
      })
   }
   if(document.querySelector(".question-wrapper")){
@@ -183,6 +204,8 @@ function addListeners() {
  if (document.querySelector(".total-result")){
   document.querySelector(".total-result").addEventListener('click', ()=>{
     catType.qid = 0
+    let temp = catType.catType
+    catType = new Category(temp, state)
     SwitchPage(catType)
   })
 }
