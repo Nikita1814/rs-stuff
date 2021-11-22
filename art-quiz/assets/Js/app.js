@@ -7,23 +7,50 @@ import {Category, Question } from "./Category.js";
 
 
 //variables
+let state = {
+  settingValues : {
+      volume: 'checked',
+      vVal:1,
+      timer: '',
+      tval:30,
+      },
+   qTracker:{
+    artistsCat:[...Array(12)].map((e)=> new Array),
+    picturesCat:[...Array(12)].map((e)=> new Array)
+  
+   }
+  }
 const home = new Home
-const settings = new Settings
-const artistsCat = new Category('artistQuestions')
-const picturesCat = new Category('pictureQuestions')
-const app = document.querySelector(".app");
+let settings = new Settings(state)
+const artistsCat = new Category('artistQuestions', state)
+const picturesCat = new Category('pictureQuestions', state)
+let app = document.querySelector(".app");
 let catType
 /*let qTracker = [...Array(24)].map((e)=> new Array)*/
 
-artistsCat.testfun()
 //Functions
 
-
-//category data generation
-
+//setting Local storage and loading it
 
 
+function setStorage(){
+localStorage.setItem('state', JSON.stringify(state))
+}
 
+function loadStorage(){
+if (localStorage.getItem('state')){
+state = JSON.parse(localStorage.getItem('state'))
+}
+}
+
+window.addEventListener('beforeunload', setStorage)
+window.addEventListener('load', ()=>{
+  loadStorage()
+  SwitchPage(home)
+  
+})
+
+/*localStorage.clear()*/
 //page switching
 
 function SwitchPage(curPage) {
@@ -36,7 +63,6 @@ function playAudio(name) {
   document.querySelector(`.${name}`).play();
 }
 
-SwitchPage(home);
 
 
 
@@ -49,7 +75,7 @@ function addListeners() {
    })
   if (document.querySelector(".open-settings")) {
     document.querySelector(".open-settings").addEventListener("click", () => {
-  
+      settings = new Settings(state)
       SwitchPage(settings);
       settings.updValues()
     });
@@ -134,6 +160,7 @@ function addListeners() {
   if (document.querySelector(".answer-result")){
       document.querySelector(".answer-result").addEventListener('click', ()=>{
         catType.qid += 1
+        console.log(catType.qid)
         if(catType.qid === 10){
       document.querySelector('.result-num').innerHTML = `${document.querySelectorAll('.right').length}/10`
         if(settings.settingValues.volume==='checked'){

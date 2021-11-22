@@ -46,7 +46,7 @@ import images from "./images.js"
     
 
     class Category {
-        constructor(catType){
+        constructor(catType, state){
             this.qTracker = [...Array(12)].map((e)=> new Array)
             this.catType = catType
             this.questions = questions
@@ -128,7 +128,7 @@ import images from "./images.js"
 
 
      class Question {
-         constructor(Category, catId, qid){
+         constructor(Category, catId, qid, state){
                 this.category = Category
                 this.catId = catId
                 this.qid = qid
@@ -195,7 +195,7 @@ import images from "./images.js"
         <div class="total-result hide-elem ">
             <p>Поздравляем</p>
             <i class=" star-icon fas fa-star"></i>
-            <p>${document.querySelectorAll('.right').length}/10</p>
+            <p class = result-num>${document.querySelectorAll('.right').length}/10</p>
            
             <div class="question-btn"> <i class="fas fa-arrow-right"></i> </div>
         </div>

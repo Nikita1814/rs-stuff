@@ -1,11 +1,6 @@
 class Settings {
-    constructor() {
-    this.settingValues = {
-        volume: 'checked',
-        vVal:0,
-        timer: '',
-        tval:30,
-        }
+    constructor(state) {
+  this.settingValues = state.settingValues
   this.html= /*html*/ `
     <div class="content-container">
     <div class="settings">
@@ -22,7 +17,7 @@ class Settings {
 
                     <input type="range" class="range volume-range" value="1" min="0" step="0.1" max="1">
                     <input type="checkbox" class="volume-check" >
-                    <label>on/off</label>
+                    <label>on</label>
                 </div>
                 <h1>Volume</h1>
             </div>
@@ -31,7 +26,7 @@ class Settings {
                 <div class="setting-option-wrapper">
                     <input type="range" class="range">
                     <input type="checkbox">
-                    <label>on/off</label>
+                    <label>on</label>
                 </div>
                 <h1>Timer</h1>
             </div>
@@ -47,16 +42,18 @@ class Settings {
 
     updSound(){
     let soundRange = document.querySelector('.volume-range')
+
     /*console.log(soundRange.value)*/
     this.settingValues.vVal = soundRange.value  
     /*console.log(this.settingValues.vVal)*/
     document.querySelectorAll('.audio').forEach((s)=> {s.volume = this.settingValues.vVal
         })
+    console.log(this.settingValues.vVal)
     /*if(document.querySelector('.volume-check').checked = true){
         document.querySelectorAll('.audio').forEach((s)=> s.volume  = 0 )
     } */   
     }
-
+    
     mute(){
         if (document.querySelector('.volume-check').checked === true){
         this.settingValues.volume = 'checked'
