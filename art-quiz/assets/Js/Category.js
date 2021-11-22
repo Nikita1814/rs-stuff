@@ -47,6 +47,7 @@ import images from "./images.js"
 
     class Category {
         constructor(catType, state){
+            this.state = state
             this.qTracker = [...Array(12)].map((e)=> new Array)
             this.catType = catType
             this.questions = questions
@@ -122,8 +123,9 @@ import images from "./images.js"
             /*console.log(questions.paintingQuestions)*/
         }
         updQtracker(id, answer){
-        this.qTracker[id].push(answer)    
-        }
+          console.log(this.state.qTracker)  
+          this.state.qTracker[this.catType][id].push(answer)    
+            }
     }
 
 
@@ -132,6 +134,7 @@ import images from "./images.js"
                 this.category = Category
                 this.catId = catId
                 this.qid = qid
+                this.state= state
                 this.correctAnswer = Math.floor(
                 Math.random() * (3 - 0 + 1) + 0
               )
@@ -250,8 +253,8 @@ import images from "./images.js"
             
         updPagination(){
             let pagCollection = document.querySelectorAll(`.score-point`)
-            console.log(this.category.qTracker[this.catId])
-            this.category.qTracker[this.catId].forEach((el, index)=>{ 
+            console.log(this.state.qTracker[this.category.catType][this.catId])
+            this.state.qTracker[this.category.catType][this.catId].forEach((el, index)=>{ 
                 if(el === 'correct'){
                     console.log(pagCollection[index])
                     pagCollection[index].classList.add('right')
@@ -264,6 +267,7 @@ import images from "./images.js"
                 }
             )
         }
+    
      }
     export {  
       Category,

@@ -15,8 +15,8 @@ let state = {
       tval:30,
       },
    qTracker:{
-    artistsCat:[...Array(12)].map((e)=> new Array),
-    picturesCat:[...Array(12)].map((e)=> new Array)
+    artistQuestions:[...Array(12)].map((e)=> new Array),
+    pictureQuestions:[...Array(12)].map((e)=> new Array)
   
    }
   }
@@ -46,6 +46,7 @@ state = JSON.parse(localStorage.getItem('state'))
 window.addEventListener('beforeunload', setStorage)
 window.addEventListener('load', ()=>{
   loadStorage()
+  settings.updSound()
   SwitchPage(home)
   
 })
@@ -88,16 +89,15 @@ function addListeners() {
   }
   if(document.querySelector(".artists")){
    document.querySelector(".artists").addEventListener("click", () => {
-      catType = artistsCat
-      SwitchPage(artistsCat);
+      catType = new Category('artistQuestions', state)
+      SwitchPage(catType);
     });
   }
 
   if(document.querySelector(".pictures")){
    document.querySelector(".pictures").addEventListener("click", () => {
-      catType = picturesCat
-      catType.testfun()
-      SwitchPage(picturesCat);
+      catType = new Category('pictureQuestions', state)
+      SwitchPage(catType);
     });
   }
 
@@ -123,8 +123,11 @@ function addListeners() {
      document.querySelector(".categories-wrapper").addEventListener("click", (e) => {
         if(e.target.id){
            catType.catId = e.target.id
-           catType.qTracker[e.target.id] = []
-           let question =new Question(catType, e.target.id, 0)
+           console.log(`${catType.catType}`)
+           console.log(state.qTracker[`pictureQuestions`])
+           console.log(state.qTracker[`${catType.catType}`])
+           state.qTracker[catType.catType][e.target.id] = []
+           let question =new Question(catType, e.target.id, 0, state)
            SwitchPage(question)
            question.setCorrect()
         }   
@@ -170,7 +173,7 @@ function addListeners() {
      document.querySelector(".total-result").classList.toggle('hide-elm')
      document.querySelector(".total-result").style="z-index:3; opacity:1;"
         } else{
-        let question =new Question(catType, catType.catId, catType.qid)
+        let question =new Question(catType, catType.catId, catType.qid, state)
         SwitchPage(question)
         question.setCorrect()
         question.updPagination()

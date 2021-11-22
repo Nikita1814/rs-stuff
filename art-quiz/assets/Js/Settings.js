@@ -41,10 +41,12 @@ class Settings {
     }
 
     updSound(){
+     if (document.querySelector('.volume-range')){
     let soundRange = document.querySelector('.volume-range')
 
     /*console.log(soundRange.value)*/
     this.settingValues.vVal = soundRange.value  
+     }
     /*console.log(this.settingValues.vVal)*/
     document.querySelectorAll('.audio').forEach((s)=> {s.volume = this.settingValues.vVal
         })
