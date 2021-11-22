@@ -20,8 +20,8 @@ class Home  {
                     </div>
 
                     <button class="setting-button open-settings" id="settings">
-                        <div class="gear"></div>
-                        <p>settings</p>
+                       
+                        <p><i class="fas fa-cog cog"></i>settings</p>
 
                     </button>
 

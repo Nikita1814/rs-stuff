@@ -3,10 +3,14 @@
   margin: 0 auto;
   padding: 0;
   transition: opacity 0.5s ease-in-out;
-  
+  transition: all 0.5s ease-in-out;
   font-family: Arial, Helvetica, sans-serif;
+ 
+}
+.app{
   color: #661004;
 }
+
 
 .hide-elem {
   opacity: 0;
@@ -37,7 +41,6 @@ body {
   flex-direction: column;
   align-items: center;
   height: 100vh;
-  border: 1px solid red;
   max-width: 1220px;
 }
 .main-page {
@@ -112,25 +115,25 @@ h1 {
   text-align: center;
   justify-content: center;
   align-items: center;
+  transition: background-color 0.5s ease-in-out;
 }
 
 .setting-button p {
   font-size: 20px;
-  color:white;
-}
 
-.gear {
-  background-repeat: no-repeat;
-  background-position: center;
-  background-image: url(assets/Ui/Gear.svg);
-  width: 50px;
-  height: 50px;
 }
 
 /*Settings*/
 .settings {
   width: 100%;
   height: 100%;
+}
+
+
+.setting-button:hover .cog {
+transform: rotate(180deg);
+color:#661004;
+
 }
 
 .setting-option {
@@ -529,3 +532,48 @@ font-size: 50px;
 }
 
 
+/*Animations*/
+.setting-button:hover{
+  background-color:wheat;
+  color:#661004;
+}
+.setting-button:hover .fas{
+  color:#661004;
+}
+
+.question-btn:hover{
+  background-color:wheat;
+  color:#661004;
+}
+
+.question-btn:hover .fas{
+  color:#661004;
+}
+
+.name-answer:hover{
+  background-color:#661004;
+  color:white;
+}
+.mode:hover{
+  background-color:#661004;
+  transform:scale(1.1)
+}
+
+.mode:hover span{
+  color:white;
+}
+.mode:hover .mode-text{
+  color:white;
+}
+.category-item:hover{
+  transform:scale(1.1)
+}
+
+.category-item:hover h2{
+  background-color:#661004;
+  color:white;
+}
+.total-image:hover{
+  transform:scale(1.1);
+  filter: grayscale(0%);
+}

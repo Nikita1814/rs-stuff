@@ -64,62 +64,62 @@ import images from "./images.js"
                 </div>
 
                 <div class="category-item ">
-                    <h2 class="score-total" id="0"><i class="fas fa-star"></i> Score</h2>
+                    <h2 class="score-total" id="0">Score</h2>
                     <div class="category-image" id="0" style="background-image: url(assets/img/${this.questions[this.catType][0][0].imageNum}.jpg);"></div>
                     <h2>${state.qTracker[this.catType][0].filter(x => x ==='correct').length} Portrait</h2>
                 </div>
                 <div class="category-item ">
-                    <h2 class="score-total" id="1"><i class="fas fa-star"></i> Score</h2>
+                    <h2 class="score-total" id="1">Score</h2>
                     <div class="category-image" id="1" style="background-image: url(assets/img/${this.questions[this.catType][1][0].imageNum}.jpg);"></div>
                     <h2>${state.qTracker[this.catType][1].filter(x => x ==='correct').length} Landcape</h2>
                 </div>
                 <div class="category-item">
-                    <h2 class="score-total" id="2"><i class="fas fa-star"></i> Score</h2>
+                    <h2 class="score-total" id="2">Score</h2>
                     <div class="category-image" id="2" style="background-image: url(assets/img/${this.questions[this.catType][2][0].imageNum}.jpg);"></div>
                     <h2>${state.qTracker[this.catType][2].filter(x => x ==='correct').length} Still Life</h2>
                 </div>
                 <div class="category-item">
-                    <h2 class="score-total" id="3"><i class="fas fa-star"></i> Score</h2>
+                    <h2 class="score-total" id="3">Score</h2>
                     <div class="category-image" id="3" style="background-image: url(assets/img/${this.questions[this.catType][3][0].imageNum}.jpg);"></div>
                     <h2>${state.qTracker[this.catType][3].filter(x => x ==='correct').length} Graphic</h2>
                 </div>
                 <div class="category-item">
-                    <h2 class="score-total" id="4"><i class="fas fa-star"></i> Score</h2>
+                    <h2 class="score-total" id="4">Score</h2>
                     <div class="category-image" id="4" style="background-image: url(assets/img/${this.questions[this.catType][4][0].imageNum}.jpg);"></div>
                     <h2>${state.qTracker[this.catType][4].filter(x => x ==='correct').length} Antique</h2>
                 </div>
                 <div class="category-item">
-                    <h2 class="score-total" id="5"><i class="fas fa-star"></i> Score</h2>
+                    <h2 class="score-total" id="5">Score</h2>
                     <div class="category-image" id="5" style="background-image: url(assets/img/${this.questions[this.catType][5][0].imageNum}.jpg);"></div>
                     <h2>${state.qTracker[this.catType][5].filter(x => x ==='correct').length} Avant-Garde</h2>
                 </div> 
                 <div class="category-item">
-                    <h2 class="score-total" id="6"><i class="fas fa-star"></i> Score</h2>
+                    <h2 class="score-total" id="6">Score</h2>
                     <div class="category-image" id="6" style="background-image: url(assets/img/${this.questions[this.catType][6][0].imageNum}.jpg);"></div>
                     <h2>${state.qTracker[this.catType][6].filter(x => x ==='correct').length} Renaissance</h2>
                 </div>
                 <div class="category-item">
-                     <h2 class="score-total" id="7"><i class="fas fa-star"></i> Score</h2>
+                     <h2 class="score-total" id="7">Score</h2>
                     <div class="category-image" id="7" style="background-image: url(assets/img/${this.questions[this.catType][7][0].imageNum}.jpg);"></div>
                     <h2>${state.qTracker[this.catType][7].filter(x => x ==='correct').length} Surrealism</h2>
                 </div>
                 <div class="category-item ">
-                    <h2 class="score-total" id="8"><i class="fas fa-star"></i> Score</h2>
+                    <h2 class="score-total" id="8">Score</h2>
                     <div class="category-image" id="8" style="background-image: url(assets/img/${this.questions[this.catType][8][0].imageNum}.jpg);"></div>
                     <h2>${state.qTracker[this.catType][8].filter(x => x ==='correct').length} Kitsch</h2>
                 </div>
                 <div class="category-item ">
-                    <h2 class="score-total" id="9"><i class="fas fa-star"></i> Score</h2>
+                    <h2 class="score-total" id="9">Score</h2>
                     <div class="category-image" id="9" style="background-image: url(assets/img/${this.questions[this.catType][9][0].imageNum}.jpg);"></div>
                     <h2>${state.qTracker[this.catType][9].filter(x => x ==='correct').length} Minimalism</h2>
                 </div>
                 <div class="category-item">
-                    <h2 class="score-total" id="10"><i class="fas fa-star"></i> Score</h2>
+                    <h2 class="score-total" id="10">Score</h2>
                     <div class="category-image" id="10" style="background-image: url(assets/img/${this.questions[this.catType][10][0].imageNum}.jpg);"></div>
                     <h2>${state.qTracker[this.catType][10].filter(x => x ==='correct').length} Avangard</h2>
                 </div>
                 <div class="category-item">
-                    <h2 class="score-total" id="11"><i class="fas fa-star"></i> Score</h2>
+                    <h2 class="score-total" id="11">Score</h2>
                     <div class="category-image" id="11" style="background-image: url(assets/img/${this.questions[this.catType][11][0].imageNum}.jpg);""></div>
                     <h2>${state.qTracker[this.catType][11].filter(x => x ==='correct').length} Industrial</h2>
                 </div>
@@ -173,7 +173,7 @@ import images from "./images.js"
               <h1 class="timer-tracker"></h1>
               <div class="question-btn cat-btn"><i class="fas fa-bars"></i></div>
           </div>
-          <h1>Кто автор этой картины</h1>
+          <h1>Кто автор этой картины?</h1>
           <div class="question-wrapper">
               <div class="question-image" style="background-image:url(assets/img/${Category.questions[Category.catType][catId][qid].imageNum}.jpg);"></div>
               <div class="score">
@@ -221,7 +221,7 @@ import images from "./images.js"
                 <div class="question-btn cat-btn"><i class="fas fa-bars"></i></div>
             </div>
             <div class="question-wrapper">
-                <h1>Какую Картину написал ${Category.answers.artistAnswers[catId][qid]}</h1>
+                <h1>Какую Картину написал ${Category.answers.artistAnswers[catId][qid]}?</h1>
                 <div class="score">
                     <div class="score-point"></div>
                     <div class="score-point"></div>
