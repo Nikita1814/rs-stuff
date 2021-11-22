@@ -132,14 +132,15 @@ function addListeners() {
     document.querySelector(".artists").addEventListener("click", () => {
       catType = new Category("artistQuestions", state);
       SwitchPage(catType);
+      catType.colorCat()
     });
   }
 
   if (document.querySelector(".pictures")) {
     document.querySelector(".pictures").addEventListener("click", () => {
       catType = new Category("pictureQuestions", state);
-      console.log(state.qTracker[catType.catType][0]);
       SwitchPage(catType);
+      catType.colorCat()
     });
   }
 
@@ -276,6 +277,7 @@ function addListeners() {
       let temp = catType.catType;
       catType = new Category(temp, state);
       SwitchPage(catType);
+      catType.colorCat()
     });
   }
   /*Total*/

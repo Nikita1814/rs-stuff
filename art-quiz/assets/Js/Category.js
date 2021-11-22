@@ -197,6 +197,12 @@ class Category {
     console.log(this.state.qTracker);
     this.state.qTracker[this.catType][id].push(answer);
   }
+  colorCat(){
+   let catImages = document.querySelectorAll('.category-image')
+   this.state.qTracker[this.catType].forEach((el, index)=> {if (el.length === 0){
+   catImages[index].classList.toggle('grey-Bg')
+   }})   
+  }
 }
 
 class Question {
