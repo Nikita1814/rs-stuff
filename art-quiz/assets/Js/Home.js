@@ -1,8 +1,6 @@
-
-
-class Home  {
-    constructor(){
-  this.html =  `
+class Home {
+  constructor() {
+    this.html = `
 <div class="content-container">
             <div class="main-page">
                 <div class="menu">
@@ -28,8 +26,8 @@ class Home  {
                 </div>
             </div>
         </div>
-`}
- 
-};
+`;
+  }
+}
 
 export default Home;

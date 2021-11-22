@@ -1,7 +1,7 @@
 class Settings {
-    constructor(state) {
-  this.settingValues = state.settingValues
-  this.html=  `
+  constructor(state) {
+    this.settingValues = state.settingValues;
+    this.html = `
     <div class="content-container conceal-elem">
     <div class="settings">
     <div class="menu">
@@ -35,59 +35,64 @@ class Settings {
     </div>
 </div>
             </div>
-    `
-  
+    `;
+  }
 
-    }
+  updSound() {
+    if (document.querySelector(".volume-range")) {
+      let soundRange = document.querySelector(".volume-range");
 
-    updSound(){
-     if (document.querySelector('.volume-range')){
-    let soundRange = document.querySelector('.volume-range')
+      this.settingValues.vVal = soundRange.value;
+    }
+    document.querySelectorAll(".audio").forEach((s) => {
+      s.volume = this.settingValues.vVal;
+    });
+    console.log(this.settingValues.vVal);
+  }
 
-   
-    this.settingValues.vVal = soundRange.value  
-     }
-    document.querySelectorAll('.audio').forEach((s)=> {s.volume = this.settingValues.vVal
-        })
-    console.log(this.settingValues.vVal)
-  
+  mute() {
+    if (document.querySelector(".volume-check").checked === true) {
+      this.settingValues.volume = "checked";
+    } else if (document.querySelector(".volume-check").checked === false) {
+      this.settingValues.volume = "";
     }
-    
-    mute(){
-        if (document.querySelector('.volume-check').checked === true){
-        this.settingValues.volume = 'checked'
-        } else if( document.querySelector('.volume-check').checked === false){
-            this.settingValues.volume = ''
-        }
+  }
+
+  updValues() {
+    document.querySelector(".volume-range").value = this.settingValues.vVal;
+    this.updSound();
+    if (this.settingValues.volume === "checked") {
+      document.querySelector(".volume-check").checked = true;
     }
-    
-    updValues(){
-        document.querySelector('.volume-range').value = this.settingValues.vVal
-        this.updSound()
-        if(this.settingValues.volume === 'checked'){document.querySelector('.volume-check').checked = true}
-        if(this.settingValues.volume === ''){document.querySelector('.volume-check').checked = false}
-        this.mute()
-        document.querySelector('.timer-range').value =  this.settingValues.tVal 
-        this.updTimer()
-        if(this.settingValues.timer === 'checked'){document.querySelector('.timer-check').checked = true}
-        if(this.settingValues.timer === ''){document.querySelector('.timer-check').checked = false}
-        this.turnTimer
+    if (this.settingValues.volume === "") {
+      document.querySelector(".volume-check").checked = false;
     }
-    
-    turnTimer(){
-        if (document.querySelector('.timer-check').checked === true){
-            this.settingValues.timer = 'checked'
-            } else if( document.querySelector('.timer-check').checked === false){
-                this.settingValues.timer = ''
-            }
+    this.mute();
+    document.querySelector(".timer-range").value = this.settingValues.tVal;
+    this.updTimer();
+    if (this.settingValues.timer === "checked") {
+      document.querySelector(".timer-check").checked = true;
     }
-    updTimer(){
-        if (document.querySelector('.timer-range')){
-        let tRange = document.querySelector('.timer-range')
-        this.settingValues.tVal = tRange.value
-        }
-        document.querySelector('.t-label').innerHTML = `${this.settingValues.tVal}`
+    if (this.settingValues.timer === "") {
+      document.querySelector(".timer-check").checked = false;
     }
-};
+    this.turnTimer;
+  }
+
+  turnTimer() {
+    if (document.querySelector(".timer-check").checked === true) {
+      this.settingValues.timer = "checked";
+    } else if (document.querySelector(".timer-check").checked === false) {
+      this.settingValues.timer = "";
+    }
+  }
+  updTimer() {
+    if (document.querySelector(".timer-range")) {
+      let tRange = document.querySelector(".timer-range");
+      this.settingValues.tVal = tRange.value;
+    }
+    document.querySelector(".t-label").innerHTML = `${this.settingValues.tVal}`;
+  }
+}
 
 export default Settings;
