@@ -63,7 +63,6 @@ class Score {
     }
     colorIn(){
         let totalImages = document.querySelectorAll('.total-image')
-        console.log(totalImages)
         this.state.qTracker[this.category.catType][this.catId].forEach((el, index)=>{
             if(el ==='correct'){
              totalImages[index].classList.toggle('grey-Bg')
@@ -71,8 +70,6 @@ class Score {
         })
     }
 
-    renderInfo(){
-
-    }
+   
 }
 export default Score

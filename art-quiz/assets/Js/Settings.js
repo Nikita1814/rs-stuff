@@ -1,7 +1,7 @@
 class Settings {
     constructor(state) {
   this.settingValues = state.settingValues
-  this.html= /*html*/ `
+  this.html=  `
     <div class="content-container conceal-elem">
     <div class="settings">
     <div class="menu">
@@ -44,16 +44,13 @@ class Settings {
      if (document.querySelector('.volume-range')){
     let soundRange = document.querySelector('.volume-range')
 
-    /*console.log(soundRange.value)*/
+   
     this.settingValues.vVal = soundRange.value  
      }
-    /*console.log(this.settingValues.vVal)*/
     document.querySelectorAll('.audio').forEach((s)=> {s.volume = this.settingValues.vVal
         })
     console.log(this.settingValues.vVal)
-    /*if(document.querySelector('.volume-check').checked = true){
-        document.querySelectorAll('.audio').forEach((s)=> s.volume  = 0 )
-    } */   
+  
     }
     
     mute(){
@@ -65,7 +62,6 @@ class Settings {
     }
     
     updValues(){
-        console.log(this.settingValues.volume)
         document.querySelector('.volume-range').value = this.settingValues.vVal
         this.updSound()
         if(this.settingValues.volume === 'checked'){document.querySelector('.volume-check').checked = true}

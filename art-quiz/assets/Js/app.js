@@ -27,6 +27,7 @@ const picturesCat = new Category('pictureQuestions', state)
 let app = document.querySelector(".app");
 let catType
 let score
+let interval
 /*let qTracker = [...Array(24)].map((e)=> new Array)*/
 
 //Functions
@@ -57,14 +58,14 @@ window.addEventListener('load', ()=>{
 
 function SwitchPage(curPage) {
   app.children[0].style ='opacity:0.01;'
-  setTimeout(()=> {
+ 
     app.innerHTML = curPage.html;
     addListeners();
-   app.children[0].style ='opacity:0;'
-  }, 500)
+    app.children[0].style ='opacity:0.01;'
   
  setTimeout(()=>{app.children[0].style ='opacity:1;'}, 1000)
  /*app.children[0].style ='opacity:1;'*/
+ clearInterval(interval)
 
 }
 
@@ -76,14 +77,15 @@ function playAudio(name) {
 //timer fuction
 
 function timer() {
-  if (state.settingValues.timer === "checked") {
+  
+  if (state.settingValues.timer === "checked" ){
     let counter = state.settingValues.tVal;
-    let interval = setInterval(() => {
+    interval = setInterval(() => {
       document.querySelector(".timer-tracker").innerHTML = "00:" + counter;
       counter--;
     
-
-    if (counter === 0) {
+     
+    if (counter === 0 && document.querySelector(`question`)) {
       clearInterval(interval);
       catType.updQtracker(catType.catId, "wrong");
       if (settings.settingValues.volume === "checked") {
@@ -101,8 +103,12 @@ function timer() {
     ) {
       clearInterval(interval);
     }
+    if(!document.querySelector('.question')){
+      clearInterval(interval);
+    }
    }, 1000); 
   }
+  
 }
 
 
@@ -181,9 +187,6 @@ function addListeners() {
      document.querySelector(".categories-wrapper").addEventListener("click", (e) => {
         if(e.target.id && e.target.classList.contains('category-image')){
            catType.catId = e.target.id
-           console.log(`${catType.catType}`)
-           console.log(state.qTracker[`pictureQuestions`])
-           console.log(state.qTracker[`${catType.catType}`])
            state.qTracker[catType.catType][e.target.id] = []
            let question =new Question(catType, e.target.id, 0, state)
            SwitchPage(question)
@@ -192,24 +195,18 @@ function addListeners() {
         }   
         if(e.target.id && e.target.classList.contains('score-total')){
           catType.catId = e.target.id
-          console.log(`${catType.catType}`)
-          console.log(state.qTracker[`pictureQuestions`])
-          console.log(state.qTracker[`${catType.catType}`])
-          
           score = new Score(catType, e.target.id, state)
           SwitchPage(score)
           score.colorIn()
        }   
-       console.log(e.target.id)
-       console.log(e.target)
+     
      })
   }
   if(document.querySelector(".question-wrapper")){
      document.querySelector(".question-wrapper").addEventListener('click', (e)=>{
         if (e.target.classList.contains('correct')){
          catType.updQtracker(catType.catId,'correct')
-         /*console.log(catType.qTracker[catType.catId])
-         alert(catType.qTracker[catType.catId])*/
+     
          
          if(settings.settingValues.volume==='checked' ){
          playAudio(`good-sound`)
@@ -221,8 +218,6 @@ function addListeners() {
 
         } else {
          catType.updQtracker(catType.catId,'wrong')
-         /*console.log(catType.qTracker[catType.catId])
-         alert(catType.qTracker[catType.catId])*/
          if(settings.settingValues.volume==='checked'){
          playAudio(`wrong-sound`)
          }
@@ -237,7 +232,6 @@ function addListeners() {
   if (document.querySelector(".answer-result") && document.querySelector('.question')){
       document.querySelector(".answer-result").addEventListener('click', ()=>{
         catType.qid += 1
-        console.log(catType.qid)
         if(catType.qid === 10){
       document.querySelector('.result-num').innerHTML = `${document.querySelectorAll('.right').length}/10`
         if(settings.settingValues.volume==='checked'){
@@ -286,27 +280,3 @@ if (document.querySelector('.total')){
 }
 }
 
-// 
-
-
-
-  
-/*if (e.target.classList.contains('correct')){
-  currentCat.updQtracker(dataStorage[currentCat.catType].catId,'correct')
-  alert(dataStorage[currentCat.catType].qTracker[dataStorage[currentCat.catType].catId])
- } else{
-   currentCat.updQtracker(dataStorage[currentCat.catType].catId,'correct')
-   alert(dataStorage[currentCat.catType].qTracker[dataStorage[currentCat.catType].catId])
- }
-
- dataStorage[currentCat.catType].qid += 1 
- console.log(dataStorage[currentCat.catType].qid)
- if(dataStorage[currentCat.catType].qid === 10){
-   dataStorage[currentCat.catType].qid  = 0
-   currentCat = new Category(`picturesCat`)
-   SwitchPage(currentCat)
- }
- let question =new Question(currentCat, dataStorage[currentCat.catType].catId, dataStorage[currentCat.catType].qid, dataStorage)
- SwitchPage(question)
- question.setCorrect()
-} )*/

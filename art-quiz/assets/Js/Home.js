@@ -2,7 +2,7 @@
 
 class Home  {
     constructor(){
-  this.html = /*html*/ `
+  this.html =  `
 <div class="content-container">
             <div class="main-page">
                 <div class="menu">

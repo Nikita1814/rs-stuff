@@ -1,12 +1,6 @@
 
 import images from "./images.js"
-/*async function genData(){
-    let images = 'assets/Js/images.json'
-    const res = await fetch(images)
-    const data = await res.json()
-    return data
- }
- */
+
  const splitArr = function(array, size){
     let newArr = []
     for (let i = 0; i< array.length; i+=size){
@@ -36,7 +30,7 @@ import images from "./images.js"
         artistAnswers:  splitArr(artistAnswers,10),
         pictureAnswers: splitArr(pictureAnswers,10)
      }
-     /*splitArr(authorQuestions,12),*/
+     
      const questions = {
        
        artistQuestions: splitArr(artistQuestions,10),
@@ -246,9 +240,7 @@ import images from "./images.js"
          }
 
         }
-        testfun(){
-        console.log(`ans-${this.correctAnswer}`)    
-        }
+      
         setCorrect(){
             let correctOption = document.getElementById(`ans-${this.correctAnswer}`)
              console.log(correctOption)
@@ -267,7 +259,6 @@ import images from "./images.js"
             
         updPagination(){
             let pagCollection = document.querySelectorAll(`.score-point`)
-            console.log(this.state.qTracker[this.category.catType][this.catId])
             this.state.qTracker[this.category.catType][this.catId].forEach((el, index)=>{ 
                 if(el === 'correct'){
                     console.log(pagCollection[index])
