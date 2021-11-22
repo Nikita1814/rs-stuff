@@ -169,7 +169,8 @@ import images from "./images.js"
                 </div>
                
           <div class="buttons-div">
-              <div class="question-btn home-btn"> <i class="fas fa-home"></i></div>
+              <div class="question-btn home-btn"><i class="fas fa-home"></i></div>
+              <h1 class="timer-tracker"></h1>
               <div class="question-btn cat-btn"><i class="fas fa-bars"></i></div>
           </div>
           <h1>Кто автор этой картины</h1>
@@ -216,6 +217,7 @@ import images from "./images.js"
         </div>
             <div class="buttons-div">
                 <div class="question-btn home-btn"> <i class="fas fa-home"></i></div>
+                <h1 class="timer-tracker"></h1>
                 <div class="question-btn cat-btn"><i class="fas fa-bars"></i></div>
             </div>
             <div class="question-wrapper">

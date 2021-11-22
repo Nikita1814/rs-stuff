@@ -11,7 +11,7 @@ let state = {
   settingValues : {
       volume: 'checked',
       vVal:1,
-      timer: '',
+      timer: 'checked',
       tval:30,
       },
    qTracker:{
@@ -52,7 +52,7 @@ window.addEventListener('load', ()=>{
   
 })
 
-/*localStorage.clear()*/
+localStorage.clear()
 //page switching
 
 function SwitchPage(curPage) {
@@ -65,7 +65,37 @@ function playAudio(name) {
   document.querySelector(`.${name}`).play();
 }
 
+//timer fuction
 
+function timer() {
+  if (state.settingValues.timer === "checked") {
+    let counter = state.settingValues.tval;
+    let interval = setInterval(() => {
+      document.querySelector(".timer-tracker").innerHTML = "00:" + counter;
+      counter--;
+    
+
+    if (counter === 0) {
+      clearInterval(interval);
+      catType.updQtracker(catType.catId, "wrong");
+      if (settings.settingValues.volume === "checked") {
+        playAudio(`wrong-sound`);
+      }
+      document.querySelector(".answer-result").classList.toggle("hide-elem");
+      document.querySelector(
+        ".answer-symbol"
+      ).innerHTML = `<i class="ans-icon fas fa-times"></i>`;
+      document.querySelector(".answer-result").style = `z-index:2; opacity:1;`;
+    } 
+    
+    if (
+      document.querySelector(`.answer-result`).classList.contains("done") || document.querySelector('.total-result').classList.contains('done')
+    ) {
+      clearInterval(interval);
+    }
+   }, 1000); 
+  }
+}
 
 
 // listener set-up
@@ -140,6 +170,7 @@ function addListeners() {
            let question =new Question(catType, e.target.id, 0, state)
            SwitchPage(question)
            question.setCorrect()
+           timer()
         }   
         if(e.target.id && e.target.classList.contains('score-total')){
           catType.catId = e.target.id
@@ -161,10 +192,12 @@ function addListeners() {
          catType.updQtracker(catType.catId,'correct')
          /*console.log(catType.qTracker[catType.catId])
          alert(catType.qTracker[catType.catId])*/
-         document.querySelector('.answer-result').classList.toggle('hide-elem')
+         
          if(settings.settingValues.volume==='checked' ){
          playAudio(`good-sound`)
          }
+         document.querySelector('.answer-result').classList.toggle('hide-elem')
+         document.querySelector('.answer-result').classList.add('done')
          document.querySelector('.answer-symbol').innerHTML = `<i class="ans-icon fas fa-check"></i>`
          document.querySelector('.answer-result').style = `z-index:2; opacity:1;`
 
@@ -175,7 +208,8 @@ function addListeners() {
          if(settings.settingValues.volume==='checked'){
          playAudio(`wrong-sound`)
          }
-         document.querySelector('.answer-result').classList.toggle('hide-elem')
+         document.querySelector('.answer-result').classList.toggle('hide-elem') 
+         document.querySelector('.answer-result').classList.add('done')
          document.querySelector('.answer-symbol').innerHTML = `<i class="ans-icon fas fa-times"></i>`
          document.querySelector('.answer-result').style = `z-index:2; opacity:1;`
         }
@@ -193,12 +227,14 @@ function addListeners() {
         }
       
      document.querySelector(".total-result").classList.toggle('hide-elm')
+     document.querySelector('.answer-result').classList.add('done')
      document.querySelector(".total-result").style="z-index:3; opacity:1;"
         } else{
         let question =new Question(catType, catType.catId, catType.qid, state)
         SwitchPage(question)
         question.setCorrect()
         question.updPagination()
+        timer()
         }
       })
   }
