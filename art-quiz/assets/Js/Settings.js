@@ -47,7 +47,6 @@ class Settings {
     document.querySelectorAll(".audio").forEach((s) => {
       s.volume = this.settingValues.vVal;
     });
-    console.log(this.settingValues.vVal);
   }
 
   mute() {

@@ -57,7 +57,7 @@ feedback: повторяются картины/художники
 
 20) 5 баллов за каждую уникальную сложную анимацию, улучшающую интерфейс и удобство использования приложения, но не больше 20 баллов
 
-feedback: 1. Смена страниц - всплывание 2. плавное появление дивов с ответами на вопрос/результатом категории 3. смена цвета текста и бекграунда при наведении на интерактивные элементы 4.прокрутка колесика на кнопке с настройками 5.увеличение при ховере на элементы домашней страницы, категорий и результатов по категории( у последней выделение цветом при наведении на черно-белые картины)`)
+feedback: 1. Смена страниц - всплывание 2. плавное появление дивов с ответами на вопрос/результатом категории 3. смена цвета текста и бекграунда при наведении на интерактивные элементы 4.прокрутка колесика на кнопке с настройками 5.увеличение при ховере на элементы домашней страницы, категорий и результатов по категории( у последней выделение цветом при наведении на черно-белые картины)`);
 //variables
 let state = {
   settingValues: {
@@ -98,10 +98,9 @@ window.addEventListener("beforeunload", setStorage);
 window.addEventListener("load", () => {
   loadStorage();
   settings.updSound();
+
   SwitchPage(home);
 });
-
-/*localStorage.clear()*/
 
 //page switching
 
@@ -186,7 +185,7 @@ function addListeners() {
     document.querySelector(".artists").addEventListener("click", () => {
       catType = new Category("artistQuestions", state);
       SwitchPage(catType);
-      catType.colorCat()
+      catType.colorCat();
     });
   }
 
@@ -194,7 +193,7 @@ function addListeners() {
     document.querySelector(".pictures").addEventListener("click", () => {
       catType = new Category("pictureQuestions", state);
       SwitchPage(catType);
-      catType.colorCat()
+      catType.colorCat();
     });
   }
 
@@ -331,7 +330,7 @@ function addListeners() {
       let temp = catType.catType;
       catType = new Category(temp, state);
       SwitchPage(catType);
-      catType.colorCat()
+      catType.colorCat();
     });
   }
   /*Total*/
