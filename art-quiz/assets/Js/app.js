@@ -26,6 +26,7 @@ const artistsCat = new Category('artistQuestions', state)
 const picturesCat = new Category('pictureQuestions', state)
 let app = document.querySelector(".app");
 let catType
+let score
 /*let qTracker = [...Array(24)].map((e)=> new Array)*/
 
 //Functions
@@ -146,7 +147,7 @@ function addListeners() {
           console.log(state.qTracker[`pictureQuestions`])
           console.log(state.qTracker[`${catType.catType}`])
           
-          let score = new Score(catType, e.target.id, state)
+          score = new Score(catType, e.target.id, state)
           SwitchPage(score)
           score.colorIn()
        }   
@@ -181,7 +182,7 @@ function addListeners() {
 
      } )
   }
-  if (document.querySelector(".answer-result")){
+  if (document.querySelector(".answer-result") && document.querySelector('.question')){
       document.querySelector(".answer-result").addEventListener('click', ()=>{
         catType.qid += 1
         console.log(catType.qid)
@@ -207,6 +208,26 @@ function addListeners() {
     let temp = catType.catType
     catType = new Category(temp, state)
     SwitchPage(catType)
+  })
+}
+if (document.querySelector('.total')){
+  document.querySelector('.total').addEventListener('click', (e)=>{
+    if(e.target.id){
+      document.querySelector('.question-image').style =`background-image:url(assets/img/${catType.questions[catType.catType][catType.catId][e.target.id].imageNum}.jpg);`
+      document.querySelector('.picture-name').innerHTML = `${catType.questions[catType.catType][catType.catId][e.target.id].name}`
+      document.querySelector('.picture-author').innerHTML = `${catType.questions[catType.catType][catType.catId][e.target.id].author}`
+      document.querySelector('.picture-year').innerHTML = `${catType.questions[catType.catType][catType.catId][e.target.id].year}`
+         document.querySelector('.answer-result').classList.toggle('hide-elem')
+         document.querySelector('.answer-result').style = `z-index:2; opacity:1;`
+    }
+    if(document.querySelector('.answer-result')){
+      document.querySelector('.answer-result').addEventListener('click',()=>{
+        document.querySelector('.answer-result').style = 'z-index:2; opacity:0;'
+        document.querySelector('.answer-result').style = 'z-index:-1;'
+        document.querySelector('.answer-result').classList.toggle('hide-elem')
+      })
+    
+    }
   })
 }
 }
