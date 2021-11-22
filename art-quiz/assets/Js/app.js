@@ -12,7 +12,7 @@ let state = {
       volume: 'checked',
       vVal:1,
       timer: 'checked',
-      tval:30,
+      tVal:30,
       },
    qTracker:{
     artistQuestions:[...Array(12)].map((e)=> new Array),
@@ -52,7 +52,7 @@ window.addEventListener('load', ()=>{
   
 })
 
-localStorage.clear()
+/*localStorage.clear()*/
 //page switching
 
 function SwitchPage(curPage) {
@@ -69,7 +69,7 @@ function playAudio(name) {
 
 function timer() {
   if (state.settingValues.timer === "checked") {
-    let counter = state.settingValues.tval;
+    let counter = state.settingValues.tVal;
     let interval = setInterval(() => {
       document.querySelector(".timer-tracker").innerHTML = "00:" + counter;
       counter--;
@@ -145,6 +145,16 @@ function addListeners() {
       settings.mute()
     })
   }
+  if(document.querySelector('.timer-range')){
+    document.querySelector('.timer-range').addEventListener('mousemove', ()=> {
+      settings.updTimer()
+    })
+    }
+    if (document.querySelector('.timer-check')){
+      document.querySelector('.timer-check').addEventListener('click', () => {
+        settings.turnTimer()
+      })
+    }
 
   if (document.querySelector(".home-btn")) {
    document.querySelector(".home-btn").addEventListener("click", () => {

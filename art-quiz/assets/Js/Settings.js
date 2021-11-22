@@ -24,7 +24,7 @@ class Settings {
             <div class="setting-option time">
                 <div class="setting-image time-image"></div>
                 <div class="setting-option-wrapper">
-                    <input type="range" class="range volume-range" value ="5" min="5" step="5" max="30"> <label>5</label>
+                    <input type="range" class="range timer-range" value ="5" min="5" step="5" max="30"> <p class="t-label">5</p>
                     <input type="checkbox" class="timer-check">
                     <label>on</label>
                 </div>
@@ -71,6 +71,11 @@ class Settings {
         if(this.settingValues.volume === 'checked'){document.querySelector('.volume-check').checked = true}
         if(this.settingValues.volume === ''){document.querySelector('.volume-check').checked = false}
         this.mute()
+        document.querySelector('.timer-range').value =  this.settingValues.tVal 
+        this.updTimer()
+        if(this.settingValues.timer === 'checked'){document.querySelector('.timer-check').checked = true}
+        if(this.settingValues.timer === ''){document.querySelector('.timer-check').checked = false}
+        this.turnTimer
     }
     
     turnTimer(){
@@ -85,7 +90,7 @@ class Settings {
         let tRange = document.querySelector('.timer-range')
         this.settingValues.tVal = tRange.value
         }
-
+        document.querySelector('.t-label').innerHTML = `${this.settingValues.tVal}`
     }
 };
 
