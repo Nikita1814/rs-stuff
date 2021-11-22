@@ -14,7 +14,12 @@
   display: none;
  
 }
-
+.conceal-elem{
+  opacity: 0;
+}
+.show-elem{
+  opacity:1;
+}
 button{
   box-shadow: 0px 0px 0px transparent;
   border: 0px solid transparent;

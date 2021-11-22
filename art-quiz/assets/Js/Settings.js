@@ -2,7 +2,7 @@ class Settings {
     constructor(state) {
   this.settingValues = state.settingValues
   this.html= /*html*/ `
-    <div class="content-container">
+    <div class="content-container conceal-elem">
     <div class="settings">
     <div class="menu">
         <div class="settings-top">

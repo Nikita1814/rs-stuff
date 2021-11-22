@@ -56,8 +56,16 @@ window.addEventListener('load', ()=>{
 //page switching
 
 function SwitchPage(curPage) {
-  app.innerHTML = curPage.html;
-  addListeners();
+  app.children[0].style ='opacity:0.01;'
+  setTimeout(()=> {
+    app.innerHTML = curPage.html;
+    addListeners();
+   app.children[0].style ='opacity:0;'
+  }, 500)
+  
+ setTimeout(()=>{app.children[0].style ='opacity:1;'}, 1000)
+ /*app.children[0].style ='opacity:1;'*/
+
 }
 
 //audio playing

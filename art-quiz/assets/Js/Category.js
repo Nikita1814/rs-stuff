@@ -54,7 +54,7 @@ import images from "./images.js"
             this.answers = answers
             this.catId = 0
             this.qid = 0
-            this.html = `<div class="categories">
+            this.html = `<div class="categories conceal-elem">
             <div class="categories-wrapper">
                 <div class="settings-top">
                     <div class="logo">
@@ -152,7 +152,7 @@ import images from "./images.js"
               )
             
          if(Category.catType === 'pictureQuestions'){
-          this.html =   `<div class="question ">
+          this.html =   `<div class="question conceal-elem conceal-elem ">
           <div class="answer-result hide-elem">
                     <div class="answer-symbol"><i class="ans-icon fas fa-check"></i></div>
                     <div class="question-image" style="background-image:url(assets/img/${Category.questions[Category.catType][catId][qid].imageNum}.jpg);"></div>
@@ -198,7 +198,7 @@ import images from "./images.js"
       </div>`
          }
          if (Category.catType === 'artistQuestions') {
-            this.html = ` <div class="content-container">
+            this.html = ` <div class="content-container conceal-elem">
             <div class="question picture-question ">
             <div class="answer-result hide-elem" >
             <div class="answer-symbol"><i class="ans-icon fas fa-check"></i></div>

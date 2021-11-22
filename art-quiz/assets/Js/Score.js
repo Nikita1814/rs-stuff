@@ -4,7 +4,7 @@ class Score {
         this.catId = catId
         this.state = state
         this.html = `
-        <div class="total">
+        <div class="total conceal-elem">
         <div class="answer-result hide-elem">
         <div class="question-image"></div>
         <p class="picture-name"></p>
