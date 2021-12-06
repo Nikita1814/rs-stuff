@@ -30,24 +30,17 @@ export interface ArtResp{
 }
 
 export interface SourceResp{
-    status:string,
+    status: string,
     sources: Source[]
 }
 
 export interface Option{
-apiKey?:string,
-sources?:string,
+apiKey?: string,
+sources?: string,
 }
-/*export interface LoadObj{
-baseLink: string,  
-options: Option, 
-getResp({}: {endpoint:string, options:Option}): void,
-
-}*/
-
 export type Callback<T>  = (data: T) => void
 class Loader {
-    baseLink:string ;
+    baseLink: string ;
     options: Option;
     constructor(baseLink: string, options:Option) {
         this.baseLink = baseLink;
