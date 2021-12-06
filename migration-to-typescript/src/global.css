@@ -1,47 +1,69 @@
 body {
-    color: #fff;
-    background: #17181c;
-    font-family: sans-serif;
+  color: #fff;
+  background: #17181c;
+  font-family: sans-serif;
 }
 
 header {
-    padding: 10px 30px;
+  padding: 10px 30px;
+  display: flex;
+  align-items: center;
+  justify-content:center;
+  flex-wrap: wrap;
 }
 
 header h1 {
-    font-size: 40px;
-    font-weight: 800;
+  font-size: 40px;
+  font-weight: 800;
 }
 
 footer {
-    height: 100px;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 }
 footer .copyright {
-    font-size: 14px;
-    color: #333;
-    text-align: center;
+  font-size: 14px;
+  color: #333;
+  text-align: center;
 }
 footer .copyright a {
-    color: #444;
+  color: #444;
 }
 footer .copyright a:hover {
-    color: #555;
+  color: #555;
 }
 footer .copyright:before {
-    content: '©';
+  content: "©";
 }
-footer .my-name{
-    font-size: 14px;
-    color: #333;
+footer .my-name {
+  font-size: 14px;
+  color: #333;
 }
-footer .rs-logo{
-    width:100px; 
-}
-
-footer svg{
-    color: #555;;
+footer .rs-logo {
+  width: 100px;
 }
 
+footer svg {
+  color: #555;
+}
+
+.fa-globe {
+  color: #30c5ff;
+
+}
+
+header:hover h1{
+  color: #30c5ff;
+  transition:color 0.5s ease-in-out;
+  cursor:pointer
+}
+header:hover .fa-globe{
+  color: #fff;
+  transition:color 0.5s ease-in-out;
+  cursor:pointer
+}
+.hide-menu{
+  height:0;
+}
