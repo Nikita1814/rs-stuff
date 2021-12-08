@@ -2,12 +2,12 @@
     display: flex;
     flex-wrap: wrap;
     width: 100%;
-    height: 100vh;
+    max-height: 100%;
     overflow: auto;
     align-items: center;
     justify-content: space-around;
     font: 300 1em 'Fira Sans', sans-serif;
-    transition: height 0.5s ease-in-out;
+    transition: max-height 0.5s ease-in-out;
 }
 
 .source__item {

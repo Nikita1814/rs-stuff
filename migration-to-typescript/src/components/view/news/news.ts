@@ -1,4 +1,4 @@
-import { Article, Source } from '../../controller/loader';
+import { Article } from '../../controller/loader';
 import './news.css';
 
 class News {
