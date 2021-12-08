@@ -1,37 +1,37 @@
 export interface Article{
     source:{
-        id: string,
-        name: string
+        readonly id: string,
+        readonly name: string
         },
-        author: string,
-        title: string,
-        description: string,
-        url: string,
-        urlToImage: string,
-        publishedAt: string,
-        content: string
+        readonly author: string,
+        readonly title: string,
+        readonly description: string,
+        readonly url: string,
+        readonly urlToImage: string,
+        readonly publishedAt: string,
+        readonly content: string
 }
 
 export interface Source{
-id: string,
-name: string,
-description: string,
-url: string,
-category: string,
-language: string,
-country: string
+readonly id: string,
+readonly name: string,
+readonly description: string,
+readonly url: string,
+readonly category: string,
+readonly language: string,
+readonly country: string
 }
 
 
 export interface ArtResp{
-    status: string,
-    totalResults: number,
-    articles: Article[]
+    readonly status: string,
+    readonly totalResults: number,
+    readonly articles: Article[]
 }
 
 export interface SourceResp{
-    status: string,
-    sources: Source[]
+    readonly status: string,
+    readonly sources: Source[]
 }
 
 export interface Option{
@@ -40,8 +40,8 @@ sources?: string,
 }
 export type Callback<T>  = (data: T) => void
 class Loader {
-    baseLink: string ;
-    options: Option;
+    private baseLink: string ;
+    private options: Option;
     constructor(baseLink: string, options:Option) {
         this.baseLink = baseLink;
         this.options = options;

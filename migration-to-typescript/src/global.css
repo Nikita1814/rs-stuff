@@ -69,5 +69,12 @@ header:hover .fa-globe {
   cursor: pointer;
 }
 .hide-menu {
-  max-height: 0;
+  font-size: 0;
+  margin: 0;
+  opacity: 0;
+  padding: 0;
+  transition: opacity .25s,
+  font-size .5s .25s,
+  margin .5s .25s,
+  padding .5s .25s;
 }
