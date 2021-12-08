@@ -17,9 +17,7 @@ class News {
       ) as HTMLTemplateElement;
 
       if (idx % 2)
-        (
-          (newsClone as HTMLElement).querySelector(".news__item") as HTMLElement
-        ).classList.add("alt");
+        newsClone?.querySelector(".news__item")?.classList.add("alt");
 
       (
         newsClone.querySelector(".news__meta-photo") as HTMLElement
