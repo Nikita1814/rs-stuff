@@ -73,8 +73,6 @@ header:hover .fa-globe {
   margin: 0;
   opacity: 0;
   padding: 0;
-  transition: opacity .25s,
-  font-size .5s .25s,
-  margin .5s .25s,
-  padding .5s .25s;
+  transition: opacity 0.25s, font-size 0.5s 0.25s, margin 0.5s 0.25s,
+    padding 0.5s 0.25s;
 }
