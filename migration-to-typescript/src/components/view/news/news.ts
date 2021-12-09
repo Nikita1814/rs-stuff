@@ -22,7 +22,7 @@ class News {
       (
         newsClone.querySelector(".news__meta-photo") as HTMLElement
       ).style.backgroundImage = `url(${
-        item.urlToImage || "img/news_placeholder.jpg"
+        item.urlToImage || "./assets/news_placeholder.jpg"
       })`;
       (
         newsClone.querySelector(".news__meta-author") as HTMLElement

@@ -1,36 +1,36 @@
 export interface Article {
   source: {
-    readonly id: string;
-    readonly name: string;
+    id: string;
+    name: string;
   };
-  readonly author: string;
-  readonly title: string;
-  readonly description: string;
-  readonly url: string;
-  readonly urlToImage: string;
-  readonly publishedAt: string;
-  readonly content: string;
+  author: string;
+  title: string;
+  description: string;
+  url: string;
+  urlToImage: string;
+  publishedAt: string;
+  content: string;
 }
 
 export interface Source {
-  readonly id: string;
-  readonly name: string;
-  readonly description: string;
-  readonly url: string;
-  readonly category: string;
-  readonly language: string;
-  readonly country: string;
+  id: string;
+  name: string;
+  description: string;
+  url: string;
+  category: string;
+  language: string;
+  country: string;
 }
 
 export interface ArtResp {
-  readonly status: string;
-  readonly totalResults: number;
-  readonly articles: Article[];
+  status: string;
+  totalResults: number;
+  articles: Readonly<Article>[];
 }
 
 export interface SourceResp {
-  readonly status: string;
-  readonly sources: Source[];
+  status: string;
+  sources: Readonly<Source>[];
 }
 
 export interface Option {
@@ -68,7 +68,7 @@ class Loader {
   }
 
   makeUrl(options: Option, endpoint: string) {
-    const urlOptions: { [key: string]: string } = {
+    const urlOptions: Record<string, string> = {
       ...this.options,
       ...options,
     };
