@@ -39,15 +39,16 @@ class News {
       (
         newsClone.querySelector(".news__description-content") as HTMLElement
       ).textContent = item.description;
-      (
-        newsClone.querySelector(".news__read-more a") as HTMLElement
-      ).setAttribute("href", item.url);
+
+      newsClone
+        .querySelector(".news__read-more a")
+        ?.setAttribute("href", item.url);
 
       fragment.append(newsClone);
     });
 
     (document.querySelector(".news") as HTMLElement).innerHTML = "";
-    (document.querySelector(".news") as HTMLElement).appendChild(fragment);
+    document.querySelector(".news")?.appendChild(fragment);
   }
 }
 
