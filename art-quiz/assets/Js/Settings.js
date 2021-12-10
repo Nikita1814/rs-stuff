@@ -50,22 +50,24 @@ class Settings {
   }
 
   mute() {
-    if (document.querySelector(".volume-check").checked === true) {
+    /*if (document.querySelector(".volume-check").checked === true) {
       this.settingValues.volume = "checked";
     } else if (document.querySelector(".volume-check").checked === false) {
       this.settingValues.volume = "";
-    }
+    }*/
+    this.settingValues.volume = document.querySelector(".volume-check").checked ? "checked" : "";
   }
 
   updValues() {
     document.querySelector(".volume-range").value = this.settingValues.vVal;
     this.updSound();
-    if (this.settingValues.volume === "checked") {
+    /*if (this.settingValues.volume === "checked") {
       document.querySelector(".volume-check").checked = true;
     }
     if (this.settingValues.volume === "") {
       document.querySelector(".volume-check").checked = false;
-    }
+    }*/
+    document.querySelector(".volume-check").checked = this.settingValues.volume === "checked";
     this.mute();
     document.querySelector(".timer-range").value = this.settingValues.tVal;
     this.updTimer();
