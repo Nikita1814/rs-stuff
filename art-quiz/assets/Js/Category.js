@@ -200,34 +200,34 @@ class Category {
   colorCat(){
    let catImages = document.querySelectorAll('.category-image')
    this.state.qTracker[this.catType].forEach((el, index)=> {if (el.length === 0){
-   catImages[index].classList.toggle('grey-Bg')
+   catImages[index].classList.toggle('grey-bg')
    }})   
   }
 }
 
 class Question {
-  constructor(Category, catId, qid, state) {
-    this.category = Category;
+  constructor(category, catId, qid, state) {
+    this.category = category;
     this.catId = catId;
     this.qid = qid;
     this.state = state;
     this.correctAnswer = Math.floor(Math.random() * (3 - 0 + 1) + 0);
 
-    if (Category.catType === "pictureQuestions") {
+    if (category.catType === "pictureQuestions") {
       this.html = `<div class="question conceal-elem conceal-elem ">
           <div class="answer-result hide-elem">
                     <div class="answer-symbol"><i class="ans-icon fas fa-check"></i></div>
                     <div class="question-image" style="background-image:url(assets/img/${
-                      Category.questions[Category.catType][catId][qid].imageNum
+                      category.questions[category.catType][catId][qid].imageNum
                     }.jpg);"></div>
                     <p> ${
-                      Category.questions[Category.catType][catId][qid].name
+                      category.questions[category.catType][catId][qid].name
                     }</p>
                     <p> ${
-                      Category.questions[Category.catType][catId][qid].author
+                      category.questions[category.catType][catId][qid].author
                     }</p>
                     <p> ${
-                      Category.questions[Category.catType][catId][qid].year
+                      category.questions[category.catType][catId][qid].year
                     }</p>
                     <div class="question-btn"><i class="fas fa-arrow-right"></i></div>
                 </div>
@@ -248,7 +248,7 @@ class Question {
           <h1>Кто автор этой картины?</h1>
           <div class="question-wrapper">
               <div class="question-image" style="background-image:url(assets/img/${
-                Category.questions[Category.catType][catId][qid].imageNum
+                category.questions[category.catType][catId][qid].imageNum
               }.jpg);"></div>
               <div class="score">
                   <div class="score-point"></div>
@@ -264,22 +264,22 @@ class Question {
               </div>
               <div class="answer-grid">
                  <div class="name-answer" id ="ans-0">${
-                   Category.answers.pictureAnswers[
+                   category.answers.pictureAnswers[
                      Math.floor(Math.random() * (11 - 0 + 1) + 0)
                    ][Math.floor(Math.random() * (9 - 0 + 1) + 0)]
                  }</div>
                  <div class="name-answer" id ="ans-1">${
-                   Category.answers.pictureAnswers[
+                   category.answers.pictureAnswers[
                      Math.floor(Math.random() * (11 - 0 + 1) + 0)
                    ][Math.floor(Math.random() * (9 - 0 + 1) + 0)]
                  }</div>
                  <div class="name-answer" id ="ans-2">${
-                   Category.answers.pictureAnswers[
+                   category.answers.pictureAnswers[
                      Math.floor(Math.random() * (11 - 0 + 1) + 0)
                    ][Math.floor(Math.random() * (9 - 0 + 1) + 0)]
                  }</div>
                  <div class="name-answer" id ="ans-3">${
-                   Category.answers.pictureAnswers[
+                   category.answers.pictureAnswers[
                      Math.floor(Math.random() * (11 - 0 + 1) + 0)
                    ][Math.floor(Math.random() * (9 - 0 + 1) + 0)]
                  }</div>
@@ -287,7 +287,7 @@ class Question {
           </div>
       </div>`;
     }
-    if (Category.catType === "artistQuestions") {
+    if (category.catType === "artistQuestions") {
       this.html = ` <div class="content-container conceal-elem">
             <div class="question picture-question ">
             <div class="answer-result hide-elem" >
@@ -296,9 +296,9 @@ class Question {
               this.category.questions.artistQuestions[this.catId][this.qid]
                 .imageNum
             }.jpg);"></div>
-            <p> ${Category.questions[Category.catType][catId][qid].name}</p>
-            <p> ${Category.questions[Category.catType][catId][qid].author}</p>
-            <p> ${Category.questions[Category.catType][catId][qid].year}</p>
+            <p> ${category.questions[category.catType][catId][qid].name}</p>
+            <p> ${category.questions[category.catType][catId][qid].author}</p>
+            <p> ${category.questions[category.catType][catId][qid].year}</p>
             <div class="question-btn next-question"><i class="fas fa-arrow-right"></i></div>
         </div>
         <div class="total-result hide-elem ">
@@ -317,7 +317,7 @@ class Question {
             </div>
             <div class="question-wrapper">
                 <h1>Какую Картину написал ${
-                  Category.answers.artistAnswers[catId][qid]
+                  category.answers.artistAnswers[catId][qid]
                 }?</h1>
                 <div class="score">
                     <div class="score-point"></div>
@@ -333,22 +333,22 @@ class Question {
                 </div>
                 <div class="answer-grid">
                     <div class="picture-answer" style="background-image:url(assets/img/${
-                      Category.questions[Category.catType][
+                      category.questions[category.catType][
                         Math.floor(Math.random() * (11 - 0 + 1) + 0)
                       ][Math.floor(Math.random() * (9 - 0 + 1) + 0)].imageNum
                     }.jpg);" id ="ans-0"></div>
                     <div class="picture-answer" style="background-image:url(assets/img/${
-                      Category.questions[Category.catType][
+                      category.questions[category.catType][
                         Math.floor(Math.random() * (11 - 0 + 1) + 0)
                       ][Math.floor(Math.random() * (9 - 0 + 1) + 0)].imageNum
                     }.jpg);" id ="ans-1"></div>
                     <div class="picture-answer" style="background-image:url(assets/img/${
-                      Category.questions[Category.catType][
+                      category.questions[category.catType][
                         Math.floor(Math.random() * (11 - 0 + 1) + 0)
                       ][Math.floor(Math.random() * (9 - 0 + 1) + 0)].imageNum
                     }.jpg);" id ="ans-2"></div>
                     <div class="picture-answer" style="background-image:url(assets/img/${
-                      Category.questions[Category.catType][
+                      category.questions[category.catType][
                         Math.floor(Math.random() * (11 - 0 + 1) + 0)
                       ][Math.floor(Math.random() * (9 - 0 + 1) + 0)].imageNum
                     }.jpg);" id ="ans-3"></div>

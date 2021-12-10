@@ -99,12 +99,12 @@ window.addEventListener("load", () => {
   loadStorage();
   settings.updSound();
 
-  SwitchPage(home);
+  switchPage(home);
 });
 
 //page switching
 
-function SwitchPage(curPage) {
+function switchPage(curPage) {
   app.children[0].style = "opacity:0.01;";
 
   app.innerHTML = curPage.html;
@@ -171,20 +171,20 @@ function addListeners() {
   if (document.querySelector(".open-settings")) {
     document.querySelector(".open-settings").addEventListener("click", () => {
       settings = new Settings(state);
-      SwitchPage(settings);
+      switchPage(settings);
       settings.updValues();
     });
   }
 
   if (document.querySelector(".save-btn")) {
     document.querySelector(".save-btn").addEventListener("click", () => {
-      SwitchPage(home);
+      switchPage(home);
     });
   }
   if (document.querySelector(".artists")) {
     document.querySelector(".artists").addEventListener("click", () => {
       catType = new Category("artistQuestions", state);
-      SwitchPage(catType);
+      switchPage(catType);
       catType.colorCat();
     });
   }
@@ -192,7 +192,7 @@ function addListeners() {
   if (document.querySelector(".pictures")) {
     document.querySelector(".pictures").addEventListener("click", () => {
       catType = new Category("pictureQuestions", state);
-      SwitchPage(catType);
+      switchPage(catType);
       catType.colorCat();
     });
   }
@@ -226,7 +226,7 @@ function addListeners() {
 
   if (document.querySelector(".home-btn")) {
     document.querySelector(".home-btn").addEventListener("click", () => {
-      SwitchPage(home);
+      switchPage(home);
     });
   }
   if (document.querySelector(".cat-btn")) {
@@ -234,7 +234,7 @@ function addListeners() {
       catType.qid = 0;
       let temp = catType.catType;
       catType = new Category(temp, state);
-      SwitchPage(catType);
+      switchPage(catType);
     });
   }
   if (document.querySelector(".categories-wrapper")) {
@@ -245,14 +245,14 @@ function addListeners() {
           catType.catId = e.target.id;
           state.qTracker[catType.catType][e.target.id] = [];
           let question = new Question(catType, e.target.id, 0, state);
-          SwitchPage(question);
+          switchPage(question);
           question.setCorrect();
           timer();
         }
         if (e.target.id && e.target.classList.contains("score-total")) {
           catType.catId = e.target.id;
           score = new Score(catType, e.target.id, state);
-          SwitchPage(score);
+          switchPage(score);
           score.colorIn();
         }
       });
@@ -317,7 +317,7 @@ function addListeners() {
         document.querySelector(".total-result").style = "z-index:3; opacity:1;";
       } else {
         let question = new Question(catType, catType.catId, catType.qid, state);
-        SwitchPage(question);
+        switchPage(question);
         question.setCorrect();
         question.updPagination();
         timer();
@@ -329,7 +329,7 @@ function addListeners() {
       catType.qid = 0;
       let temp = catType.catType;
       catType = new Category(temp, state);
-      SwitchPage(catType);
+      switchPage(catType);
       catType.colorCat();
     });
   }
