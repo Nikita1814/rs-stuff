@@ -280,7 +280,10 @@ function addListeners() {
           document.querySelector(
             ".answer-result"
           ).style = `z-index:2; opacity:1;`;
-        } else {
+        } else if (
+          e.target.classList.contains("picture-answer") ||
+          e.target.classList.contains("name-answer")
+        ) {
           catType.updQtracker(catType.catId, "wrong");
           if (settings.settingValues.volume === "checked") {
             playAudio(`wrong-sound`);
