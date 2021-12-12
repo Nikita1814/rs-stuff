@@ -1,13 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My JS App</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <h1>My JS App</h1>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>granny's-christmas-tree</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="assets/favicon.ico" rel="shortcut icon">
+
+</head>
+
+<body>
+  <header class="header">
+    <nav class="navigation">
+      <a class="main-menu-link" href=""></a>
+      <a class="toy-page-link" href="#">Игрушки</a>
+      <a class="tree-page-link" href="#">Елка</a>
+    </nav>
+    <input type="search" class="search" autocomplete="off">
+    <div class="header-count">
+      <span>0</span>
+    </div>
+  </header>
+  <div class="start-page"></div>
+  <div class="toys-page">
+    <div class="criterea">
+      <div class="appearance-criterea">
+        <h2>Фильтры по значению</h2>
+        <div class="shape">
+          <div id="ball"></div>
+          <div id="bell"></div>
+          <div id="cone"></div>
+          <div id="snowflake"></div>
+          <div id="figurine"></div>
+        </div>
+        <div class="color">
+          <div id="white"></div>
+          <div id="yellow"></div>
+          <div id="red"></div>
+          <div id="blue"></div>
+          <div id="green"></div>
+        </div>
+        <div class="size">
+          <div id="big"></div>
+          <div id="medium"></div>
+          <div id="small"></div>
+        </div>
+        <div class="favourites">
+          <p>Только любимые</p>
+          <input type="checkbox" class="fav-check">
+        </div>
+      </div>
+      <div class="range-criterea">
+
+      </div>
+      <div class="sorting-criterea">
+        <select name="sorts">
+          <option value="А-Я">По назывнию от А до Я</option>
+          <option value="Я-А">По назывнию от Я до А</option>
+          <option value="decrease"> По количеству по убыванию</option>
+          <option value="increase">По количеству по возрастанию</option>
+        </select>
+        <button class="reset">Сброс сортировки</button>
+      </div>
+    </div>
+    <div class="toys-grid">
+      <div class="toy">
+        <h2 class="toy-name">Name</h2>
+        <img src="" alt="" class="toy-image">
+        <div class="toy-description">
+          <p class="toy-amount"></p>
+          <p class="toy-year"></p>
+          <p class="toy-shape"></p>
+          <p class="toy-color"></p>
+          <p class="toy-size"></p>
+          <p class="toy-favourite"></p>
+        </div>
+        <div class="toy-marker"></div>
+      </div>
+    </div>
+  </div>
+  <div class="tree-page"></div>
+  <footer class="footer">
+    <p>2021 <a href="https://github.com/Nikita1814">Nikita1814</a></p>
+    <a class="plug" href="https://rs.school/"></a>
+  </footer>
+</body>
+
 </html>
