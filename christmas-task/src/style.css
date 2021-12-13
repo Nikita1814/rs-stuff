@@ -1,3 +1,4 @@
+/*TODO Separate this into components*/
 * {
   box-sizing: border-box;
   transition: all 1s ease-in-out;
@@ -65,18 +66,6 @@ button {
   color: lightseagreen;
   border-bottom: 2px solid;
 }
-.search {
-  padding: 0.1% 2%;
-  width: 250px;
-  border-radius: 5%;
-  background-color: cadetblue;
-  background-image: url(assets/svg/search.svg);
-  background-repeat: no-repeat;
-  background-position: 220px;
-  background-size: 10px;
-  height: 36px;
-  color: white;
-}
 
 .start-page-title {
   width: 600px;
@@ -140,7 +129,7 @@ button {
 }
 
 .criteria {
-  padding:1% 2%;
+  padding: 1% 2%;
   margin: 0 auto;
   width: 23%;
   display: flex;
@@ -149,12 +138,12 @@ button {
   justify-content: space-between;
   background-color: rgba(32, 178, 170, 0.3);
 }
-.filter{
-  height:33%;
-  background-color:rgb(31, 178, 170, 0.5);
-  border-radius:5%;
-  width:100%;
-  padding:1% 1%;
+.filter {
+  height: 33%;
+  background-color: rgb(31, 178, 170, 0.5);
+  border-radius: 5%;
+  width: 100%;
+  padding: 1% 1%;
 }
 .appearance-criteria {
   width: 100%;
@@ -263,13 +252,12 @@ button {
 .toy img {
   width: 84px;
   height: 84px;
-  
 }
 .toy .toy-description {
   width: 100%;
 }
 .toy {
-  padding:1% 2%;
+  padding: 1% 2%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -287,36 +275,46 @@ button {
 .sorts {
   appearance: none;
   width: 70%;
-  height:15%;
+  height: 15%;
   background-color: rgba(25, 47, 45, 0.7);
   border-radius: 15px;
-  
+  padding: 0.1% 2%;
 }
-.sorts option{
+.sorts option {
   background-color: rgba(25, 47, 45, 0.7);
-  color:white;
+  color: white;
 }
 .reset {
-  width:70%;
+  width: 70%;
   border-radius: 20px;
-  height:15%;
-
+  height: 15%;
 }
 input[type="range"] {
-  width:90%;
+  width: 90%;
 }
-.output{
-width:20%;
-height:100%;
-display:flex;
-justify-content: center;  
-align-items: center;
-border-radius: 20px;
-
-}
-.outputs{
-  height:10%;
-  width:100%;
+.output {
+  width: 20%;
+  height: 100%;
   display: flex;
-  justify-content:space-between;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+}
+.outputs {
+  height: 10%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.search {
+  padding: 0.1% 2%;
+  width: 70%;
+  height: 15%;
+  background-color: rgba(25, 47, 45, 0.7);
+  border-radius: 15px;
+  background-image: url(assets/svg/search.svg);
+  background-repeat: no-repeat;
+  background-position: 220px;
+  background-size: 10px;
+  color: white;
 }
