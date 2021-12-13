@@ -1,4 +1,4 @@
-import image from "./images/lazy.png";
+/*import image from "./images/lazy.png";
 
 const createImage = (src: string) =>
   new Promise<HTMLImageElement>((res, rej) => {
@@ -16,4 +16,4 @@ async function render() {
   document.body.appendChild(myImage);
 }
 
-render();
+render();*/
