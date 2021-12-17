@@ -79,3 +79,4 @@ class ToysPage {
     /*TODO make a function that would set up listeners after render(by calling functions from prop-classes)*/
   }
 }
+export default ToysPage

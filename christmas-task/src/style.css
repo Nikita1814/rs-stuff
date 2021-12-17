@@ -243,15 +243,17 @@ button {
   width: 20px;
   height: 20px;
 }
-/*.toy{
+.toy{
   width:222px;
-  height:342px;
+  height:420px;
   background-color:darkseagreen;    
-  }*/
+  }
 
-.toy img {
+.toy-image {
   width: 84px;
   height: 84px;
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 .toy .toy-description {
   width: 100%;

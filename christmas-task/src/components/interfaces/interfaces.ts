@@ -1,5 +1,5 @@
 export interface DataItem {
-  num: number;
+  num: string;
   name: string;
   count: string;
   year: string;
