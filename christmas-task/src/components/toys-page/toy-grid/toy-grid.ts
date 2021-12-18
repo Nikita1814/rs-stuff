@@ -1,4 +1,4 @@
-import { DataItem } from "../../interfaces/interfaces";
+import { DataItem, Grid } from "../../interfaces/interfaces";
 import type { FilterObj } from "../../interfaces/interfaces";
 
 /*export interface DataItem {
@@ -14,7 +14,7 @@ import type { FilterObj } from "../../interfaces/interfaces";
 
 {shape: new Set(), color: new Set(), size: new Set()}
 */
-class ToyGrid {
+class ToyGrid implements Grid {
   constructor() {}
   showElems(data: Array<DataItem>, sortCriteria?: FilterObj) {
     (document.querySelector(".toys-grid") as HTMLElement).innerHTML = "";
@@ -36,15 +36,17 @@ class ToyGrid {
         },
       };
       sortData = sortData.filter((el) => {
+        console.log(`${Number(el.count)} - ${sortCriteria.endAmount} result:${Number(el.count) <= sortCriteria.endAmount }` )
         if (
-          ((sortCriteria.shape as Set<string | undefined>).has(el.shape) ||
-            (sortCriteria.shape as Set<string | undefined>).size === 0) &&
-          ((sortCriteria.color as Set<string | undefined>).has(el.color) ||
-            (sortCriteria.color as Set<string | undefined>).size === 0) &&
-          ((sortCriteria.size as Set<string | undefined>).has(el.size) ||
-            (sortCriteria.size as Set<string | undefined>).size === 0)
+          ((sortCriteria.shape as Set<string | undefined>).has(el.shape) || (sortCriteria.shape as Set<string | undefined>).size === 0) &&
+          ((sortCriteria.color as Set<string | undefined>).has(el.color) || (sortCriteria.color as Set<string | undefined>).size === 0) &&
+          ((sortCriteria.size as Set<string | undefined>).has(el.size) || (sortCriteria.size as Set<string | undefined>).size === 0) &&
+          (Number(el.year) >= sortCriteria.beginYear && Number(el.year) <= sortCriteria.endYear) &&
+          (Number(el.count) >= sortCriteria.beginAmount && Number(el.count) <= sortCriteria.endAmount)
+
           /*(sortCriteria.favorite === el.favorite && sortCriteria.favorite === true ) ||  sortCriteria.favorite === false*/
         ) {
+          
           return true;
         } else return false;
       });

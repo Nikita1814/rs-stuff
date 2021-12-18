@@ -1,7 +1,7 @@
 /*TODO Separate this into components*/
 * {
   box-sizing: border-box;
-  transition: all 1s ease-in-out;
+  /*transition: all 1s ease-in-out;*/
 }
 
 body {
@@ -326,4 +326,8 @@ input[type="range"] {
 }
 .color  .selected{
 border:5px solid lightseagreen;  
+}
+#year-slider,
+#amount-slider{
+margin:3% 5%;  
 }
