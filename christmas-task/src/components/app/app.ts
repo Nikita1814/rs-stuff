@@ -12,7 +12,7 @@ class App {
 
   constructor() {
     this.homePage = {};
-    this.toysPage = new ToysPage ;
+    this.toysPage = new ToysPage(data) ;
     this.treePage = {};
     this.header={}
     this.data = data;

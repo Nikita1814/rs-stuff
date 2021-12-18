@@ -6,9 +6,11 @@ class ToysPage {
   /*TODO make propper interfaces*/
   private toyGrid;
   private filters: FilterObj;
-  constructor() {
-    this.filters = { shape: new Set(), color: new Set(), size: new Set() };
+  private data: Array<DataItem>
+  constructor(data:Array<DataItem>) {
+    this.filters = {shape: new Set(), color: new Set(), size: new Set()};
     this.toyGrid = new ToyGrid();
+    this.data = data
   }
   render(data: Array<DataItem>) {
     const main = document.querySelector(".main") as HTMLElement;
@@ -77,7 +79,7 @@ class ToysPage {
     </div>
 </div>
 </div>`;
-    this.toyGrid.showElems(data, []);
+    this.toyGrid.showElems(data);
     this.addListeners();
     /*TODO make a function that would set up listeners after render(by calling functions from prop-classes)*/
   }
@@ -101,6 +103,7 @@ class ToysPage {
             }
             (e.target as HTMLElement).classList.toggle(`selected`);
             console.log(this.filters);
+            this.toyGrid.showElems(this.data, this.filters);
           }
         });
       }
