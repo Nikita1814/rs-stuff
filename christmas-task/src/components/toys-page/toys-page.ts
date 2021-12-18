@@ -1,11 +1,13 @@
 import { DataItem } from "../interfaces/interfaces";
+import type { FilterObj } from "../interfaces/interfaces";
 import ToyGrid from "./toy-grid/toy-grid";
 
 class ToysPage {
-  private filters; /*TODO make propper interfaces*/
+  /*TODO make propper interfaces*/
   private toyGrid;
+  private filters: FilterObj;
   constructor() {
-    this.filters = {};
+    this.filters = { shape: new Set(), color: new Set(), size: new Set() };
     this.toyGrid = new ToyGrid();
   }
   render(data: Array<DataItem>) {
@@ -17,25 +19,25 @@ class ToysPage {
     <h2>Фильтры по значению</h2>
     <div class="shape">
       <p>Форма</p>
-      <div id="ball"></div>
-      <div id="bell"></div>
-      <div id="cone"></div>
-      <div id="snowflake"></div>
-      <div id="figurine"></div>
+      <div data-criteria="шар" id="ball" class="selectable"></div>
+      <div data-criteria="колокольчик" id="bell" class="selectable"></div>
+      <div data-criteria="шишка" id="cone" class="selectable"></div>
+      <div data-criteria="снежинка" id="snowflake" class="selectable"></div>
+      <div data-criteria="фигурка" id="figurine" class="selectable"></div>
     </div>
     <div class="color">
       <p>Цвет</p>
-      <div id="white"></div>
-      <div id="yellow"></div>
-      <div id="red"></div>
-      <div id="blue"></div>
-      <div id="green"></div>
+      <div data-criteria="белый" id="white" class="selectable"></div>
+      <div data-criteria="желтый" id="yellow" class="selectable"></div>
+      <div data-criteria="красный" id="red" class="selectable"></div>
+      <div data-criteria="синий" id="blue" class="selectable"></div>
+      <div data-criteria="зеленый" id="green" class="selectable"></div>
     </div>
     <div class="size">
       <p>Размер</p>
-      <div id="big"></div>
-      <div id="medium"></div>
-      <div id="small"></div>
+      <div data-criteria="большой" id="big" class="selectable"></div>
+      <div data-criteria="средний" id="medium" class="selectable"></div>
+      <div data-criteria="малый" id="small" class="selectable"></div>
     </div>
     <div class="favourites">
       <span>Только любимые:</span><input type="checkbox" class="fav-check">
@@ -76,7 +78,33 @@ class ToysPage {
 </div>
 </div>`;
     this.toyGrid.showElems(data, []);
+    this.addListeners();
     /*TODO make a function that would set up listeners after render(by calling functions from prop-classes)*/
   }
+  addListeners() {
+    let key: string;
+    for (key in this.filters) {
+      let filterToMod: Set<string | undefined> | Function = this.filters[key];
+      /*console.log(((document.querySelector(`#ball`) as HTMLElement).dataset.criteria))*/
+      if (filterToMod instanceof Set) {
+        document.querySelector(`.${key}`)?.addEventListener("click", (e) => {
+          if ((e.target as HTMLElement).classList.contains("selectable")) {
+            if ((e.target as HTMLElement).classList.contains("selected")) {
+              (filterToMod as Set<string | undefined>).delete(
+                (e.target as HTMLElement).dataset.criteria
+              ); //TODO: makae this affect specific categories
+            } else {
+              (filterToMod as Set<string | undefined>).add(
+                (e.target as HTMLElement).dataset.criteria
+              );
+              console.log(this.filters.shape);
+            }
+            (e.target as HTMLElement).classList.toggle(`selected`);
+            console.log(this.filters);
+          }
+        });
+      }
+    }
+  }
 }
-export default ToysPage
+export default ToysPage;

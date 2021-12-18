@@ -8,4 +8,9 @@ export interface DataItem {
   size: string;
   favorite: boolean;
 }
+
+export type FilterObj = {
+  [key:string]: Set<string|undefined> | Function
+  
+}
 /*TODO put  all interfaces/types here and exclude this  folder from webpack building */

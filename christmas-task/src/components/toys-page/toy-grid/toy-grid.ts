@@ -55,5 +55,6 @@ class ToyGrid {
 
     document.querySelector(".toys-grid")?.append(fragment);
   }
+
 }
 export default ToyGrid;

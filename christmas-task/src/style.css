@@ -320,3 +320,10 @@ input[type="range"] {
   background-size: 10px;
   color: white;
 }
+.shape .selected,
+.size  .selected{
+  filter: sepia(100%) saturate(1000);
+}
+.color  .selected{
+border:5px solid lightseagreen;  
+}
