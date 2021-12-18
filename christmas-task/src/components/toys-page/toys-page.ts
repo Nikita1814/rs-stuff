@@ -8,7 +8,7 @@ class ToysPage {
   private filters: FilterObj;
   private data: Array<DataItem>
   constructor(data:Array<DataItem>) {
-    this.filters = {shape: new Set(), color: new Set(), size: new Set()};
+    this.filters = {shape: new Set(), color: new Set(), size: new Set(), favorite: false, sort:'AZ'};
     this.toyGrid = new ToyGrid();
     this.data = data
   }
@@ -41,7 +41,7 @@ class ToysPage {
       <div data-criteria="средний" id="medium" class="selectable"></div>
       <div data-criteria="малый" id="small" class="selectable"></div>
     </div>
-    <div class="favourites">
+    <div class="favorite">
       <span>Только любимые:</span><input type="checkbox" class="fav-check">
     </div>
   </div>
@@ -66,8 +66,8 @@ class ToysPage {
   <div class="filter sorting-criteria">
     <h2>Сортировка</h2>
     <select name="sorts" class="sorts">
-      <option value="А-Я"> По назывнию от А до Я</option>
-      <option value="Я-А"> По назывнию от Я до А</option>
+      <option value="AZ"> По назывнию от А до Я</option>
+      <option value="ZA"> По назывнию от Я до А</option>
       <option value="decrease"> По количеству по убыванию</option>
       <option value="increase"> По количеству по возрастанию</option>
       <input type="search" class="search" autocomplete="off" placeholder="По имени">
@@ -86,7 +86,8 @@ class ToysPage {
   addListeners() {
     let key: string;
     for (key in this.filters) {
-      let filterToMod: Set<string | undefined> | Function = this.filters[key];
+      let filterToMod: Set<string | undefined> | Function |boolean| string = this.filters[key];
+      console.log(filterToMod instanceof Boolean);
       /*console.log(((document.querySelector(`#ball`) as HTMLElement).dataset.criteria))*/
       if (filterToMod instanceof Set) {
         document.querySelector(`.${key}`)?.addEventListener("click", (e) => {
@@ -105,6 +106,21 @@ class ToysPage {
             console.log(this.filters);
             this.toyGrid.showElems(this.data, this.filters);
           }
+        });
+      } 
+      if  (typeof filterToMod === 'boolean') {
+        document.querySelector(`.${key}`)?.addEventListener("click",(e) => {
+          console.log((document.querySelector(`.fav-check`) as HTMLInputElement).checked)
+          this.filters[key] = (document.querySelector(`.fav-check`) as HTMLInputElement).checked
+          this.toyGrid.showElems(this.data, this.filters);
+          console.log(this.filters)
+        })
+      }
+      if (key === 'sort') {
+        document.querySelector(`.sorts`)?.addEventListener("change", ()=>{
+        this.filters.sort = (document.querySelector(`.sorts`) as HTMLSelectElement).value
+        this.toyGrid.showElems(this.data, this.filters);
+          console.log(this.filters)    
         });
       }
     }
