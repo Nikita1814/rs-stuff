@@ -17,37 +17,46 @@ import type { FilterObj } from "../../interfaces/interfaces";
 class ToyGrid {
   constructor() {}
   showElems(data: Array<DataItem>, sortCriteria?: FilterObj) {
-    (document.querySelector(".toys-grid") as HTMLElement).innerHTML='';
+    (document.querySelector(".toys-grid") as HTMLElement).innerHTML = "";
     let sortData = [...data];
     /*TODO Add a filtration application method*/
     if (sortCriteria) {
-      let sortfuncs:{[key:string]:(a:DataItem, b:DataItem)=>number}  = {
-        AZ: function(a:DataItem,b:DataItem){
-        return a.name.localeCompare(b.name)
+      let sortfuncs: { [key: string]: (a: DataItem, b: DataItem) => number } = {
+        AZ: function (a: DataItem, b: DataItem) {
+          return a.name.localeCompare(b.name);
         },
-        ZA: function(a:DataItem,b:DataItem){
-        return b.name.localeCompare(a.name)
+        ZA: function (a: DataItem, b: DataItem) {
+          return b.name.localeCompare(a.name);
         },
-        increase: function(a:DataItem, b:DataItem){
-        return (+a.count) - (+b.count)
+        increase: function (a: DataItem, b: DataItem) {
+          return +a.count - +b.count;
         },
-        decrease: function(a:DataItem, b:DataItem){
-          return (+b.count) - (+a.count)
-        } 
-      }
+        decrease: function (a: DataItem, b: DataItem) {
+          return +b.count - +a.count;
+        },
+      };
       sortData = sortData.filter((el) => {
         if (
-          ((sortCriteria.shape as Set<string | undefined>).has(el.shape) || (sortCriteria.shape as Set<string | undefined>).size === 0) &&
-          ((sortCriteria.color as Set<string | undefined>).has(el.color) || (sortCriteria.color as Set<string | undefined>).size === 0) &&
-          ((sortCriteria.size as Set<string | undefined>).has(el.size) || (sortCriteria.size as Set<string | undefined>).size === 0) 
+          ((sortCriteria.shape as Set<string | undefined>).has(el.shape) ||
+            (sortCriteria.shape as Set<string | undefined>).size === 0) &&
+          ((sortCriteria.color as Set<string | undefined>).has(el.color) ||
+            (sortCriteria.color as Set<string | undefined>).size === 0) &&
+          ((sortCriteria.size as Set<string | undefined>).has(el.size) ||
+            (sortCriteria.size as Set<string | undefined>).size === 0)
           /*(sortCriteria.favorite === el.favorite && sortCriteria.favorite === true ) ||  sortCriteria.favorite === false*/
         ) {
           return true;
-        } else return false
+        } else return false;
       });
-      let sortMethod:(a:DataItem, b:DataItem)=>number = sortfuncs[(sortCriteria.sort as string)]
+      if (sortCriteria.search !== "") {
+        sortData = sortData.filter((el) => {
+          return el.name.toLowerCase().includes(sortCriteria.search as string);
+        });
+      }
+      let sortMethod: (a: DataItem, b: DataItem) => number =
+        sortfuncs[sortCriteria.sort as string];
       sortData.sort(sortMethod);
-      console.log(sortData)
+      console.log(sortData);
     }
 
     const fragment = document.createDocumentFragment();

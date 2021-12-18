@@ -8,7 +8,7 @@ class ToysPage {
   private filters: FilterObj;
   private data: Array<DataItem>
   constructor(data:Array<DataItem>) {
-    this.filters = {shape: new Set(), color: new Set(), size: new Set(), favorite: false, sort:'AZ'};
+  this.filters = {shape: new Set(), color: new Set(), size: new Set(), favorite: false, sort:'AZ', search:''};
     this.toyGrid = new ToyGrid();
     this.data = data
   }
@@ -86,7 +86,7 @@ class ToysPage {
   addListeners() {
     let key: string;
     for (key in this.filters) {
-      let filterToMod: Set<string | undefined> | Function |boolean| string = this.filters[key];
+      let filterToMod: Set<string | undefined> | Function |boolean| string| RegExp = this.filters[key];
       console.log(filterToMod instanceof Boolean);
       /*console.log(((document.querySelector(`#ball`) as HTMLElement).dataset.criteria))*/
       if (filterToMod instanceof Set) {
@@ -122,6 +122,14 @@ class ToysPage {
         this.toyGrid.showElems(this.data, this.filters);
           console.log(this.filters)    
         });
+       
+      }
+      if(key === 'search'){
+        document.querySelector(`.search`)?.addEventListener('input', ()=>{
+          this.filters.search = (document.querySelector(`.search`) as HTMLInputElement).value.toLowerCase()
+          
+          this.toyGrid.showElems(this.data, this.filters);
+        })
       }
     }
   }

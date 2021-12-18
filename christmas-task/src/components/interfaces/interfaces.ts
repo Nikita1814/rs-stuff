@@ -10,7 +10,7 @@ export interface DataItem {
 }
 
 export type FilterObj = {
-  [key:string]: Set<string|undefined> | Function |boolean | string
+  [key:string]: Set<string|undefined> | Function |boolean | string 
   
 }
 /*TODO put  all interfaces/types here and exclude this  folder from webpack building */
