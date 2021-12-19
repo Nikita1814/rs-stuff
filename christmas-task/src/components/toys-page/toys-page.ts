@@ -10,7 +10,7 @@ class ToysPage {
   /*TODO make propper interfaces*/
   private toyGrid: Grid;
   private filters: FilterObj;
-  private data: Array<DataItem>;
+  public data: Array<DataItem>;
   constructor(data: Array<DataItem>) {
     this.filters = {
       shape: new Set(),
@@ -24,8 +24,8 @@ class ToysPage {
       beginAmount: 1,
       endAmount: 12,
     };
-    this.toyGrid = new ToyGrid();
     this.data = data;
+    this.toyGrid = new ToyGrid(this.data);
   }
   render(data: Array<DataItem>) {
     const main = document.querySelector(".main") as HTMLElement;
@@ -244,6 +244,22 @@ class ToysPage {
         });
       }
     }
+    document.querySelector('.toys-grid')?.addEventListener("click", (e)=>{
+      if((e.target as HTMLElement).classList.contains('fav-btn')){
+        (e.target as HTMLElement).classList.toggle('fav-btn-active');
+        this.data[Number((e.target as HTMLElement).id) -1].favorite = (e.target as HTMLElement).classList.contains('fav-btn-active');
+        /*console.log(this.data[Number((e.target as HTMLElement).id) -1]);*/
+        let numOfFavs:number = this.data.reduce((acc, n) => {
+          if(n.favorite ===true){
+            return acc + 1
+          }
+          else return acc
+        
+        }, 0);
+        /*console.log(numOfFavs);*/  
+        (document.querySelector('.favorite-count') as HTMLElement).innerHTML =`${numOfFavs}` 
+      }
+    })
     document.querySelector(".reset")?.addEventListener("click", () => {
       console.log(this.filters);
       console.log(localStorage);

@@ -15,7 +15,10 @@ import type { FilterObj } from "../../interfaces/interfaces";
 {shape: new Set(), color: new Set(), size: new Set()}
 */
 class ToyGrid implements Grid {
-  constructor() {}
+  public data:Array<DataItem>
+  constructor(data:Array<DataItem>) {
+    this.data = data
+  }
   showElems(data: Array<DataItem>, sortCriteria?: FilterObj) {
     (document.querySelector(".toys-grid") as HTMLElement).innerHTML = "";
     let sortData = [...data];
@@ -107,10 +110,14 @@ class ToyGrid implements Grid {
       (
         toyCard.querySelector(".toy-size") as HTMLElement
       ).innerHTML = `Размер: ${el.size}`;
+
+      toyCard.querySelector('.fav-btn')?.setAttribute('id',`${el.num}`);
+
       if (el.favorite === true) {
         (
           toyCard.querySelector(".toy-favourite") as HTMLElement
         ).innerHTML = `Любимая: да`;
+          toyCard.querySelector('.fav-btn')?.classList.add('fav-btn-active')
       } else {
         (
           toyCard.querySelector(".toy-favourite") as HTMLElement
@@ -120,6 +127,7 @@ class ToyGrid implements Grid {
     });
 
     document.querySelector(".toys-grid")?.append(fragment);
+   
   }
 }
 export default ToyGrid;
