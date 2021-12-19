@@ -37,25 +37,29 @@ class ToyGrid implements Grid {
       };
       sortData = sortData.filter((el) => {
         /*console.log(`${el.name} - ${el.favorite} result:${el.favorite === sortCriteria.favorite}` )*/
-       
+
         if (
-          ((sortCriteria.shape as Set<string | undefined>).has(el.shape) || (sortCriteria.shape as Set<string | undefined>).size === 0) &&
-          ((sortCriteria.color as Set<string | undefined>).has(el.color) || (sortCriteria.color as Set<string | undefined>).size === 0) &&
-          ((sortCriteria.size as Set<string | undefined>).has(el.size) || (sortCriteria.size as Set<string | undefined>).size === 0) &&
-          (Number(el.year) >= sortCriteria.beginYear && Number(el.year) <= sortCriteria.endYear) &&
-          (Number(el.count) >= sortCriteria.beginAmount && Number(el.count) <= sortCriteria.endAmount)
+          ((sortCriteria.shape as Set<string | undefined>).has(el.shape) ||
+            (sortCriteria.shape as Set<string | undefined>).size === 0) &&
+          ((sortCriteria.color as Set<string | undefined>).has(el.color) ||
+            (sortCriteria.color as Set<string | undefined>).size === 0) &&
+          ((sortCriteria.size as Set<string | undefined>).has(el.size) ||
+            (sortCriteria.size as Set<string | undefined>).size === 0) &&
+          Number(el.year) >= sortCriteria.beginYear &&
+          Number(el.year) <= sortCriteria.endYear &&
+          Number(el.count) >= sortCriteria.beginAmount &&
+          Number(el.count) <= sortCriteria.endAmount
 
           /*(sortCriteria.favorite === el.favorite && sortCriteria.favorite === true ) ||  sortCriteria.favorite === false*/
         ) {
-          
           return true;
         } else return false;
       });
 
-      if(sortCriteria.favorite === true){
-        sortData = sortData.filter((el) =>{
-        return el.favorite
-        })
+      if (sortCriteria.favorite === true) {
+        sortData = sortData.filter((el) => {
+          return el.favorite;
+        });
       }
       if (sortCriteria.search !== "") {
         sortData = sortData.filter((el) => {
@@ -65,7 +69,7 @@ class ToyGrid implements Grid {
       let sortMethod: (a: DataItem, b: DataItem) => number =
         sortfuncs[sortCriteria.sort as string];
       sortData.sort(sortMethod);
-      console.log(sortData);
+      /*console.log(sortData);*/
     }
 
     const fragment = document.createDocumentFragment();
@@ -103,7 +107,7 @@ class ToyGrid implements Grid {
       (
         toyCard.querySelector(".toy-size") as HTMLElement
       ).innerHTML = `Размер: ${el.size}`;
-      if (el.favorite ===true) {
+      if (el.favorite === true) {
         (
           toyCard.querySelector(".toy-favourite") as HTMLElement
         ).innerHTML = `Любимая: да`;

@@ -10,7 +10,7 @@ export interface DataItem {
 }
 
 export type FilterObj = {
-  [key:string]: Set<string|undefined> | Function |boolean | string |number
+  [key:string]: Set<string|undefined> | Function |boolean | string |number | Array<string>
   
 }
 export interface Grid{
