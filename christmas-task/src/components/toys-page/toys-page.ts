@@ -166,9 +166,10 @@ let amountOutput = [
       if  (typeof filterToMod === 'boolean') {
         document.querySelector(`.${key}`)?.addEventListener("click",(e) => {
           console.log((document.querySelector(`.fav-check`) as HTMLInputElement).checked)
-          this.filters[key] = (document.querySelector(`.fav-check`) as HTMLInputElement).checked
+          this.filters.favorite = (document.querySelector(`.fav-check`) as HTMLInputElement).checked
+          console.log(this.filters.favorite)
           this.toyGrid.showElems(this.data, this.filters);
-          console.log(this.filters)
+         
         })
       }
       if (key === 'sort') {

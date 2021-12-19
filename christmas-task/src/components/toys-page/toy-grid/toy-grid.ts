@@ -36,7 +36,8 @@ class ToyGrid implements Grid {
         },
       };
       sortData = sortData.filter((el) => {
-        console.log(`${Number(el.count)} - ${sortCriteria.endAmount} result:${Number(el.count) <= sortCriteria.endAmount }` )
+        /*console.log(`${el.name} - ${el.favorite} result:${el.favorite === sortCriteria.favorite}` )*/
+       
         if (
           ((sortCriteria.shape as Set<string | undefined>).has(el.shape) || (sortCriteria.shape as Set<string | undefined>).size === 0) &&
           ((sortCriteria.color as Set<string | undefined>).has(el.color) || (sortCriteria.color as Set<string | undefined>).size === 0) &&
@@ -50,6 +51,12 @@ class ToyGrid implements Grid {
           return true;
         } else return false;
       });
+
+      if(sortCriteria.favorite === true){
+        sortData = sortData.filter((el) =>{
+        return el.favorite
+        })
+      }
       if (sortCriteria.search !== "") {
         sortData = sortData.filter((el) => {
           return el.name.toLowerCase().includes(sortCriteria.search as string);
@@ -96,7 +103,7 @@ class ToyGrid implements Grid {
       (
         toyCard.querySelector(".toy-size") as HTMLElement
       ).innerHTML = `Размер: ${el.size}`;
-      if (el.favorite) {
+      if (el.favorite ===true) {
         (
           toyCard.querySelector(".toy-favourite") as HTMLElement
         ).innerHTML = `Любимая: да`;
