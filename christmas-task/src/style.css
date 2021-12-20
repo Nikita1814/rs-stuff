@@ -141,7 +141,8 @@ button {
     background-color: rgba(32, 178, 170, 0.3);
 }
 .filter {
-    height: 33%;
+    height: 466px;
+    margin-bottom:10px;
     background-color: rgb(31, 178, 170, 0.5);
     border-radius: 5%;
     width: 100%;
