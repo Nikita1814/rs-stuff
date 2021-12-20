@@ -19,6 +19,7 @@ class ToysPage implements Toys {
   public sorts: Filter;
 
   constructor(data: Array<DataItem>) {
+
     this.filters = {
       shape: new Set(),
       color: new Set(),
@@ -31,7 +32,17 @@ class ToysPage implements Toys {
       beginAmount: 1,
       endAmount: 12,
     };
+    if(localStorage.getItem("filters")){
+      this.filters = JSON.parse(localStorage.getItem("filters") as string);
+      this.filters.shape = new Set((this.filters.shape as Array<'string'>));
+      this.filters.size = new Set((this.filters.size as Array<'string'>));
+      this.filters.color = new Set((this.filters.color as Array<'string'>));
+    }
     this.data = data;
+    if(localStorage.getItem("data")){
+    this.data=JSON.parse(localStorage.getItem("data") as string)
+    }
+
     this.toyGrid = new ToyGrid(this.data);
   this.appearance = new Appearance(this.data, this.filters, this.toyGrid)
   this.ranges = new Ranges(this.data, this.filters, this.toyGrid)
@@ -104,13 +115,19 @@ class ToysPage implements Toys {
     </div>
 </div>
 </div>`;
-    /*this.handleStorage(this.filters)*/
-    this.toyGrid.showElems(data, this.filters);
+    
+    this.handleStorage(this.filters)
+    this.toyGrid.showElems(this.data, this.filters);
     this.addListeners();
     /*this.setSliders(this.filters, this.toyGrid, this.data);*/
     /*TODO make a function that would set up listeners after render(by calling functions from prop-classes)*/
   }
-  /*handleStorage(filters: FilterObj){
+  handleStorage(filters: FilterObj){
+    (document.querySelector(`.favorite-count`) as HTMLElement).innerHTML =String(this.data.reduce((acc: number, n: DataItem) => {
+      if (n.favorite === true) {
+        return acc + 1;
+      } else return acc;
+    }, 0)); 
   (filters.size as Set<string>).forEach((el) =>{
      document.querySelector(`[data-criteria=${el}]`)?.classList.add('selected')
    }); 
@@ -130,10 +147,9 @@ class ToysPage implements Toys {
   (document.querySelector('.fav-check') as HTMLInputElement).checked = (filters.favorite as boolean)
 
 
-  }*/
+  }
  
   addListeners() {
-    
     this.appearance.addListeners()
     this.sorts.addListeners()
     this.ranges.setSliders(this.filters, this.toyGrid, this.data)
@@ -162,13 +178,16 @@ class ToysPage implements Toys {
         /*console.log(this.data[Number((e.target as HTMLElement).id) -1]);*/
 
         /*console.log(numOfFavs);*/
-        (
-          document.querySelector(".favorite-count") as HTMLElement
+      
+          (document.querySelector(".favorite-count") as HTMLElement
         ).innerHTML = `${countFavs(this.data)}`;
       }
     });
     document.querySelector(".reset")?.addEventListener("click", () => {
-this.filters.shape =  new Set()
+     
+    console.log(this.filters)
+    console.log(localStorage)
+/*this.filters.shape =  new Set()
 this.filters.color =  new Set()
 this.filters.size =  new Set()
 this.filters.beginYear =  1940
@@ -178,7 +197,7 @@ this.filters.endAmount =  12;
 this.filters.favorite = false;
 this.filters.search ='';
 (document.querySelector('.fav-check') as HTMLInputElement).checked = this.filters.favorite
-this.render(this.data)
+this.render(this.data)*/
 
       /*shape: new Set(),
       color: new Set(),
@@ -189,22 +208,24 @@ this.render(this.data)
       endAmount: 12
       document.querySelector('.fav-check)
       */
+    
     });
+    
   }
-  /*setStorage(){
+  setStorage(){
   this.filters.shape = [...(this.filters.shape as Set<'string'>)]
   this.filters.size = [...(this.filters.size as Set<'string'>)]
   this.filters.color = [...(this.filters.color as Set<'string'>)]
-  localStorage.setItem("filters", JSON.stringify(this.filters))  
+  localStorage.setItem("filters", JSON.stringify(this.filters))
+  localStorage.setItem("data", JSON.stringify(this.data))  
   }
-  loadStorage(){
+  /*loadStorage(){
     if(localStorage.getItem("filters")){
-   this.filters = JSON.parse(localStorage.getItem("filters") as string)
-   this.filters.shape = new Set(...(this.filters.shape as Array<'string'>))
-   this.filters.size = new Set(...(this.filters.size as Array<'string'>))
-   this.filters.color = new Set(...(this.filters.color as Array<'string'>))
-
- 
+   this.filters = JSON.parse(localStorage.getItem("filters") as string);
+   this.filters.shape = new Set((this.filters.shape as Array<'string'>));
+   this.filters.size = new Set((this.filters.size as Array<'string'>));
+   this.filters.color = new Set((this.filters.color as Array<'string'>));
+   
     }
     
   }*/

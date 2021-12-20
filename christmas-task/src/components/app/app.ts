@@ -20,19 +20,19 @@ class App implements AppСlass {
   }
   start() {
     window.addEventListener('beforeunload', ()=>{
-      /*this.setStorage()*/
-    })
-   console.log(localStorage)
+      this.setStorage()
+    });
+   /*console.log(localStorage)*/
    /*console.log(this.filters)*/
-    /*this.loadStorage()*/
-    console.log(localStorage)
-    this.toysPage.render(this.data)
+    /*this.loadStorage();*/
+    console.log(this.toysPage.filters)
+    this.toysPage.render(this.data);
     /*TODO a function initializing the app, setting up header listeners for page transfer and sending the data object down to the other classes, while calling render functions*/
   }
-  /*setStorage(){
+  setStorage(){
     this.toysPage.setStorage()
   }
-  loadStorage(){
+  /*loadStorage(){
     this.toysPage.loadStorage()
   }*/
 }

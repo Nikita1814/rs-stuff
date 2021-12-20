@@ -25,7 +25,10 @@ export interface Toys{
   ranges: RangeFilter;
   sorts: Filter;
   render:(data:Array<DataItem>)=> void;
-  addListeners:()=> void
+  addListeners:()=> void;
+  setStorage:()=> void
+  /*loadStorage:() => void*/
+  /*handleStorage:(filters: FilterObj) => void*/
 
 }
 export interface AppСlass{
