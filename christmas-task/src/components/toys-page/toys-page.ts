@@ -168,8 +168,27 @@ class ToysPage implements Toys {
       }
     });
     document.querySelector(".reset")?.addEventListener("click", () => {
-      console.log(this.filters);
-      console.log(localStorage);
+this.filters.shape =  new Set()
+this.filters.color =  new Set()
+this.filters.size =  new Set()
+this.filters.beginYear =  1940
+this.filters.endYear =  2020
+this.filters.beginAmount =  1;
+this.filters.endAmount =  12;
+this.filters.favorite = false;
+this.filters.search ='';
+(document.querySelector('.fav-check') as HTMLInputElement).checked = this.filters.favorite
+this.render(this.data)
+
+      /*shape: new Set(),
+      color: new Set(),
+      size: new Set(),
+       beginYear: 1940,
+      endYear: 2020,
+      beginAmount: 1,
+      endAmount: 12
+      document.querySelector('.fav-check)
+      */
     });
   }
   /*setStorage(){

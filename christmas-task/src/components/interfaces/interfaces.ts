@@ -21,9 +21,9 @@ export interface Toys{
   toyGrid: Grid;
   filters: FilterObj;
   data: Array<DataItem>;
-  appearance: Object;
-  ranges: Object;
-  sorts: Object;
+  appearance: Filter;
+  ranges: RangeFilter;
+  sorts: Filter;
   render:(data:Array<DataItem>)=> void;
   addListeners:()=> void
 
