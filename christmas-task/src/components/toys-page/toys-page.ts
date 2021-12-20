@@ -1,15 +1,15 @@
-import { DataItem, Grid } from "../interfaces/interfaces";
+import { DataItem, Grid, Toys } from "../interfaces/interfaces";
 import type { FilterObj } from "../interfaces/interfaces";
 import ToyGrid from "./toy-grid/toy-grid";
 /*import noUiSlider from 'nouislider'*/
-import { target, API } from "nouislider";
+/*import { target, API } from "nouislider";*/
 import "nouislider/dist/nouislider.css";
 import * as noUiSlider from "nouislider";
 
-class ToysPage {
+class ToysPage implements Toys {
   /*TODO make propper interfaces*/
-  private toyGrid: Grid;
-  private filters: FilterObj;
+  public toyGrid: Grid;
+  public filters: FilterObj;
   public data: Array<DataItem>;
   constructor(data: Array<DataItem>) {
     this.filters = {
@@ -122,10 +122,10 @@ class ToysPage {
 
   }*/
   setSliders(filters: FilterObj, grid: Grid, data: Array<DataItem>) {
-    let yearSlider: noUiSlider.target = document.getElementById(
+    const yearSlider: noUiSlider.target = document.getElementById(
       "year-slider"
     ) as HTMLElement as noUiSlider.target;
-    let amountSlider: noUiSlider.target = document.getElementById(
+    const amountSlider: noUiSlider.target = document.getElementById(
       "amount-slider"
     ) as HTMLElement as noUiSlider.target;
 
@@ -152,11 +152,11 @@ class ToysPage {
         max: 12,
       },
     });
-    let yearOutput = [
+    const yearOutput = [
       document.getElementById("begin-year") as HTMLElement,
       document.getElementById("end-year") as HTMLElement,
     ];
-    let amountOutput = [
+    const amountOutput = [
       document.getElementById("begin-amount") as HTMLElement,
       document.getElementById("end-amount") as HTMLElement,
     ];
@@ -187,9 +187,8 @@ class ToysPage {
   addListeners() {
     let key: string;
     for (key in this.filters) {
-      let filterToMod:
+    const filterToMod:
         | Set<string | undefined>
-        | Function
         | boolean
         | string
         | number
@@ -216,7 +215,7 @@ class ToysPage {
         });
       }
       if (typeof filterToMod === "boolean") {
-        document.querySelector(`.${key}`)?.addEventListener("click", (e) => {
+        document.querySelector(`.${key}`)?.addEventListener("click", () => {
           /*console.log((document.querySelector(`.fav-check`) as HTMLInputElement).checked)*/
           this.filters.favorite = (
             document.querySelector(`.fav-check`) as HTMLInputElement
@@ -245,14 +244,14 @@ class ToysPage {
       }
     }
     document.querySelector(".toys-grid")?.addEventListener("click", (e) => {
+      function countFavs(data: Array<DataItem>) {
+        return data.reduce((acc: number, n: DataItem) => {
+          if (n.favorite === true) {
+            return acc + 1;
+          } else return acc;
+        }, 0);
+      }
       if ((e.target as HTMLElement).classList.contains("fav-btn")) {
-        function countFavs(data: Array<DataItem>) {
-          return data.reduce((acc: number, n: DataItem) => {
-            if (n.favorite === true) {
-              return acc + 1;
-            } else return acc;
-          }, 0);
-        }
         console.log(countFavs(this.data));
         document.querySelector(".fav-warn")?.classList.add("hide-warn");
         (e.target as HTMLElement).classList.toggle("fav-btn-active");

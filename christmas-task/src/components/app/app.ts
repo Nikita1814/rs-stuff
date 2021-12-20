@@ -1,21 +1,21 @@
 import data from "../../data";
-import { DataItem } from "../interfaces/interfaces";
+import { AppСlass, DataItem, Toys } from "../interfaces/interfaces";
 import ToysPage from "../toys-page/toys-page";
 /*localStorage.clear()*/
-class App {
+class App implements AppСlass {
   /*TODO propper types and interfaces*/
-  private homePage;
-  private toysPage;
-  private treePage;
-  private header;
-  private data: Array<DataItem>;
+  /*private homePage;*/
+  toysPage: Toys;
+  /*private treePage;*/
+  /*private header;*/
+  data: Array<DataItem>;
 
 
   constructor() {
-    this.homePage = {};
+    /*this.homePage = {};*/
     this.toysPage = new ToysPage(data) ;
-    this.treePage = {};
-    this.header={}
+    /*this.treePage = {};*/
+    /*this.header={}*/
     this.data = data;
   }
   start() {

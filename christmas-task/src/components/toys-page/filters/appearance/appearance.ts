@@ -1,5 +1,10 @@
+import { DataItem, FilterObj, Grid } from "../../../interfaces/interfaces";
+
 class Appearance {
-  private color: {
+  data:Array<DataItem>;
+  filters:FilterObj;
+  toyGrid:Grid
+  /*private color: {
     white: boolean;
     yellow: boolean;
     red: boolean;
@@ -17,10 +22,13 @@ class Appearance {
     big: boolean;
     medium: boolean;
     small: boolean;
-  };
+  };*/
 
-  constructor() {
-    this.color = {
+  constructor(data:Array<DataItem>, filters:FilterObj, grid:Grid) {
+    this.data = data
+    this.filters =filters
+    this.toyGrid = grid
+    /*this.color = {
       white: true,
       yellow: true,
       red: true,
@@ -38,11 +46,38 @@ class Appearance {
       big: true,
       medium: true,
       small: true,
-    };
+    };*/
   }
   addListeners() {
-    return;
-    /*TODO: function that adds listeners*/
+    let key: string;
+   
+    for (key in this.filters){
+      const filterToMod:
+      | Set<string | undefined>
+      | boolean
+      | string
+      | number
+      | Array<string> = this.filters[key];
+      if (filterToMod instanceof Set) {
+        document.querySelector(`.${key}`)?.addEventListener("click", (e) => {
+          if ((e.target as HTMLElement).classList.contains("selectable")) {
+            if ((e.target as HTMLElement).classList.contains("selected")) {
+              (filterToMod as Set<string | undefined>).delete(
+                (e.target as HTMLElement).dataset.criteria
+              ); //TODO: makae this affect specific categories
+            } else {
+              (filterToMod as Set<string | undefined>).add(
+                (e.target as HTMLElement).dataset.criteria
+              );
+              /*console.log(this.filters.shape);*/
+            }
+            (e.target as HTMLElement).classList.toggle(`selected`);
+            /*console.log(this.filters);*/
+            this.toyGrid.showElems(this.data, this.filters);
+          }
+        });
+      }
+    }
   }
 
   UpdCriterea() {

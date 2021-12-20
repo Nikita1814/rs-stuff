@@ -1,22 +1,13 @@
+import { DataItem, FilterObj, Grid } from "../../../interfaces/interfaces";
 class Ranges {
-  private years: {
-    firstEyar: string;
-    LastYear: string;
-  };
-  private amount: {
-    leastAmount: string;
-    mostAmount: string;
-  };
+  data:Array<DataItem>;
+  filters:FilterObj;
+  toyGrid:Grid
 
-  constructor() {
-    this.years = {
-      firstEyar: "1940",
-      LastYear: "2021",
-    };
-    this.amount = {
-      leastAmount: "1",
-      mostAmount: "10",
-    };
+  constructor(data:Array<DataItem>, filters:FilterObj, grid:Grid) {
+    this.data = data
+    this.filters =filters
+    this.toyGrid = grid
   }
 
   addListeners() {

@@ -24,7 +24,7 @@ class ToyGrid implements Grid {
     let sortData = [...data];
     /*TODO Add a filtration application method*/
     if (sortCriteria) {
-      let sortfuncs: { [key: string]: (a: DataItem, b: DataItem) => number } = {
+      const sortfuncs: { [key: string]: (a: DataItem, b: DataItem) => number } = {
         AZ: function (a: DataItem, b: DataItem) {
           return a.name.localeCompare(b.name);
         },
@@ -69,7 +69,7 @@ class ToyGrid implements Grid {
           return el.name.toLowerCase().includes(sortCriteria.search as string);
         });
       }
-      let sortMethod: (a: DataItem, b: DataItem) => number =
+      const sortMethod: (a: DataItem, b: DataItem) => number =
         sortfuncs[sortCriteria.sort as string];
       sortData.sort(sortMethod);
       /*console.log(sortData);*/
