@@ -244,22 +244,36 @@ class ToysPage {
         });
       }
     }
-    document.querySelector('.toys-grid')?.addEventListener("click", (e)=>{
-      if((e.target as HTMLElement).classList.contains('fav-btn')){
-        (e.target as HTMLElement).classList.toggle('fav-btn-active');
-        this.data[Number((e.target as HTMLElement).id) -1].favorite = (e.target as HTMLElement).classList.contains('fav-btn-active');
+    document.querySelector(".toys-grid")?.addEventListener("click", (e) => {
+      if ((e.target as HTMLElement).classList.contains("fav-btn")) {
+        function countFavs(data: Array<DataItem>) {
+          return data.reduce((acc: number, n: DataItem) => {
+            if (n.favorite === true) {
+              return acc + 1;
+            } else return acc;
+          }, 0);
+        }
+        console.log(countFavs(this.data));
+        document.querySelector(".fav-warn")?.classList.add("hide-warn");
+        (e.target as HTMLElement).classList.toggle("fav-btn-active");
+        this.data[Number((e.target as HTMLElement).id) - 1].favorite = (
+          e.target as HTMLElement
+        ).classList.contains("fav-btn-active");
+        if (countFavs(this.data) === 21) {
+          document.querySelector(".fav-warn")?.classList.remove("hide-warn");
+          (e.target as HTMLElement).classList.toggle("fav-btn-active");
+          this.data[Number((e.target as HTMLElement).id) - 1].favorite = (
+            e.target as HTMLElement
+          ).classList.contains("fav-btn-active");
+        }
         /*console.log(this.data[Number((e.target as HTMLElement).id) -1]);*/
-        let numOfFavs:number = this.data.reduce((acc, n) => {
-          if(n.favorite ===true){
-            return acc + 1
-          }
-          else return acc
-        
-        }, 0);
-        /*console.log(numOfFavs);*/  
-        (document.querySelector('.favorite-count') as HTMLElement).innerHTML =`${numOfFavs}` 
+
+        /*console.log(numOfFavs);*/
+        (
+          document.querySelector(".favorite-count") as HTMLElement
+        ).innerHTML = `${countFavs(this.data)}`;
       }
-    })
+    });
     document.querySelector(".reset")?.addEventListener("click", () => {
       console.log(this.filters);
       console.log(localStorage);

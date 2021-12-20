@@ -127,6 +127,9 @@ class ToyGrid implements Grid {
     });
 
     document.querySelector(".toys-grid")?.append(fragment);
+    if(document.querySelector('.toys-grid')?.children.length === 0){
+      (document.querySelector('.toys-grid') as HTMLElement).innerHTML = `<h1 class="big-warn">Извините, совпадений не обнаружено</h1>`
+    }
    
   }
 }
