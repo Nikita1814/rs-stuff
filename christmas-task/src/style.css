@@ -139,19 +139,20 @@ button {
     align-items: flex-start;
     justify-content: space-between;
     background-color: rgba(32, 178, 170, 0.3);
-    overflow:auto
+    overflow: auto;
 }
 .filter {
     height: 466px;
-    margin-bottom:10px;
+    margin-bottom: 10px;
     background-color: rgb(31, 178, 170, 0.5);
     border-radius: 5%;
     width: 100%;
     padding: 1% 1%;
 }
-h2{
-    margin-bottom:0.5em;
-    margin-top:0.5em;
+
+h2 {
+    margin-bottom: 0.5em;
+    margin-top: 0.5em;
 }
 .appearance-criteria {
     width: 100%;
@@ -173,12 +174,14 @@ h2{
 .shape {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     width: 100%;
 }
 .shape div {
-    height: 40px;
-    width: 40px;
+    height: 30px;
+    width: 30px;
     background-size: contain;
+    background-position: center;
     background-repeat: no-repeat;
 }
 #ball {
@@ -204,12 +207,14 @@ h2{
 .color {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     width: 100%;
 }
 .color div {
-    width: 40px;
-    height: 40px;
+    width: 25px;
+    height: 25px;
     border-radius: 3%;
+    background-position: center;
 }
 #white {
     background-color: white;
@@ -238,18 +243,19 @@ h2{
     background-image: url(assets/svg/ball.svg);
     background-size: contain;
     background-repeat: no-repeat;
+    background-position: center;
 }
 #big {
-    width: 60px;
-    height: 60px;
-}
-#medium {
     width: 40px;
     height: 40px;
 }
+#medium {
+    width: 25px;
+    height: 25px;
+}
 #small {
-    width: 20px;
-    height: 20px;
+    width: 10px;
+    height: 10px;
 }
 .toy {
     width: 222px;
