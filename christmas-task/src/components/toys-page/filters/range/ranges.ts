@@ -52,7 +52,7 @@ class Ranges implements RangeFilter {
       document.getElementById("end-amount") as HTMLElement,
     ];
 
-    yearSlider?.noUiSlider?.on("update", function (values, handle: number) {
+    yearSlider?.noUiSlider?.on("slide", function (values, handle: number) {
       yearOutput[handle].innerHTML = values[handle].toString().slice(0, 4);
       filters.beginYear = Number(
         document.getElementById("begin-year")?.textContent

@@ -21,6 +21,7 @@ export interface Toys{
   toyGrid: Grid;
   filters: FilterObj;
   data: Array<DataItem>;
+  origData:  Array<DataItem>
   appearance: Filter;
   ranges: RangeFilter;
   sorts: Filter;

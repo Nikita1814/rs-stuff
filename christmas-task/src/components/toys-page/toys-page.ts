@@ -8,6 +8,7 @@ import * as noUiSlider from "nouislider";
 import Appearance from "./filters/appearance/appearance";
 import Ranges from "./filters/range/ranges";
 import Sorts from "./filters/sorts/sorts";
+import App from "../app/app";
 
 class ToysPage implements Toys {
   /*TODO make propper interfaces*/
@@ -17,6 +18,7 @@ class ToysPage implements Toys {
   public appearance: Filter;
   public ranges: RangeFilter;
   public sorts: Filter;
+  public origData: Array<DataItem>;; 
 
   constructor(data: Array<DataItem>) {
 
@@ -39,6 +41,7 @@ class ToysPage implements Toys {
       this.filters.color = new Set((this.filters.color as Array<'string'>));
     }
     this.data = data;
+    this.origData = data
     if(localStorage.getItem("data")){
     this.data=JSON.parse(localStorage.getItem("data") as string)
     }
@@ -109,6 +112,7 @@ class ToysPage implements Toys {
       <input type="search" class="search" autocomplete="off" placeholder="По имени">
     </select>
     <button class="reset">Сброс</button>
+    <button class="reset-all"> Сбросить Хранилище</button>
   </div>
 </div>
  <div class="toys-grid">
@@ -199,16 +203,28 @@ this.filters.search ='';
 (document.querySelector('.fav-check') as HTMLInputElement).checked = this.filters.favorite
 
 this.render(this.data)
+    
+    });
+    document.querySelector(".reset-all")?.addEventListener("click", () => {
+localStorage.clear()
+this.filters.shape =  new Set();
+this.filters.color =  new Set();
+this.filters.size =  new Set();
+this.filters.beginYear =  1940;
+this.filters.endYear =  2020;
+this.filters.beginAmount =  1;
+this.filters.endAmount =  12;
+this.filters.favorite = false;
+this.filters.search ='';
+this.filters.sort ='AZ';
 
-      /*shape: new Set(),
-      color: new Set(),
-      size: new Set(),
-       beginYear: 1940,
-      endYear: 2020,
-      beginAmount: 1,
-      endAmount: 12
-      document.querySelector('.fav-check)
-      */
+
+(document.querySelector('.fav-check') as HTMLInputElement).checked = this.filters.favorite
+    this.data =  this.origData
+    this.filters.beginAmount =  1;
+    this.filters.endAmount =  12;
+    this.render(this.data)
+    location.reload()
     
     });
     
