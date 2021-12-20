@@ -1,59 +1,55 @@
-import { DataItem, Grid, Toys, Filter, RangeFilter } from "../interfaces/interfaces";
-import type { FilterObj } from "../interfaces/interfaces";
-import ToyGrid from "./toy-grid/toy-grid";
-/*import noUiSlider from 'nouislider'*/
-/*import { target, API } from "nouislider";*/
-import "nouislider/dist/nouislider.css";
-import * as noUiSlider from "nouislider";
-import Appearance from "./filters/appearance/appearance";
-import Ranges from "./filters/range/ranges";
-import Sorts from "./filters/sorts/sorts";
-import App from "../app/app";
+import { DataItem, Grid, Toys, Filter, RangeFilter } from '../interfaces/interfaces'
+import type { FilterObj } from '../interfaces/interfaces'
+import ToyGrid from './toy-grid/toy-grid'
+
+import 'nouislider/dist/nouislider.css'
+
+import Appearance from './filters/appearance/appearance'
+import Ranges from './filters/range/ranges'
+import Sorts from './filters/sorts/sorts'
 
 class ToysPage implements Toys {
-  /*TODO make propper interfaces*/
-  public toyGrid: Grid;
-  public filters: FilterObj;
-  public data: Array<DataItem>;
-  public appearance: Filter;
-  public ranges: RangeFilter;
-  public sorts: Filter;
-  public origData: Array<DataItem>;; 
+    public toyGrid: Grid
+    public filters: FilterObj
+    public data: Array<DataItem>
+    public appearance: Filter
+    public ranges: RangeFilter
+    public sorts: Filter
+    public origData: Array<DataItem>
 
-  constructor(data: Array<DataItem>) {
+    constructor(data: Array<DataItem>) {
+        this.filters = {
+            shape: new Set(),
+            color: new Set(),
+            size: new Set(),
+            favorite: false,
+            sort: 'AZ',
+            search: '',
+            beginYear: 1940,
+            endYear: 2020,
+            beginAmount: 1,
+            endAmount: 12,
+        }
+        if (localStorage.getItem('filters')) {
+            this.filters = JSON.parse(localStorage.getItem('filters') as string)
+            this.filters.shape = new Set(this.filters.shape as Array<'string'>)
+            this.filters.size = new Set(this.filters.size as Array<'string'>)
+            this.filters.color = new Set(this.filters.color as Array<'string'>)
+        }
+        this.data = data
+        this.origData = data
+        if (localStorage.getItem('data')) {
+            this.data = JSON.parse(localStorage.getItem('data') as string)
+        }
 
-    this.filters = {
-      shape: new Set(),
-      color: new Set(),
-      size: new Set(),
-      favorite: false,
-      sort: "AZ",
-      search: "",
-      beginYear: 1940,
-      endYear: 2020,
-      beginAmount: 1,
-      endAmount: 12,
-    };
-    if(localStorage.getItem("filters")){
-      this.filters = JSON.parse(localStorage.getItem("filters") as string);
-      this.filters.shape = new Set((this.filters.shape as Array<'string'>));
-      this.filters.size = new Set((this.filters.size as Array<'string'>));
-      this.filters.color = new Set((this.filters.color as Array<'string'>));
+        this.toyGrid = new ToyGrid(this.data)
+        this.appearance = new Appearance(this.data, this.filters, this.toyGrid)
+        this.ranges = new Ranges(this.data, this.filters, this.toyGrid)
+        this.sorts = new Sorts(this.data, this.filters, this.toyGrid)
     }
-    this.data = data;
-    this.origData = data
-    if(localStorage.getItem("data")){
-    this.data=JSON.parse(localStorage.getItem("data") as string)
-    }
-
-    this.toyGrid = new ToyGrid(this.data);
-  this.appearance = new Appearance(this.data, this.filters, this.toyGrid)
-  this.ranges = new Ranges(this.data, this.filters, this.toyGrid)
-  this.sorts = new Sorts(this.data, this.filters, this.toyGrid)
-  }
-  render(data: Array<DataItem>) {
-    const main = document.querySelector(".main") as HTMLElement;
-    main.innerHTML = ` 
+    render(data: Array<DataItem>) {
+        const main = document.querySelector('.main') as HTMLElement
+        main.innerHTML = ` 
 <div class="page toys-page">
 <div class="criteria">
   <div class=" filter appearance-criteria">
@@ -118,133 +114,105 @@ class ToysPage implements Toys {
  <div class="toys-grid">
     </div>
 </div>
-</div>`;
-    
-    this.handleStorage(this.filters)
-    this.toyGrid.showElems(this.data, this.filters);
-    this.addListeners();
-    /*this.setSliders(this.filters, this.toyGrid, this.data);*/
-    /*TODO make a function that would set up listeners after render(by calling functions from prop-classes)*/
-  }
-  handleStorage(filters: FilterObj){
-    (document.querySelector(`.favorite-count`) as HTMLElement).innerHTML =String(this.data.reduce((acc: number, n: DataItem) => {
-      if (n.favorite === true) {
-        return acc + 1;
-      } else return acc;
-    }, 0)); 
-  (filters.size as Set<string>).forEach((el) =>{
-     document.querySelector(`[data-criteria=${el}]`)?.classList.add('selected')
-   }); 
+</div>`
 
-  (filters.shape as Set<string>).forEach((el) =>{
-    document.querySelector(`[data-criteria=${el}]`)?.classList.add('selected')
-  });
-
-  (filters.color as Set<string>).forEach((el) =>{
-    document.querySelector(`[data-criteria=${el}]`)?.classList.add('selected')
-  });  
-
-  document.querySelector(`[value=${filters.sort}]`)?.setAttribute('selected', 'selected');
-
-  (document.querySelector(`.search`) as HTMLInputElement).value = (filters.search as string);
-
-  (document.querySelector('.fav-check') as HTMLInputElement).checked = (filters.favorite as boolean)
-
-
-  }
- 
-  addListeners() {
-    this.appearance.addListeners()
-    this.sorts.addListeners()
-    this.ranges.setSliders(this.filters, this.toyGrid, this.data)
-    document.querySelector(".toys-grid")?.addEventListener("click", (e) => {
-      function countFavs(data: Array<DataItem>) {
-        return data.reduce((acc: number, n: DataItem) => {
-          if (n.favorite === true) {
-            return acc + 1;
-          } else return acc;
-        }, 0);
-      }
-      if ((e.target as HTMLElement).classList.contains("fav-btn")) {
-        console.log(countFavs(this.data));
-        document.querySelector(".fav-warn")?.classList.add("hide-warn");
-        (e.target as HTMLElement).classList.toggle("fav-btn-active");
-        this.data[Number((e.target as HTMLElement).id) - 1].favorite = (
-          e.target as HTMLElement
-        ).classList.contains("fav-btn-active");
-        if (countFavs(this.data) === 21) {
-          document.querySelector(".fav-warn")?.classList.remove("hide-warn");
-          (e.target as HTMLElement).classList.toggle("fav-btn-active");
-          this.data[Number((e.target as HTMLElement).id) - 1].favorite = (
-            e.target as HTMLElement
-          ).classList.contains("fav-btn-active");
-        }
-        /*console.log(this.data[Number((e.target as HTMLElement).id) -1]);*/
-
-        /*console.log(numOfFavs);*/
-      
-          (document.querySelector(".favorite-count") as HTMLElement
-        ).innerHTML = `${countFavs(this.data)}`;
-      }
-    });
-    document.querySelector(".reset")?.addEventListener("click", () => {
-     
-    /*console.log(this.filters)
-    console.log(localStorage)*/
-this.filters.shape =  new Set()
-this.filters.color =  new Set()
-this.filters.size =  new Set()
-this.filters.beginYear =  1940
-this.filters.endYear =  2020
-this.filters.beginAmount =  1;
-this.filters.endAmount =  12;
-this.filters.favorite = false;
-this.filters.search ='';
-(document.querySelector('.fav-check') as HTMLInputElement).checked = this.filters.favorite
-
-this.render(this.data)
-    
-    });
-    document.querySelector(".reset-all")?.addEventListener("click", () => {
-localStorage.clear()
-this.filters.shape =  new Set();
-this.filters.color =  new Set();
-this.filters.size =  new Set();
-this.filters.beginYear =  1940;
-this.filters.endYear =  2020;
-this.filters.beginAmount =  1;
-this.filters.endAmount =  12;
-this.filters.favorite = false;
-this.filters.search ='';
-this.filters.sort ='AZ';
-
-
-(document.querySelector('.fav-check') as HTMLInputElement).checked = this.filters.favorite
-    this.data =  this.origData
-    this.filters.beginAmount =  1;
-    this.filters.endAmount =  12;
-    this.render(this.data)
-    location.reload()
-    
-    });
-    
-  }
-  setStorage(){
-  this.filters.shape = [...(this.filters.shape as Set<'string'>)]
-  this.filters.size = [...(this.filters.size as Set<'string'>)]
-  this.filters.color = [...(this.filters.color as Set<'string'>)]
-  localStorage.setItem("filters", JSON.stringify(this.filters))
-  localStorage.setItem("data", JSON.stringify(this.data))  
-  }
-  /*loadStorage(){
-    if(localStorage.getItem("filters")){
-   this.filters = JSON.parse(localStorage.getItem("filters") as string);
-   this.filters.shape = new Set((this.filters.shape as Array<'string'>));
-   this.filters.size = new Set((this.filters.size as Array<'string'>));
-   this.filters.color = new Set((this.filters.color as Array<'string'>));
-   
+        this.handleStorage(this.filters)
+        this.toyGrid.showElems(this.data, this.filters)
+        this.addListeners()
     }
-    
-  }*/
+    handleStorage(filters: FilterObj) {
+        ;(document.querySelector(`.favorite-count`) as HTMLElement).innerHTML = String(
+            this.data.reduce((acc: number, n: DataItem) => {
+                if (n.favorite === true) {
+                    return acc + 1
+                } else return acc
+            }, 0)
+        )
+        ;(filters.size as Set<string>).forEach((el) => {
+            document.querySelector(`[data-criteria=${el}]`)?.classList.add('selected')
+        })
+        ;(filters.shape as Set<string>).forEach((el) => {
+            document.querySelector(`[data-criteria=${el}]`)?.classList.add('selected')
+        })
+        ;(filters.color as Set<string>).forEach((el) => {
+            document.querySelector(`[data-criteria=${el}]`)?.classList.add('selected')
+        })
+
+        document.querySelector(`[value=${filters.sort}]`)?.setAttribute('selected', 'selected')
+        ;(document.querySelector(`.search`) as HTMLInputElement).value = filters.search as string
+        ;(document.querySelector('.fav-check') as HTMLInputElement).checked = filters.favorite as boolean
+    }
+
+    addListeners() {
+        this.appearance.addListeners()
+        this.sorts.addListeners()
+        this.ranges.setSliders(this.filters, this.toyGrid, this.data)
+        document.querySelector('.toys-grid')?.addEventListener('click', (e) => {
+            function countFavs(data: Array<DataItem>) {
+                return data.reduce((acc: number, n: DataItem) => {
+                    if (n.favorite === true) {
+                        return acc + 1
+                    } else return acc
+                }, 0)
+            }
+            if ((e.target as HTMLElement).classList.contains('fav-btn')) {
+                console.log(countFavs(this.data))
+                document.querySelector('.fav-warn')?.classList.add('hide-warn')
+                ;(e.target as HTMLElement).classList.toggle('fav-btn-active')
+                this.data[Number((e.target as HTMLElement).id) - 1].favorite = (
+                    e.target as HTMLElement
+                ).classList.contains('fav-btn-active')
+                if (countFavs(this.data) === 21) {
+                    document.querySelector('.fav-warn')?.classList.remove('hide-warn')
+                    ;(e.target as HTMLElement).classList.toggle('fav-btn-active')
+                    this.data[Number((e.target as HTMLElement).id) - 1].favorite = (
+                        e.target as HTMLElement
+                    ).classList.contains('fav-btn-active')
+                }
+
+                ;(document.querySelector('.favorite-count') as HTMLElement).innerHTML = `${countFavs(this.data)}`
+            }
+        })
+        document.querySelector('.reset')?.addEventListener('click', () => {
+            this.filters.shape = new Set()
+            this.filters.color = new Set()
+            this.filters.size = new Set()
+            this.filters.beginYear = 1940
+            this.filters.endYear = 2020
+            this.filters.beginAmount = 1
+            this.filters.endAmount = 12
+            this.filters.favorite = false
+            this.filters.search = ''
+            ;(document.querySelector('.fav-check') as HTMLInputElement).checked = this.filters.favorite
+
+            this.render(this.data)
+        })
+        document.querySelector('.reset-all')?.addEventListener('click', () => {
+            localStorage.clear()
+            this.filters.shape = new Set()
+            this.filters.color = new Set()
+            this.filters.size = new Set()
+            this.filters.beginYear = 1940
+            this.filters.endYear = 2020
+            this.filters.beginAmount = 1
+            this.filters.endAmount = 12
+            this.filters.favorite = false
+            this.filters.search = ''
+            this.filters.sort = 'AZ'
+            ;(document.querySelector('.fav-check') as HTMLInputElement).checked = this.filters.favorite
+            this.data = this.origData
+            this.filters.beginAmount = 1
+            this.filters.endAmount = 12
+            this.render(this.data)
+            location.reload()
+        })
+    }
+    setStorage() {
+        this.filters.shape = [...(this.filters.shape as Set<'string'>)]
+        this.filters.size = [...(this.filters.size as Set<'string'>)]
+        this.filters.color = [...(this.filters.color as Set<'string'>)]
+        localStorage.setItem('filters', JSON.stringify(this.filters))
+        localStorage.setItem('data', JSON.stringify(this.data))
+    }
 }
-export default ToysPage;
+export default ToysPage

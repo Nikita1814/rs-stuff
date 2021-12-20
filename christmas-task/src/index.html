@@ -1,195 +1,184 @@
-<!--TODO separate this into components-->
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>granny's-christmas-tree</title>
+        <link rel="stylesheet" href="style.css" />
+        <link href="assets/favicon.ico" rel="shortcut icon" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
+    </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>granny's-christmas-tree</title>
-  <link rel="stylesheet" href="style.css" />
-  <link href="assets/favicon.ico" rel="shortcut icon">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap"
-    rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
-</head>
+    <body>
+        <header class="header">
+            <div class="header-container">
+                <nav class="navigation">
+                    <div class="nav-link main-menu-link">НАЧАТЬ</div>
+                    <div class="nav-link toy-page-link active-link">ИГРУШКИ</div>
+                    <div class="nav-link tree-page-link">ЁЛКА</div>
+                </nav>
+                <p class="fav-warn hide-warn">Извините, но все слоты любимых игрушек заняты</p>
+                <div class="favorite-counter">
+                    <p class="favorite-count">13</p>
+                </div>
+            </div>
+        </header>
+        <main class="main">
+            <div class="hidden page start-page" style="display: none">
+                <h1 class="start-page-title">Новогодняя игра "Наряди елку"</h1>
+                <button class="begin-btn">Начать</button>
+            </div>
+            <div class="page toys-page" style="display: none">
+                <div class="criteria">
+                    <div class="filter appearance-criteria">
+                        <h2>Фильтры по значению</h2>
+                        <div class="shape">
+                            <p>Форма</p>
+                            <div id="ball"></div>
+                            <div id="bell"></div>
+                            <div id="cone"></div>
+                            <div id="snowflake"></div>
+                            <div id="figurine"></div>
+                        </div>
+                        <div class="color">
+                            <p>Цвет</p>
+                            <div id="white"></div>
+                            <div id="yellow"></div>
+                            <div id="red"></div>
+                            <div id="blue"></div>
+                            <div id="green"></div>
+                        </div>
+                        <div class="size">
+                            <p>Размер</p>
+                            <div id="big"></div>
+                            <div id="medium"></div>
+                            <div id="small"></div>
+                        </div>
+                        <div class="favourites">
+                            <span>Только любимые:</span><input type="checkbox" class="fav-check" />
+                        </div>
+                    </div>
+                    <div class="filter range-criteria">
+                        <h2>Год приобретения</h2>
 
-<body>
-  <header class="header">
-    <div class="header-container">
-      <nav class="navigation">
-        <div class="nav-link main-menu-link ">НАЧАТЬ</div>
-        <div class="nav-link toy-page-link active-link">ИГРУШКИ</div>
-        <div class="nav-link tree-page-link">ЁЛКА</div>
-      </nav>
-      <p class="fav-warn hide-warn">Извините, но все слоты любимых игрушек заняты</p>
-      <div class="favorite-counter">
-       <p class="favorite-count">13</p>
-      </div>
+                        <input type="range" />
+                        <div class="outputs">
+                            <div class="output">2021</div>
+                            <div class="output">1961</div>
+                        </div>
 
-    </div>
-  </header>
-  <main class="main">
-    <div class="hidden page start-page" style="display: none;">
-      <h1 class="start-page-title">Новогодняя игра "Наряди елку"</h1>
-      <button class="begin-btn">Начать</button>
-    </div>
-    <div class="page toys-page" style="display: none;">
-      <div class="criteria">
+                        <h2>Количество экземпляров</h2>
 
-        <div class=" filter appearance-criteria">
-          <h2>Фильтры по значению</h2>
-          <div class="shape">
-            <p>Форма</p>
-            <div id="ball"></div>
-            <div id="bell"></div>
-            <div id="cone"></div>
-            <div id="snowflake"></div>
-            <div id="figurine"></div>
-          </div>
-          <div class="color">
-            <p>Цвет</p>
-            <div id="white"></div>
-            <div id="yellow"></div>
-            <div id="red"></div>
-            <div id="blue"></div>
-            <div id="green"></div>
-          </div>
-          <div class="size">
-            <p>Размер</p>
-            <div id="big"></div>
-            <div id="medium"></div>
-            <div id="small"></div>
-          </div>
-          <div class="favourites">
-            <span>Только любимые:</span><input type="checkbox" class="fav-check">
-          </div>
-        </div>
-        <div class="filter range-criteria">
-          <h2>Год приобретения</h2>
-          <p>
-            <input type="range">
-          <div class="outputs">
-            <div class="output">2021</div>
-            <div class="output">1961</div>
-          </div>
-          </p>
-          <h2>Количество экземпляров</h2>
-          <p>
-            <input type="range">
-          <div class="outputs">
-            <div class="output">10</div>
-            <div class="output">1</div>
-          </div>
-          </p>
-        </div>
-        <div class="filter sorting-criteria">
-          <h2>Сортировка</h2>
-          <select name="sorts" class="sorts">
-            <option value="А-Я"> По назывнию от А до Я</option>
-            <option value="Я-А"> По назывнию от Я до А</option>
-            <option value="decrease"> По количеству по убыванию</option>
-            <option value="increase"> По количеству по возрастанию</option>
-            <input type="search" class="search" autocomplete="off" placeholder="По имени">
-          </select>
-          <button class="reset">Сброс</button>
-        </div>
-      </div>
-      <div class="toys-grid">
-        <div class="toy">
-          <h2 class="toy-name">Lorem ipsum dolor sit amen</h2>
-          <img src="assets/toys/1.png" alt="" class="toy-image">
-          <div class="toy-description">
-            <p class="toy-amount"> Количество: 1</p>
-            <p class="toy-year"> Год: 1993</p>
-            <p class="toy-shape">Форма: шар</p>
-            <p class="toy-color">Цвет: желтый </p>
-            <p class="toy-size">Размер: средний</p>
-            <p class="toy-favourite">Лбюимая: нет</p>
-          </div>
-
-        </div>
-        <div class="toy">
-          <h2 class="toy-name">Lorem ipsum dolor sit amen</h2>
-          <img src="assets/toys/1.png" alt="" class="toy-image">
-          <div class="toy-description">
-            <p class="toy-amount"> Количество: 1</p>
-            <p class="toy-year"> Год: 1993</p>
-            <p class="toy-shape">Форма: шар</p>
-            <p class="toy-color">Цвет: желтый </p>
-            <p class="toy-size">Размер: средний</p>
-            <p class="toy-favourite">Лбюимая: нет</p>
-          </div>
-
-        </div>
-        <div class="toy">
-          <h2 class="toy-name">Lorem ipsum dolor sit amen</h2>
-          <img src="assets/toys/1.png" alt="" class="toy-image">
-          <div class="toy-description">
-            <p class="toy-amount"> Количество: 1</p>
-            <p class="toy-year"> Год: 1993</p>
-            <p class="toy-shape">Форма: шар</p>
-            <p class="toy-color">Цвет: желтый </p>
-            <p class="toy-size">Размер: средний</p>
-            <p class="toy-favourite">Лбюимая: нет</p>
-          </div>
-
-        </div>
-        <div class="toy">
-          <h2 class="toy-name">Lorem ipsum dolor sit amen</h2>
-          <img src="assets/toys/1.png" alt="" class="toy-image">
-          <div class="toy-description">
-            <p class="toy-amount"> Количество: 1</p>
-            <p class="toy-year"> Год: 1993</p>
-            <p class="toy-shape">Форма: шар</p>
-            <p class="toy-color">Цвет: желтый </p>
-            <p class="toy-size">Размер: средний</p>
-            <p class="toy-favourite">Лбюимая: нет</p>
-          </div>
-
-        </div>
-        <div class="toy">
-          <h2 class="toy-name">Lorem ipsum dolor sit amen</h2>
-          <img src="assets/toys/1.png" alt="" class="toy-image">
-          <div class="toy-description">
-            <p class="toy-amount"> Количество: 1</p>
-            <p class="toy-year"> Год: 1993</p>
-            <p class="toy-shape">Форма: шар</p>
-            <p class="toy-color">Цвет: желтый </p>
-            <p class="toy-size">Размер: средний</p>
-            <p class="toy-favourite">Лбюимая: нет</p>
-          </div>
-
-        </div>
-      </div>
-    </div>
-    <div class="page tree-page hidden" style="display: none;"></div>
-
-  </main>
-  <footer class="footer">
-    <div class="footer-container">
-      <p>2021 <a href="https://github.com/Nikita1814">Nikita1814</a></p>
-      <a class="plug" href="https://rs.school/"></a>
-    </div>
-
-  </footer>
-  <template id="toy-temp">
-    <div class="toy">
-      <h2 class="toy-name">Lorem ipsum dolor sit amen</h2>
-      <div class="toy-image"></div>
-      <div class="toy-description">
-        <p class="toy-amount"> Количество: 1</p>
-        <p class="toy-year"> Год: 1993</p>
-        <p class="toy-shape">Форма: шар</p>
-        <p class="toy-color">Цвет: желтый </p>
-        <p class="toy-size">Размер: средний</p>
-        <p class="toy-favourite">Лбюимая: нет</p>
-      </div>
-      <div class="fav-btn" id='1'></div>
-      </div>
-  </template>
-</body>
-
+                        <input type="range" />
+                        <div class="outputs">
+                            <div class="output">10</div>
+                            <div class="output">1</div>
+                        </div>
+                    </div>
+                    <div class="filter sorting-criteria">
+                        <h2>Сортировка</h2>
+                        <select name="sorts" class="sorts">
+                            <option value="А-Я">По назывнию от А до Я</option>
+                            <option value="Я-А">По назывнию от Я до А</option>
+                            <option value="decrease">По количеству по убыванию</option>
+                            <option value="increase">По количеству по возрастанию</option>
+                            <input type="search" class="search" autocomplete="off" placeholder="По имени" />
+                        </select>
+                        <button class="reset">Сброс</button>
+                    </div>
+                </div>
+                <div class="toys-grid">
+                    <div class="toy">
+                        <h2 class="toy-name">Lorem ipsum dolor sit amen</h2>
+                        <img src="assets/toys/1.png" alt="" class="toy-image" />
+                        <div class="toy-description">
+                            <p class="toy-amount">Количество: 1</p>
+                            <p class="toy-year">Год: 1993</p>
+                            <p class="toy-shape">Форма: шар</p>
+                            <p class="toy-color">Цвет: желтый</p>
+                            <p class="toy-size">Размер: средний</p>
+                            <p class="toy-favourite">Лбюимая: нет</p>
+                        </div>
+                    </div>
+                    <div class="toy">
+                        <h2 class="toy-name">Lorem ipsum dolor sit amen</h2>
+                        <img src="assets/toys/1.png" alt="" class="toy-image" />
+                        <div class="toy-description">
+                            <p class="toy-amount">Количество: 1</p>
+                            <p class="toy-year">Год: 1993</p>
+                            <p class="toy-shape">Форма: шар</p>
+                            <p class="toy-color">Цвет: желтый</p>
+                            <p class="toy-size">Размер: средний</p>
+                            <p class="toy-favourite">Лбюимая: нет</p>
+                        </div>
+                    </div>
+                    <div class="toy">
+                        <h2 class="toy-name">Lorem ipsum dolor sit amen</h2>
+                        <img src="assets/toys/1.png" alt="" class="toy-image" />
+                        <div class="toy-description">
+                            <p class="toy-amount">Количество: 1</p>
+                            <p class="toy-year">Год: 1993</p>
+                            <p class="toy-shape">Форма: шар</p>
+                            <p class="toy-color">Цвет: желтый</p>
+                            <p class="toy-size">Размер: средний</p>
+                            <p class="toy-favourite">Лбюимая: нет</p>
+                        </div>
+                    </div>
+                    <div class="toy">
+                        <h2 class="toy-name">Lorem ipsum dolor sit amen</h2>
+                        <img src="assets/toys/1.png" alt="" class="toy-image" />
+                        <div class="toy-description">
+                            <p class="toy-amount">Количество: 1</p>
+                            <p class="toy-year">Год: 1993</p>
+                            <p class="toy-shape">Форма: шар</p>
+                            <p class="toy-color">Цвет: желтый</p>
+                            <p class="toy-size">Размер: средний</p>
+                            <p class="toy-favourite">Лбюимая: нет</p>
+                        </div>
+                    </div>
+                    <div class="toy">
+                        <h2 class="toy-name">Lorem ipsum dolor sit amen</h2>
+                        <img src="assets/toys/1.png" alt="" class="toy-image" />
+                        <div class="toy-description">
+                            <p class="toy-amount">Количество: 1</p>
+                            <p class="toy-year">Год: 1993</p>
+                            <p class="toy-shape">Форма: шар</p>
+                            <p class="toy-color">Цвет: желтый</p>
+                            <p class="toy-size">Размер: средний</p>
+                            <p class="toy-favourite">Лбюимая: нет</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="page tree-page hidden" style="display: none"></div>
+        </main>
+        <footer class="footer">
+            <div class="footer-container">
+                <p>2021 <a href="https://github.com/Nikita1814">Nikita1814</a></p>
+                <a class="plug" href="https://rs.school/"></a>
+            </div>
+        </footer>
+        <template id="toy-temp">
+            <div class="toy">
+                <h2 class="toy-name">Lorem ipsum dolor sit amen</h2>
+                <div class="toy-image"></div>
+                <div class="toy-description">
+                    <p class="toy-amount">Количество: 1</p>
+                    <p class="toy-year">Год: 1993</p>
+                    <p class="toy-shape">Форма: шар</p>
+                    <p class="toy-color">Цвет: желтый</p>
+                    <p class="toy-size">Размер: средний</p>
+                    <p class="toy-favourite">Лбюимая: нет</p>
+                </div>
+                <div class="fav-btn" id="1"></div>
+            </div>
+        </template>
+    </body>
 </html>
