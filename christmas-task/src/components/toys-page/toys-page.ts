@@ -1,16 +1,23 @@
-import { DataItem, Grid, Toys } from "../interfaces/interfaces";
+import { DataItem, Grid, Toys, Filter, RangeFilter } from "../interfaces/interfaces";
 import type { FilterObj } from "../interfaces/interfaces";
 import ToyGrid from "./toy-grid/toy-grid";
 /*import noUiSlider from 'nouislider'*/
 /*import { target, API } from "nouislider";*/
 import "nouislider/dist/nouislider.css";
 import * as noUiSlider from "nouislider";
+import Appearance from "./filters/appearance/appearance";
+import Ranges from "./filters/range/ranges";
+import Sorts from "./filters/sorts/sorts";
 
 class ToysPage implements Toys {
   /*TODO make propper interfaces*/
   public toyGrid: Grid;
   public filters: FilterObj;
   public data: Array<DataItem>;
+  public appearance: Filter;
+  public ranges: RangeFilter;
+  public sorts: Filter;
+
   constructor(data: Array<DataItem>) {
     this.filters = {
       shape: new Set(),
@@ -26,6 +33,9 @@ class ToysPage implements Toys {
     };
     this.data = data;
     this.toyGrid = new ToyGrid(this.data);
+  this.appearance = new Appearance(this.data, this.filters, this.toyGrid)
+  this.ranges = new Ranges(this.data, this.filters, this.toyGrid)
+  this.sorts = new Sorts(this.data, this.filters, this.toyGrid)
   }
   render(data: Array<DataItem>) {
     const main = document.querySelector(".main") as HTMLElement;
@@ -48,7 +58,7 @@ class ToysPage implements Toys {
       <div data-criteria="желтый" id="yellow" class="selectable"></div>
       <div data-criteria="красный" id="red" class="selectable"></div>
       <div data-criteria="синий" id="blue" class="selectable"></div>
-      <div data-criteria="зеленый" id="green" class="selectable"></div>
+      <div data-criteria="зелёный" id="green" class="selectable"></div>
     </div>
     <div class="size">
       <p>Размер</p>
@@ -97,7 +107,7 @@ class ToysPage implements Toys {
     /*this.handleStorage(this.filters)*/
     this.toyGrid.showElems(data, this.filters);
     this.addListeners();
-    this.setSliders(this.filters, this.toyGrid, this.data);
+    /*this.setSliders(this.filters, this.toyGrid, this.data);*/
     /*TODO make a function that would set up listeners after render(by calling functions from prop-classes)*/
   }
   /*handleStorage(filters: FilterObj){
@@ -121,128 +131,12 @@ class ToysPage implements Toys {
 
 
   }*/
-  setSliders(filters: FilterObj, grid: Grid, data: Array<DataItem>) {
-    const yearSlider: noUiSlider.target = document.getElementById(
-      "year-slider"
-    ) as HTMLElement as noUiSlider.target;
-    const amountSlider: noUiSlider.target = document.getElementById(
-      "amount-slider"
-    ) as HTMLElement as noUiSlider.target;
-
-    noUiSlider.create(yearSlider, {
-      start: [this.filters.beginYear as number, this.filters.endYear as number],
-      behaviour: "drag",
-      step: 1,
-      connect: true,
-      range: {
-        min: 1940,
-        max: 2020,
-      },
-    });
-    noUiSlider.create(amountSlider, {
-      start: [
-        this.filters.beginAmount as number,
-        this.filters.endAmount as number,
-      ],
-      behaviour: "drag",
-      step: 1,
-      connect: true,
-      range: {
-        min: 1,
-        max: 12,
-      },
-    });
-    const yearOutput = [
-      document.getElementById("begin-year") as HTMLElement,
-      document.getElementById("end-year") as HTMLElement,
-    ];
-    const amountOutput = [
-      document.getElementById("begin-amount") as HTMLElement,
-      document.getElementById("end-amount") as HTMLElement,
-    ];
-
-    yearSlider?.noUiSlider?.on("update", function (values, handle: number) {
-      yearOutput[handle].innerHTML = values[handle].toString().slice(0, 4);
-      filters.beginYear = Number(
-        document.getElementById("begin-year")?.textContent
-      );
-      filters.endYear = Number(
-        document.getElementById("end-year")?.textContent
-      );
-      grid.showElems(data, filters);
-      /*console.log( 1960 > filters.beginYear && 1960 < filters.endYear)
-  console.log(filters.endYear)*/
-    });
-    amountSlider?.noUiSlider?.on("update", function (values, handle: number) {
-      amountOutput[handle].innerHTML = values[handle].toString().slice(0, 2);
-      filters.beginAmount = Number(
-        document.getElementById("begin-amount")?.textContent
-      );
-      filters.endAmount = Number(
-        document.getElementById("end-amount")?.textContent
-      );
-      grid.showElems(data, filters);
-    });
-  }
+ 
   addListeners() {
-    let key: string;
-    for (key in this.filters) {
-    const filterToMod:
-        | Set<string | undefined>
-        | boolean
-        | string
-        | number
-        | Array<string> = this.filters[key];
-      /*console.log(filterToMod instanceof Boolean);*/
-      /*console.log(((document.querySelector(`#ball`) as HTMLElement).dataset.criteria))*/
-      if (filterToMod instanceof Set) {
-        document.querySelector(`.${key}`)?.addEventListener("click", (e) => {
-          if ((e.target as HTMLElement).classList.contains("selectable")) {
-            if ((e.target as HTMLElement).classList.contains("selected")) {
-              (filterToMod as Set<string | undefined>).delete(
-                (e.target as HTMLElement).dataset.criteria
-              ); //TODO: makae this affect specific categories
-            } else {
-              (filterToMod as Set<string | undefined>).add(
-                (e.target as HTMLElement).dataset.criteria
-              );
-              /*console.log(this.filters.shape);*/
-            }
-            (e.target as HTMLElement).classList.toggle(`selected`);
-            /*console.log(this.filters);*/
-            this.toyGrid.showElems(this.data, this.filters);
-          }
-        });
-      }
-      if (typeof filterToMod === "boolean") {
-        document.querySelector(`.${key}`)?.addEventListener("click", () => {
-          /*console.log((document.querySelector(`.fav-check`) as HTMLInputElement).checked)*/
-          this.filters.favorite = (
-            document.querySelector(`.fav-check`) as HTMLInputElement
-          ).checked;
-          /*console.log(this.filters.favorite)*/
-          this.toyGrid.showElems(this.data, this.filters);
-        });
-      }
-      if (key === "sort") {
-        document.querySelector(`.sorts`)?.addEventListener("change", () => {
-          this.filters.sort = (
-            document.querySelector(`.sorts`) as HTMLSelectElement
-          ).value;
-          this.toyGrid.showElems(this.data, this.filters);
-          /*console.log(this.filters)*/
-        });
-      }
-      if (key === "search") {
-        document.querySelector(`.search`)?.addEventListener("input", () => {
-          this.filters.search = (
-            document.querySelector(`.search`) as HTMLInputElement
-          ).value.toLowerCase();
-
-          this.toyGrid.showElems(this.data, this.filters);
-        });
-      }
-    }
+    
+    this.appearance.addListeners()
+    this.sorts.addListeners()
+    this.ranges.setSliders(this.filters, this.toyGrid, this.data)
     document.querySelector(".toys-grid")?.addEventListener("click", (e) => {
       function countFavs(data: Array<DataItem>) {
         return data.reduce((acc: number, n: DataItem) => {

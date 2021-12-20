@@ -1,20 +1,32 @@
-class Sorts {
-  private title: string;
-  private sortingMethod: Function;
-  constructor() {
-    this.title = " ";
-    this.sortingMethod = function () {
-      return;
-    };
-    /*TODO decide weather the sorting method should be stored as a function  and what it should look like*/
+import { DataItem, Filter, FilterObj, Grid } from "../../../interfaces/interfaces";
+class Sorts implements Filter{
+  data: Array<DataItem>;
+  filters: FilterObj;
+  toyGrid: Grid;
+
+  constructor(data: Array<DataItem>, filters: FilterObj, grid: Grid) {
+    this.data = data;
+    this.filters = filters;
+    this.toyGrid = grid;
   }
   addListeners() {
-    return;
-    /*TODO: function that adds listeners*/
+    document.querySelector(`.sorts`)?.addEventListener("change", () => {
+      this.filters.sort = (
+        document.querySelector(`.sorts`) as HTMLSelectElement
+      ).value;
+      this.toyGrid.showElems(this.data, this.filters);
+      /*console.log(this.filters)*/
+    });
+
+    document.querySelector(`.search`)?.addEventListener("input", () => {
+      this.filters.search = (
+        document.querySelector(`.search`) as HTMLInputElement
+      ).value.toLowerCase();
+
+      this.toyGrid.showElems(this.data, this.filters);
+    });
   }
 
-  UpdCriterea() {
-    return;
-    /*TODO: function that updates criterea based on chosen elems and events */
-  }
+ 
 }
+export default Sorts

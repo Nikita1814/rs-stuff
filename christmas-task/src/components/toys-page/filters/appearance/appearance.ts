@@ -1,9 +1,9 @@
-import { DataItem, FilterObj, Grid } from "../../../interfaces/interfaces";
+import { DataItem, Filter, FilterObj, Grid } from "../../../interfaces/interfaces";
 
-class Appearance {
-  data:Array<DataItem>;
-  filters:FilterObj;
-  toyGrid:Grid
+class Appearance implements Filter{
+  data: Array<DataItem>;
+  filters: FilterObj;
+  toyGrid: Grid;
   /*private color: {
     white: boolean;
     yellow: boolean;
@@ -24,10 +24,10 @@ class Appearance {
     small: boolean;
   };*/
 
-  constructor(data:Array<DataItem>, filters:FilterObj, grid:Grid) {
-    this.data = data
-    this.filters =filters
-    this.toyGrid = grid
+  constructor(data: Array<DataItem>, filters: FilterObj, grid: Grid) {
+    this.data = data;
+    this.filters = filters;
+    this.toyGrid = grid;
     /*this.color = {
       white: true,
       yellow: true,
@@ -50,14 +50,14 @@ class Appearance {
   }
   addListeners() {
     let key: string;
-   
-    for (key in this.filters){
+
+    for (key in this.filters) {
       const filterToMod:
-      | Set<string | undefined>
-      | boolean
-      | string
-      | number
-      | Array<string> = this.filters[key];
+        | Set<string | undefined>
+        | boolean
+        | string
+        | number
+        | Array<string> = this.filters[key];
       if (filterToMod instanceof Set) {
         document.querySelector(`.${key}`)?.addEventListener("click", (e) => {
           if ((e.target as HTMLElement).classList.contains("selectable")) {
@@ -77,11 +77,21 @@ class Appearance {
           }
         });
       }
+      if (typeof filterToMod === "boolean") {
+        document.querySelector(`.${key}`)?.addEventListener("click", () => {
+          /*console.log((document.querySelector(`.fav-check`) as HTMLInputElement).checked)*/
+          this.filters.favorite = (
+            document.querySelector(`.fav-check`) as HTMLInputElement
+          ).checked;
+          /*console.log(this.filters.favorite)*/
+          this.toyGrid.showElems(this.data, this.filters);
+        });
+      }
     }
   }
-
   UpdCriterea() {
     return;
     /*TODO: function that updates criterea based on chosen elems and events */
   }
 }
+export default Appearance
