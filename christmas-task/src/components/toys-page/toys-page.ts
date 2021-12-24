@@ -30,9 +30,9 @@ class ToysPage implements Toys {
         }
         if (localStorage.getItem('filters')) {
             this.filters = JSON.parse(localStorage.getItem('filters') as string)
-            this.filters.shape = new Set(this.filters.shape as Array<'string'>)
-            this.filters.size = new Set(this.filters.size as Array<'string'>)
-            this.filters.color = new Set(this.filters.color as Array<'string'>)
+            this.filters.shape = new Set(this.filters.shape as string[])
+            this.filters.size = new Set(this.filters.size as string[])
+            this.filters.color = new Set(this.filters.color as string[])
         }
         this.data = data
         this.origData = data
