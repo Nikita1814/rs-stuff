@@ -38,8 +38,6 @@ class Appearance implements Filter {
             }
         }
     }
-    UpdCriterea() {
-        return
-    }
+   
 }
 export default Appearance
