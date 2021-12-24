@@ -76,7 +76,7 @@ class ToysPage implements Toys {
       <div data-criteria="малый" id="small" class="selectable"></div>
     </div>
     <div class="favorite">
-      <span>Только любимые:</span><input type="checkbox" class="fav-check">
+      <label for"fav">Только любимые:<input type="checkbox" class="fav-check" id="fav"></label>
     </div>
   </div>
   <div class="filter range-criteria">
