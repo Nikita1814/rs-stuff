@@ -6,21 +6,6 @@ import Appearance from './filters/appearance/appearance'
 import Ranges from './filters/range/ranges'
 import Sorts from './filters/sorts/sorts'
 
-function setFilter(){
- const obj: FilterObj ={
-    shape: new Set(),
-    color: new Set(),
-    size: new Set(),
-    favorite: false,
-    sort: 'AZ',
-    search: '',
-    beginYear: 1940,
-    endYear: 2020,
-    beginAmount: 1,
-    endAmount: 12,
- } 
- return obj
-}
 class ToysPage implements Toys {
     public toyGrid: Grid
     public filters: FilterObj
@@ -31,7 +16,18 @@ class ToysPage implements Toys {
     public origData: DataItem[]
 
     constructor(data: DataItem[]) {
-        this.filters = setFilter()
+        this.filters = {
+            shape: new Set(),
+            color: new Set(),
+            size: new Set(),
+            favorite: false,
+            sort: 'AZ',
+            search: '',
+            beginYear: 1940,
+            endYear: 2020,
+            beginAmount: 1,
+            endAmount: 12,
+         } 
         if (localStorage.getItem('filters')) {
             this.filters = JSON.parse(localStorage.getItem('filters') as string)
             this.filters.shape = new Set(this.filters.shape as string[])
@@ -50,6 +46,7 @@ class ToysPage implements Toys {
         this.sorts = new Sorts(this.data, this.filters, this.toyGrid)
     }
     render(data: DataItem[]) {
+        console.log(this.filters)
         const main = document.querySelector('.main') as HTMLElement
         main.innerHTML = ` 
 <div class="page toys-page">
@@ -95,16 +92,16 @@ class ToysPage implements Toys {
     <h2>Количество экземпляров</h2>
       <div id="amount-slider"></div>
     <div class="outputs">
-     <div class="output" id="begin-amount">${this.filters.beginAmout}</div>
-     <div class="output" id="end-amount">${this.filters.endAmout}</div>
+     <div class="output" id="begin-amount">${this.filters.beginAmount}</div>
+     <div class="output" id="end-amount">${this.filters.endAmount}</div>
     </div>
 </div>
   </div>
   <div class="filter sorting-criteria">
     <h2>Сортировка</h2>
     <select name="sorts" class="sorts">
-      <option value="AZ"> По назывнию от А до Я</option>
-      <option value="ZA"> По назывнию от Я до А</option>
+      <option value="AZ"> По названию от А до Я</option>
+      <option value="ZA"> По названию от Я до А</option>
       <option value="decrease"> По количеству по убыванию</option>
       <option value="increase"> По количеству по возрастанию</option>
       <input type="search" class="search" autocomplete="off" placeholder="По имени">
@@ -150,24 +147,20 @@ class ToysPage implements Toys {
         this.sorts.addListeners()
         this.ranges.setSliders(this.filters, this.toyGrid, this.data)
         document.querySelector('.toys-grid')?.addEventListener('click', (e) => {
+            const evTarget = e.target as HTMLElement
             function countFavs(data: DataItem[]) {
                 return data.reduce((acc: number, n: DataItem) => (n.favorite ? acc++ : acc), 0)
             }
-            if ((e.target as HTMLElement).classList.contains('fav-btn')) {
+            if (evTarget.classList.contains('fav-btn')) {
                 document.querySelector('.fav-warn')?.classList.add('hide-warn')
-                ;(e.target as HTMLElement).classList.toggle('fav-btn-active')
-                this.data[Number((e.target as HTMLElement).id) - 1].favorite = (
-                    e.target as HTMLElement
-                ).classList.contains('fav-btn-active')
+                evTarget.classList.toggle('fav-btn-active')
+                this.data[Number(evTarget.id) - 1].favorite = evTarget.classList.contains('fav-btn-active')
                 if (countFavs(this.data) === 21) {
                     document.querySelector('.fav-warn')?.classList.remove('hide-warn')
-                    ;(e.target as HTMLElement).classList.toggle('fav-btn-active')
-                    this.data[Number((e.target as HTMLElement).id) - 1].favorite = (
-                        e.target as HTMLElement
-                    ).classList.contains('fav-btn-active')
+                    evTarget.classList.toggle('fav-btn-active')
+                    this.data[Number(evTarget.id) - 1].favorite = evTarget.classList.contains('fav-btn-active')
                 }
-
-                ;(document.querySelector('.favorite-count') as HTMLElement).innerHTML = `${countFavs(this.data)}`
+                ;(document.querySelector('.favorite-count') as HTMLElement).textContent = `${countFavs(this.data)}`
             }
         })
         document.querySelector('.reset')?.addEventListener('click', () => {
@@ -181,18 +174,27 @@ class ToysPage implements Toys {
             this.filters.favorite = false
             this.filters.search = ''
             ;(document.querySelector('.fav-check') as HTMLInputElement).checked = this.filters.favorite
-
             this.render(this.data)
         })
         document.querySelector('.reset-all')?.addEventListener('click', () => {
             localStorage.clear()
-           this.filters = setFilter();
-           (document.querySelector('.fav-check') as HTMLInputElement).checked = this.filters.favorite as boolean;
+            this.filters = {shape: new Set(),
+            color: new Set(),
+            size: new Set(),
+            favorite: false,
+            sort: 'AZ',
+            search: '',
+            beginYear: 1940,
+            endYear: 2020,
+            beginAmount: 1,
+            endAmount: 12,
+            }
+            ;(document.querySelector('.fav-check') as HTMLInputElement).checked = this.filters.favorite as boolean
             this.data = this.origData
-            this.render(this.data)
             this.filters.beginAmount = 1
             this.filters.endAmount = 12
-            location.reload()
+            this.render(this.data)
+          
         })
     }
     setStorage() {

@@ -52,7 +52,7 @@ class Ranges implements RangeFilter {
             filters.endYear = Number(document.getElementById('end-year')?.textContent)
             grid.showElems(data, filters)
         })
-        amountSlider?.noUiSlider?.on('update', function (values, handleBar) {
+        amountSlider?.noUiSlider?.on('slide', function (values, handleBar) {
             amountOutput[handleBar].textContent = values[handleBar].toString().slice(0, 2)
             filters.beginAmount = Number(document.getElementById('begin-amount')?.textContent)
             filters.endAmount = Number(document.getElementById('end-amount')?.textContent)
