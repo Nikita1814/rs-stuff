@@ -156,7 +156,6 @@ class ToysPage implements Toys {
                     evTarget.classList.toggle('fav-btn-active')
                     this.favs.add(this.data[Number(evTarget.id) - 1].num)
                 }
-
                 if (this.favs.size === 20) {
                     document.querySelector('.fav-warn')?.classList.remove('hide-warn')
                 }
