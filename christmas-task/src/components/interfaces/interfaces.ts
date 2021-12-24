@@ -28,11 +28,11 @@ export interface Toys {
     addListeners: () => void
     setStorage: () => void
 }
-export interface AppСlass {
+/*export interface AppСlass {
     toysPage: Toys
     data: Array<DataItem>
     start: () => void
-}
+}*/
 
 export interface Filter {
     data: Array<DataItem>

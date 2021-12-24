@@ -1,8 +1,8 @@
 import data from '../../data'
-import { AppСlass, DataItem, Toys } from '../interfaces/interfaces'
+import { DataItem, Toys } from '../interfaces/interfaces'
 import ToysPage from '../toys-page/toys-page'
 
-class App implements AppСlass {
+class App  {
     toysPage: Toys
 
     data: Array<DataItem>
