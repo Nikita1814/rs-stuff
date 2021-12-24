@@ -1,4 +1,4 @@
-import { DataItem, Filter, FilterObj, Grid } from '../../../interfaces/interfaces'
+import { DataItem, Filter, FilterObj, FilterVal, Grid } from '../../../interfaces/interfaces'
 
 class Appearance implements Filter {
     data: DataItem[]
@@ -14,7 +14,7 @@ class Appearance implements Filter {
         let key: string
 
         for (key in this.filters) {
-            const filterToMod: Set<string | undefined> | boolean | string | number | string[] = this.filters[key]
+            const filterToMod: FilterVal= this.filters[key]
             if (filterToMod instanceof Set) {
                 document.querySelector(`.${key}`)?.addEventListener('click', (e) => {
                     if ((e.target as HTMLElement).classList.contains('selectable')) {

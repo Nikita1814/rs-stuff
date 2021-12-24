@@ -10,8 +10,9 @@ export interface DataItem {
 }
 
 export type FilterObj = {
-    [key: string]: Set<string | undefined> | boolean | string | number | string[]
+    [key: string]: FilterVal
 }
+export type FilterVal = Set<string | undefined> | boolean | string | number | string[]
 export interface Grid {
     data: DataItem[]
     showElems: (data: DataItem[], sortCriteria?: FilterObj) => void
