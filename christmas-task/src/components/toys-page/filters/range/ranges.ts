@@ -13,10 +13,8 @@ class Ranges implements RangeFilter {
     }
 
     setSliders(filters: FilterObj, grid: Grid, data: DataItem[]) {
-        const yearSlider: noUiSlider.target = document.getElementById('year-slider') as HTMLElement as noUiSlider.target
-        const amountSlider: noUiSlider.target = document.getElementById(
-            'amount-slider'
-        ) as HTMLElement as noUiSlider.target
+        const yearSlider = document.getElementById('year-slider')  as noUiSlider.target
+        const amountSlider = document.getElementById('amount-slider')  as noUiSlider.target
 
         noUiSlider.create(yearSlider, {
             start: [this.filters.beginYear as number, this.filters.endYear as number],
@@ -47,14 +45,14 @@ class Ranges implements RangeFilter {
             document.getElementById('end-amount') as HTMLElement,
         ]
 
-        yearSlider?.noUiSlider?.on('slide', function (values, handle: number) {
-            yearOutput[handle].innerHTML = values[handle].toString().slice(0, 4)
+        yearSlider?.noUiSlider?.on('slide', function (values, handleBar) {
+            yearOutput[handleBar].innerHTML = values[handleBar].toString().slice(0, 4)
             filters.beginYear = Number(document.getElementById('begin-year')?.textContent)
             filters.endYear = Number(document.getElementById('end-year')?.textContent)
             grid.showElems(data, filters)
         })
-        amountSlider?.noUiSlider?.on('update', function (values, handle: number) {
-            amountOutput[handle].innerHTML = values[handle].toString().slice(0, 2)
+        amountSlider?.noUiSlider?.on('update', function (values, handleBar) {
+            amountOutput[handleBar].innerHTML = values[handleBar].toString().slice(0, 2)
             filters.beginAmount = Number(document.getElementById('begin-amount')?.textContent)
             filters.endAmount = Number(document.getElementById('end-amount')?.textContent)
             grid.showElems(data, filters)
