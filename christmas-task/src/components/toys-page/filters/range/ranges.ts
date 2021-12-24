@@ -1,6 +1,7 @@
 import { DataItem, FilterObj, Grid, RangeFilter } from '../../../interfaces/interfaces'
 import 'nouislider/dist/nouislider.css'
 import * as noUiSlider from 'nouislider'
+
 class Ranges implements RangeFilter {
     data: DataItem[]
     filters: FilterObj

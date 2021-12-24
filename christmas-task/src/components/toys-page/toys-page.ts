@@ -1,9 +1,7 @@
 import { DataItem, Grid, Toys, Filter, RangeFilter } from '../interfaces/interfaces'
 import type { FilterObj } from '../interfaces/interfaces'
 import ToyGrid from './toy-grid/toy-grid'
-
 import 'nouislider/dist/nouislider.css'
-
 import Appearance from './filters/appearance/appearance'
 import Ranges from './filters/range/ranges'
 import Sorts from './filters/sorts/sorts'
