@@ -62,10 +62,10 @@ class ToyGrid implements Grid {
             }
             if (sortCriteria.search !== '') {
                 sortData = sortData.filter((el) => {
-                    return el.name.toLowerCase().includes(sortCriteria.search as string)
+                    return el.name.toLowerCase().includes(sortCriteria.search)
                 })
             }
-            const sortMethod: (a: DataItem, b: DataItem) => number = sortfuncs[sortCriteria.sort as string]
+            const sortMethod: (a: DataItem, b: DataItem) => number = sortfuncs[sortCriteria.sort]
             sortData.sort(sortMethod)
         }
 

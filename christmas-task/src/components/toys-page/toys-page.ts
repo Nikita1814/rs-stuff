@@ -27,12 +27,12 @@ class ToysPage implements Toys {
             endYear: 2020,
             beginAmount: 1,
             endAmount: 12,
-         } 
+        }
         if (localStorage.getItem('filters')) {
             this.filters = JSON.parse(localStorage.getItem('filters') as string)
-            this.filters.shape = new Set(this.filters.shape as string[])
-            this.filters.size = new Set(this.filters.size as string[])
-            this.filters.color = new Set(this.filters.color as string[])
+            this.filters.shape = new Set(this.filters.shape)
+            this.filters.size = new Set(this.filters.size)
+            this.filters.color = new Set(this.filters.color)
         }
         this.data = data
         this.origData = data
@@ -127,13 +127,13 @@ class ToysPage implements Toys {
                 } else return acc
             }, 0)
         )
-        ;(filters.size as Set<string>).forEach((el) => {
+        filters.size.forEach((el) => {
             document.querySelector(`[data-criteria=${el}]`)?.classList.add('selected')
         })
-        ;(filters.shape as Set<string>).forEach((el) => {
+        filters.shape.forEach((el) => {
             document.querySelector(`[data-criteria=${el}]`)?.classList.add('selected')
         })
-        ;(filters.color as Set<string>).forEach((el) => {
+        filters.color.forEach((el) => {
             document.querySelector(`[data-criteria=${el}]`)?.classList.add('selected')
         })
 
@@ -149,7 +149,12 @@ class ToysPage implements Toys {
         document.querySelector('.toys-grid')?.addEventListener('click', (e) => {
             const evTarget = e.target as HTMLElement
             function countFavs(data: DataItem[]) {
-                return data.reduce((acc: number, n: DataItem) => (n.favorite ? acc++ : acc), 0)
+                return data.reduce((acc: number, n: DataItem) => (n.favorite === true ? acc + 1 : acc), 0)
+                /*return data.reduce((acc: number, n: DataItem) => {
+                        if (n.favorite === true) {
+                            return acc + 1
+                        } else return acc
+                    }, 0)*/
             }
             if (evTarget.classList.contains('fav-btn')) {
                 document.querySelector('.fav-warn')?.classList.add('hide-warn')
@@ -160,7 +165,7 @@ class ToysPage implements Toys {
                     evTarget.classList.toggle('fav-btn-active')
                     this.data[Number(evTarget.id) - 1].favorite = evTarget.classList.contains('fav-btn-active')
                 }
-                ;(document.querySelector('.favorite-count') as HTMLElement).textContent = `${countFavs(this.data)}`
+                ;(document.querySelector('.favorite-count') as HTMLElement).innerHTML = `${countFavs(this.data)}`
             }
         })
         document.querySelector('.reset')?.addEventListener('click', () => {
@@ -178,29 +183,29 @@ class ToysPage implements Toys {
         })
         document.querySelector('.reset-all')?.addEventListener('click', () => {
             localStorage.clear()
-            this.filters = {shape: new Set(),
-            color: new Set(),
-            size: new Set(),
-            favorite: false,
-            sort: 'AZ',
-            search: '',
-            beginYear: 1940,
-            endYear: 2020,
-            beginAmount: 1,
-            endAmount: 12,
+            this.filters = {
+                shape: new Set(),
+                color: new Set(),
+                size: new Set(),
+                favorite: false,
+                sort: 'AZ',
+                search: '',
+                beginYear: 1940,
+                endYear: 2020,
+                beginAmount: 1,
+                endAmount: 12,
             }
-            ;(document.querySelector('.fav-check') as HTMLInputElement).checked = this.filters.favorite as boolean
+            ;(document.querySelector('.fav-check') as HTMLInputElement).checked = this.filters.favorite
             this.data = this.origData
             this.filters.beginAmount = 1
             this.filters.endAmount = 12
             this.render(this.data)
-          
         })
     }
     setStorage() {
-        this.filters.shape = [...(this.filters.shape as Set<'string'>)]
-        this.filters.size = [...(this.filters.size as Set<'string'>)]
-        this.filters.color = [...(this.filters.color as Set<'string'>)]
+        this.filters.shape = [...this.filters.shape]
+        this.filters.size = [...this.filters.size]
+        this.filters.color = [...this.filters.color]
         localStorage.setItem('filters', JSON.stringify(this.filters))
         localStorage.setItem('data', JSON.stringify(this.data))
     }

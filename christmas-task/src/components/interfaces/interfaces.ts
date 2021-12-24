@@ -9,10 +9,22 @@ export interface DataItem {
     favorite: boolean
 }
 
-export type FilterObj = {
+export type FilterObjTemp = {
     [key: string]: FilterVal
 }
-export type FilterVal = Set<string | undefined> | boolean | string | number | string[]
+export interface FilterObj extends FilterObjTemp {
+    shape: Set<string | undefined> | Array<string | undefined>
+    color: Set<string | undefined> | Array<string | undefined>
+    size: Set<string | undefined> | Array<string | undefined>
+    favorite: boolean
+    sort: string
+    search: string
+    beginYear: number
+    endYear: number
+    beginAmount: number
+    endAmount: number
+}
+export type FilterVal = Set<string | undefined> | boolean | string | number | Array<string | undefined>
 
 export interface Grid {
     data: DataItem[]
