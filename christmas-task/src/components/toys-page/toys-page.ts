@@ -11,13 +11,13 @@ import Sorts from './filters/sorts/sorts'
 class ToysPage implements Toys {
     public toyGrid: Grid
     public filters: FilterObj
-    public data: Array<DataItem>
+    public data: DataItem[]
     public appearance: Filter
     public ranges: RangeFilter
     public sorts: Filter
-    public origData: Array<DataItem>
+    public origData: DataItem[]
 
-    constructor(data: Array<DataItem>) {
+    constructor(data: DataItem[]) {
         this.filters = {
             shape: new Set(),
             color: new Set(),
@@ -47,7 +47,7 @@ class ToysPage implements Toys {
         this.ranges = new Ranges(this.data, this.filters, this.toyGrid)
         this.sorts = new Sorts(this.data, this.filters, this.toyGrid)
     }
-    render(data: Array<DataItem>) {
+    render(data: DataItem[]) {
         const main = document.querySelector('.main') as HTMLElement
         main.innerHTML = ` 
 <div class="page toys-page">
@@ -148,7 +148,7 @@ class ToysPage implements Toys {
         this.sorts.addListeners()
         this.ranges.setSliders(this.filters, this.toyGrid, this.data)
         document.querySelector('.toys-grid')?.addEventListener('click', (e) => {
-            function countFavs(data: Array<DataItem>) {
+            function countFavs(data: DataItem[]) {
                 return data.reduce((acc: number, n: DataItem) => {
                     if (n.favorite === true) {
                         return acc + 1
@@ -156,7 +156,6 @@ class ToysPage implements Toys {
                 }, 0)
             }
             if ((e.target as HTMLElement).classList.contains('fav-btn')) {
-                
                 document.querySelector('.fav-warn')?.classList.add('hide-warn')
                 ;(e.target as HTMLElement).classList.toggle('fav-btn-active')
                 this.data[Number((e.target as HTMLElement).id) - 1].favorite = (

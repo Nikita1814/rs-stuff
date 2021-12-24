@@ -39,7 +39,7 @@ button {
 
 .header {
     background-color: #192f2d;
-    padding:0 1%;
+    padding: 0 1%;
 }
 .header-container {
     max-width: 1440px;
@@ -132,7 +132,7 @@ button {
     align-content: flex-start;
     flex-wrap: wrap;
     gap: 10px;
-    margin:0 auto;
+    margin: 0 auto;
     overflow: auto;
 }
 
@@ -333,9 +333,8 @@ input[type='range'] {
     width: 100%;
     display: flex;
     justify-content: space-between;
-  
 }
-.range-criteria{
+.range-criteria {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -351,10 +350,10 @@ input[type='range'] {
     background-position: 90%;
     background-size: 10px;
     color: white;
-    cursor:pointer
+    cursor: pointer;
 }
-.selectable{
-    cursor:pointer
+.selectable {
+    cursor: pointer;
 }
 
 .shape .selected,
@@ -393,7 +392,7 @@ input[type='range'] {
     width: 48px;
     height: 60px;
     z-index: 10;
-    cursor:pointer;
+    cursor: pointer;
 }
 .fav-btn-active {
     filter: sepia(100%) saturate(1000);
@@ -401,18 +400,18 @@ input[type='range'] {
 .big-warn {
     text-align: center;
 }
-.main{
-    margin:0 auto;
+.main {
+    margin: 0 auto;
 }
-.noUi-touch-area{
-cursor:pointer;
+.noUi-touch-area {
+    cursor: pointer;
 }
-.fav-check{
-    cursor:pointer;
+.fav-check {
+    cursor: pointer;
 }
 
-@media screen and (max-width:1024px){
-.criteria{
- width:30%;
-}    
+@media screen and (max-width: 1024px) {
+    .criteria {
+        width: 30%;
+    }
 }

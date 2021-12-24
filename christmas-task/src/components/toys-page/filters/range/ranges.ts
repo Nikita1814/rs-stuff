@@ -2,17 +2,17 @@ import { DataItem, FilterObj, Grid, RangeFilter } from '../../../interfaces/inte
 import 'nouislider/dist/nouislider.css'
 import * as noUiSlider from 'nouislider'
 class Ranges implements RangeFilter {
-    data: Array<DataItem>
+    data: DataItem[]
     filters: FilterObj
     toyGrid: Grid
 
-    constructor(data: Array<DataItem>, filters: FilterObj, grid: Grid) {
+    constructor(data: DataItem[], filters: FilterObj, grid: Grid) {
         this.data = data
         this.filters = filters
         this.toyGrid = grid
     }
 
-    setSliders(filters: FilterObj, grid: Grid, data: Array<DataItem>) {
+    setSliders(filters: FilterObj, grid: Grid, data: DataItem[]) {
         const yearSlider: noUiSlider.target = document.getElementById('year-slider') as HTMLElement as noUiSlider.target
         const amountSlider: noUiSlider.target = document.getElementById(
             'amount-slider'

@@ -2,10 +2,10 @@ import data from '../../data'
 import { DataItem, Toys } from '../interfaces/interfaces'
 import ToysPage from '../toys-page/toys-page'
 
-class App  {
+class App {
     toysPage: Toys
 
-    data: Array<DataItem>
+    data: DataItem[]
 
     constructor() {
         this.toysPage = new ToysPage(data)

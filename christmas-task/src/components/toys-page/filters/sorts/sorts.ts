@@ -1,10 +1,10 @@
 import { DataItem, Filter, FilterObj, Grid } from '../../../interfaces/interfaces'
 class Sorts implements Filter {
-    data: Array<DataItem>
+    data: DataItem[]
     filters: FilterObj
     toyGrid: Grid
 
-    constructor(data: Array<DataItem>, filters: FilterObj, grid: Grid) {
+    constructor(data: DataItem[], filters: FilterObj, grid: Grid) {
         this.data = data
         this.filters = filters
         this.toyGrid = grid

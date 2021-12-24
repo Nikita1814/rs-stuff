@@ -1,11 +1,11 @@
 import { DataItem, Filter, FilterObj, Grid } from '../../../interfaces/interfaces'
 
 class Appearance implements Filter {
-    data: Array<DataItem>
+    data: DataItem[]
     filters: FilterObj
     toyGrid: Grid
 
-    constructor(data: Array<DataItem>, filters: FilterObj, grid: Grid) {
+    constructor(data: DataItem[], filters: FilterObj, grid: Grid) {
         this.data = data
         this.filters = filters
         this.toyGrid = grid
@@ -14,7 +14,7 @@ class Appearance implements Filter {
         let key: string
 
         for (key in this.filters) {
-            const filterToMod: Set<string | undefined> | boolean | string | number | Array<string> = this.filters[key]
+            const filterToMod: Set<string | undefined> | boolean | string | number | string[] = this.filters[key]
             if (filterToMod instanceof Set) {
                 document.querySelector(`.${key}`)?.addEventListener('click', (e) => {
                     if ((e.target as HTMLElement).classList.contains('selectable')) {

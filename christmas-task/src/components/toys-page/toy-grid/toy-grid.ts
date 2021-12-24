@@ -15,11 +15,11 @@ import type { FilterObj } from '../../interfaces/interfaces'
 {shape: new Set(), color: new Set(), size: new Set()}
 */
 class ToyGrid implements Grid {
-    public data: Array<DataItem>
-    constructor(data: Array<DataItem>) {
+    public data: DataItem[]
+    constructor(data: DataItem[]) {
         this.data = data
     }
-    showElems(data: Array<DataItem>, sortCriteria?: FilterObj) {
+    showElems(data: DataItem[], sortCriteria?: FilterObj) {
         ;(document.querySelector('.toys-grid') as HTMLElement).innerHTML = ''
         let sortData = [...data]
         /*TODO Add a filtration application method*/
@@ -39,7 +39,6 @@ class ToyGrid implements Grid {
                 },
             }
             sortData = sortData.filter((el) => {
-
                 if (
                     ((sortCriteria.shape as Set<string | undefined>).has(el.shape) ||
                         (sortCriteria.shape as Set<string | undefined>).size === 0) &&
@@ -70,7 +69,6 @@ class ToyGrid implements Grid {
             }
             const sortMethod: (a: DataItem, b: DataItem) => number = sortfuncs[sortCriteria.sort as string]
             sortData.sort(sortMethod)
-            
         }
 
         const fragment = document.createDocumentFragment()

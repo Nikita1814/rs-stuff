@@ -10,21 +10,21 @@ export interface DataItem {
 }
 
 export type FilterObj = {
-    [key: string]: Set<string | undefined> | boolean | string | number | Array<string>
+    [key: string]: Set<string | undefined> | boolean | string | number | string[]
 }
 export interface Grid {
-    data: Array<DataItem>
-    showElems: (data: Array<DataItem>, sortCriteria?: FilterObj) => void
+    data: DataItem[]
+    showElems: (data: DataItem[], sortCriteria?: FilterObj) => void
 }
 export interface Toys {
     toyGrid: Grid
     filters: FilterObj
-    data: Array<DataItem>
-    origData: Array<DataItem>
+    data: DataItem[]
+    origData: DataItem[]
     appearance: Filter
     ranges: RangeFilter
     sorts: Filter
-    render: (data: Array<DataItem>) => void
+    render: (data: DataItem[]) => void
     addListeners: () => void
     setStorage: () => void
 }
@@ -35,15 +35,15 @@ export interface Toys {
 }*/
 
 export interface Filter {
-    data: Array<DataItem>
+    data: DataItem[]
     filters: FilterObj
     toyGrid: Grid
     addListeners: () => void
 }
 
 export interface RangeFilter {
-    data: Array<DataItem>
+    data: DataItem[]
     filters: FilterObj
     toyGrid: Grid
-    setSliders: (filters: FilterObj, grid: Grid, data: Array<DataItem>) => void
+    setSliders: (filters: FilterObj, grid: Grid, data: DataItem[]) => void
 }
