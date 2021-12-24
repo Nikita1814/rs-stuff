@@ -17,7 +17,6 @@ class App implements AppСlass {
             this.setStorage()
         })
 
-        console.log(this.toysPage.filters)
         this.toysPage.render(this.data)
     }
     setStorage() {

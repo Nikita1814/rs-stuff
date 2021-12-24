@@ -39,7 +39,6 @@ class ToyGrid implements Grid {
                 },
             }
             sortData = sortData.filter((el) => {
-                /*console.log(`${el.name} - ${el.favorite} result:${el.favorite === sortCriteria.favorite}` )*/
 
                 if (
                     ((sortCriteria.shape as Set<string | undefined>).has(el.shape) ||
@@ -71,7 +70,7 @@ class ToyGrid implements Grid {
             }
             const sortMethod: (a: DataItem, b: DataItem) => number = sortfuncs[sortCriteria.sort as string]
             sortData.sort(sortMethod)
-            /*console.log(sortData);*/
+            
         }
 
         const fragment = document.createDocumentFragment()

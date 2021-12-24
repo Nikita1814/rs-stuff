@@ -221,6 +221,7 @@ h2 {
     height: 25px;
     border-radius: 3%;
     background-position: center;
+    box-sizing: content-box;
 }
 #white {
     background-color: white;
@@ -361,7 +362,7 @@ input[type='range'] {
     filter: sepia(100%) saturate(1000);
 }
 .color .selected {
-    border: 10px solid /*lightseagreen*/ rgb(31, 178, 170, 1);
+    border: 5px solid /*lightseagreen*/ rgb(31, 178, 170, 1);
 }
 #year-slider,
 #amount-slider {
@@ -402,6 +403,12 @@ input[type='range'] {
 }
 .main{
     margin:0 auto;
+}
+.noUi-touch-area{
+cursor:pointer;
+}
+.fav-check{
+    cursor:pointer;
 }
 
 @media screen and (max-width:1024px){

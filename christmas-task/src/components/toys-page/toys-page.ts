@@ -156,7 +156,7 @@ class ToysPage implements Toys {
                 }, 0)
             }
             if ((e.target as HTMLElement).classList.contains('fav-btn')) {
-                console.log(countFavs(this.data))
+                
                 document.querySelector('.fav-warn')?.classList.add('hide-warn')
                 ;(e.target as HTMLElement).classList.toggle('fav-btn-active')
                 this.data[Number((e.target as HTMLElement).id) - 1].favorite = (
