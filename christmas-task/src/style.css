@@ -25,10 +25,11 @@ button {
 .page {
     background-image: url(assets/bg.jpg);
     width: 100%;
-    height: calc(100vh - 70px);
+    min-height: calc(100vh - 70px);
     background-size: cover;
+    background-repeat: no-repeat;
     display: flex;
-    overflow: hidden;
+    /*overflow: hidden;*/
 }
 .start-page {
     flex-direction: column;
@@ -38,6 +39,7 @@ button {
 
 .header {
     background-color: #192f2d;
+    padding:0 1%;
 }
 .header-container {
     max-width: 1440px;
@@ -125,8 +127,12 @@ button {
 .toys-grid {
     width: 65%;
     display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-content: flex-start;
     flex-wrap: wrap;
-    gap: 1%;
+    gap: 10px;
+    margin:0 auto;
     overflow: auto;
 }
 
@@ -137,9 +143,9 @@ button {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    justify-content: space-between;
+    /*justify-content: space-between;*/
     background-color: rgba(32, 178, 170, 0.3);
-    overflow: auto;
+    /*overflow: auto;*/
 }
 .filter {
     height: 466px;
@@ -147,7 +153,7 @@ button {
     background-color: rgb(31, 178, 170, 0.5);
     border-radius: 5%;
     width: 100%;
-    padding: 1% 1%;
+    padding: 1% 6%;
 }
 
 h2 {
@@ -234,7 +240,7 @@ h2 {
 
 .size {
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: flex-end;
     width: 100%;
 }
@@ -246,16 +252,16 @@ h2 {
     background-position: center;
 }
 #big {
+    width: 55px;
+    height: 55px;
+}
+#medium {
     width: 40px;
     height: 40px;
 }
-#medium {
-    width: 25px;
-    height: 25px;
-}
 #small {
-    width: 10px;
-    height: 10px;
+    width: 20px;
+    height: 20px;
 }
 .toy {
     width: 222px;
@@ -297,6 +303,7 @@ h2 {
     background-color: rgba(25, 47, 45, 0.7);
     border-radius: 15px;
     padding: 0.1% 2%;
+    cursor: pointer;
 }
 .sorts option {
     background-color: rgba(25, 47, 45, 0.7);
@@ -307,6 +314,7 @@ h2 {
     width: 70%;
     border-radius: 20px;
     height: 43px;
+    cursor: pointer;
 }
 input[type='range'] {
     width: 90%;
@@ -320,15 +328,21 @@ input[type='range'] {
     border-radius: 20px;
 }
 .outputs {
-    height: 10%;
+    height: 40%;
     width: 100%;
     display: flex;
     justify-content: space-between;
+  
+}
+.range-criteria{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
 .search {
     padding: 0.1% 2%;
     width: 100%;
-    height: 15%;
+    height: 43px;
     background-color: rgba(25, 47, 45, 0.7);
     border-radius: 15px;
     background-image: url(assets/svg/search.svg);
@@ -336,7 +350,12 @@ input[type='range'] {
     background-position: 90%;
     background-size: 10px;
     color: white;
+    cursor:pointer
 }
+.selectable{
+    cursor:pointer
+}
+
 .shape .selected,
 .size .selected {
     filter: sepia(100%) saturate(1000);
@@ -373,10 +392,20 @@ input[type='range'] {
     width: 48px;
     height: 60px;
     z-index: 10;
+    cursor:pointer;
 }
 .fav-btn-active {
     filter: sepia(100%) saturate(1000);
 }
 .big-warn {
     text-align: center;
+}
+.main{
+    margin:0 auto;
+}
+
+@media screen and (max-width:1024px){
+.criteria{
+ width:30%;
+}    
 }

@@ -53,7 +53,7 @@ class ToysPage implements Toys {
 <div class="page toys-page">
 <div class="criteria">
   <div class=" filter appearance-criteria">
-    <h4>Фильтры по значению</h4>
+    <h2>Фильтры по значению</h2>
     <div class="shape">
       <p>Форма</p>
       <div data-criteria="шар" id="ball" class="selectable"></div>
@@ -81,25 +81,25 @@ class ToysPage implements Toys {
     </div>
   </div>
   <div class="filter range-criteria">
-    <h4>Год приобретения</h4>
-    <p>
+  <div>
+    <h2>Год приобретения</h2>
       <div id="year-slider"></div>
     <div class="outputs">
       <div class="output" id="begin-year">${this.filters.beginYear}</div>
       <div class="output" id="end-year">${this.filters.endYear}</div>
     </div>
-    </p>
-    <h4>Количество экземпляров</h4>
-    <p>
+ </div>
+ <div>
+    <h2>Количество экземпляров</h2>
       <div id="amount-slider"></div>
     <div class="outputs">
      <div class="output" id="begin-amount">${this.filters.beginAmout}</div>
      <div class="output" id="end-amount">${this.filters.endAmout}</div>
     </div>
-    </p>
+</div>
   </div>
   <div class="filter sorting-criteria">
-    <h4>Сортировка</h4>
+    <h2>Сортировка</h2>
     <select name="sorts" class="sorts">
       <option value="AZ"> По назывнию от А до Я</option>
       <option value="ZA"> По назывнию от Я до А</option>
