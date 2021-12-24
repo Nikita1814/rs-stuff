@@ -6,6 +6,21 @@ import Appearance from './filters/appearance/appearance'
 import Ranges from './filters/range/ranges'
 import Sorts from './filters/sorts/sorts'
 
+function setFilter(){
+ const obj: FilterObj ={
+    shape: new Set(),
+    color: new Set(),
+    size: new Set(),
+    favorite: false,
+    sort: 'AZ',
+    search: '',
+    beginYear: 1940,
+    endYear: 2020,
+    beginAmount: 1,
+    endAmount: 12,
+ } 
+ return obj
+}
 class ToysPage implements Toys {
     public toyGrid: Grid
     public filters: FilterObj
@@ -16,18 +31,7 @@ class ToysPage implements Toys {
     public origData: DataItem[]
 
     constructor(data: DataItem[]) {
-        this.filters = {
-            shape: new Set(),
-            color: new Set(),
-            size: new Set(),
-            favorite: false,
-            sort: 'AZ',
-            search: '',
-            beginYear: 1940,
-            endYear: 2020,
-            beginAmount: 1,
-            endAmount: 12,
-        }
+        this.filters = setFilter()
         if (localStorage.getItem('filters')) {
             this.filters = JSON.parse(localStorage.getItem('filters') as string)
             this.filters.shape = new Set(this.filters.shape as string[])
@@ -147,11 +151,7 @@ class ToysPage implements Toys {
         this.ranges.setSliders(this.filters, this.toyGrid, this.data)
         document.querySelector('.toys-grid')?.addEventListener('click', (e) => {
             function countFavs(data: DataItem[]) {
-                return data.reduce((acc: number, n: DataItem) => {
-                    if (n.favorite === true) {
-                        return acc + 1
-                    } else return acc
-                }, 0)
+                return data.reduce((acc: number, n: DataItem) => (n.favorite ? acc++ : acc), 0)
             }
             if ((e.target as HTMLElement).classList.contains('fav-btn')) {
                 document.querySelector('.fav-warn')?.classList.add('hide-warn')
@@ -186,21 +186,12 @@ class ToysPage implements Toys {
         })
         document.querySelector('.reset-all')?.addEventListener('click', () => {
             localStorage.clear()
-            this.filters.shape = new Set()
-            this.filters.color = new Set()
-            this.filters.size = new Set()
-            this.filters.beginYear = 1940
-            this.filters.endYear = 2020
-            this.filters.beginAmount = 1
-            this.filters.endAmount = 12
-            this.filters.favorite = false
-            this.filters.search = ''
-            this.filters.sort = 'AZ'
-            ;(document.querySelector('.fav-check') as HTMLInputElement).checked = this.filters.favorite
+           this.filters = setFilter();
+           (document.querySelector('.fav-check') as HTMLInputElement).checked = this.filters.favorite as boolean;
             this.data = this.origData
+            this.render(this.data)
             this.filters.beginAmount = 1
             this.filters.endAmount = 12
-            this.render(this.data)
             location.reload()
         })
     }
