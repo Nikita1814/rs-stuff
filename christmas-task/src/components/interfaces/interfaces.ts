@@ -28,17 +28,19 @@ export type FilterVal = Set<string | undefined> | boolean | string | number | Ar
 
 export interface Grid {
     data: DataItem[]
+    favs: Set<string | undefined>
     showElems: (data: DataItem[], sortCriteria?: FilterObj) => void
 }
 export interface Toys {
     toyGrid: Grid
     filters: FilterObj
     data: DataItem[]
-    origData: DataItem[]
+
     appearance: Filter
     ranges: RangeFilter
     sorts: Filter
-    render: (data: DataItem[]) => void
+    favs: Set<string | undefined>
+    render: (data: DataItem[], favs: Set<string | undefined>) => void
     addListeners: () => void
     setStorage: () => void
 }
@@ -52,6 +54,7 @@ export interface Filter {
     data: DataItem[]
     filters: FilterObj
     toyGrid: Grid
+    favs?: Set<DataItem | undefined>
     addListeners: () => void
 }
 

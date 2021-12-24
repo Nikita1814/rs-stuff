@@ -1,23 +1,12 @@
 import { DataItem, Grid } from '../../interfaces/interfaces'
 import type { FilterObj } from '../../interfaces/interfaces'
 
-/*export interface DataItem {
-  num: string;
-  name: string;
-  count: string;
-  year: string;
-  shape: string;
-  color: string;
-  size: string;
-  favorite: boolean;
-}
-
-{shape: new Set(), color: new Set(), size: new Set()}
-*/
 class ToyGrid implements Grid {
     public data: DataItem[]
-    constructor(data: DataItem[]) {
+    public favs: Set<string | undefined>
+    constructor(data: DataItem[], favs: Set<string | undefined>) {
         this.data = data
+        this.favs = favs
     }
     showElems(data: DataItem[], sortCriteria?: FilterObj) {
         ;(document.querySelector('.toys-grid') as HTMLElement).innerHTML = ''
@@ -50,8 +39,6 @@ class ToyGrid implements Grid {
                     Number(el.year) <= sortCriteria.endYear &&
                     Number(el.count) >= sortCriteria.beginAmount &&
                     Number(el.count) <= sortCriteria.endAmount
-
-                    /*(sortCriteria.favorite === el.favorite && sortCriteria.favorite === true ) ||  sortCriteria.favorite === false*/
                 )
             })
 
@@ -72,7 +59,6 @@ class ToyGrid implements Grid {
         const fragment = document.createDocumentFragment()
         const toyTemplate = document.querySelector('#toy-temp') as HTMLTemplateElement
 
-        /*TODO make this segment shorter*/
         sortData.forEach((el) => {
             const toyCard = toyTemplate.content.cloneNode(true) as HTMLTemplateElement
             ;(toyCard.querySelector('.toy-name') as HTMLElement).textContent = `${el.name}`
@@ -86,10 +72,12 @@ class ToyGrid implements Grid {
             ;(toyCard.querySelector('.toy-size') as HTMLElement).textContent = `Размер: ${el.size}`
 
             toyCard.querySelector('.fav-btn')?.setAttribute('id', `${el.num}`)
+            if (this.favs.has(el.num)) {
+                toyCard.querySelector('.fav-btn')?.classList.add('fav-btn-active')
+            }
 
             if (el.favorite === true) {
                 ;(toyCard.querySelector('.toy-favourite') as HTMLElement).textContent = `Любимая: да`
-                toyCard.querySelector('.fav-btn')?.classList.add('fav-btn-active')
             } else {
                 ;(toyCard.querySelector('.toy-favourite') as HTMLElement).textContent = `Любимая: нет`
             }

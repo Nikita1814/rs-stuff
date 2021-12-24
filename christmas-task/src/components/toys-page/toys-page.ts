@@ -13,9 +13,14 @@ class ToysPage implements Toys {
     public appearance: Filter
     public ranges: RangeFilter
     public sorts: Filter
-    public origData: DataItem[]
+    public favs: Set<string | undefined>
 
     constructor(data: DataItem[]) {
+        this.favs = new Set()
+        if (localStorage.getItem('favorites')) {
+            const favsArr = JSON.parse(localStorage.getItem('favorites') as string)
+            this.favs = new Set(favsArr)
+        }
         this.filters = {
             shape: new Set(),
             color: new Set(),
@@ -35,12 +40,11 @@ class ToysPage implements Toys {
             this.filters.color = new Set(this.filters.color)
         }
         this.data = data
-        this.origData = data
         if (localStorage.getItem('data')) {
             this.data = JSON.parse(localStorage.getItem('data') as string)
         }
 
-        this.toyGrid = new ToyGrid(this.data)
+        this.toyGrid = new ToyGrid(this.data, this.favs)
         this.appearance = new Appearance(this.data, this.filters, this.toyGrid)
         this.ranges = new Ranges(this.data, this.filters, this.toyGrid)
         this.sorts = new Sorts(this.data, this.filters, this.toyGrid)
@@ -120,13 +124,7 @@ class ToysPage implements Toys {
         this.addListeners()
     }
     handleStorage(filters: FilterObj) {
-        ;(document.querySelector(`.favorite-count`) as HTMLElement).innerHTML = String(
-            this.data.reduce((acc: number, n: DataItem) => {
-                if (n.favorite === true) {
-                    return acc + 1
-                } else return acc
-            }, 0)
-        )
+        ;(document.querySelector(`.favorite-count`) as HTMLElement).innerHTML = String(this.favs.size)
         filters.size.forEach((el) => {
             document.querySelector(`[data-criteria=${el}]`)?.classList.add('selected')
         })
@@ -148,24 +146,21 @@ class ToysPage implements Toys {
         this.ranges.setSliders(this.filters, this.toyGrid, this.data)
         document.querySelector('.toys-grid')?.addEventListener('click', (e) => {
             const evTarget = e.target as HTMLElement
-            function countFavs(data: DataItem[]) {
-                return data.reduce((acc: number, n: DataItem) => (n.favorite === true ? acc + 1 : acc), 0)
-                /*return data.reduce((acc: number, n: DataItem) => {
-                        if (n.favorite === true) {
-                            return acc + 1
-                        } else return acc
-                    }, 0)*/
-            }
+
             if (evTarget.classList.contains('fav-btn')) {
                 document.querySelector('.fav-warn')?.classList.add('hide-warn')
-                evTarget.classList.toggle('fav-btn-active')
-                this.data[Number(evTarget.id) - 1].favorite = evTarget.classList.contains('fav-btn-active')
-                if (countFavs(this.data) === 21) {
-                    document.querySelector('.fav-warn')?.classList.remove('hide-warn')
+                if (this.favs.has(this.data[Number(evTarget.id) - 1].num)) {
                     evTarget.classList.toggle('fav-btn-active')
-                    this.data[Number(evTarget.id) - 1].favorite = evTarget.classList.contains('fav-btn-active')
+                    this.favs.delete(this.data[Number(evTarget.id) - 1].num)
+                } else if (this.favs.size < 20) {
+                    evTarget.classList.toggle('fav-btn-active')
+                    this.favs.add(this.data[Number(evTarget.id) - 1].num)
                 }
-                ;(document.querySelector('.favorite-count') as HTMLElement).innerHTML = `${countFavs(this.data)}`
+
+                if (this.favs.size === 20) {
+                    document.querySelector('.fav-warn')?.classList.remove('hide-warn')
+                }
+                ;(document.querySelector('.favorite-count') as HTMLElement).innerHTML = `${this.favs.size}`
             }
         })
         document.querySelector('.reset')?.addEventListener('click', () => {
@@ -183,6 +178,7 @@ class ToysPage implements Toys {
         })
         document.querySelector('.reset-all')?.addEventListener('click', () => {
             localStorage.clear()
+            console.log(localStorage)
             this.filters = {
                 shape: new Set(),
                 color: new Set(),
@@ -195,8 +191,10 @@ class ToysPage implements Toys {
                 beginAmount: 1,
                 endAmount: 12,
             }
+            this.favs = new Set()
+            this.toyGrid.favs = new Set()
             ;(document.querySelector('.fav-check') as HTMLInputElement).checked = this.filters.favorite
-            this.data = this.origData
+
             this.filters.beginAmount = 1
             this.filters.endAmount = 12
             this.render(this.data)
@@ -208,6 +206,7 @@ class ToysPage implements Toys {
         this.filters.color = [...this.filters.color]
         localStorage.setItem('filters', JSON.stringify(this.filters))
         localStorage.setItem('data', JSON.stringify(this.data))
+        localStorage.setItem('favorites', JSON.stringify([...this.favs]))
     }
 }
 export default ToysPage
