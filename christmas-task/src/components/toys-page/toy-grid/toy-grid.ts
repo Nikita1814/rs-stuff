@@ -39,7 +39,7 @@ class ToyGrid implements Grid {
                 },
             }
             sortData = sortData.filter((el) => {
-                if (
+                return (
                     ((sortCriteria.shape as Set<string | undefined>).has(el.shape) ||
                         (sortCriteria.shape as Set<string | undefined>).size === 0) &&
                     ((sortCriteria.color as Set<string | undefined>).has(el.color) ||
@@ -52,9 +52,7 @@ class ToyGrid implements Grid {
                     Number(el.count) <= sortCriteria.endAmount
 
                     /*(sortCriteria.favorite === el.favorite && sortCriteria.favorite === true ) ||  sortCriteria.favorite === false*/
-                ) {
-                    return true
-                } else return false
+                )
             })
 
             if (sortCriteria.favorite === true) {
@@ -77,23 +75,23 @@ class ToyGrid implements Grid {
         /*TODO make this segment shorter*/
         sortData.forEach((el) => {
             const toyCard = toyTemplate.content.cloneNode(true) as HTMLTemplateElement
-            ;(toyCard.querySelector('.toy-name') as HTMLElement).innerHTML = `${el.name}`
+            ;(toyCard.querySelector('.toy-name') as HTMLElement).textContent = `${el.name}`
             ;(
                 toyCard.querySelector('.toy-image') as HTMLElement
             ).style.backgroundImage = `url("./assets/toys/${el.num}.png")`
-            ;(toyCard.querySelector('.toy-amount') as HTMLElement).innerHTML = `Количество: ${el.count}`
-            ;(toyCard.querySelector('.toy-year') as HTMLElement).innerHTML = `Год: ${el.year}`
-            ;(toyCard.querySelector('.toy-shape') as HTMLElement).innerHTML = `Форма: ${el.shape}`
-            ;(toyCard.querySelector('.toy-color') as HTMLElement).innerHTML = `Цвет: ${el.color}`
-            ;(toyCard.querySelector('.toy-size') as HTMLElement).innerHTML = `Размер: ${el.size}`
+            ;(toyCard.querySelector('.toy-amount') as HTMLElement).textContent = `Количество: ${el.count}`
+            ;(toyCard.querySelector('.toy-year') as HTMLElement).textContent = `Год: ${el.year}`
+            ;(toyCard.querySelector('.toy-shape') as HTMLElement).textContent = `Форма: ${el.shape}`
+            ;(toyCard.querySelector('.toy-color') as HTMLElement).textContent = `Цвет: ${el.color}`
+            ;(toyCard.querySelector('.toy-size') as HTMLElement).textContent = `Размер: ${el.size}`
 
             toyCard.querySelector('.fav-btn')?.setAttribute('id', `${el.num}`)
 
             if (el.favorite === true) {
-                ;(toyCard.querySelector('.toy-favourite') as HTMLElement).innerHTML = `Любимая: да`
+                ;(toyCard.querySelector('.toy-favourite') as HTMLElement).textContent = `Любимая: да`
                 toyCard.querySelector('.fav-btn')?.classList.add('fav-btn-active')
             } else {
-                ;(toyCard.querySelector('.toy-favourite') as HTMLElement).innerHTML = `Любимая: нет`
+                ;(toyCard.querySelector('.toy-favourite') as HTMLElement).textContent = `Любимая: нет`
             }
             fragment.append(toyCard)
         })

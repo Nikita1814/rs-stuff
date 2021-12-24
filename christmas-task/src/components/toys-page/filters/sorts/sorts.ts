@@ -17,7 +17,7 @@ class Sorts implements Filter {
         })
 
         document.querySelector(`.search`)?.addEventListener('input', (e) => {
-            this.filters.search = ((e.target as HTMLInputElement).value.toLowerCase())
+            this.filters.search = (e.target as HTMLInputElement).value.toLowerCase()
 
             this.toyGrid.showElems(this.data, this.filters)
         })

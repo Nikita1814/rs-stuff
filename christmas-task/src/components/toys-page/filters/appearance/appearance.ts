@@ -11,8 +11,6 @@ class Appearance implements Filter {
         this.toyGrid = grid
     }
     addListeners() {
-        
-
         for (const key in this.filters) {
             const filterToMod: FilterVal = this.filters[key]
             if (filterToMod instanceof Set) {
