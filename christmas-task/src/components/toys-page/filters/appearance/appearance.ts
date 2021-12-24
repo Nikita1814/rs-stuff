@@ -11,19 +11,20 @@ class Appearance implements Filter {
         this.toyGrid = grid
     }
     addListeners() {
-        let key: string
+        
 
-        for (key in this.filters) {
-            const filterToMod: FilterVal= this.filters[key]
+        for (const key in this.filters) {
+            const filterToMod: FilterVal = this.filters[key]
             if (filterToMod instanceof Set) {
                 document.querySelector(`.${key}`)?.addEventListener('click', (e) => {
-                    if ((e.target as HTMLElement).classList.contains('selectable')) {
-                        if ((e.target as HTMLElement).classList.contains('selected')) {
-                            ;(filterToMod as Set<string | undefined>).delete((e.target as HTMLElement).dataset.criteria)
+                    const evTarget = e.target as HTMLElement
+                    if (evTarget.classList.contains('selectable')) {
+                        if (evTarget.classList.contains('selected')) {
+                            filterToMod.delete(evTarget.dataset.criteria)
                         } else {
-                            ;(filterToMod as Set<string | undefined>).add((e.target as HTMLElement).dataset.criteria)
+                            filterToMod.add(evTarget.dataset.criteria)
                         }
-                        ;(e.target as HTMLElement).classList.toggle(`selected`)
+                        evTarget.classList.toggle(`selected`)
 
                         this.toyGrid.showElems(this.data, this.filters)
                     }
@@ -38,6 +39,5 @@ class Appearance implements Filter {
             }
         }
     }
-   
 }
 export default Appearance
