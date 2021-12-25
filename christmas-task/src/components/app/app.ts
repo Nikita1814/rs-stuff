@@ -15,6 +15,21 @@ class App {
         window.addEventListener('beforeunload', () => {
             this.setStorage()
         })
+        document.querySelectorAll('.nav-link').forEach((link) => {
+            link.addEventListener('click', () => {
+                document.querySelectorAll('.nav-link').forEach((link) => link.classList.remove('active-link'))
+                link.classList.toggle('active-link')
+                console.log(link.classList[1])
+                switch (link.classList[1]) {
+                    case 'main-menu-link':
+                        this.homePage.render(this.data)
+                        break
+                    case 'toy-page-link':
+                        this.toysPage.render(this.data)
+                        break
+                }
+            })
+        })
         this.homePage.render(this.data)
     }
     setStorage() {
