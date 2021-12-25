@@ -31,7 +31,7 @@ export interface Grid {
     favs: Set<string | undefined>
     showElems: (data: DataItem[], sortCriteria?: FilterObj) => void
 }
-export interface Toys {
+export interface ToySelection {
     toyGrid: Grid
     filters: FilterObj
     data: DataItem[]
@@ -43,8 +43,16 @@ export interface Toys {
     addListeners: () => void
     setStorage: () => void
 }
+export interface TreeDecoration {
+    data: DataItem[]
+    favs: Set<string | undefined>
+    decorations: Object
+    firTree: Object
+    toyBox: Object
+    render: (data: DataItem[]) => void
+}
 export interface Page {
-    toysPage?: Toys
+    toysPage?: ToySelection
     data: DataItem[]
     render: (data: DataItem[]) => void
     addListeners: () => void

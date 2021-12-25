@@ -1,4 +1,4 @@
-import { DataItem, Grid, Toys, Filter, RangeFilter } from '../interfaces/interfaces'
+import { DataItem, Grid, ToySelection, Filter, RangeFilter } from '../interfaces/interfaces'
 import type { FilterObj } from '../interfaces/interfaces'
 import ToyGrid from './toy-grid/toy-grid'
 import 'nouislider/dist/nouislider.css'
@@ -6,7 +6,7 @@ import Appearance from './filters/appearance/appearance'
 import Ranges from './filters/range/ranges'
 import Sorts from './filters/sorts/sorts'
 
-class ToysPage implements Toys {
+class ToysPage implements ToySelection {
     public toyGrid: Grid
     public filters: FilterObj
     public data: DataItem[]

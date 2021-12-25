@@ -1,15 +1,18 @@
 import data from '../../data'
 import HomePage from '../home-page/home-page'
-import { DataItem, Toys, Page } from '../interfaces/interfaces'
+import { DataItem, ToySelection, Page, TreeDecoration } from '../interfaces/interfaces'
 import ToysPage from '../toys-page/toys-page'
+import TreePage from '../tree-page/tree-page'
 class App {
-    toysPage: Toys
+    toysPage: ToySelection
     data: DataItem[]
     homePage: Page
+    treePage: TreeDecoration
     constructor() {
         this.data = data
         this.toysPage = new ToysPage(data)
         this.homePage = new HomePage(data, this.toysPage)
+        this.treePage = new TreePage(data, this.toysPage.favs)
     }
     start() {
         window.addEventListener('beforeunload', () => {
@@ -27,6 +30,8 @@ class App {
                     case 'toy-page-link':
                         this.toysPage.render(this.data)
                         break
+                    case 'tree-page-link':
+                        this.treePage.render(this.data)
                 }
             })
         })

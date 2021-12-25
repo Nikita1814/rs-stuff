@@ -410,8 +410,192 @@ input[type='range'] {
     cursor: pointer;
 }
 
-@media screen and (max-width: 1024px) {
+/*Tree page*/
+
+.tree-left,
+.tree-right {
+    width: 30%;
+    background-color: rgb(31, 178, 170, 0.7);
+    padding: 1% 1%;
+}
+
+.tree-div {
+    width: 40%;
+    background-image: url(assets/bg/1.jpg);
+}
+.tree-page {
+    display: flex;
+    justify-content: center;
+}
+.main {
+    margin: 0 auto;
+}
+
+.select-grid {
+    border-radius: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 100;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+.tree-select-type {
+    border-radius: 10px;
+    width: 75px;
+    height: 75px;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-color: rgb(0, 71, 171, 0.5);
+}
+.tr1 {
+    background-image: url(assets/tree/1.png);
+}
+.tr2 {
+    background-image: url(assets/tree/2.png);
+}
+.tr3 {
+    background-image: url(assets/tree/3.png);
+}
+.tr4 {
+    background-image: url(assets/tree/4.png);
+}
+.tr5 {
+    background-image: url(assets/tree/5.png);
+}
+.tr6 {
+    background-image: url(assets/tree/6.png);
+}
+
+.tree-select-bg {
+    border-radius: 10px;
+    width: 50px;
+    height: 50px;
+    background-size: cover;
+    background-position: center;
+}
+
+.bg1 {
+    background-image: url(assets/bg/1.jpg);
+}
+.bg2 {
+    background-image: url(assets/bg/2.jpg);
+}
+.bg3 {
+    background-image: url(assets/bg/3.jpg);
+}
+.bg4 {
+    background-image: url(assets/bg/4.jpg);
+}
+.bg5 {
+    background-image: url(assets/bg/5.jpg);
+}
+.bg6 {
+    background-image: url(assets/bg/6.jpg);
+}
+.bg7 {
+    background-image: url(assets/bg/7.jpg);
+}
+.bg8 {
+    background-image: url(assets/bg/8.jpg);
+}
+.bg9 {
+    background-image: url(assets/bg/9.jpg);
+}
+.bg10 {
+    background-image: url(assets/bg/10.jpg);
+}
+
+.ornaments-box {
+    display: flex;
+    justify-content: space-between;
+}
+.ornament-item {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+}
+
+.or1 {
+    background: linear-gradient(150deg, red, cyan, yellow, green);
+}
+.or2 {
+    background-color: red;
+}
+.or3 {
+    background-color: green;
+}
+.or4 {
+    background-color: blue;
+}
+.or5 {
+    background-color: yellow;
+}
+.toy-select {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 100%;
+    height: 70%;
+}
+.toy-item {
+    width: 70px;
+    height: 70px;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: rgb(0, 71, 171, 0.5);
+    background-image: url(assets/toys/1.png);
+    position: relative;
+    border-radius: 10px;
+}
+.toy-amount {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    background-color: cyan;
+    color: white;
+    text-align: center;
+    vertical-align: middle;
+    border-radius: 50%;
+}
+
+@media (max-width: 1441px) {
+    .tree-select-type {
+        width: 90px;
+        height: 90px;
+    }
+    .tree-select-bg {
+        width: 60px;
+        height: 60px;
+    }
+    .toy-item {
+        width: 70px;
+        height: 70px;
+    }
+}
+
+@media (max-width: 1024px) {
     .criteria {
         width: 30%;
     }
+    .tree-select-type {
+        width: 70px;
+        height: 70px;
+    }
+    .tree-select-bg {
+        width: 70px;
+        height: 70px;
+    }
+    .toy-item {
+        width: 60px;
+        height: 60px;
+    }
 }
+
+/*@media screen and (max-width: 1024px) {
+   
+}*/

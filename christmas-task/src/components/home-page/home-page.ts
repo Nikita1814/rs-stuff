@@ -1,9 +1,9 @@
-import { Toys, Page, DataItem } from '../interfaces/interfaces'
+import { ToySelection, Page, DataItem } from '../interfaces/interfaces'
 
 class HomePage implements Page {
-    toysPage: Toys
+    toysPage: ToySelection
     data: DataItem[]
-    constructor(data: DataItem[], toysPage: Toys) {
+    constructor(data: DataItem[], toysPage: ToySelection) {
         this.toysPage = toysPage
         this.data = data
     }
