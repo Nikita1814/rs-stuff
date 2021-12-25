@@ -27,7 +27,7 @@ class TreePage implements TreeDecoration {
         <div class="tree-left">
         <div class="tree-buttons">
         <div class="music play"></div>
-        <div class="snow"></div>
+        <div class="snow-btn"></div>
         </div>
             <div class="tree-select">
                 <h4>Выберите елку</h4>
@@ -68,6 +68,7 @@ class TreePage implements TreeDecoration {
             </div>
         </div>
         <div class="tree-div">
+        <div class="snow hidden"></div>
         <img class="tree-image" src ="assets/tree/1.png"></img>
         </div>
         <div class="tree-right">

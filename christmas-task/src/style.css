@@ -40,6 +40,8 @@ button {
 .header {
     background-color: #192f2d;
     padding: 0 1%;
+    position: relative;
+    z-index: 6;
 }
 .header-container {
     max-width: 1440px;
@@ -417,6 +419,8 @@ input[type='range'] {
     width: 30%;
     background-color: rgb(31, 178, 170, 0.7);
     padding: 1% 1%;
+    position: relative;
+    z-index: 100;
 }
 
 .tree-div {
@@ -427,6 +431,7 @@ input[type='range'] {
     display: flex;
     justify-content: center;
     align-items: flex-end;
+    position: relative;
 }
 .tree-page {
     display: flex;
@@ -572,7 +577,7 @@ input[type='range'] {
     display: flex;
     width: 100%;
 }
-.snow {
+.snow-btn {
     width: 40px;
     height: 40px;
     background-image: url(assets/svg/snowflake.svg);
@@ -601,6 +606,30 @@ input[type='range'] {
 .tree-select-bg-active {
     border: 5px solid cyan;
 }
+.snow {
+    position: absolute;
+    top: -120px;
+    left: 0;
+    width: 100%;
+    height: calc(100vh + 120px);
+    /*background-color:white;
+opacity: 0.5;*/
+    z-index: 5;
+    overflow: hidden;
+}
+.snow i {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    background-image: url(assets/svg/snow.svg);
+    background-size: contain;
+    opacity: 0.5;
+    position: relative;
+}
+/*@keyframes snowfall{
+from{transform:translate(0px, 0px)} 
+to{transform:translate(0px 900px)}
+}*/
 
 @media (max-width: 1441px) {
     .tree-select-type {
