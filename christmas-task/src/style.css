@@ -585,6 +585,12 @@ input[type='range'] {
     background-size: contain;
     margin-right: 40px;
 }
+.mute {
+    background-image: url(assets/svg/mute.svg);
+}
+.play {
+    background-image: url(assets/svg/audio.svg);
+}
 .tree-image {
     height: 700px;
     width: 500px;

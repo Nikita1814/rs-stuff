@@ -26,7 +26,7 @@ class TreePage implements TreeDecoration {
         <div class="page tree-page">
         <div class="tree-left">
         <div class="tree-buttons">
-        <div class="music"></div>
+        <div class="music play"></div>
         <div class="snow"></div>
         </div>
             <div class="tree-select">

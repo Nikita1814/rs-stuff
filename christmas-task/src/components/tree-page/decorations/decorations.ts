@@ -35,6 +35,24 @@ class Decorations implements TreeLeft {
                 )
             }
         })
+
+        document.querySelector('.music')?.addEventListener('click', () => {
+            let music = document.querySelector('.music') as HTMLElement
+            let sound = document.querySelector('.jingle-bells') as HTMLAudioElement
+            if (music.classList.contains('play')) {
+                music.classList.remove('play')
+                music.classList.add('mute')
+                this.treePageSettings.music = true
+                sound.play()
+                
+            } else {
+                music.classList.remove('mute')
+                music.classList.add('play')
+                sound.pause()
+                sound.currentTime = 0
+                this.treePageSettings.music = false
+            }
+        })
     }
 }
 
