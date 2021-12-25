@@ -422,6 +422,11 @@ input[type='range'] {
 .tree-div {
     width: 40%;
     background-image: url(assets/bg/1.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
 }
 .tree-page {
     display: flex;
@@ -442,8 +447,8 @@ input[type='range'] {
 }
 .tree-select-type {
     border-radius: 10px;
-    width: 75px;
-    height: 75px;
+    width: 90px;
+    height: 90px;
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
@@ -550,7 +555,7 @@ input[type='range'] {
     position: relative;
     border-radius: 10px;
 }
-.toy-amount {
+.toy-count {
     width: 20px;
     height: 20px;
     position: absolute;
@@ -561,6 +566,34 @@ input[type='range'] {
     text-align: center;
     vertical-align: middle;
     border-radius: 50%;
+}
+
+.tree-buttons {
+    display: flex;
+    width: 100%;
+}
+.snow {
+    width: 40px;
+    height: 40px;
+    background-image: url(assets/svg/snowflake.svg);
+    background-size: contain;
+}
+.music {
+    width: 40px;
+    height: 40px;
+    background-image: url(assets/svg/audio.svg);
+    background-size: contain;
+    margin-right: 40px;
+}
+.tree-image {
+    height: 700px;
+    width: 500px;
+}
+.tree-select-active {
+    background-color: cyan;
+}
+.tree-select-bg-active {
+    border: 5px solid cyan;
 }
 
 @media (max-width: 1441px) {

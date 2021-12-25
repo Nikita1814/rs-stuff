@@ -1,15 +1,23 @@
-import { DataItem, TreeDecoration } from '../interfaces/interfaces'
+import { DataItem, TreeDecoration, TreeLeft, TreePageSettingsObj } from '../interfaces/interfaces'
+import Decorations from './decorations/decorations'
 
 class TreePage implements TreeDecoration {
     data: DataItem[]
     favs: Set<string | undefined>
-    decorations: Object
+    treePageSettings: TreePageSettingsObj
+    decorations: TreeLeft
     firTree: Object
     toyBox: Object
     constructor(data: DataItem[], favs: Set<string | undefined>) {
+        this.treePageSettings = {
+            treeImg: 1,
+            bg: 1,
+            snow: false,
+            music: false,
+        }
         this.data = data
         this.favs = favs
-        this.decorations = {}
+        this.decorations = new Decorations(this.treePageSettings)
         this.firTree = {}
         this.toyBox = {}
     }
@@ -17,6 +25,10 @@ class TreePage implements TreeDecoration {
         ;(document.querySelector('.main') as HTMLElement).innerHTML = `
         <div class="page tree-page">
         <div class="tree-left">
+        <div class="tree-buttons">
+        <div class="music"></div>
+        <div class="snow"></div>
+        </div>
             <div class="tree-select">
                 <h4>Выберите елку</h4>
                 <div class="select-grid">
@@ -55,77 +67,82 @@ class TreePage implements TreeDecoration {
                 </div>
             </div>
         </div>
-        <div class="tree-div"></div>
+        <div class="tree-div">
+        <img class="tree-image" src ="assets/tree/1.png"></img>
+        </div>
         <div class="tree-right">
             <h4>Игрушки</h4>
             <div class="toy-select">
                 <div class="toy-item">
-                    <div class="toy-amount"></div>
+                    <div class="toy-count"></div>
                 </div>
                 <div class="toy-item">
-                    <div class="toy-amount"></div>
+                    <div class="toy-count"></div>
                 </div>
                 <div class="toy-item">
-                    <div class="toy-amount"></div>
+                    <div class="toy-count"></div>
                 </div>
                 <div class="toy-item">
-                    <div class="toy-amount"></div>
+                    <div class="toy-count"></div>
                 </div>
                 <div class="toy-item">
-                    <div class="toy-amount"></div>
+                    <div class="toy-count"></div>
                 </div>
                 <div class="toy-item">
-                    <div class="toy-amount"></div>
+                    <div class="toy-count"></div>
                 </div>
                 <div class="toy-item">
-                    <div class="toy-amount"></div>
+                    <div class="toy-count"></div>
                 </div>
                 <div class="toy-item">
-                    <div class="toy-amount"></div>
+                    <div class="toy-count"></div>
                 </div>
                 <div class="toy-item">
-                    <div class="toy-amount"></div>
+                    <div class="toy-count"></div>
                 </div>
                 <div class="toy-item">
-                    <div class="toy-amount"></div>
+                    <div class="toy-count"></div>
                 </div>
                 <div class="toy-item">
-                    <div class="toy-amount"></div>
+                    <div class="toy-count"></div>
                 </div>
                 <div class="toy-item">
-                    <div class="toy-amount"></div>
+                    <div class="toy-count"></div>
                 </div>
                 <div class="toy-item">
-                    <div class="toy-amount"></div>
+                    <div class="toy-count"></div>
                 </div>
                 <div class="toy-item">
-                    <div class="toy-amount"></div>
+                    <div class="toy-count"></div>
                 </div>
                 <div class="toy-item">
-                    <div class="toy-amount"></div>
+                    <div class="toy-count"></div>
                 </div>
                 <div class="toy-item">
-                    <div class="toy-amount"></div>
+                    <div class="toy-count"></div>
                 </div>
                 <div class="toy-item">
-                    <div class="toy-amount"></div>
+                    <div class="toy-count"></div>
                 </div>
                 <div class="toy-item">
-                    <div class="toy-amount"></div>
+                    <div class="toy-count"></div>
                 </div>
                 <div class="toy-item">
-                    <div class="toy-amount"></div>
+                    <div class="toy-count"></div>
                 </div>
                 <div class="toy-item">
-                    <div class="toy-amount"></div>
+                    <div class="toy-count"></div>
                 </div>
             </div>
             <div class="tree-load"></div>
         </div>
     </div>
         `
+        this.addListeners()
     }
-    addListeners() {}
+    addListeners() {
+        this.decorations.addListeners()
+    }
     setStorage() {}
 }
 

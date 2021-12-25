@@ -77,3 +77,14 @@ export interface RangeFilter {
     toyGrid: Grid
     setSliders: (filters: FilterObj, grid: Grid, data: DataItem[]) => void
 }
+
+export interface TreePageSettingsObj {
+    treeImg: number
+    bg: number
+    snow: boolean
+    music: boolean
+}
+export interface TreeLeft {
+    treePageSettings: TreePageSettingsObj
+    addListeners: () => void
+}
