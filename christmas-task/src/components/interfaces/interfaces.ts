@@ -35,14 +35,19 @@ export interface Toys {
     toyGrid: Grid
     filters: FilterObj
     data: DataItem[]
-
     appearance: Filter
     ranges: RangeFilter
     sorts: Filter
     favs: Set<string | undefined>
-    render: (data: DataItem[], favs: Set<string | undefined>) => void
+    render: (data: DataItem[]) => void
     addListeners: () => void
     setStorage: () => void
+}
+export interface Page {
+    toysPage?: Toys
+    data: DataItem[]
+    render: (data: DataItem[]) => void
+    addListeners: () => void
 }
 /*export interface AppСlass {
     toysPage: Toys

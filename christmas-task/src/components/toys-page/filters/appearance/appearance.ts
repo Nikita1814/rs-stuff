@@ -12,7 +12,7 @@ class Appearance implements Filter {
     }
     addListeners() {
         for (const key in this.filters) {
-            const filterToMod: FilterVal = this.filters[key]
+            const filterToMod = this.filters[key]
             if (filterToMod instanceof Set) {
                 document.querySelector(`.${key}`)?.addEventListener('click', (e) => {
                     const evTarget = e.target as HTMLElement
