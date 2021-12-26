@@ -1,5 +1,6 @@
-import { DataItem, TreeDecoration, TreeLeft, TreePageSettingsObj } from '../interfaces/interfaces'
+import { DataItem, TreeDecoration, TreeLeft, TreePageSettingsObj, TreeToyGrid } from '../interfaces/interfaces'
 import Decorations from './decorations/decorations'
+import ToyBox from './toybox/toy-box'
 
 class TreePage implements TreeDecoration {
     data: DataItem[]
@@ -7,7 +8,7 @@ class TreePage implements TreeDecoration {
     treePageSettings: TreePageSettingsObj
     decorations: TreeLeft
     firTree: Object
-    toyBox: Object
+    toyBox: TreeToyGrid
     constructor(data: DataItem[], favs: Set<string | undefined>) {
         this.treePageSettings = {
             treeImg: 1,
@@ -21,7 +22,7 @@ class TreePage implements TreeDecoration {
         this.favs = favs
         this.decorations = new Decorations(this.treePageSettings)
         this.firTree = {}
-        this.toyBox = {}
+        this.toyBox = new ToyBox(this.data, this.favs, this.treePageSettings)
     }
     render(data: DataItem[]) {
         ;(document.querySelector('.main') as HTMLElement).innerHTML = `
@@ -143,6 +144,7 @@ class TreePage implements TreeDecoration {
     </div>
         `
         this.addListeners()
+        this.toyBox.drawBox()
     }
     addListeners() {
         this.decorations.addListeners()

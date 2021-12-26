@@ -566,7 +566,7 @@ input[type='range'] {
     position: absolute;
     right: 0;
     bottom: 0;
-    background-color: cyan;
+    background-color: rgb(31, 178, 170);
     color: white;
     text-align: center;
     vertical-align: middle;
@@ -672,7 +672,7 @@ align-items:flex-end;
     /*background-color:yellow;*/
     background-color: palevioletred;
 }
-.ornament-active{
+.ornament-active {
     border: 5px solid rgb(31, 178, 170);
 }
 
@@ -688,21 +688,22 @@ align-items:flex-end;
 @keyframes mix {
     0%,
     100% {
-        background-color:palevioletred;
+        background-color: palevioletred;
         opacity: 1;
     }
     20% {
-        background-color:lime;
+        background-color: lime;
     }
     40% {
-        background-color: cyan;}
+        background-color: cyan;
+    }
     80% {
-        background-color: yellow;}
-   50% {
-            opacity: 0.5;
-        }
+        background-color: yellow;
+    }
+    50% {
+        opacity: 0.5;
+    }
 }
-
 
 @media (max-width: 1441px) {
     .tree-select-type {

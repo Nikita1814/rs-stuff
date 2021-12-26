@@ -90,3 +90,10 @@ export interface TreeLeft {
     treePageSettings: TreePageSettingsObj
     addListeners: () => void
 }
+
+export interface TreeToyGrid {
+    favs: Set<string | undefined>
+    data: DataItem[]
+    treePageSettings: TreePageSettingsObj
+    drawBox: () => void
+}
