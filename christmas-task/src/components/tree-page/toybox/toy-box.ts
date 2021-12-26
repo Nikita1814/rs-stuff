@@ -24,13 +24,58 @@ class ToyBox implements TreeToyGrid {
         }
         toysToShow.forEach((el) => {
             let toyItem = document.createElement('div')
-            toyItem.classList.add('toy-item')
-            toyItem.setAttribute('style', ` background-image: url(assets/toys/${el.num}.png);`)
             let toyAmount = document.createElement('div')
+            for ( let i = Number(el.count); i > 0; i--){
+            let toyImg = document.createElement('img')
+            toyImg.classList.add('tree-toy-image')
+            toyImg.src = `assets/toys/${el.num}.png`
+            toyImg.draggable = true
+            toyImg.setAttribute('data-amount', `${el.num}-${i}`)
+            toyItem.append(toyImg)
+            }
+
             toyAmount.innerHTML = `${el.count}`
             toyAmount.classList.add('toy-count')
+            toyItem.classList.add('toy-item')
+            toyItem.setAttribute('data-toy-label', `${el.num}`)
+            toyItem.id = `${el.num}`
+           
             toyItem.append(toyAmount)
             toyGrid.append(toyItem)
+        })
+    }
+    addListeners() {
+        let elem: HTMLImageElement | undefined
+        let dropzone =  document.querySelector('.drop-area') as HTMLAreaElement
+      
+        window.addEventListener('click', (e)=>{
+          console.log(e.clientX, e.clientY )
+          console.log(e.pageX, e.pageY )
+      });
+        document.querySelectorAll('.tree-toy-image').forEach((el) => {
+            ;(el as HTMLElement).addEventListener('dragstart', (e: DragEvent) => {
+                console.log(e.target)
+                elem = e.target as HTMLImageElement
+                console.log(elem)
+            });
+            (el as HTMLElement).addEventListener('dragend', (e:DragEvent) =>{
+                let label:string | undefined = (e.target as HTMLElement)?.dataset?.amount?.split('-')[0]
+                console.log(document.elementFromPoint(e.clientX, e.clientY));
+                let container = (document.querySelector(`[data-toy-label = "${label}"]`) as HTMLElement) as HTMLElement
+               
+                (container.querySelector('.toy-count') as HTMLElement).textContent = String(container.children.length - 1)
+            })
+        })
+
+        document.querySelector('.drop-area')?.addEventListener('dragover', (e) => {
+            e.preventDefault()
+        })
+
+        ;(document.querySelector('.drop-area') as HTMLAreaElement).addEventListener('drop', (e) => {
+            console.log('drop')
+            document.querySelector('.drop-area')?.append(elem as HTMLElement)
+            ;(elem as HTMLElement).setAttribute('style', `position: absolute; top:${e.clientY}px; left:${e.clientX}px`)
+            console.log(`dropped on ${e.clientX} ${e.clientY}`)
         })
     }
 }

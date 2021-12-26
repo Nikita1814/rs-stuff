@@ -19,7 +19,7 @@ button {
     border: 1px solid grey;
 }
 .hidden {
-    display: none;
+    display: none !important;
 }
 
 .page {
@@ -419,7 +419,7 @@ input[type='range'] {
     width: 30%;
     background-color: rgba(25, 47, 45, 0.7);
     padding: 1% 1%;
-    position: relative;
+    /*position: relative;*/
     z-index: 100;
 }
 
@@ -431,7 +431,7 @@ input[type='range'] {
     display: flex;
     justify-content: center;
     align-items: flex-end;
-    position: relative;
+    /*position: relative;*/
 }
 .tree-page {
     display: flex;
@@ -552,20 +552,19 @@ input[type='range'] {
 .toy-item {
     width: 70px;
     height: 70px;
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
     background-color: rgb(0, 71, 171, 0.5);
-    background-image: url(assets/toys/1.png);
-    position: relative;
+    /*background-image: url(assets/toys/1.png);*/
     border-radius: 10px;
+    display:flex;
+    justify-content: center;
+    align-items:center;
 }
 .toy-count {
     width: 20px;
     height: 20px;
-    position: absolute;
-    right: 0;
-    bottom: 0;
+    align-self: flex-end;
+    justify-self: flex-end;
+    margin-left:40px;
     background-color: rgb(31, 178, 170);
     color: white;
     text-align: center;
@@ -597,6 +596,7 @@ input[type='range'] {
     background-image: url(assets/svg/audio.svg);
 }
 .tree-image {
+    display: block;
     height: 700px;
     width: 500px;
 }
@@ -610,13 +610,16 @@ input[type='range'] {
     position: absolute;
     top: -120px;
     left: 0;
-    width: 100%;
+    width: 40%;
+    margin-left: 30%;
     height: calc(100vh + 120px);
+    pointer-events: none;
     /*background-color:white;
 opacity: 0.5;*/
-    z-index: 5;
+    
     overflow: hidden;
 }
+
 .snow i {
     display: inline-block;
     width: 40px;
@@ -624,7 +627,7 @@ opacity: 0.5;*/
     background-image: url(assets/svg/snow.svg);
     background-size: contain;
     opacity: 0.5;
-    position: relative;
+    /*position: relative;*/
 }
 /*@keyframes snowfall{
 from{transform:translate(0px, 0px)} 
@@ -637,12 +640,12 @@ to{transform:translate(0px 900px)}
     position: absolute;
     height: 700px;
     width: 500px;
-    z-index: 4;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
     gap: 30px;
+    pointer-events: none;
 }
 .lights-rope {
     width: 100%;
@@ -675,6 +678,15 @@ align-items:flex-end;
 .ornament-active {
     border: 5px solid rgb(31, 178, 170);
 }
+
+
+.tree-toy-image{
+width:50px;
+height:50px;
+position:absolute;
+  
+}
+
 
 @keyframes blink {
     0%,

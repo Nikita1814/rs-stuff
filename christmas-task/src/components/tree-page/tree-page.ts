@@ -73,7 +73,10 @@ class TreePage implements TreeDecoration {
         <div class="snow hidden"></div>
         <div class="lights-container hidden">
         </div>
-        <img class="tree-image" src ="assets/tree/1.png"></img>
+        <img class="tree-image" src ="assets/tree/1.png" usemap="#tree-map"></img>
+        <map name="tree-map">
+        <area class="drop-area" shape="poly" coords="1,550,250,1,499,550,250,699">
+        </map>
         </div>
         <div class="tree-right">
             <h4>Игрушки</h4>
@@ -143,11 +146,13 @@ class TreePage implements TreeDecoration {
         </div>
     </div>
         `
-        this.addListeners()
+        
         this.toyBox.drawBox()
+        this.addListeners()
     }
     addListeners() {
         this.decorations.addListeners()
+        this.toyBox.addListeners()
     }
     setStorage() {}
 }

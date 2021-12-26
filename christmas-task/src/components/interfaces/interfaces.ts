@@ -96,4 +96,5 @@ export interface TreeToyGrid {
     data: DataItem[]
     treePageSettings: TreePageSettingsObj
     drawBox: () => void
+    addListeners: () => void
 }
