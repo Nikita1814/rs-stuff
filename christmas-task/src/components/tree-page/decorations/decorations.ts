@@ -60,6 +60,7 @@ class Decorations implements TreeLeft {
                 snowBtn.classList.toggle('snow-on')
                 snowDiv.classList.toggle('hidden')
                 snowDiv.innerHTML = ''
+                this.treePageSettings.snow = false
             } else {
                 snowBtn.classList.toggle('snow-on')
                 snowDiv.classList.toggle('hidden')
@@ -75,9 +76,53 @@ class Decorations implements TreeLeft {
                         iterations: Infinity,
                     })
                 }
+                this.treePageSettings.snow = true
+            }
+        })
+        document.querySelector('.ornaments-box')?.addEventListener('click', (e) => {
+            let evTarget = e.target as HTMLElement
+            if (evTarget.classList.contains('ornament-item')) {
+                let lightsContainer = document.querySelector('.lights-container') as HTMLElement
+                if (evTarget.classList.contains('ornament-active')) {
+                    evTarget.classList.remove('ornament-active')
+                    lightsContainer.innerHTML = ''
+                    lightsContainer.classList.add('hidden')
+                } else {
+                    document.querySelectorAll('ornament-item').forEach((el) => el.classList.remove('ornament-active'))
+                    evTarget.classList.add('ornament-active')
+                    lightsContainer.classList.remove('hidden')
+                    lightsContainer.innerHTML = ''
+                    for (let i = 0; i < 32; i += 4) {
+                        let rope = document.createElement('div')
+                        rope.classList.add('lights-rope')
+
+                        for (let j = 0; j < i + 5; j++) {
+                            let light = document.createElement('div')
+                            rope.append(light)
+                        }
+                        for (let k = 0; k < Math.ceil(rope.children.length / 2); k++) {
+                            if (evTarget.dataset.ornament !== 'mix') {
+                                rope.children[k]?.setAttribute(
+                                    'style',
+                                    `margin-top:${k * 5 * 0.56}px; background-color:${
+                                        evTarget.dataset.ornament
+                                    }; animation: 3s blink ease-in-out infinite`
+                                )
+                                if (rope.children[rope.children.length - (k + 1)]) {
+                                    rope.children[rope.children.length - (k + 1)].setAttribute(
+                                        'style',
+                                        `margin-top:${k * 5 * 0.56}px; background-color:${
+                                            evTarget.dataset.ornament
+                                        }; animation: 3s blink ease-in-out infinite`
+                                    )
+                                }
+                            }
+                        }
+                        lightsContainer.append(rope)
+                    }
+                }
             }
         })
     }
 }
-
 export default Decorations

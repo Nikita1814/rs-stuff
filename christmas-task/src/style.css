@@ -630,6 +630,58 @@ opacity: 0.5;*/
 from{transform:translate(0px, 0px)} 
 to{transform:translate(0px 900px)}
 }*/
+.lights-container {
+    bottom: 0;
+    left: 50%;
+    margin-left: -250px;
+    position: absolute;
+    height: 700px;
+    width: 500px;
+    z-index: 4;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 30px;
+}
+.lights-rope {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    /*margin-bottom:30px;*/
+    height: 50px;
+}
+/*.lights-rope:nth-child(1),
+.lights-rope:nth-child(2),
+.lights-rope:nth-child(3){
+    align-items:center;
+    }*/
+/*.lights-rope:nth-child(7){
+align-items:flex-end;
+}*/
+.lights-rope:nth-child(8) {
+    opacity: 0;
+}
+.lights-rope div {
+    /*width:20px;
+    height:20px;*/
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    /*background-color:yellow;*/
+    background-color: palevioletred;
+}
+
+@keyframes blink {
+    0%,
+    100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
 
 @media (max-width: 1441px) {
     .tree-select-type {

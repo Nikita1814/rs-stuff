@@ -59,9 +59,9 @@ class TreePage implements TreeDecoration {
                 <h4>Гирлянда</h4>
                 <div class="ornaments-box">
                     <div data-ornament="mix" class="ornament-item or1"></div>
-                    <div data-ornament="red" class="ornament-item or2"></div>
-                    <div data-ornament="green" class="ornament-item or3"></div>
-                    <div data-ornament="blue" class="ornament-item or4"></div>
+                    <div data-ornament="palevioletred" class="ornament-item or2"></div>
+                    <div data-ornament="lime" class="ornament-item or3"></div>
+                    <div data-ornament="cyan" class="ornament-item or4"></div>
                     <div data-ornament="yellow" class="ornament-item or5"></div>
                     <input type="radio">
                 </div>
@@ -69,6 +69,8 @@ class TreePage implements TreeDecoration {
         </div>
         <div class="tree-div">
         <div class="snow hidden"></div>
+        <div class="lights-container hidden">
+        </div>
         <img class="tree-image" src ="assets/tree/1.png"></img>
         </div>
         <div class="tree-right">
