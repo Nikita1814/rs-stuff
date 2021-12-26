@@ -65,7 +65,6 @@ class TreePage implements TreeDecoration {
                     <div data-ornament="lime" class="ornament-item or3"></div>
                     <div data-ornament="cyan" class="ornament-item or4"></div>
                     <div data-ornament="yellow" class="ornament-item or5"></div>
-                    <input type="radio">
                 </div>
             </div>
         </div>

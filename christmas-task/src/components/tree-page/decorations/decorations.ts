@@ -89,7 +89,7 @@ class Decorations implements TreeLeft {
                     lightsContainer.classList.add('hidden')
                     this.treePageSettings.lightsOn=false
                 } else {
-                    document.querySelectorAll('ornament-item').forEach((el) => el.classList.remove('ornament-active'))
+                    document.querySelectorAll('.ornament-item').forEach((el) => el.classList.remove('ornament-active'))
                     evTarget.classList.add('ornament-active')
                     lightsContainer.classList.remove('hidden')
                     this.treePageSettings.lightsOn=true

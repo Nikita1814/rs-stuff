@@ -417,7 +417,7 @@ input[type='range'] {
 .tree-left,
 .tree-right {
     width: 30%;
-    background-color: rgb(31, 178, 170, 0.7);
+    background-color: rgba(25, 47, 45, 0.7);
     padding: 1% 1%;
     position: relative;
     z-index: 100;
@@ -671,6 +671,9 @@ align-items:flex-end;
     border-radius: 50%;
     /*background-color:yellow;*/
     background-color: palevioletred;
+}
+.ornament-active{
+    border: 5px solid rgb(31, 178, 170);
 }
 
 @keyframes blink {
