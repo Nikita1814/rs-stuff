@@ -87,10 +87,13 @@ class Decorations implements TreeLeft {
                     evTarget.classList.remove('ornament-active')
                     lightsContainer.innerHTML = ''
                     lightsContainer.classList.add('hidden')
+                    this.treePageSettings.lightsOn=false
                 } else {
                     document.querySelectorAll('ornament-item').forEach((el) => el.classList.remove('ornament-active'))
                     evTarget.classList.add('ornament-active')
                     lightsContainer.classList.remove('hidden')
+                    this.treePageSettings.lightsOn=true
+                    this.treePageSettings.lightsColor = evTarget.dataset.ornament as string
                     lightsContainer.innerHTML = ''
                     for (let i = 0; i < 32; i += 4) {
                         let rope = document.createElement('div')
@@ -116,6 +119,18 @@ class Decorations implements TreeLeft {
                                         }; animation: 3s blink ease-in-out infinite`
                                     )
                                 }
+                            } else {
+                                rope.children[k]?.setAttribute(
+                                    'style',
+                                    `margin-top:${k * 5 * 0.56}px; animation: 5s mix linear infinite`
+                                )
+                                if (rope.children[rope.children.length - (k + 1)]) {
+                                    rope.children[rope.children.length - (k + 1)].setAttribute(
+                                        'style',
+                                        `margin-top:${k * 5 * 0.56}px; animation: 5s mix linear infinite`
+                                    )
+                                }
+
                             }
                         }
                         lightsContainer.append(rope)

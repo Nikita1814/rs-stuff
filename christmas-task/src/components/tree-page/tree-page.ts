@@ -14,6 +14,8 @@ class TreePage implements TreeDecoration {
             bg: 1,
             snow: false,
             music: false,
+            lightsColor: 'yellow',
+            lightsOn: false,
         }
         this.data = data
         this.favs = favs

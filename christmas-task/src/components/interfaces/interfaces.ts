@@ -83,6 +83,8 @@ export interface TreePageSettingsObj {
     bg: number
     snow: boolean
     music: boolean
+    lightsColor: string
+    lightsOn: boolean
 }
 export interface TreeLeft {
     treePageSettings: TreePageSettingsObj

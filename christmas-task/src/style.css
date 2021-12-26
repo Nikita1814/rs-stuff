@@ -682,6 +682,24 @@ align-items:flex-end;
         opacity: 0.5;
     }
 }
+@keyframes mix {
+    0%,
+    100% {
+        background-color:palevioletred;
+        opacity: 1;
+    }
+    20% {
+        background-color:lime;
+    }
+    40% {
+        background-color: cyan;}
+    80% {
+        background-color: yellow;}
+   50% {
+            opacity: 0.5;
+        }
+}
+
 
 @media (max-width: 1441px) {
     .tree-select-type {
