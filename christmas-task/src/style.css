@@ -419,7 +419,6 @@ input[type='range'] {
     width: 30%;
     background-color: rgba(25, 47, 45, 0.7);
     padding: 1% 1%;
-    /*position: relative;*/
     z-index: 100;
 }
 
@@ -431,7 +430,6 @@ input[type='range'] {
     display: flex;
     justify-content: center;
     align-items: flex-end;
-    /*position: relative;*/
 }
 .tree-page {
     display: flex;
@@ -458,6 +456,8 @@ input[type='range'] {
     background-size: contain;
     background-repeat: no-repeat;
     background-color: rgb(0, 71, 171, 0.5);
+    cursor: pointer;
+    transition: background-color 1s ease-in-out;
 }
 .tr1 {
     background-image: url(assets/tree/1.png);
@@ -484,6 +484,7 @@ input[type='range'] {
     height: 50px;
     background-size: cover;
     background-position: center;
+    cursor: pointer;
 }
 
 .bg1 {
@@ -525,6 +526,7 @@ input[type='range'] {
     width: 25px;
     height: 25px;
     border-radius: 50%;
+    cursor: pointer;
 }
 
 .or1 {
@@ -553,7 +555,6 @@ input[type='range'] {
     width: 70px;
     height: 70px;
     background-color: rgb(0, 71, 171, 0.5);
-    /*background-image: url(assets/toys/1.png);*/
     border-radius: 10px;
     display: flex;
     justify-content: center;
@@ -584,6 +585,7 @@ input[type='range'] {
     background-size: contain;
     background-repeat: no-repeat;
     margin-right: 40px;
+    cursor: pointer;
 }
 .music {
     width: 40px;
@@ -592,6 +594,7 @@ input[type='range'] {
     background-size: contain;
     margin-right: 40px;
     background-repeat: no-repeat;
+    cursor: pointer;
 }
 .mute {
     background-image: url(assets/svg/mute.svg);
@@ -618,8 +621,6 @@ input[type='range'] {
     margin-left: 30%;
     height: calc(100vh + 120px);
     pointer-events: none;
-    /*background-color:white;
-opacity: 0.5;*/
 
     overflow: hidden;
 }
@@ -631,12 +632,7 @@ opacity: 0.5;*/
     background-image: url(assets/svg/snow.svg);
     background-size: contain;
     opacity: 0.5;
-    /*position: relative;*/
 }
-/*@keyframes snowfall{
-from{transform:translate(0px, 0px)} 
-to{transform:translate(0px 900px)}
-}*/
 .lights-container {
     bottom: 0;
     left: 50%;
@@ -656,27 +652,15 @@ to{transform:translate(0px 900px)}
     display: flex;
     justify-content: center;
     gap: 5px;
-    /*margin-bottom:30px;*/
     height: 50px;
 }
-/*.lights-rope:nth-child(1),
-.lights-rope:nth-child(2),
-.lights-rope:nth-child(3){
-    align-items:center;
-    }*/
-/*.lights-rope:nth-child(7){
-align-items:flex-end;
-}*/
 .lights-rope:nth-child(8) {
     opacity: 0;
 }
 .lights-rope div {
-    /*width:20px;
-    height:20px;*/
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    /*background-color:yellow;*/
     background-color: palevioletred;
 }
 .ornament-active {
@@ -687,6 +671,7 @@ align-items:flex-end;
     width: 50px;
     height: 50px;
     position: absolute;
+    cursor: all-scroll;
 }
 
 @keyframes blink {
@@ -750,7 +735,3 @@ align-items:flex-end;
         height: 60px;
     }
 }
-
-/*@media screen and (max-width: 1024px) {
-   
-}*/

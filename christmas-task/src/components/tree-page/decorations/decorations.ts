@@ -7,7 +7,6 @@ class Decorations implements TreeLeft {
     }
     addListeners() {
         document.querySelector('.tree-select')?.addEventListener('click', (e) => {
-            console.log('click')
             const evTarget = e.target as HTMLElement
             if (evTarget.classList.contains('tree-select-type')) {
                 this.treePageSettings.treeImg = evTarget.dataset.tree as string

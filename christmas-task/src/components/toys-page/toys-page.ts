@@ -50,7 +50,6 @@ class ToysPage implements ToySelection {
         this.sorts = new Sorts(this.data, this.filters, this.toyGrid)
     }
     render(data: DataItem[]) {
-        console.log(this.filters)
         const main = document.querySelector('.main') as HTMLElement
         main.innerHTML = ` 
 <div class="page toys-page">
@@ -177,7 +176,7 @@ class ToysPage implements ToySelection {
         })
         document.querySelector('.reset-all')?.addEventListener('click', () => {
             localStorage.clear()
-            console.log(localStorage)
+
             this.filters = {
                 shape: new Set(),
                 color: new Set(),

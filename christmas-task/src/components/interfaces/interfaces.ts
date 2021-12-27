@@ -58,11 +58,6 @@ export interface Page {
     render: (data: DataItem[]) => void
     addListeners: () => void
 }
-/*export interface AppСlass {
-    toysPage: Toys
-    data: Array<DataItem>
-    start: () => void
-}*/
 
 export interface Filter {
     data: DataItem[]
