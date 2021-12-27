@@ -146,7 +146,7 @@ class TreePage implements TreeDecoration {
         </div>
     </div>
         `
-        
+
         this.toyBox.drawBox()
         this.addListeners()
     }

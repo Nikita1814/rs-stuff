@@ -555,16 +555,16 @@ input[type='range'] {
     background-color: rgb(0, 71, 171, 0.5);
     /*background-image: url(assets/toys/1.png);*/
     border-radius: 10px;
-    display:flex;
+    display: flex;
     justify-content: center;
-    align-items:center;
+    align-items: center;
 }
 .toy-count {
     width: 20px;
     height: 20px;
     align-self: flex-end;
     justify-self: flex-end;
-    margin-left:40px;
+    margin-left: 40px;
     background-color: rgb(31, 178, 170);
     color: white;
     text-align: center;
@@ -616,7 +616,7 @@ input[type='range'] {
     pointer-events: none;
     /*background-color:white;
 opacity: 0.5;*/
-    
+
     overflow: hidden;
 }
 
@@ -679,14 +679,11 @@ align-items:flex-end;
     border: 5px solid rgb(31, 178, 170);
 }
 
-
-.tree-toy-image{
-width:50px;
-height:50px;
-position:absolute;
-  
+.tree-toy-image {
+    width: 50px;
+    height: 50px;
+    position: absolute;
 }
-
 
 @keyframes blink {
     0%,
