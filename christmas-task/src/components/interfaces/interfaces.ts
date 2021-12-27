@@ -46,10 +46,11 @@ export interface ToySelection {
 export interface TreeDecoration {
     data: DataItem[]
     favs: Set<string | undefined>
-    decorations: Object
-    firTree: Object
-    toyBox: Object
+    decorations: TreeLeft
+    toyBox: TreeToyGrid
     render: (data: DataItem[]) => void
+    addListeners: () => void
+    setStorage: () => void
 }
 export interface Page {
     toysPage?: ToySelection
@@ -79,8 +80,8 @@ export interface RangeFilter {
 }
 
 export interface TreePageSettingsObj {
-    treeImg: number
-    bg: number
+    treeImg: string
+    bg: string
     snow: boolean
     music: boolean
     lightsColor: string
@@ -89,6 +90,9 @@ export interface TreePageSettingsObj {
 export interface TreeLeft {
     treePageSettings: TreePageSettingsObj
     addListeners: () => void
+    generateLights: (color: string) => void
+    generateSnow: () => void
+    handleStorage: () => void
 }
 
 export interface TreeToyGrid {

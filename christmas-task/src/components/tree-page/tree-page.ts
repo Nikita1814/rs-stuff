@@ -2,35 +2,46 @@ import { DataItem, TreeDecoration, TreeLeft, TreePageSettingsObj, TreeToyGrid } 
 import Decorations from './decorations/decorations'
 import ToyBox from './toybox/toy-box'
 
+class TreeSettings implements TreePageSettingsObj {
+    treeImg: string
+    bg: string
+    snow: boolean
+    music: boolean
+    lightsColor: string
+    lightsOn: boolean
+    constructor() {
+        this.treeImg = '1'
+        this.bg = '1'
+        this.snow = false
+        this.music = false
+        this.lightsColor = 'yellow'
+        this.lightsOn = false
+    }
+}
 class TreePage implements TreeDecoration {
     data: DataItem[]
     favs: Set<string | undefined>
     treePageSettings: TreePageSettingsObj
     decorations: TreeLeft
-    firTree: Object
     toyBox: TreeToyGrid
     constructor(data: DataItem[], favs: Set<string | undefined>) {
-        this.treePageSettings = {
-            treeImg: 1,
-            bg: 1,
-            snow: false,
-            music: false,
-            lightsColor: 'yellow',
-            lightsOn: false,
+        this.treePageSettings = new TreeSettings()
+        if (localStorage.getItem('treeSettings')) {
+            this.treePageSettings = JSON.parse(localStorage.getItem('treeSettings') as string)
         }
         this.data = data
         this.favs = favs
         this.decorations = new Decorations(this.treePageSettings)
-        this.firTree = {}
         this.toyBox = new ToyBox(this.data, this.favs, this.treePageSettings)
     }
-    render(data: DataItem[]) {
+    render() {
         ;(document.querySelector('.main') as HTMLElement).innerHTML = `
         <div class="page tree-page">
         <div class="tree-left">
         <div class="tree-buttons">
         <div class="music play"></div>
         <div class="snow-btn"></div>
+        <button class="reset-all">Сбросить Хранилище</button>
         </div>
             <div class="tree-select">
                 <h4>Выберите елку</h4>
@@ -149,12 +160,23 @@ class TreePage implements TreeDecoration {
 
         this.toyBox.drawBox()
         this.addListeners()
+        this.handleStorage()
     }
     addListeners() {
         this.decorations.addListeners()
         this.toyBox.addListeners()
+        document.querySelector(`.reset-all`)?.addEventListener('click', () => {
+            localStorage.clear()
+            this.treePageSettings = new TreeSettings()
+            location.reload()
+        })
     }
-    setStorage() {}
+    setStorage() {
+        localStorage.setItem('treeSettings', JSON.stringify(this.treePageSettings))
+    }
+    handleStorage() {
+        this.decorations.handleStorage()
+    }
 }
 
 export default TreePage

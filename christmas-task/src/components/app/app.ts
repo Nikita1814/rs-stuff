@@ -39,6 +39,7 @@ class App {
     }
     setStorage() {
         this.toysPage.setStorage()
+        this.treePage.setStorage()
     }
 }
 

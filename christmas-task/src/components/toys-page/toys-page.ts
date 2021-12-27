@@ -197,6 +197,7 @@ class ToysPage implements ToySelection {
             this.filters.beginAmount = 1
             this.filters.endAmount = 12
             this.render(this.data)
+            location.reload()
         })
     }
     setStorage() {

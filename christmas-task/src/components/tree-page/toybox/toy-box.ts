@@ -18,15 +18,15 @@ class ToyBox implements TreeToyGrid {
         } else {
             toysToShow = []
             this.favs.forEach((n) => {
-                let toy = this.data.find((el) => el.num === n)
+                const toy = this.data.find((el) => el.num === n)
                 toysToShow.push(toy as DataItem)
             })
         }
         toysToShow.forEach((el) => {
-            let toyItem = document.createElement('div')
-            let toyAmount = document.createElement('div')
+            const toyItem = document.createElement('div')
+            const toyAmount = document.createElement('div')
             for (let i = Number(el.count); i > 0; i--) {
-                let toyImg = document.createElement('img')
+                const toyImg = document.createElement('img')
                 toyImg.classList.add('tree-toy-image')
                 toyImg.src = `assets/toys/${el.num}.png`
                 toyImg.draggable = true
@@ -46,16 +46,16 @@ class ToyBox implements TreeToyGrid {
     }
     addListeners() {
         let elem: HTMLImageElement | undefined
-        let dropzone = document.querySelector('.drop-area') as HTMLAreaElement
-        let elemIn: Boolean
+        const dropzone = document.querySelector('.drop-area') as HTMLAreaElement
+        let elemIn: boolean
 
         document.querySelectorAll('.tree-toy-image').forEach((el) => {
             ;(el as HTMLElement).addEventListener('dragstart', (e: DragEvent) => {
                 elem = e.target as HTMLImageElement
             })
             ;(el as HTMLElement).addEventListener('dragend', (e: DragEvent) => {
-                let label: string | undefined = (e.target as HTMLElement)?.dataset?.amount?.split('-')[0]
-                let container = document.querySelector(`[data-toy-label = "${label}"]`) as HTMLElement as HTMLElement
+                const label: string | undefined = (e.target as HTMLElement)?.dataset?.amount?.split('-')[0]
+                const container = document.querySelector(`[data-toy-label = "${label}"]`) as HTMLElement as HTMLElement
                 if (!elemIn) {
                     dropzone.removeChild(elem as Node)
                     elem?.setAttribute('style', '')
@@ -71,10 +71,10 @@ class ToyBox implements TreeToyGrid {
             e.preventDefault()
         })
 
-        document.querySelector('.drop-area')?.addEventListener('dragenter', (e) => {
+        document.querySelector('.drop-area')?.addEventListener('dragenter', () => {
             elemIn = true
         })
-        document.querySelector('.drop-area')?.addEventListener('dragleave', (e) => {
+        document.querySelector('.drop-area')?.addEventListener('dragleave', () => {
             elemIn = false
         })
         ;(document.querySelector('.drop-area') as HTMLAreaElement).addEventListener('drop', (e) => {
