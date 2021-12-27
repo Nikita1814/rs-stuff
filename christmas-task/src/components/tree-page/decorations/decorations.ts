@@ -81,46 +81,6 @@ class Decorations implements TreeLeft {
                     this.treePageSettings.lightsOn = true
                     this.treePageSettings.lightsColor = evTarget.dataset.ornament as string
                     this.generateLights(evTarget.dataset.ornament as string)
-                    /*lightsContainer.innerHTML = ''
-                    for (let i = 0; i < 32; i += 4) {
-                        let rope = document.createElement('div')
-                        rope.classList.add('lights-rope')
-
-                        for (let j = 0; j < i + 5; j++) {
-                            let light = document.createElement('div')
-                            rope.append(light)
-                        }
-                        for (let k = 0; k < Math.ceil(rope.children.length / 2); k++) {
-                            if (evTarget.dataset.ornament !== 'mix') {
-                                rope.children[k]?.setAttribute(
-                                    'style',
-                                    `margin-top:${k * 5 * 0.56}px; background-color:${
-                                        evTarget.dataset.ornament
-                                    }; animation: 3s blink ease-in-out infinite`
-                                )
-                                if (rope.children[rope.children.length - (k + 1)]) {
-                                    rope.children[rope.children.length - (k + 1)].setAttribute(
-                                        'style',
-                                        `margin-top:${k * 5 * 0.56}px; background-color:${
-                                            evTarget.dataset.ornament
-                                        }; animation: 3s blink ease-in-out infinite`
-                                    )
-                                }
-                            } else {
-                                rope.children[k]?.setAttribute(
-                                    'style',
-                                    `margin-top:${k * 5 * 0.56}px; animation: 5s mix linear infinite`
-                                )
-                                if (rope.children[rope.children.length - (k + 1)]) {
-                                    rope.children[rope.children.length - (k + 1)].setAttribute(
-                                        'style',
-                                        `margin-top:${k * 5 * 0.56}px; animation: 5s mix linear infinite`
-                                    )
-                                }
-                            }
-                        }
-                        lightsContainer.append(rope)
-                    }*/
                 }
             }
         })
@@ -186,6 +146,10 @@ class Decorations implements TreeLeft {
         }
     }
     handleStorage() {
+        function playMusic() {
+            ;(document.querySelector('.jingle-bells') as HTMLAudioElement).play()
+            document.removeEventListener('click', playMusic)
+        }
         document
             .querySelector(`[data-tree = '${String(this.treePageSettings.treeImg)}']`)
             ?.classList.add('tree-select-active')
@@ -193,7 +157,6 @@ class Decorations implements TreeLeft {
         document.querySelector('.tree-image')?.setAttribute('src', `assets/tree/${this.treePageSettings.treeImg}.png`)
 
         document.querySelector(`[data-bg ="${this.treePageSettings.bg}"]`)?.classList.add('tree-select-bg-active')
-
         ;(document.querySelector('.tree-div') as HTMLElement).setAttribute(
             'style',
             `background-image:url(assets/bg/${this.treePageSettings.bg}.jpg);`
@@ -210,6 +173,12 @@ class Decorations implements TreeLeft {
         if (this.treePageSettings.snow === true) {
             ;(document.querySelector('.snow-btn') as HTMLElement).classList.toggle('snow-on')
             this.generateSnow()
+        }
+        if (this.treePageSettings.music === true) {
+            const music = document.querySelector('.music') as HTMLElement
+            music.classList.remove('play')
+            music.classList.add('mute')
+            document.addEventListener('click', playMusic)
         }
     }
 }
