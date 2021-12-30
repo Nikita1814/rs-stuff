@@ -1,4 +1,4 @@
-import { Toy, ToyGridInterface } from '../../interfaces/interfaces'
+import { Toy } from '../../interfaces/interfaces'
 import type { FilterObjInterface } from '../../interfaces/interfaces'
 
 const sortfuncs: { [key: string]: (a: Toy, b: Toy) => number } = {
@@ -15,7 +15,7 @@ const sortfuncs: { [key: string]: (a: Toy, b: Toy) => number } = {
         return +b.count - +a.count
     },
 }
-class ToyGrid implements ToyGridInterface {
+class ToyGrid {
     constructor(public data: Toy[], public favs: Set<string | undefined>) {
         this.data = data
         this.favs = favs

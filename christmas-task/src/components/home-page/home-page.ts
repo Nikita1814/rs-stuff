@@ -1,6 +1,4 @@
-import { PageInterface } from '../interfaces/interfaces'
-
-class HomePage implements PageInterface {
+class HomePage {
     public favsAmount: number
     constructor(favsAmount: number) {
         this.favsAmount = favsAmount

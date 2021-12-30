@@ -9,8 +9,7 @@ export interface Toy {
     favorite: boolean
 }
 
-
-export interface FilterObjInterface extends FilterObjTemp{
+export interface FilterObjInterface extends FilterObjTemp {
     shape: Set<string | undefined> | Array<string | undefined>
     color: Set<string | undefined> | Array<string | undefined>
     size: Set<string | undefined> | Array<string | undefined>
@@ -27,54 +26,6 @@ export type FilterObjTemp = {
 }
 export type FilterVal = Set<string | undefined> | boolean | string | number | Array<string | undefined>
 
-export interface ToyGridInterface {
-    data: Toy[]
-    favs: Set<string | undefined>
-    showElems: (data: Toy[], sortCriteria?: FilterObjInterface) => void
-}
-export interface ToysPageInterface {
-    toyGrid: ToyGridInterface
-    filters: FilterObjInterface
-    data: Toy[]
-    appearance: FilterInterface
-    ranges: RangeFilterInterface
-    sorts: FilterInterface
-    favs: Set<string | undefined>
-    render: (data: Toy[]) => void
-    addListeners: () => void
-    setStorage: () => void
-}
-export interface TreePageInterface {
-    data: Toy[]
-    favs: Set<string | undefined>
-    decorations: DecorationsInterface
-    toyBox: ToyBoxInterface
-    render: (data: Toy[]) => void
-    addListeners: () => void
-    setStorage: () => void
-}
-export interface PageInterface {
-    toysPage?: ToysPageInterface
-    data?: Toy[]
-    render: (data?: Toy[], favsNum?: number) => void
-    addListeners?: () => void
-}
-
-export interface FilterInterface {
-    data: Toy[]
-    filters: FilterObjInterface
-    toyGrid: ToyGridInterface
-    favs?: Set<Toy | undefined>
-    addListeners: () => void
-}
-
-export interface RangeFilterInterface {
-    data: Toy[]
-    filters: FilterObjInterface
-    toyGrid: ToyGridInterface
-    setSliders: (filters: FilterObjInterface, grid: ToyGridInterface, data: Toy[]) => void
-}
-
 export interface TreePageSettingsObjInterface {
     treeImg: string
     bg: string
@@ -82,19 +33,4 @@ export interface TreePageSettingsObjInterface {
     music: boolean
     lightsColor: string
     lightsOn: boolean
-}
-export interface DecorationsInterface {
-    treePageSettings: TreePageSettingsObjInterface
-    addListeners: () => void
-    generateLights: (color: string) => void
-    generateSnow: () => void
-    handleStorage: () => void
-}
-
-export interface ToyBoxInterface {
-    favs: Set<string | undefined>
-    data: Toy[]
-    treePageSettings: TreePageSettingsObjInterface
-    drawBox: () => void
-    addListeners: () => void
 }

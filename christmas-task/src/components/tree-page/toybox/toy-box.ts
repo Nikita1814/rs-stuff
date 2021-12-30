@@ -1,6 +1,6 @@
-import { Toy, TreePageSettingsObjInterface, ToyBoxInterface } from '../../interfaces/interfaces'
+import { Toy, TreePageSettingsObjInterface } from '../../interfaces/interfaces'
 
-class ToyBox implements ToyBoxInterface {
+class ToyBox {
     constructor(
         public data: Toy[],
         public favs: Set<string | undefined>,

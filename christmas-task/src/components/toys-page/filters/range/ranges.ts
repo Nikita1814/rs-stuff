@@ -1,9 +1,9 @@
-import { Toy, FilterObjInterface, RangeFilterInterface } from '../../../interfaces/interfaces'
+import { Toy, FilterObjInterface } from '../../../interfaces/interfaces'
 import 'nouislider/dist/nouislider.css'
 import * as noUiSlider from 'nouislider'
 import ToyGrid from '../../toy-grid/toy-grid'
 
-class Ranges implements RangeFilterInterface {
+class Ranges {
     toyGrid: ToyGrid
     constructor(public data: Toy[], public filters: FilterObjInterface, grid: ToyGrid) {
         this.data = data
