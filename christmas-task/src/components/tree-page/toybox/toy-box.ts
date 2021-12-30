@@ -76,7 +76,6 @@ class ToyBox {
         })
 
         dropzone.addEventListener('drop', (e) => {
-            console.log(e.dataTransfer)
             if (currentToy?.closest('.toy-select')) {
                 const label = currentToy.nextSibling as HTMLElement
                 if (Number(label.textContent) > 1) {

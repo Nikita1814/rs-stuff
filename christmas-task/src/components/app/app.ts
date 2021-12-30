@@ -22,7 +22,6 @@ class App {
         window.addEventListener('hashchange', (e) => {
             document.querySelectorAll('.nav-link').forEach((link) => link.classList.remove('active-link'))
             document.querySelector(`[href='#${e.newURL.split('#')[1]}']`)?.classList.toggle('active-link')
-            console.log(e.newURL.split('#')[1])
             switch (e.newURL.split('#')[1]) {
                 case '':
                     this.homePage.render()
