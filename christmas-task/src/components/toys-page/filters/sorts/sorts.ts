@@ -1,7 +1,7 @@
-import { Toy, Filter, FilterObj } from '../../../interfaces/interfaces'
+import { Toy, FilterInterface, FilterObj } from '../../../interfaces/interfaces'
 import ToyGrid from '../../toy-grid/toy-grid'
 
-class Sorts implements Filter {
+class Sorts implements FilterInterface {
     data: Toy[]
     filters: FilterObj
     toyGrid: ToyGrid

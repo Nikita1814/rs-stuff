@@ -35,9 +35,9 @@ export interface ToysPageInterface {
     toyGrid: Grid
     filters: FilterObj
     data: Toy[]
-    appearance: Filter
+    appearance: FilterInterface
     ranges: RangeFilterInterface
-    sorts: Filter
+    sorts: FilterInterface
     favs: Set<string | undefined>
     render: (data: Toy[]) => void
     addListeners: () => void
@@ -59,7 +59,7 @@ export interface Page {
     addListeners?: () => void
 }
 
-export interface Filter {
+export interface FilterInterface {
     data: Toy[]
     filters: FilterObj
     toyGrid: Grid
