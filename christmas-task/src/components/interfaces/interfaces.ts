@@ -9,7 +9,7 @@ export interface Toy {
     favorite: boolean
 }
 
-export interface FilterObjInterface extends FilterObjTemp {
+export interface FilterObjInterface  {
     shape: Set<string | undefined> | Array<string | undefined>
     color: Set<string | undefined> | Array<string | undefined>
     size: Set<string | undefined> | Array<string | undefined>
@@ -21,10 +21,10 @@ export interface FilterObjInterface extends FilterObjTemp {
     beginAmount: number
     endAmount: number
 }
-export type FilterObjTemp = {
+/*export type FilterObjTemp = {
     [key: string]: FilterVal
-}
-export type FilterVal = Set<string | undefined> | boolean | string | number | Array<string | undefined>
+}*/
+/*export type FilterVal = Set<string | undefined> | boolean | string | number | Array<string | undefined>*/
 
 export interface TreePageSettingsObjInterface {
     treeImg: string
