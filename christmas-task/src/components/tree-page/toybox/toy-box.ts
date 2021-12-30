@@ -9,6 +9,9 @@ class ToyBox implements TreeToyGrid {
         this.data = data
         this.treePageSettings = treePageSettings
     }
+    setToyPosition(toy: HTMLElement, e: DragEvent) {
+        toy.setAttribute('style', `top:${e.clientY - 25}px; left:${e.clientX - 25}px`)
+    }
     drawBox() {
         const toyGrid = document.querySelector('.toy-select') as HTMLElement
         toyGrid.innerHTML = ''
@@ -25,14 +28,17 @@ class ToyBox implements TreeToyGrid {
         toysToShow.forEach((el) => {
             const toyItem = document.createElement('div')
             const toyAmount = document.createElement('div')
-            for (let i = Number(el.count); i > 0; i--) {
-                const toyImg = document.createElement('img')
-                toyImg.classList.add('tree-toy-image')
-                toyImg.src = `assets/toys/${el.num}.png`
-                toyImg.draggable = true
-                toyImg.setAttribute('data-amount', `${el.num}-${i}`)
-                toyItem.append(toyImg)
-            }
+            const toyImg = document.createElement('img')
+            /*for (let i = Number(el.count); i > 0; i--) {
+               
+            }*/
+
+            toyImg.classList.add('tree-toy-image')
+            toyImg.src = `assets/toys/${el.num}.png`
+            toyImg.draggable = true
+            toyImg.setAttribute('data-amount', `${el.num}-${el.count}`)
+            toyImg.setAttribute('data-num', `${el.num}`)
+            toyItem.append(toyImg)
 
             toyAmount.innerHTML = `${el.count}`
             toyAmount.classList.add('toy-count')
@@ -45,42 +51,64 @@ class ToyBox implements TreeToyGrid {
         })
     }
     addListeners() {
-        let elem: HTMLImageElement | undefined
+        const toyPage = document.querySelector('.page.tree-page') as HTMLElement
         const dropzone = document.querySelector('.drop-area') as HTMLAreaElement
-        let elemIn: boolean
+        let currentToy: HTMLImageElement | null
 
-        document.querySelectorAll('.tree-toy-image').forEach((el) => {
-            ;(el as HTMLElement).addEventListener('dragstart', (e: DragEvent) => {
-                elem = e.target as HTMLImageElement
-            })
-            ;(el as HTMLElement).addEventListener('dragend', (e: DragEvent) => {
-                const label: string | undefined = (e.target as HTMLElement)?.dataset?.amount?.split('-')[0]
-                const container = document.querySelector(`[data-toy-label = "${label}"]`) as HTMLElement as HTMLElement
-                if (!elemIn) {
-                    dropzone.removeChild(elem as Node)
-                    elem?.setAttribute('style', '')
-                    container.appendChild(elem as HTMLImageElement)
-                }
-                ;(container.querySelector('.toy-count') as HTMLElement).textContent = String(
-                    container.children.length - 1
-                )
-            })
+        toyPage.addEventListener('dragstart', (e) => {
+            const target = e.target as HTMLElement
+            if (target.matches('.tree-toy-image')) {
+                currentToy = e.target as HTMLImageElement
+            }
         })
 
-        document.querySelector('.drop-area')?.addEventListener('dragover', (e) => {
+        toyPage.addEventListener('dragover', (e) => {
             e.preventDefault()
         })
 
-        document.querySelector('.drop-area')?.addEventListener('dragenter', () => {
-            elemIn = true
+        toyPage.addEventListener('drop', () => {
+            // check if currentToy is from tree
+            if (currentToy?.closest('.drop-area')) {
+                const toyContainer = document.querySelector(
+                    `[data-toy-label="${currentToy.dataset.num}"].toy-item`
+                ) as HTMLElement
+                if (!toyContainer.querySelector('.tree-toy-image')) {
+                    currentToy.setAttribute('style', '')
+                    dropzone.removeChild(currentToy)
+                    toyContainer.prepend(currentToy)
+                } else {
+                    dropzone.removeChild(currentToy)
+                }
+
+                ;(toyContainer.querySelector('.toy-count') as HTMLElement).textContent = `${
+                    Number(toyContainer.querySelector('.toy-count')?.textContent) + 1
+                }`
+            }
+            currentToy = null
         })
-        document.querySelector('.drop-area')?.addEventListener('dragleave', () => {
-            elemIn = false
-        })
-        ;(document.querySelector('.drop-area') as HTMLAreaElement).addEventListener('drop', (e) => {
-            document.querySelector('.drop-area')?.append(elem as HTMLElement)
-            elem?.classList.add('dropped-elem')
-            ;(elem as HTMLElement).setAttribute('style', `position: absolute; top:${e.clientY}px; left:${e.clientX}px`)
+
+        dropzone.addEventListener('drop', (e) => {
+            // handle drop if currentToy from settings panel
+            if (currentToy?.closest('.toy-select')) {
+                const label = currentToy.nextSibling as HTMLElement
+                // check if we need to remove the image from settings panel
+                if (Number(label.textContent) > 1) {
+                    const newToy = currentToy.cloneNode(true) as HTMLElement
+                    dropzone.append(newToy)
+                    this.setToyPosition(newToy, e)
+                    label.textContent = String(Number(label.textContent) - 1)
+                } else {
+                    dropzone.append(currentToy)
+                    this.setToyPosition(currentToy, e)
+                    label.textContent = '0'
+                }
+                // handle drop if currentToy from drop area
+            } else if (currentToy && currentToy.closest('.drop-area')) {
+                this.setToyPosition(currentToy, e)
+            }
+            currentToy = null
+            // add it to disable handling events on toy page if we handled it here
+            e.stopPropagation()
         })
     }
 }

@@ -86,7 +86,7 @@ class TreePage implements TreeDecoration {
         </div>
         <img class="tree-image" src ="assets/tree/1.png" usemap="#tree-map"></img>
         <map name="tree-map">
-        <area class="drop-area" shape="poly" coords="1,550,250,1,499,550,250,699">
+        <area class="drop-area" shape="poly" coords="1,550,102,210,250,1,402,233,499,550,250,699">
         </map>
         </div>
         <div class="tree-right">
