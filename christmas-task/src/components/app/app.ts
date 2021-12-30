@@ -1,6 +1,6 @@
 import data from '../../data'
 import HomePage from '../home-page/home-page'
-import { Toy} from '../interfaces/interfaces'
+import { Toy } from '../interfaces/interfaces'
 import ToysPage from '../toys-page/toys-page'
 import TreePage from '../tree-page/tree-page'
 
@@ -18,7 +18,6 @@ class App {
     start() {
         window.addEventListener('beforeunload', () => {
             this.setStorage()
-            
         })
         window.addEventListener('hashchange', (e) => {
             document.querySelectorAll('.nav-link').forEach((link) => link.classList.remove('active-link'))
@@ -36,7 +35,7 @@ class App {
             }
         })
         this.homePage.render()
-        window.location.hash =''
+        window.location.hash = ''
     }
     setStorage() {
         this.toysPage.setStorage()

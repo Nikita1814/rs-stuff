@@ -43,7 +43,7 @@ export interface ToysPageInterface {
     addListeners: () => void
     setStorage: () => void
 }
-export interface TreePageInterface{
+export interface TreePageInterface {
     data: Toy[]
     favs: Set<string | undefined>
     decorations: DecorationsInterface
@@ -55,7 +55,7 @@ export interface TreePageInterface{
 export interface PageInterface {
     toysPage?: ToysPageInterface
     data?: Toy[]
-    render: (data?: Toy[] ,favsNum?:number) => void
+    render: (data?: Toy[], favsNum?: number) => void
     addListeners?: () => void
 }
 
@@ -90,7 +90,7 @@ export interface DecorationsInterface {
     handleStorage: () => void
 }
 
-export interface ToyBoxInterface{
+export interface ToyBoxInterface {
     favs: Set<string | undefined>
     data: Toy[]
     treePageSettings: TreePageSettingsObj

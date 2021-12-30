@@ -65,7 +65,7 @@ button {
     align-items: center;
     cursor: pointer;
     text-decoration: none;
-    color:white
+    color: white;
 }
 .nav-link:hover {
     color: rgb(31, 178, 170);

@@ -1,4 +1,6 @@
-const data = [
+import { Toy } from './components/interfaces/interfaces'
+
+const data: Toy[] = [
     {
         num: '1',
         name: 'Большой шар с рисунком',

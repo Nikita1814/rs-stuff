@@ -1,6 +1,20 @@
 import { Toy, ToyGridInterface } from '../../interfaces/interfaces'
 import type { FilterObj } from '../../interfaces/interfaces'
 
+const sortfuncs: { [key: string]: (a: Toy, b: Toy) => number } = {
+    AZ: function (a: Toy, b: Toy) {
+        return a.name.localeCompare(b.name)
+    },
+    ZA: function (a: Toy, b: Toy) {
+        return b.name.localeCompare(a.name)
+    },
+    increase: function (a: Toy, b: Toy) {
+        return +a.count - +b.count
+    },
+    decrease: function (a: Toy, b: Toy) {
+        return +b.count - +a.count
+    },
+}
 class ToyGrid implements ToyGridInterface {
     public data: Toy[]
     public favs: Set<string | undefined>
@@ -11,22 +25,7 @@ class ToyGrid implements ToyGridInterface {
     showElems(data: Toy[], sortCriteria?: FilterObj) {
         ;(document.querySelector('.toys-grid') as HTMLElement).innerHTML = ''
         let sortData = [...data]
-        /*TODO Add a filtration application method*/
         if (sortCriteria) {
-            const sortfuncs: { [key: string]: (a: Toy, b: Toy) => number } = {
-                AZ: function (a: Toy, b: Toy) {
-                    return a.name.localeCompare(b.name)
-                },
-                ZA: function (a: Toy, b: Toy) {
-                    return b.name.localeCompare(a.name)
-                },
-                increase: function (a: Toy, b: Toy) {
-                    return +a.count - +b.count
-                },
-                decrease: function (a: Toy, b: Toy) {
-                    return +b.count - +a.count
-                },
-            }
             sortData = sortData.filter((el) => {
                 return (
                     ((sortCriteria.shape as Set<string | undefined>).has(el.shape) ||

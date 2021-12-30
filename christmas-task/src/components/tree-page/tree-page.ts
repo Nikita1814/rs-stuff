@@ -1,4 +1,4 @@
-import { Toy, TreePageInterface, TreePageSettingsObj, } from '../interfaces/interfaces'
+import { Toy, TreePageInterface, TreePageSettingsObj } from '../interfaces/interfaces'
 import Decorations from './decorations/decorations'
 import ToyBox from './toybox/toy-box'
 

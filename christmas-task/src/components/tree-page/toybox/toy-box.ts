@@ -1,4 +1,4 @@
-import { Toy, TreePageSettingsObj, ToyBoxInterface} from '../../interfaces/interfaces'
+import { Toy, TreePageSettingsObj, ToyBoxInterface } from '../../interfaces/interfaces'
 
 class ToyBox implements ToyBoxInterface {
     favs: Set<string | undefined>
@@ -9,9 +9,7 @@ class ToyBox implements ToyBoxInterface {
         this.data = data
         this.treePageSettings = treePageSettings
     }
-    setToyPosition(toy: HTMLElement, e: DragEvent) {
-        toy.setAttribute('style', `top:${e.clientY - 25}px; left:${e.clientX - 25}px`)
-    }
+
     drawBox() {
         const toyGrid = document.querySelector('.toy-select') as HTMLElement
         toyGrid.innerHTML = ''
@@ -49,6 +47,9 @@ class ToyBox implements ToyBoxInterface {
             toyItem.append(toyAmount)
             toyGrid.append(toyItem)
         })
+    }
+    setToyPosition(toy: HTMLElement, e: DragEvent) {
+        toy.setAttribute('style', `top:${e.clientY - 25}px; left:${e.clientX - 25}px`)
     }
     addListeners() {
         const toyPage = document.querySelector('.page.tree-page') as HTMLElement
