@@ -14,11 +14,7 @@ class ToyBox implements ToyBoxInterface {
         if (this.favs.size === 0) {
             toysToShow = this.data.slice(0, 20)
         } else {
-            toysToShow = []
-            this.favs.forEach((n) => {
-                const toy = this.data.find((el) => el.num === n)
-                toysToShow.push(toy as Toy)
-            })
+            toysToShow = this.data.filter((el) => this.favs.has(el.num))
         }
         toysToShow.forEach((el) => {
             const toyItem = document.createElement('div')

@@ -145,12 +145,12 @@ class Decorations implements DecorationsInterface {
         ;(document.querySelector('.tree-div') as HTMLElement).style.backgroundImage = `url(assets/bg/${bg}.jpg)`
 
         if (lightsOn) {
-            document.querySelector(`[data-ornament ="${lightsColor}"]`)?.classList.add('ornament-active')
-            ;(document.querySelector('.lights-container') as HTMLElement).classList.remove('hidden')
+            document.querySelector(`[data-ornament ="${lightsColor}"]`)?.classList.add('ornament-active');
+            (document.querySelector('.lights-container') as HTMLElement).classList.remove('hidden')
             this.generateLights(`${lightsColor}`)
         }
         if (snow) {
-            ;(document.querySelector('.snow-btn') as HTMLElement).classList.toggle('snow-on')
+            (document.querySelector('.snow-btn') as HTMLElement).classList.toggle('snow-on')
             this.generateSnow()
         }
         if (music) {
