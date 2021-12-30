@@ -64,6 +64,8 @@ button {
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    text-decoration: none;
+    color:white
 }
 .nav-link:hover {
     color: rgb(31, 178, 170);
@@ -89,8 +91,11 @@ button {
 .begin-btn {
     width: 320px;
     height: 54px;
-    text-align: center;
-    vertical-align: middle;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    text-decoration: none;
     background-color: #192f2d;
     color: white;
     backdrop-filter: blur(6px);

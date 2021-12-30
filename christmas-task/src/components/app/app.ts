@@ -3,6 +3,7 @@ import HomePage from '../home-page/home-page'
 import { DataItem, ToySelection, Page, TreeDecoration } from '../interfaces/interfaces'
 import ToysPage from '../toys-page/toys-page'
 import TreePage from '../tree-page/tree-page'
+
 class App {
     toysPage: ToySelection
     data: DataItem[]
@@ -22,17 +23,20 @@ class App {
             link.addEventListener('click', () => {
                 document.querySelectorAll('.nav-link').forEach((link) => link.classList.remove('active-link'))
                 link.classList.toggle('active-link')
-                switch (link.classList[1]) {
-                    case 'main-menu-link':
-                        this.homePage.render(this.data)
-                        break
-                    case 'toy-page-link':
-                        this.toysPage.render(this.data)
-                        break
-                    case 'tree-page-link':
-                        this.treePage.render(this.data)
-                }
             })
+        })
+        window.addEventListener('hashchange',(e)=>{
+       console.log(e.newURL.split('#')[1])
+       switch (e.newURL.split('#')[1]) {
+        case '':
+            this.homePage.render(this.data)
+            break
+        case 'toy-page':
+            this.toysPage.render(this.data)
+            break
+        case 'tree-page':
+            this.treePage.render(this.data)
+    }
         })
         this.homePage.render(this.data)
     }

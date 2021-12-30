@@ -11,7 +11,7 @@ class HomePage implements Page {
         ;(document.querySelector('.main') as HTMLElement).innerHTML = `
 <div class=" page start-page" >
 <h1 class="start-page-title">Новогодняя игра "Наряди елку"</h1>
-<button class="begin-btn">Начать</button>
+<a href="#toy-page" class="begin-btn">Начать</ф>
 </div>
 `
         this.addListeners()
