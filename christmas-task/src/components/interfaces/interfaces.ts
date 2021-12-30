@@ -1,4 +1,4 @@
-export interface DataItem {
+export interface Toy {
     num: string
     name: string
     count: string
@@ -27,51 +27,51 @@ export interface FilterObj extends FilterObjTemp {
 export type FilterVal = Set<string | undefined> | boolean | string | number | Array<string | undefined>
 
 export interface Grid {
-    data: DataItem[]
+    data: Toy[]
     favs: Set<string | undefined>
-    showElems: (data: DataItem[], sortCriteria?: FilterObj) => void
+    showElems: (data: Toy[], sortCriteria?: FilterObj) => void
 }
 export interface ToySelection {
     toyGrid: Grid
     filters: FilterObj
-    data: DataItem[]
+    data: Toy[]
     appearance: Filter
     ranges: RangeFilter
     sorts: Filter
     favs: Set<string | undefined>
-    render: (data: DataItem[]) => void
+    render: (data: Toy[]) => void
     addListeners: () => void
     setStorage: () => void
 }
 export interface TreeDecoration {
-    data: DataItem[]
+    data: Toy[]
     favs: Set<string | undefined>
     decorations: TreeLeft
     toyBox: TreeToyGrid
-    render: (data: DataItem[]) => void
+    render: (data: Toy[]) => void
     addListeners: () => void
     setStorage: () => void
 }
 export interface Page {
     toysPage?: ToySelection
-    data?: DataItem[]
-    render: (data?: DataItem[] ,favsNum?:number) => void
+    data?: Toy[]
+    render: (data?: Toy[] ,favsNum?:number) => void
     addListeners?: () => void
 }
 
 export interface Filter {
-    data: DataItem[]
+    data: Toy[]
     filters: FilterObj
     toyGrid: Grid
-    favs?: Set<DataItem | undefined>
+    favs?: Set<Toy | undefined>
     addListeners: () => void
 }
 
 export interface RangeFilter {
-    data: DataItem[]
+    data: Toy[]
     filters: FilterObj
     toyGrid: Grid
-    setSliders: (filters: FilterObj, grid: Grid, data: DataItem[]) => void
+    setSliders: (filters: FilterObj, grid: Grid, data: Toy[]) => void
 }
 
 export interface TreePageSettingsObj {
@@ -92,7 +92,7 @@ export interface TreeLeft {
 
 export interface TreeToyGrid {
     favs: Set<string | undefined>
-    data: DataItem[]
+    data: Toy[]
     treePageSettings: TreePageSettingsObj
     drawBox: () => void
     addListeners: () => void

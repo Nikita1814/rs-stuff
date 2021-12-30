@@ -1,12 +1,12 @@
 import data from '../../data'
 import HomePage from '../home-page/home-page'
-import { DataItem, ToySelection, Page, TreeDecoration } from '../interfaces/interfaces'
+import { Toy, ToySelection, Page, TreeDecoration } from '../interfaces/interfaces'
 import ToysPage from '../toys-page/toys-page'
 import TreePage from '../tree-page/tree-page'
 
 class App {
     toysPage: ToySelection
-    data: DataItem[]
+    data: Toy[]
     homePage: Page
     treePage: TreeDecoration
     constructor() {

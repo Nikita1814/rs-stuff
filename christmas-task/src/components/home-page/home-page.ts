@@ -1,4 +1,4 @@
-import { ToySelection, Page, DataItem } from '../interfaces/interfaces'
+import { Page } from '../interfaces/interfaces'
 
 class HomePage implements Page {
     public favsAmount:number

@@ -1,4 +1,4 @@
-import { DataItem, Grid, ToySelection, Filter, RangeFilter } from '../interfaces/interfaces'
+import { Toy, Grid, ToySelection, Filter, RangeFilter } from '../interfaces/interfaces'
 import type { FilterObj } from '../interfaces/interfaces'
 import ToyGrid from './toy-grid/toy-grid'
 import 'nouislider/dist/nouislider.css'
@@ -9,13 +9,13 @@ import Sorts from './filters/sorts/sorts'
 class ToysPage implements ToySelection {
     public toyGrid: Grid
     public filters: FilterObj
-    public data: DataItem[]
+    public data: Toy[]
     public appearance: Filter
     public ranges: RangeFilter
     public sorts: Filter
     public favs: Set<string | undefined>
 
-    constructor(data: DataItem[]) {
+    constructor(data: Toy[]) {
         this.favs = new Set()
         if (localStorage.getItem('favorites')) {
             const favsArr = JSON.parse(localStorage.getItem('favorites') as string)
@@ -49,7 +49,7 @@ class ToysPage implements ToySelection {
         this.ranges = new Ranges(this.data, this.filters, this.toyGrid)
         this.sorts = new Sorts(this.data, this.filters, this.toyGrid)
     }
-    render(data: DataItem[]) {
+    render(data: Toy[]) {
         const main = document.querySelector('.main') as HTMLElement
         main.innerHTML = ` 
 <div class="page toys-page">
