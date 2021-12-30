@@ -1,10 +1,7 @@
 import { Toy, TreePageSettingsObj, ToyBoxInterface } from '../../interfaces/interfaces'
 
 class ToyBox implements ToyBoxInterface {
-    favs: Set<string | undefined>
-    data: Toy[]
-    treePageSettings: TreePageSettingsObj
-    constructor(data: Toy[], favs: Set<string | undefined>, treePageSettings: TreePageSettingsObj) {
+    constructor(public data: Toy[], public favs: Set<string | undefined>, public treePageSettings: TreePageSettingsObj) {
         this.favs = favs
         this.data = data
         this.treePageSettings = treePageSettings
@@ -27,23 +24,17 @@ class ToyBox implements ToyBoxInterface {
             const toyItem = document.createElement('div')
             const toyAmount = document.createElement('div')
             const toyImg = document.createElement('img')
-            /*for (let i = Number(el.count); i > 0; i--) {
-               
-            }*/
-
             toyImg.classList.add('tree-toy-image')
             toyImg.src = `assets/toys/${el.num}.png`
             toyImg.draggable = true
-            toyImg.setAttribute('data-amount', `${el.num}-${el.count}`)
+            /*toyImg.setAttribute('data-amount', `${el.num}-${el.count}`)*/
             toyImg.setAttribute('data-num', `${el.num}`)
             toyItem.append(toyImg)
-
             toyAmount.innerHTML = `${el.count}`
             toyAmount.classList.add('toy-count')
             toyItem.classList.add('toy-item')
             toyItem.setAttribute('data-toy-label', `${el.num}`)
             toyItem.id = `${el.num}`
-
             toyItem.append(toyAmount)
             toyGrid.append(toyItem)
         })

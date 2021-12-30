@@ -8,13 +8,12 @@ import Sorts from './filters/sorts/sorts'
 class ToysPage implements ToysPageInterface {
     public toyGrid: ToyGrid
     public filters: FilterObj
-    public data: Toy[]
     public appearance: Appearance
     public ranges: Ranges
     public sorts: Sorts
     public favs: Set<string | undefined>
 
-    constructor(data: Toy[]) {
+    constructor(public data: Toy[]) {
         this.favs = new Set()
         if (localStorage.getItem('favorites')) {
             const favsArr = JSON.parse(localStorage.getItem('favorites') as string)

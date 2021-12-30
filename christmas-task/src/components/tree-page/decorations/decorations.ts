@@ -1,8 +1,7 @@
 import { DecorationsInterface, TreePageSettingsObj } from '../../interfaces/interfaces'
 
 class Decorations implements DecorationsInterface {
-    treePageSettings: TreePageSettingsObj
-    constructor(treePageSettings: TreePageSettingsObj) {
+    constructor(public treePageSettings: TreePageSettingsObj) {
         this.treePageSettings = treePageSettings
     }
     addListeners() {

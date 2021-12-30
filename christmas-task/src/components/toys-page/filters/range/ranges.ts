@@ -4,11 +4,8 @@ import * as noUiSlider from 'nouislider'
 import ToyGrid from '../../toy-grid/toy-grid'
 
 class Ranges implements RangeFilterInterface {
-    data: Toy[]
-    filters: FilterObj
     toyGrid: ToyGrid
-
-    constructor(data: Toy[], filters: FilterObj, grid: ToyGrid) {
+    constructor(public data: Toy[], public filters: FilterObj, grid: ToyGrid) {
         this.data = data
         this.filters = filters
         this.toyGrid = grid

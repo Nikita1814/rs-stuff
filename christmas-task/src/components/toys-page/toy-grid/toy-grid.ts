@@ -16,9 +16,7 @@ const sortfuncs: { [key: string]: (a: Toy, b: Toy) => number } = {
     },
 }
 class ToyGrid implements ToyGridInterface {
-    public data: Toy[]
-    public favs: Set<string | undefined>
-    constructor(data: Toy[], favs: Set<string | undefined>) {
+    constructor(public data: Toy[], public favs: Set<string | undefined>) {
         this.data = data
         this.favs = favs
     }
