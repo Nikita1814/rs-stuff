@@ -1,13 +1,11 @@
 import { ToySelection, Page, DataItem } from '../interfaces/interfaces'
 
 class HomePage implements Page {
-    toysPage: ToySelection
-    data: DataItem[]
-    constructor(data: DataItem[], toysPage: ToySelection) {
-        this.toysPage = toysPage
-        this.data = data
+    public favsAmount:number
+    constructor(favsAmount:number) {
+        this.favsAmount = favsAmount
     }
-    render(data: DataItem[]) {
+    render() {
         ;(document.querySelector('.main') as HTMLElement).innerHTML = `
 <div class=" page start-page" >
 <h1 class="start-page-title">Новогодняя игра "Наряди елку"</h1>
@@ -15,7 +13,7 @@ class HomePage implements Page {
 </div>
 `
         /*this.addListeners()*/
-        ;(document.querySelector('.favorite-count') as HTMLElement).innerHTML = `${this.toysPage.favs.size}`
+        ;(document.querySelector('.favorite-count') as HTMLElement).innerHTML = `${this.favsAmount}`
     }
     /*addListeners() {
         document.querySelector('.begin-btn')?.addEventListener('click', () => {

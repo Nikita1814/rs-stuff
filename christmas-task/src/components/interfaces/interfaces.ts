@@ -54,8 +54,8 @@ export interface TreeDecoration {
 }
 export interface Page {
     toysPage?: ToySelection
-    data: DataItem[]
-    render: (data: DataItem[]) => void
+    data?: DataItem[]
+    render: (data?: DataItem[] ,favsNum?:number) => void
     addListeners?: () => void
 }
 

@@ -12,12 +12,13 @@ class App {
     constructor() {
         this.data = data
         this.toysPage = new ToysPage(data)
-        this.homePage = new HomePage(data, this.toysPage)
+        this.homePage = new HomePage(this.toysPage.favs.size)
         this.treePage = new TreePage(data, this.toysPage.favs)
     }
     start() {
         window.addEventListener('beforeunload', () => {
             this.setStorage()
+            
         })
         window.addEventListener('hashchange', (e) => {
             document.querySelectorAll('.nav-link').forEach((link) => link.classList.remove('active-link'))
@@ -35,6 +36,7 @@ class App {
             }
         })
         this.homePage.render(this.data)
+        window.location.hash =''
     }
     setStorage() {
         this.toysPage.setStorage()
