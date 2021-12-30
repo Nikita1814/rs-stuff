@@ -26,13 +26,13 @@ export interface FilterObj extends FilterObjTemp {
 }
 export type FilterVal = Set<string | undefined> | boolean | string | number | Array<string | undefined>
 
-export interface Grid {
+export interface ToyGridInterface {
     data: Toy[]
     favs: Set<string | undefined>
     showElems: (data: Toy[], sortCriteria?: FilterObj) => void
 }
 export interface ToysPageInterface {
-    toyGrid: Grid
+    toyGrid: ToyGridInterface
     filters: FilterObj
     data: Toy[]
     appearance: FilterInterface
@@ -52,7 +52,7 @@ export interface TreePageInterface{
     addListeners: () => void
     setStorage: () => void
 }
-export interface Page {
+export interface PageInterface {
     toysPage?: ToysPageInterface
     data?: Toy[]
     render: (data?: Toy[] ,favsNum?:number) => void
@@ -62,7 +62,7 @@ export interface Page {
 export interface FilterInterface {
     data: Toy[]
     filters: FilterObj
-    toyGrid: Grid
+    toyGrid: ToyGridInterface
     favs?: Set<Toy | undefined>
     addListeners: () => void
 }
@@ -70,8 +70,8 @@ export interface FilterInterface {
 export interface RangeFilterInterface {
     data: Toy[]
     filters: FilterObj
-    toyGrid: Grid
-    setSliders: (filters: FilterObj, grid: Grid, data: Toy[]) => void
+    toyGrid: ToyGridInterface
+    setSliders: (filters: FilterObj, grid: ToyGridInterface, data: Toy[]) => void
 }
 
 export interface TreePageSettingsObj {

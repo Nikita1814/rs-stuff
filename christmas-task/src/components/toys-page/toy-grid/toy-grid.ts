@@ -1,29 +1,29 @@
-import { DataItem, Grid } from '../../interfaces/interfaces'
+import { Toy, ToyGridInterface } from '../../interfaces/interfaces'
 import type { FilterObj } from '../../interfaces/interfaces'
 
-class ToyGrid implements Grid {
-    public data: DataItem[]
+class ToyGrid implements ToyGridInterface {
+    public data: Toy[]
     public favs: Set<string | undefined>
-    constructor(data: DataItem[], favs: Set<string | undefined>) {
+    constructor(data: Toy[], favs: Set<string | undefined>) {
         this.data = data
         this.favs = favs
     }
-    showElems(data: DataItem[], sortCriteria?: FilterObj) {
+    showElems(data: Toy[], sortCriteria?: FilterObj) {
         ;(document.querySelector('.toys-grid') as HTMLElement).innerHTML = ''
         let sortData = [...data]
         /*TODO Add a filtration application method*/
         if (sortCriteria) {
-            const sortfuncs: { [key: string]: (a: DataItem, b: DataItem) => number } = {
-                AZ: function (a: DataItem, b: DataItem) {
+            const sortfuncs: { [key: string]: (a: Toy, b: Toy) => number } = {
+                AZ: function (a: Toy, b: Toy) {
                     return a.name.localeCompare(b.name)
                 },
-                ZA: function (a: DataItem, b: DataItem) {
+                ZA: function (a: Toy, b: Toy) {
                     return b.name.localeCompare(a.name)
                 },
-                increase: function (a: DataItem, b: DataItem) {
+                increase: function (a: Toy, b: Toy) {
                     return +a.count - +b.count
                 },
-                decrease: function (a: DataItem, b: DataItem) {
+                decrease: function (a: Toy, b: Toy) {
                     return +b.count - +a.count
                 },
             }
@@ -52,7 +52,7 @@ class ToyGrid implements Grid {
                     return el.name.toLowerCase().includes(sortCriteria.search)
                 })
             }
-            const sortMethod: (a: DataItem, b: DataItem) => number = sortfuncs[sortCriteria.sort]
+            const sortMethod: (a: Toy, b: Toy) => number = sortfuncs[sortCriteria.sort]
             sortData.sort(sortMethod)
         }
 

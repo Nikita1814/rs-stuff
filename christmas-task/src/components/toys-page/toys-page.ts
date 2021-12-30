@@ -1,5 +1,4 @@
-import { Toy, ToysPageInterface } from '../interfaces/interfaces'
-import type { FilterObj } from '../interfaces/interfaces'
+import { Toy, ToysPageInterface, FilterObj } from '../interfaces/interfaces'
 import ToyGrid from './toy-grid/toy-grid'
 import 'nouislider/dist/nouislider.css'
 import Appearance from './filters/appearance/appearance'
