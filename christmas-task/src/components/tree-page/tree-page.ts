@@ -92,68 +92,7 @@ class TreePage implements TreePageInterface {
         <div class="tree-right">
             <h4>Игрушки</h4>
             <div class="toy-select">
-                <div class="toy-item">
-                    <div class="toy-count"></div>
-                </div>
-                <div class="toy-item">
-                    <div class="toy-count"></div>
-                </div>
-                <div class="toy-item">
-                    <div class="toy-count"></div>
-                </div>
-                <div class="toy-item">
-                    <div class="toy-count"></div>
-                </div>
-                <div class="toy-item">
-                    <div class="toy-count"></div>
-                </div>
-                <div class="toy-item">
-                    <div class="toy-count"></div>
-                </div>
-                <div class="toy-item">
-                    <div class="toy-count"></div>
-                </div>
-                <div class="toy-item">
-                    <div class="toy-count"></div>
-                </div>
-                <div class="toy-item">
-                    <div class="toy-count"></div>
-                </div>
-                <div class="toy-item">
-                    <div class="toy-count"></div>
-                </div>
-                <div class="toy-item">
-                    <div class="toy-count"></div>
-                </div>
-                <div class="toy-item">
-                    <div class="toy-count"></div>
-                </div>
-                <div class="toy-item">
-                    <div class="toy-count"></div>
-                </div>
-                <div class="toy-item">
-                    <div class="toy-count"></div>
-                </div>
-                <div class="toy-item">
-                    <div class="toy-count"></div>
-                </div>
-                <div class="toy-item">
-                    <div class="toy-count"></div>
-                </div>
-                <div class="toy-item">
-                    <div class="toy-count"></div>
-                </div>
-                <div class="toy-item">
-                    <div class="toy-count"></div>
-                </div>
-                <div class="toy-item">
-                    <div class="toy-count"></div>
-                </div>
-                <div class="toy-item">
-                    <div class="toy-count"></div>
-                </div>
             </div>
-            <div class="tree-load"></div>
         </div>
     </div>
         `
