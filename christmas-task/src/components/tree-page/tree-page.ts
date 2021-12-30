@@ -41,7 +41,7 @@ class TreePage implements TreeDecoration {
         <div class="tree-buttons">
         <div class="music play"></div>
         <div class="snow-btn"></div>
-        <button class="reset-all">Сбросить Хранилище</button>
+        <button class="reset-all">Сбросить Настройки</button>
         </div>
             <div class="tree-select">
                 <h4>Выберите елку</h4>

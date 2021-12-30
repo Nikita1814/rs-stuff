@@ -549,7 +549,7 @@ input[type='range'] {
     flex-wrap: wrap;
     gap: 10px;
     width: 100%;
-    height: 70%;
+    /*height: 70%;*/
 }
 .toy-item {
     width: 70px;
@@ -571,6 +571,8 @@ input[type='range'] {
     text-align: center;
     vertical-align: middle;
     border-radius: 50%;
+    position: relative;
+    z-index: 2;
 }
 
 .tree-buttons {
@@ -632,6 +634,9 @@ input[type='range'] {
     background-image: url(assets/svg/snow.svg);
     background-size: contain;
     opacity: 0.5;
+}
+.snow-on {
+    filter: sepia(100%) saturate(1000);
 }
 .lights-container {
     bottom: 0;
