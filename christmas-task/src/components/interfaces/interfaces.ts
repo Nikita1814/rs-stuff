@@ -56,7 +56,7 @@ export interface Page {
     toysPage?: ToySelection
     data: DataItem[]
     render: (data: DataItem[]) => void
-    addListeners: () => void
+    addListeners?: () => void
 }
 
 export interface Filter {

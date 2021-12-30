@@ -19,24 +19,20 @@ class App {
         window.addEventListener('beforeunload', () => {
             this.setStorage()
         })
-        document.querySelectorAll('.nav-link').forEach((link) => {
-            link.addEventListener('click', () => {
-                document.querySelectorAll('.nav-link').forEach((link) => link.classList.remove('active-link'))
-                link.classList.toggle('active-link')
-            })
-        })
-        window.addEventListener('hashchange',(e)=>{
-       console.log(e.newURL.split('#')[1])
-       switch (e.newURL.split('#')[1]) {
-        case '':
-            this.homePage.render(this.data)
-            break
-        case 'toy-page':
-            this.toysPage.render(this.data)
-            break
-        case 'tree-page':
-            this.treePage.render(this.data)
-    }
+        window.addEventListener('hashchange', (e) => {
+            document.querySelectorAll('.nav-link').forEach((link) => link.classList.remove('active-link'))
+            document.querySelector(`[href='#${e.newURL.split('#')[1]}']`)?.classList.toggle('active-link')
+            console.log(e.newURL.split('#')[1])
+            switch (e.newURL.split('#')[1]) {
+                case '':
+                    this.homePage.render(this.data)
+                    break
+                case 'toy-page':
+                    this.toysPage.render(this.data)
+                    break
+                case 'tree-page':
+                    this.treePage.render(this.data)
+            }
         })
         this.homePage.render(this.data)
     }

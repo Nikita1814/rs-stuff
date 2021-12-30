@@ -14,14 +14,14 @@ class HomePage implements Page {
 <a href="#toy-page" class="begin-btn">Начать</ф>
 </div>
 `
-        this.addListeners()
+        /*this.addListeners()*/
         ;(document.querySelector('.favorite-count') as HTMLElement).innerHTML = `${this.toysPage.favs.size}`
     }
-    addListeners() {
+    /*addListeners() {
         document.querySelector('.begin-btn')?.addEventListener('click', () => {
             this.toysPage.render(this.data)
         })
-    }
+    }*/
 }
 
 export default HomePage
