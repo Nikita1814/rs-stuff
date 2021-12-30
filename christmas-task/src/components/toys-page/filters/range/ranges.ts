@@ -1,17 +1,17 @@
-import { Toy, FilterObj, RangeFilterInterface } from '../../../interfaces/interfaces'
+import { Toy, FilterObjInterface, RangeFilterInterface } from '../../../interfaces/interfaces'
 import 'nouislider/dist/nouislider.css'
 import * as noUiSlider from 'nouislider'
 import ToyGrid from '../../toy-grid/toy-grid'
 
 class Ranges implements RangeFilterInterface {
     toyGrid: ToyGrid
-    constructor(public data: Toy[], public filters: FilterObj, grid: ToyGrid) {
+    constructor(public data: Toy[], public filters: FilterObjInterface, grid: ToyGrid) {
         this.data = data
         this.filters = filters
         this.toyGrid = grid
     }
 
-    setSliders(filters: FilterObj, grid: ToyGrid, data: Toy[]) {
+    setSliders(filters: FilterObjInterface, grid: ToyGrid, data: Toy[]) {
         const yearSlider = document.getElementById('year-slider') as noUiSlider.target
         const amountSlider = document.getElementById('amount-slider') as noUiSlider.target
 

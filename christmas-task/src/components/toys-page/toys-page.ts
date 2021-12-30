@@ -1,4 +1,4 @@
-import { Toy, ToysPageInterface, FilterObj } from '../interfaces/interfaces'
+import { Toy, ToysPageInterface, FilterObjInterface } from '../interfaces/interfaces'
 import ToyGrid from './toy-grid/toy-grid'
 import 'nouislider/dist/nouislider.css'
 import Appearance from './filters/appearance/appearance'
@@ -7,7 +7,7 @@ import Sorts from './filters/sorts/sorts'
 
 class ToysPage implements ToysPageInterface {
     public toyGrid: ToyGrid
-    public filters: FilterObj
+    public filters: FilterObjInterface
     public appearance: Appearance
     public ranges: Ranges
     public sorts: Sorts
@@ -120,7 +120,7 @@ class ToysPage implements ToysPageInterface {
         this.toyGrid.showElems(this.data, this.filters)
         this.addListeners()
     }
-    handleStorage(filters: FilterObj) {
+    handleStorage(filters: FilterObjInterface) {
         ;(document.querySelector(`.favorite-count`) as HTMLElement).innerHTML = String(this.favs.size)
         filters.size.forEach((el) => {
             document.querySelector(`[data-criteria=${el}]`)?.classList.add('selected')

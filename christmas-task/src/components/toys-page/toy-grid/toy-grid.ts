@@ -1,5 +1,5 @@
 import { Toy, ToyGridInterface } from '../../interfaces/interfaces'
-import type { FilterObj } from '../../interfaces/interfaces'
+import type { FilterObjInterface } from '../../interfaces/interfaces'
 
 const sortfuncs: { [key: string]: (a: Toy, b: Toy) => number } = {
     AZ: function (a: Toy, b: Toy) {
@@ -20,7 +20,7 @@ class ToyGrid implements ToyGridInterface {
         this.data = data
         this.favs = favs
     }
-    showElems(data: Toy[], sortCriteria?: FilterObj) {
+    showElems(data: Toy[], sortCriteria?: FilterObjInterface) {
         ;(document.querySelector('.toys-grid') as HTMLElement).innerHTML = ''
         let sortData = [...data]
         if (sortCriteria) {
