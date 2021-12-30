@@ -2,22 +2,6 @@ import { Toy, TreePageInterface, TreePageSettingsObj } from '../interfaces/inter
 import Decorations from './decorations/decorations'
 import ToyBox from './toybox/toy-box'
 
-class TreeSettings implements TreePageSettingsObj {
-    treeImg: string
-    bg: string
-    snow: boolean
-    music: boolean
-    lightsColor: string
-    lightsOn: boolean
-    constructor() {
-        this.treeImg = '1'
-        this.bg = '1'
-        this.snow = false
-        this.music = false
-        this.lightsColor = 'yellow'
-        this.lightsOn = false
-    }
-}
 class TreePage implements TreePageInterface {
     data: Toy[]
     favs: Set<string | undefined>
@@ -25,7 +9,14 @@ class TreePage implements TreePageInterface {
     decorations: Decorations
     toyBox: ToyBox
     constructor(data: Toy[], favs: Set<string | undefined>) {
-        this.treePageSettings = new TreeSettings()
+        this.treePageSettings = {
+            treeImg: '1',
+            bg: '1',
+            snow: false,
+            music: false,
+            lightsColor: 'yellow',
+            lightsOn: false,
+        }
         if (localStorage.getItem('treeSettings')) {
             this.treePageSettings = JSON.parse(localStorage.getItem('treeSettings') as string)
         }
@@ -106,7 +97,14 @@ class TreePage implements TreePageInterface {
         this.toyBox.addListeners()
         document.querySelector(`.reset-all`)?.addEventListener('click', () => {
             localStorage.clear()
-            this.treePageSettings = new TreeSettings()
+            this.treePageSettings = {
+                treeImg: '1',
+                bg: '1',
+                snow: false,
+                music: false,
+                lightsColor: 'yellow',
+                lightsOn: false,
+            }
             location.reload()
         })
     }

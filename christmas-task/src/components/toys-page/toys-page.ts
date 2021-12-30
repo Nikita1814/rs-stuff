@@ -47,7 +47,7 @@ class ToysPage implements ToysPageInterface {
         this.ranges = new Ranges(this.data, this.filters, this.toyGrid)
         this.sorts = new Sorts(this.data, this.filters, this.toyGrid)
     }
-    render(data: Toy[]) {
+    render() {
         const main = document.querySelector('.main') as HTMLElement
         main.innerHTML = ` 
 <div class="page toys-page">
@@ -170,7 +170,7 @@ class ToysPage implements ToysPageInterface {
             this.filters.favorite = false
             this.filters.search = ''
             ;(document.querySelector('.fav-check') as HTMLInputElement).checked = this.filters.favorite
-            this.render(this.data)
+            this.render()
         })
         document.querySelector('.reset-all')?.addEventListener('click', () => {
             localStorage.clear()
@@ -193,7 +193,7 @@ class ToysPage implements ToysPageInterface {
 
             this.filters.beginAmount = 1
             this.filters.endAmount = 12
-            this.render(this.data)
+            this.render()
             location.reload()
         })
     }

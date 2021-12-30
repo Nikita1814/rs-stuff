@@ -28,7 +28,7 @@ class App {
                     this.homePage.render()
                     break
                 case 'toy-page':
-                    this.toysPage.render(this.data)
+                    this.toysPage.render()
                     break
                 case 'tree-page':
                     this.treePage.render()

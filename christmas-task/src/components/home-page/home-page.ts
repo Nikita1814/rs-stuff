@@ -12,14 +12,8 @@ class HomePage implements PageInterface {
 <a href="#toy-page" class="begin-btn">Начать</a>
 </div>
 `
-        /*this.addListeners()*/
         ;(document.querySelector('.favorite-count') as HTMLElement).innerHTML = `${this.favsAmount}`
     }
-    /*addListeners() {
-        document.querySelector('.begin-btn')?.addEventListener('click', () => {
-            this.toysPage.render(this.data)
-        })
-    }*/
 }
 
 export default HomePage

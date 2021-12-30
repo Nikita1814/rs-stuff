@@ -4,7 +4,7 @@ import ToyGrid from '../../toy-grid/toy-grid'
 class Appearance implements FilterInterface {
     toyGrid: ToyGrid
 
-    constructor(public data: Toy[],  public filters: FilterObj, grid: ToyGrid) {
+    constructor(public data: Toy[], public filters: FilterObj, grid: ToyGrid) {
         this.data = data
         this.filters = filters
         this.toyGrid = grid

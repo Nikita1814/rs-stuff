@@ -137,7 +137,6 @@ class Decorations implements DecorationsInterface {
         const { treeImg, bg, snow, music, lightsColor, lightsOn } = this.treePageSettings
         function playMusic() {
             ;(document.querySelector('.jingle-bells') as HTMLAudioElement).play()
-            document.removeEventListener('click', playMusic)
         }
         document.querySelector(`[data-tree = '${String(treeImg)}']`)?.classList.add('tree-select-active')
         ;(document.querySelector('.tree-image') as HTMLImageElement).src = `assets/tree/${treeImg}.png`
@@ -145,19 +144,19 @@ class Decorations implements DecorationsInterface {
         ;(document.querySelector('.tree-div') as HTMLElement).style.backgroundImage = `url(assets/bg/${bg}.jpg)`
 
         if (lightsOn) {
-            document.querySelector(`[data-ornament ="${lightsColor}"]`)?.classList.add('ornament-active');
-            (document.querySelector('.lights-container') as HTMLElement).classList.remove('hidden')
+            document.querySelector(`[data-ornament ="${lightsColor}"]`)?.classList.add('ornament-active')
+            ;(document.querySelector('.lights-container') as HTMLElement).classList.remove('hidden')
             this.generateLights(`${lightsColor}`)
         }
         if (snow) {
-            (document.querySelector('.snow-btn') as HTMLElement).classList.toggle('snow-on')
+            ;(document.querySelector('.snow-btn') as HTMLElement).classList.toggle('snow-on')
             this.generateSnow()
         }
         if (music) {
             const music = document.querySelector('.music') as HTMLElement
             music.classList.remove('play')
             music.classList.add('mute')
-            document.addEventListener('click', playMusic)
+            document.addEventListener('click', playMusic, { once: true })
         }
     }
 }

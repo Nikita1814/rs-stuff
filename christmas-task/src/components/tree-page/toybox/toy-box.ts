@@ -1,7 +1,11 @@
 import { Toy, TreePageSettingsObj, ToyBoxInterface } from '../../interfaces/interfaces'
 
 class ToyBox implements ToyBoxInterface {
-    constructor(public data: Toy[], public favs: Set<string | undefined>, public treePageSettings: TreePageSettingsObj) {
+    constructor(
+        public data: Toy[],
+        public favs: Set<string | undefined>,
+        public treePageSettings: TreePageSettingsObj
+    ) {
         this.favs = favs
         this.data = data
         this.treePageSettings = treePageSettings
@@ -42,20 +46,16 @@ class ToyBox implements ToyBoxInterface {
         const toyPage = document.querySelector('.page.tree-page') as HTMLElement
         const dropzone = document.querySelector('.drop-area') as HTMLAreaElement
         let currentToy: HTMLImageElement | null
-
         toyPage.addEventListener('dragstart', (e) => {
             const target = e.target as HTMLElement
             if (target.matches('.tree-toy-image')) {
                 currentToy = e.target as HTMLImageElement
             }
         })
-
         toyPage.addEventListener('dragover', (e) => {
             e.preventDefault()
         })
-
         toyPage.addEventListener('drop', () => {
-            // check if currentToy is from tree
             if (currentToy?.closest('.drop-area')) {
                 const toyContainer = document.querySelector(
                     `[data-toy-label="${currentToy.dataset.num}"].toy-item`
@@ -76,10 +76,9 @@ class ToyBox implements ToyBoxInterface {
         })
 
         dropzone.addEventListener('drop', (e) => {
-            // handle drop if currentToy from settings panel
+            console.log(e.dataTransfer)
             if (currentToy?.closest('.toy-select')) {
                 const label = currentToy.nextSibling as HTMLElement
-                // check if we need to remove the image from settings panel
                 if (Number(label.textContent) > 1) {
                     const newToy = currentToy.cloneNode(true) as HTMLElement
                     dropzone.append(newToy)
@@ -90,12 +89,10 @@ class ToyBox implements ToyBoxInterface {
                     this.setToyPosition(currentToy, e)
                     label.textContent = '0'
                 }
-                // handle drop if currentToy from drop area
             } else if (currentToy && currentToy.closest('.drop-area')) {
                 this.setToyPosition(currentToy, e)
             }
             currentToy = null
-            // add it to disable handling events on toy page if we handled it here
             e.stopPropagation()
         })
     }
