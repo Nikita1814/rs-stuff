@@ -31,29 +31,29 @@ export interface Grid {
     favs: Set<string | undefined>
     showElems: (data: Toy[], sortCriteria?: FilterObj) => void
 }
-export interface ToySelection {
+export interface ToysPageInterface {
     toyGrid: Grid
     filters: FilterObj
     data: Toy[]
     appearance: Filter
-    ranges: RangeFilter
+    ranges: RangeFilterInterface
     sorts: Filter
     favs: Set<string | undefined>
     render: (data: Toy[]) => void
     addListeners: () => void
     setStorage: () => void
 }
-export interface TreeDecoration {
+export interface TreePageInterface{
     data: Toy[]
     favs: Set<string | undefined>
-    decorations: TreeLeft
-    toyBox: TreeToyGrid
+    decorations: DecorationsInterface
+    toyBox: ToyBoxInterface
     render: (data: Toy[]) => void
     addListeners: () => void
     setStorage: () => void
 }
 export interface Page {
-    toysPage?: ToySelection
+    toysPage?: ToysPageInterface
     data?: Toy[]
     render: (data?: Toy[] ,favsNum?:number) => void
     addListeners?: () => void
@@ -67,7 +67,7 @@ export interface Filter {
     addListeners: () => void
 }
 
-export interface RangeFilter {
+export interface RangeFilterInterface {
     data: Toy[]
     filters: FilterObj
     toyGrid: Grid
@@ -82,7 +82,7 @@ export interface TreePageSettingsObj {
     lightsColor: string
     lightsOn: boolean
 }
-export interface TreeLeft {
+export interface DecorationsInterface {
     treePageSettings: TreePageSettingsObj
     addListeners: () => void
     generateLights: (color: string) => void
@@ -90,7 +90,7 @@ export interface TreeLeft {
     handleStorage: () => void
 }
 
-export interface TreeToyGrid {
+export interface ToyBoxInterface{
     favs: Set<string | undefined>
     data: Toy[]
     treePageSettings: TreePageSettingsObj

@@ -1,11 +1,12 @@
-import { DataItem, Filter, FilterObj, FilterVal, Grid } from '../../../interfaces/interfaces'
+import { Toy, Filter, FilterObj } from '../../../interfaces/interfaces'
+import ToyGrid from '../../toy-grid/toy-grid'
 
 class Appearance implements Filter {
-    data: DataItem[]
+    data: Toy[]
     filters: FilterObj
-    toyGrid: Grid
+    toyGrid: ToyGrid
 
-    constructor(data: DataItem[], filters: FilterObj, grid: Grid) {
+    constructor(data: Toy[], filters: FilterObj, grid: ToyGrid) {
         this.data = data
         this.filters = filters
         this.toyGrid = grid

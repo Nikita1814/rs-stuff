@@ -1,4 +1,4 @@
-import { Toy, Grid, ToySelection, Filter, RangeFilter } from '../interfaces/interfaces'
+import { Toy, ToysPageInterface } from '../interfaces/interfaces'
 import type { FilterObj } from '../interfaces/interfaces'
 import ToyGrid from './toy-grid/toy-grid'
 import 'nouislider/dist/nouislider.css'
@@ -6,13 +6,13 @@ import Appearance from './filters/appearance/appearance'
 import Ranges from './filters/range/ranges'
 import Sorts from './filters/sorts/sorts'
 
-class ToysPage implements ToySelection {
-    public toyGrid: Grid
+class ToysPage implements ToysPageInterface {
+    public toyGrid: ToyGrid
     public filters: FilterObj
     public data: Toy[]
-    public appearance: Filter
-    public ranges: RangeFilter
-    public sorts: Filter
+    public appearance: Appearance
+    public ranges: Ranges
+    public sorts: Sorts
     public favs: Set<string | undefined>
 
     constructor(data: Toy[]) {

@@ -1,6 +1,6 @@
-import { TreeLeft, TreePageSettingsObj } from '../../interfaces/interfaces'
+import { DecorationsInterface, TreePageSettingsObj } from '../../interfaces/interfaces'
 
-class Decorations implements TreeLeft {
+class Decorations implements DecorationsInterface {
     treePageSettings: TreePageSettingsObj
     constructor(treePageSettings: TreePageSettingsObj) {
         this.treePageSettings = treePageSettings

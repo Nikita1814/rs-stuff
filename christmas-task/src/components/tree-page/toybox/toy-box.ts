@@ -1,10 +1,10 @@
-import { DataItem, TreePageSettingsObj, TreeToyGrid } from '../../interfaces/interfaces'
+import { Toy, TreePageSettingsObj, ToyBoxInterface} from '../../interfaces/interfaces'
 
-class ToyBox implements TreeToyGrid {
+class ToyBox implements ToyBoxInterface {
     favs: Set<string | undefined>
-    data: DataItem[]
+    data: Toy[]
     treePageSettings: TreePageSettingsObj
-    constructor(data: DataItem[], favs: Set<string | undefined>, treePageSettings: TreePageSettingsObj) {
+    constructor(data: Toy[], favs: Set<string | undefined>, treePageSettings: TreePageSettingsObj) {
         this.favs = favs
         this.data = data
         this.treePageSettings = treePageSettings
@@ -15,14 +15,14 @@ class ToyBox implements TreeToyGrid {
     drawBox() {
         const toyGrid = document.querySelector('.toy-select') as HTMLElement
         toyGrid.innerHTML = ''
-        let toysToShow: DataItem[]
+        let toysToShow: Toy[]
         if (this.favs.size === 0) {
             toysToShow = this.data.slice(0, 20)
         } else {
             toysToShow = []
             this.favs.forEach((n) => {
                 const toy = this.data.find((el) => el.num === n)
-                toysToShow.push(toy as DataItem)
+                toysToShow.push(toy as Toy)
             })
         }
         toysToShow.forEach((el) => {

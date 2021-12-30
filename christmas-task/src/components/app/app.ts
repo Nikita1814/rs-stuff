@@ -1,14 +1,14 @@
 import data from '../../data'
 import HomePage from '../home-page/home-page'
-import { Toy, ToySelection, Page, TreeDecoration } from '../interfaces/interfaces'
+import { Toy} from '../interfaces/interfaces'
 import ToysPage from '../toys-page/toys-page'
 import TreePage from '../tree-page/tree-page'
 
 class App {
-    toysPage: ToySelection
+    toysPage: ToysPage
     data: Toy[]
-    homePage: Page
-    treePage: TreeDecoration
+    homePage: HomePage
+    treePage: TreePage
     constructor() {
         this.data = data
         this.toysPage = new ToysPage(data)
@@ -26,16 +26,16 @@ class App {
             console.log(e.newURL.split('#')[1])
             switch (e.newURL.split('#')[1]) {
                 case '':
-                    this.homePage.render(this.data)
+                    this.homePage.render()
                     break
                 case 'toy-page':
                     this.toysPage.render(this.data)
                     break
                 case 'tree-page':
-                    this.treePage.render(this.data)
+                    this.treePage.render()
             }
         })
-        this.homePage.render(this.data)
+        this.homePage.render()
         window.location.hash =''
     }
     setStorage() {

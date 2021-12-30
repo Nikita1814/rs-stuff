@@ -1,11 +1,12 @@
-import { Toy, Filter, FilterObj, Grid } from '../../../interfaces/interfaces'
+import { Toy, Filter, FilterObj } from '../../../interfaces/interfaces'
+import ToyGrid from '../../toy-grid/toy-grid'
 
 class Sorts implements Filter {
     data: Toy[]
     filters: FilterObj
-    toyGrid: Grid
+    toyGrid: ToyGrid
 
-    constructor(data: Toy[], filters: FilterObj, grid: Grid) {
+    constructor(data: Toy[], filters: FilterObj, grid: ToyGrid) {
         this.data = data
         this.filters = filters
         this.toyGrid = grid

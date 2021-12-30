@@ -1,4 +1,4 @@
-import { Toy, TreeDecoration, TreeLeft, TreePageSettingsObj, TreeToyGrid } from '../interfaces/interfaces'
+import { Toy, TreePageInterface, TreePageSettingsObj, } from '../interfaces/interfaces'
 import Decorations from './decorations/decorations'
 import ToyBox from './toybox/toy-box'
 
@@ -18,12 +18,12 @@ class TreeSettings implements TreePageSettingsObj {
         this.lightsOn = false
     }
 }
-class TreePage implements TreeDecoration {
+class TreePage implements TreePageInterface {
     data: Toy[]
     favs: Set<string | undefined>
     treePageSettings: TreePageSettingsObj
-    decorations: TreeLeft
-    toyBox: TreeToyGrid
+    decorations: Decorations
+    toyBox: ToyBox
     constructor(data: Toy[], favs: Set<string | undefined>) {
         this.treePageSettings = new TreeSettings()
         if (localStorage.getItem('treeSettings')) {
