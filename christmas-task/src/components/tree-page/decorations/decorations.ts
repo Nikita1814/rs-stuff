@@ -138,8 +138,8 @@ class Decorations implements DecorationsInterface {
             snowDiv.append(snowflake)
             snowflake.animate([{ transform: `translateY(-120px)` }, { transform: `translateY(1020px)` }], {
                 duration: (Math.floor(Math.random() * (9 - 3)) + 3) * 1000,
-                delay: (Math.floor(Math.random() * (3 - 0)) + 0) * 1000,
-                easing: timingFunctions[Math.floor(Math.random() * (3 - 0)) + 0],
+                delay: Math.floor(Math.random() * 3) * 1000,
+                easing: timingFunctions[Math.floor(Math.random() * 3)],
                 iterations: Infinity,
             })
         }
