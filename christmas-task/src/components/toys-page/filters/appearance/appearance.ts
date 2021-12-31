@@ -10,7 +10,11 @@ class Appearance {
         this.toyGrid = grid
     }
     addListeners() {
-        for (const key in this.filters) {
+        // немного искуственно, но тем не менее зафиксили путем каста текущих ключей объекта к ключам из начального типа
+        // почему нормально не работает, мне не очень понятно
+        const filterKeys = Object.keys(this.filters) as Array<keyof FilterObjInterface>
+        for (const key of filterKeys) {
+            // наведешь на filterToMod увидишь все возможные значения из FilterObjInterface
             const filterToMod = this.filters[key]
             if (filterToMod instanceof Set) {
                 document.querySelector(`.${key}`)?.addEventListener('click', (e) => {
