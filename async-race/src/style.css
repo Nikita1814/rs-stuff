@@ -1,0 +1,168 @@
+* {
+    box-sizing: border-box;
+}
+body {
+    background-color: black;
+    color: white;
+    margin: 0 auto;
+    font-family: Roboto;
+}
+.button {
+    outline: none;
+    background: transparent;
+    border: 1px solid blue;
+}
+.garage-menu {
+    width: 350px;
+    height: 300px;
+}
+.garage-menu div {
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    box-sizing: content-box;
+    padding: 5px;
+}
+header {
+    box-sizing: content-box;
+    margin-bottom: 100px;
+}
+.page-navigation {
+    display: flex;
+    width: 210px;
+    justify-content: space-between;
+}
+.page-link {
+    width: 100px;
+    height: 30px;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.garage-button {
+    width: 100px;
+    height: 40px;
+    background-color: white;
+    color: black;
+}
+
+.button-green {
+    background-color: lightgreen;
+    color: black;
+}
+.button-white {
+    background-color: white;
+    color: black;
+}
+.activation-btn {
+    width: 50px;
+    height: 50px;
+    background-color: transparent;
+    font-weight: bold;
+    border: 2px solid;
+}
+
+.start-btn {
+    color: green;
+    border-color: green;
+}
+
+.stop-btn {
+    color: red;
+    border-color: red;
+}
+
+.race-car {
+    background-color: red;
+    -webkit-mask-image: url(race-car.svg);
+    -webkit-mask-size: 140px;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: -1px;
+    mask-image: url(race-car.svg);
+    mask-size: contain;
+    mask-repeat: no-repeat;
+    mask-position: bottom;
+    height: 50px;
+    width: 140px;
+    align-self: flex-end;
+}
+.car-track-bottom {
+    width: 100%;
+    background-image: url(end-flag.svg);
+    background-size: 70px;
+    background-position-x: 90%;
+    background-position-y: 5%;
+    height: 100px;
+    border-bottom: 5px dotted white;
+    display: flex;
+    background-repeat: no-repeat;
+}
+.car-track-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 270px;
+}
+.activation-btns {
+    width: 120px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-right: 30px;
+}
+input {
+    height: 40px;
+}
+.generate-btn {
+    width: 125px;
+}
+.car-title {
+    box-sizing: content-box;
+    margin-left: 10px;
+}
+h1,
+h2 {
+    width: 100%;
+}
+
+.winners-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.winners-table {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 500px;
+}
+.winners-table-row {
+    display: flex;
+    box-sizing: content-box;
+    justify-content: space-between;
+    width: 100%;
+}
+.winners-table-row div,
+.winners-table-row p {
+    width: 90px;
+}
+.winner-car {
+    background-color: red;
+    -webkit-mask-image: url(race-car.svg);
+    -webkit-mask-size: 40px;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: -1px;
+    mask-image: url(race-car.svg);
+    mask-size: contain;
+    mask-repeat: no-repeat;
+    mask-position: bottom;
+    height: 50px;
+    width: 40px;
+}
+.winner-page-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
