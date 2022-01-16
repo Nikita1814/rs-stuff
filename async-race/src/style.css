@@ -41,6 +41,10 @@ header {
     justify-content: center;
     align-items: center;
 }
+.active-link {
+    background-color: blue !important;
+    color: white !important;
+}
 .garage-button {
     width: 100px;
     height: 40px;

@@ -2,7 +2,7 @@ class WinnersPage {
     constructor() {}
     render() {
         ;(document.querySelector('.main') as HTMLElement).innerHTML = `
-      <div class="winners-page" style="display: none;">
+      <div class="winners-page"">
             <h1>Winners!</h1>
 
             <div class="winners-table">

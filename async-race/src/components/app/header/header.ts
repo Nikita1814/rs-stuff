@@ -1,20 +1,44 @@
-class Header {
-    curPage: string
-    constructor() {
-        this.curPage = '#garage-page'
+import GaragePage from '../garage-page/garage-page'
+import WinnersPage from '../winners-page/winners-page'
+
+class PageHeader {
+    garage: GaragePage
+    winners: WinnersPage
+    constructor(garage: GaragePage, winners: WinnersPage) {
+        this.garage = garage
+        this.winners = winners
     }
     render() {
-        ;(document.querySelector(`.body`) as HTMLElement).innerHTML = `
-    <header>
+        const header = document.createElement('header')
+        header.innerHTML = `
     <nav class="page-navigation">
-        <a href="blank" class="page-link button-green to-garage">To Garage</a>
-        <a href="blank" class="page-link button-green to-winners"> To Winners</a>
+        <a href="#garage" class="page-link button-green active-link">To Garage</a>
+        <a href="#winners" class="page-link button-green "> To Winners</a>
     </nav>
-</header>
-<main class="main"></main>
     `
+        const main = document.createElement('main')
+        main.classList.add('main')
+        ;(document.querySelector('.body') as HTMLElement).append(header)
+        ;(document.querySelector('.body') as HTMLElement).append(main)
+        this.addListeners()
     }
     addListeners() {
-        return
+        window.addEventListener('hashchange', (e) => {
+            this.switchPage(e)
+        })
+    }
+    switchPage(e: HashChangeEvent) {
+        document.querySelectorAll('.page-link')?.forEach((link) => {
+            link.classList.remove('active-link')
+        })
+        document.querySelector(`[href='#${e.newURL.split('#')[1]}']`)?.classList.toggle('active-link')
+        switch (e.newURL.split('#')[1]) {
+            case 'garage':
+                this.garage.render()
+                break
+            case 'winners':
+                this.winners.render()
+        }
     }
 }
+export default PageHeader

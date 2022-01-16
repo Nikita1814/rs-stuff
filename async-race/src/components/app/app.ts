@@ -1,14 +1,15 @@
 import GaragePage from './garage-page/garage-page'
+import PageHeader from './header/header'
 import WinnersPage from './winners-page/winners-page'
 
 class App {
     garagePage: GaragePage
     winnersPage: WinnersPage
-    header: Header
+    header: PageHeader
     constructor() {
         this.garagePage = new GaragePage()
         this.winnersPage = new WinnersPage()
-        this.header = new Header()
+        this.header = new PageHeader(this.garagePage, this.winnersPage)
     }
     run() {
         this.header.render()
