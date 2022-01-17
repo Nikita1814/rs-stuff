@@ -178,3 +178,8 @@ h2 {
     display: flex;
     justify-content: flex-start;
 }
+
+.car-control-active {
+    color: lightslategray !important;
+    border-color: lightslategray !important;
+}
