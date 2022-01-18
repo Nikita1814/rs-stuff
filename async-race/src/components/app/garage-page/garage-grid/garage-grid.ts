@@ -21,27 +21,43 @@ class GarageGrid {
     }
     addControls() {
         console.log('I started working')
-
         document.querySelectorAll('.activation-btns').forEach((el) => {
             el.addEventListener('click', (e) => {
                 const target = e.target as HTMLElement
                 if (target.classList.contains('activation-btn') && !target.classList.contains('car-control-active')) {
+                    console.log('a button was clicked')
                     el.querySelectorAll(`.activation-btn`).forEach((btn) => {
                         btn.classList.toggle(`car-control-active`)
                     })
-                    this.toggleEngine(
-                        Number((el as HTMLElement).dataset.carId),
-                        target.dataset.status as 'started' | 'stopped'
-                    )
-                    if (target.dataset.status === 'started') {
-                        this.toggleDrive(Number((el as HTMLElement).dataset.carId)).catch((err) => {
-                            console.log(err)
-                            el.querySelectorAll(`.activation-btn`).forEach((btn) => {
-                                btn.classList.toggle(`car-control-active`)
-                            })
-                            this.toggleEngine(Number((el as HTMLElement).dataset.carId), 'stopped')
-                        })
-                    }
+                    const track = document.querySelector(
+                        `[data-track-id="${(el as HTMLElement).dataset.carId}"]`
+                    ) as HTMLElement
+                    const carId = Number((el as HTMLElement).dataset.carId)
+                    const car = track.querySelector('.race-car') as HTMLElement
+                    this.toggleEngine(carId, target.dataset.status as 'started' | 'stopped').then((res) => {
+                        if (target.dataset.status === 'started') {
+                            console.log('engine was started')
+                            this.animateCar(car, res.distance, res.velocity)
+                            console.log(car.getAnimations())
+                            this.toggleDrive(carId)
+                                .then(() => {
+                                    console.log('car passed finishline successfully')
+                                    this.toggleEngine(carId, 'stopped')
+                                })
+
+                                .catch((err) => {
+                                    if (err) {
+                                        console.log('engine broke down')
+                                        car.getAnimations()[0].pause()
+                                        this.toggleEngine(Number((el as HTMLElement).dataset.carId), 'stopped')
+                                    }
+                                })
+                        } else {
+                            car.getAnimations().forEach((anim) => anim.cancel())
+                            car.style.transform = 'translateX(0px)'
+                            console.log('car sucessfully returned to orig position')
+                        }
+                    })
                 }
             })
         })
@@ -123,7 +139,7 @@ class GarageGrid {
             method: 'PATCH',
         })
         if (res.ok) {
-            console.log(await res.json())
+            return await res.json()
         }
     }
     async toggleDrive(carId: number) {
@@ -131,16 +147,34 @@ class GarageGrid {
             method: 'PATCH',
         })
         if (resTwo.status === 500) {
-            throw new Error('It broke :o')
+            throw new Error('500')
         }
         if (resTwo.ok) {
-            document
-                .querySelector(`[data-car-id="${carId}"]`)
-                ?.querySelectorAll(`.activation-btn`)
-                .forEach((btn) => {
-                    btn.classList.toggle(`car-control-active`)
-                })
-            this.toggleEngine(carId, 'stopped')
+            return resTwo
+        }
+    }
+    animateCar(car: HTMLElement, distance: number, velocity: number) {
+        console.log(`animation func started, duration = ${distance / velocity} `)
+        const finishline = ((document.querySelector('.car-track-bottom') as HTMLElement).offsetWidth / 100) * 80
+        car.addEventListener('animationend', () => {})
+        car.addEventListener('animationstart', () => {
+            console.log('animation started')
+        })
+        console.log(car.getBoundingClientRect().left)
+        const anim = car.animate(
+            [
+                /*{transform: `translateX(${car.getBoundingClientRect().left}px)`},*/ {
+                    transform: `translateX(${finishline}px)`,
+                },
+            ],
+            {
+                duration: distance / velocity,
+                easing: 'ease-in',
+            }
+        )
+        anim.onfinish = () => {
+            console.log('animation finished successfully')
+            car.style.transform = `translateX(${finishline}px)`
         }
     }
 }
