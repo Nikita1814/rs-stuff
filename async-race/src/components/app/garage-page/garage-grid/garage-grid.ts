@@ -1,11 +1,23 @@
 import { CarItem } from '../../Interfaces/interfaces'
 
+class Car{
+name:string
+color:string
+constructor(name:string, color:string){
+    this.name = name 
+    this.color = color
+}    
+}
 class GarageGrid {
     currentPage: number
     pageTotal: number
+    carBrands: Array<string>
+    carModels: Array<string>
     constructor() {
         this.currentPage = 1
         this.pageTotal = 7
+        this.carBrands = [`Toyota`, `BMW`, `Mercedes`, `Audi`, `Kia`, `Hyundai`, `Tesla`, `Renaul`, `Ford`, `Honda`]
+        this.carModels = ['Rio', 'Focus', 'Kalina', 'Vesta', 'Spark', 'Lacetti', 'Nexia', 'Matiz', 'Cobalt', 'Captiva']
     }
     render() {
         this.getTotal()
@@ -17,6 +29,9 @@ class GarageGrid {
             if (target.dataset.direction) {
                 this.switchPage(target.dataset.direction)
             }
+        })
+        document.querySelector('.generate-btn')?.addEventListener('click', () => {
+            this.generateCars(this.carBrands, this.carModels)
         })
     }
     addControls() {
@@ -63,12 +78,12 @@ class GarageGrid {
         })
     }
     async getTotal() {
-        const res = await fetch(`http://127.0.0.1:3000/garage?_limit=2`)
+        const res = await fetch(`http://127.0.0.1:3000/garage?_limit=7`)
         this.pageTotal = Math.ceil(Number([...res.headers.entries()].find((el) => el[0] === 'x-total-count')?.[1]) / 2)
         console.log(this.pageTotal)
     }
     async getCars() {
-        const res = await fetch(`http://127.0.0.1:3000/garage?_page=${this.currentPage}&_limit=2`)
+        const res = await fetch(`http://127.0.0.1:3000/garage?_page=${this.currentPage}&_limit=7`)
         if (res.ok) {
             ;(document.querySelector('.car-count') as HTMLElement).innerHTML = `Garage(${
                 [...res.headers.entries()].find((el) => el[0] === 'x-total-count')?.[1]
@@ -175,6 +190,27 @@ class GarageGrid {
         anim.onfinish = () => {
             console.log('animation finished successfully')
             car.style.transform = `translateX(${finishline}px)`
+        }
+    }
+    generateCars(brands:Array<String>, models:Array<String>) {
+        console.log('started generating cars')
+        for (let i = 1; i < 100; i++) {
+            let car = new Car(`${brands[Math.floor(Math.random() * 9)]} ${models[Math.floor(Math.random() * 9)]}` , `#${Math.floor(Math.random()*16777215).toString(16)}`)
+            console.log('car generated')
+            this.createCar(car)
+        }
+        this.render()
+    }
+    async createCar(car: CarItem) {
+        const res = await fetch(`http://127.0.0.1:3000/garage`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(car),
+        })
+        if (res.ok) {
+            console.log('all guchi')
         }
     }
 }
