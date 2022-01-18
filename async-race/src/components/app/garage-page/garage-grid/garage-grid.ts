@@ -1,12 +1,12 @@
 import { CarItem } from '../../Interfaces/interfaces'
 
-class Car{
-name:string
-color:string
-constructor(name:string, color:string){
-    this.name = name 
-    this.color = color
-}    
+class Car {
+    name: string
+    color: string
+    constructor(name: string, color: string) {
+        this.name = name
+        this.color = color
+    }
 }
 class GarageGrid {
     currentPage: number
@@ -32,6 +32,12 @@ class GarageGrid {
         })
         document.querySelector('.generate-btn')?.addEventListener('click', () => {
             this.generateCars(this.carBrands, this.carModels)
+        })
+        document.querySelector('.race-btn')?.addEventListener('click', () => {
+            this.beginRace()
+        })
+        document.querySelector('.reset-btn')?.addEventListener('click', () => {
+            this.resetRace()
         })
     }
     addControls() {
@@ -192,10 +198,13 @@ class GarageGrid {
             car.style.transform = `translateX(${finishline}px)`
         }
     }
-    generateCars(brands:Array<String>, models:Array<String>) {
+    generateCars(brands: Array<String>, models: Array<String>) {
         console.log('started generating cars')
         for (let i = 1; i < 100; i++) {
-            let car = new Car(`${brands[Math.floor(Math.random() * 9)]} ${models[Math.floor(Math.random() * 9)]}` , `#${Math.floor(Math.random()*16777215).toString(16)}`)
+            let car = new Car(
+                `${brands[Math.floor(Math.random() * 9)]} ${models[Math.floor(Math.random() * 9)]}`,
+                `#${Math.floor(Math.random() * 16777215).toString(16)}`
+            )
             console.log('car generated')
             this.createCar(car)
         }
@@ -213,5 +222,39 @@ class GarageGrid {
             console.log('all guchi')
         }
     }
+    async beginRace() {
+        document.querySelectorAll('.car-track').forEach((track) => {
+            track.querySelectorAll(`.activation-btn`).forEach((btn) => {
+                btn.classList.toggle(`car-control-active`)
+            })
+            const carId = Number((track as HTMLElement).dataset.trackId)
+            const car = track.querySelector('.race-car') as HTMLElement
+            this.toggleEngine(carId, 'started').then((res) => {
+                this.animateCar(car, res.distance, res.velocity)
+                this.toggleDrive(carId)
+                    .then(() => {
+                        this.toggleEngine(carId, 'stopped')
+                    })
+
+                    .catch((err) => {
+                        if (err) {
+                            car.getAnimations()[0].pause()
+                            this.toggleEngine(carId, 'stopped')
+                        }
+                    })
+            })
+        })
+    }
+    resetRace() {
+        document.querySelectorAll('.car-track').forEach((track) => {
+            track.querySelectorAll(`.activation-btn`).forEach((btn) => {
+                btn.classList.toggle(`car-control-active`)
+            })
+            const car = track.querySelector('.race-car') as HTMLElement
+            car.getAnimations().forEach((anim) => anim.cancel())
+            car.style.transform = 'translateX(0px)'
+        })
+    }
 }
+
 export default GarageGrid
