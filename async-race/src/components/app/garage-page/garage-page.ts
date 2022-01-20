@@ -1,21 +1,22 @@
-import GarageGrid from './garage-grid/garage-grid'
+import { GarageGrid } from './garage-grid/garage-grid'
+import GarageMenu from './garage-page-menu/garage-page-menu'
 
 class GaragePage {
-    garageMenu: Object
+    garageMenu: GarageMenu
     garageGrid: GarageGrid
     constructor() {
-        this.garageMenu = {}
         this.garageGrid = new GarageGrid()
+        this.garageMenu = new GarageMenu(this.garageGrid)
     }
     render() {
         ;(document.querySelector('.main') as HTMLElement).innerHTML = `
       <div class="garage-page" >
         <div class="garage-menu">
             <div>
-                <input type="text"> <input type="color"> <button class="garage-button button-white">Create</button>
+                <input type="text" class="create-name"> <input type="color" class="create-color"> <button class="garage-button button-white create-btn">Create</button>
             </div>
             <div>
-                <input type="text"> <input type="color"> <button class="garage-button button-white">Update</button>
+                <input type="text" class="update-name" disabled> <input type="color" class="update-color"> <button class="garage-button button-white update-btn">Update</button>
             </div>
             <div>
                 <button class="garage-button race-btn button-green">Race</button> 
@@ -54,6 +55,7 @@ class GaragePage {
     }
     addListeners() {
         this.garageGrid.addListeners()
+        this.garageMenu.addListeners()
         document.querySelector('.generate-btn')?.addEventListener('click', this.getCars)
     }
     async getCars() {

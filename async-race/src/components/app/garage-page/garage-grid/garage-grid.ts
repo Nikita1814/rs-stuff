@@ -1,9 +1,9 @@
 import { CarItem } from '../../Interfaces/interfaces'
 
 class Car {
-    name: string
-    color: string
-    constructor(name: string, color: string) {
+    name: string | null
+    color: string | null
+    constructor(name: string | null, color: string | null) {
         this.name = name
         this.color = color
     }
@@ -85,7 +85,7 @@ class GarageGrid {
     }
     async getTotal() {
         const res = await fetch(`http://127.0.0.1:3000/garage?_limit=7`)
-        this.pageTotal = Math.ceil(Number([...res.headers.entries()].find((el) => el[0] === 'x-total-count')?.[1]) / 2)
+        this.pageTotal = Math.ceil(Number([...res.headers.entries()].find((el) => el[0] === 'x-total-count')?.[1]) / 7)
         console.log(this.pageTotal)
     }
     async getCars() {
@@ -257,4 +257,4 @@ class GarageGrid {
     }
 }
 
-export default GarageGrid
+export { GarageGrid, Car }
