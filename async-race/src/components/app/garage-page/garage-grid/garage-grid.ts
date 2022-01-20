@@ -13,11 +13,13 @@ class GarageGrid {
     pageTotal: number
     carBrands: Array<string>
     carModels: Array<string>
+    selectedCar: CarItem | null
     constructor() {
         this.currentPage = 1
         this.pageTotal = 7
         this.carBrands = [`Toyota`, `BMW`, `Mercedes`, `Audi`, `Kia`, `Hyundai`, `Tesla`, `Renaul`, `Ford`, `Honda`]
         this.carModels = ['Rio', 'Focus', 'Kalina', 'Vesta', 'Spark', 'Lacetti', 'Nexia', 'Matiz', 'Cobalt', 'Captiva']
+        this.selectedCar = null
     }
     render() {
         this.getTotal()
@@ -42,6 +44,18 @@ class GarageGrid {
     }
     addControls() {
         console.log('I started working')
+        document.querySelectorAll('.car-select').forEach((btn) => {
+            btn.addEventListener('click', (e) => {
+                this.selectCar(Number((e.target as HTMLElement).dataset.select))
+            })
+        })
+        document.querySelectorAll('.car-remove').forEach((btn) => {
+            btn.addEventListener('click', (e) => {
+                this.deleteCar(Number((e.target as HTMLElement).dataset.delete)).then(() => {
+                    this.render()
+                })
+            })
+        })
         document.querySelectorAll('.activation-btns').forEach((el) => {
             el.addEventListener('click', (e) => {
                 const target = e.target as HTMLElement
@@ -83,6 +97,7 @@ class GarageGrid {
             })
         })
     }
+
     async getTotal() {
         const res = await fetch(`http://127.0.0.1:3000/garage?_limit=7`)
         this.pageTotal = Math.ceil(Number([...res.headers.entries()].find((el) => el[0] === 'x-total-count')?.[1]) / 7)
@@ -108,8 +123,8 @@ class GarageGrid {
             page.innerHTML += `
         <div data-track-name=${car.name} data-track-id=${car.id} class="car-track">
         <div class="car-track-top">
-            <button class="garage-button car-select button-white">Select</button>
-            <button class="garage-button car-remove button-white">Remove</button>
+            <button data-select=${car.id} class="garage-button car-select button-white">Select</button>
+            <button data-delete=${car.id} class="garage-button car-remove button-white">Remove</button>
             <h3 class="car-title">${car.name}</h3>
         </div>
         <div class="car-track-bottom">
@@ -122,16 +137,6 @@ class GarageGrid {
     </div>
         `
             this.addControls()
-
-            /* btn?.addEventListener('click',(e) =>{
-            const target = e.target as HTMLElement
-            console.log(target)
-            track?.querySelectorAll(`.activation-btn`).forEach((b) =>{
-                b.classList.toggle( `car-control-active`)
-            })
-            /*const stats = this.ToggleEngine(car, target.dataset.status as 'started' | 'stopped')
-            console.log(stats)*/
-            // })
         })
     }
     switchPage(direction: string) {
@@ -254,6 +259,42 @@ class GarageGrid {
             car.getAnimations().forEach((anim) => anim.cancel())
             car.style.transform = 'translateX(0px)'
         })
+    }
+    async deleteCar(id: number) {
+        const res = await fetch(`http://127.0.0.1:3000/garage/${id}`, {
+            method: 'DELETE',
+        })
+        if (res.ok) {
+            console.log('car deleted')
+        }
+    }
+    async selectCar(id: number) {
+        const res = await fetch(`http://127.0.0.1:3000/garage/${id}`, {
+            method: 'GET',
+        })
+        if (res.ok) {
+            this.selectedCar = await res.json()
+            document.querySelector('.update-name')?.removeAttribute('disabled')
+            document.querySelector('.update-btn')?.removeAttribute('disabled')
+            ;(document.querySelector('.update-name') as HTMLInputElement).value = this.selectedCar?.name as string
+            ;(document.querySelector('.update-color') as HTMLInputElement).value = this.selectedCar?.color as string
+        }
+    }
+    async updateCar(car: CarItem, id: number) {
+        const res = await fetch(`http://127.0.0.1:3000/garage/${id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(car),
+        })
+        if (res.ok) {
+            this.selectedCar = null
+            document.querySelector('.update-name')?.setAttribute('disabled', 'dsiabled')
+            document.querySelector('.update-btn')?.setAttribute('disabled', 'disabled')
+            ;(document.querySelector('.update-name') as HTMLInputElement).value = ''
+            ;(document.querySelector('.update-color') as HTMLInputElement).value = '#000000'
+        }
     }
 }
 

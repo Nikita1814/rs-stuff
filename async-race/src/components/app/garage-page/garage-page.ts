@@ -16,7 +16,7 @@ class GaragePage {
                 <input type="text" class="create-name"> <input type="color" class="create-color"> <button class="garage-button button-white create-btn">Create</button>
             </div>
             <div>
-                <input type="text" class="update-name" disabled> <input type="color" class="update-color"> <button class="garage-button button-white update-btn">Update</button>
+                <input type="text" class="update-name" disabled> <input type="color" class="update-color"> <button class="garage-button button-white update-btn disabled">Update</button>
             </div>
             <div>
                 <button class="garage-button race-btn button-green">Race</button> 
