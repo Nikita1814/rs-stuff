@@ -54,7 +54,6 @@ class WinnersPage {
     async getTotal() {
         const res = await fetch(`http://127.0.0.1:3000/winners?_limit=10`)
         this.pageTotal = Math.ceil(Number([...res.headers.entries()].find((el) => el[0] === 'x-total-count')?.[1]) / 10)
-        console.log(this.pageTotal)
     }
     async showWinners(winArr: Array<WinnerItem>) {
         const page = document.querySelector('.table-page') as HTMLElement
@@ -70,8 +69,6 @@ class WinnersPage {
         })
         if (res.ok) {
             const car = await res.json()
-            console.log(car)
-            console.log(winner)
             page.innerHTML += ` 
             <div data-car-id="${car.id}" class="winners-table-winner winners-table-row">
             <p>${car.id}</p>

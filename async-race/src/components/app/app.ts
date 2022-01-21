@@ -14,6 +14,7 @@ class App {
     run() {
         this.header.render()
         this.garagePage.render()
+        window.location.hash = 'garage'
     }
 }
 export default App

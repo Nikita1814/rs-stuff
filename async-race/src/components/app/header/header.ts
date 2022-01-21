@@ -38,6 +38,8 @@ class PageHeader {
                 break
             case 'winners':
                 this.winners.render()
+                break
+            
         }
     }
 }

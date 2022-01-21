@@ -50,7 +50,6 @@ class GarageGrid {
         })
     }
     addControls() {
-        console.log('I started working')
         document.querySelectorAll('.car-select').forEach((btn) => {
             btn.addEventListener('click', (e) => {
                 this.selectCar(Number((e.target as HTMLElement).dataset.select))
@@ -67,7 +66,6 @@ class GarageGrid {
             el.addEventListener('click', (e) => {
                 const target = e.target as HTMLElement
                 if (target.classList.contains('activation-btn') && !target.classList.contains('car-control-active')) {
-                    console.log('a button was clicked')
                     el.querySelectorAll(`.activation-btn`).forEach((btn) => {
                         btn.classList.toggle(`car-control-active`)
                     })
@@ -78,18 +76,14 @@ class GarageGrid {
                     const car = track.querySelector('.race-car') as HTMLElement
                     this.toggleEngine(carId, target.dataset.status as 'started' | 'stopped').then((res) => {
                         if (target.dataset.status === 'started') {
-                            console.log('engine was started')
                             this.animateCar(car, res.distance, res.velocity)
-                            console.log(car.getAnimations())
                             this.toggleDrive(carId)
                                 .then(() => {
-                                    console.log('car passed finishline successfully')
                                     this.toggleEngine(carId, 'stopped')
                                 })
 
                                 .catch((err) => {
                                     if (err) {
-                                        console.log('engine broke down')
                                         car.getAnimations()[0].pause()
                                         this.toggleEngine(Number((el as HTMLElement).dataset.carId), 'stopped')
                                     }
@@ -97,7 +91,7 @@ class GarageGrid {
                         } else {
                             car.getAnimations().forEach((anim) => anim.cancel())
                             car.style.transform = 'translateX(0px)'
-                            console.log('car sucessfully returned to orig position')
+                            
                         }
                     })
                 }
@@ -108,7 +102,7 @@ class GarageGrid {
     async getTotal() {
         const res = await fetch(`http://127.0.0.1:3000/garage?_limit=7`)
         this.pageTotal = Math.ceil(Number([...res.headers.entries()].find((el) => el[0] === 'x-total-count')?.[1]) / 7)
-        console.log(this.pageTotal)
+        
     }
     async getCars() {
         const res = await fetch(`http://127.0.0.1:3000/garage?_page=${this.currentPage}&_limit=7`)
@@ -119,7 +113,7 @@ class GarageGrid {
             const arr = await res.json()
             this.showCars(arr)
         } else {
-            console.log('an error occured')
+            
         }
     }
     showCars(arr: Array<CarItem>) {
@@ -188,7 +182,6 @@ class GarageGrid {
     }
     animateCar(car: HTMLElement, distance: number, velocity: number) {
         const finishline = ((document.querySelector('.car-track-bottom') as HTMLElement).offsetWidth / 100) * 80
-        console.log(car.getBoundingClientRect().left)
         const anim = car.animate(
             [
                  {
@@ -201,18 +194,15 @@ class GarageGrid {
             }
         )
         anim.onfinish = () => {
-            console.log('animation finished successfully')
             car.style.transform = `translateX(${finishline}px)`
         }
     }
     generateCars(brands: Array<string>, models: Array<string>) {
-        console.log('started generating cars')
         for (let i = 1; i < 100; i++) {
             const car = new Car(
                 `${brands[Math.floor(Math.random() * 9)]} ${models[Math.floor(Math.random() * 9)]}`,
                 `#${Math.floor(Math.random() * 16777215).toString(16)}`
             )
-            console.log('car generated')
             this.createCar(car)
         }
         this.render()
@@ -226,7 +216,6 @@ class GarageGrid {
             body: JSON.stringify(car),
         })
         if (res.ok) {
-            console.log('all guchi')
         }
     }
     async beginRace() {
@@ -242,7 +231,6 @@ class GarageGrid {
                     .then(() => {
                         this.toggleEngine(carId, 'stopped')
                         if (this.winner === null) {
-                            console.log('we have a winner')
                             this.addWinner(carId, Math.round(res.distance / res.velocity / 1000))
                         }
                     })
@@ -256,7 +244,6 @@ class GarageGrid {
             })
         })
         if (this.winner !== null) {
-            console.log('we have a winner')
             this.handleWinner(this.winner)
         }
     }
@@ -270,14 +257,12 @@ class GarageGrid {
             car.style.transform = 'translateX(0px)'
         })
         this.winner = null
-        console.log('winner cleared', this.winner)
     }
     async deleteCar(id: number) {
         const res = await fetch(`http://127.0.0.1:3000/garage/${id}`, {
             method: 'DELETE',
         })
         if (res.ok) {
-            console.log('car deleted')
         }
     }
     async selectCar(id: number) {
@@ -315,7 +300,6 @@ class GarageGrid {
                 wins: 1,
                 time: time,
             }
-            console.log(`Here's the winner`, this.winner)
             this.handleWinner(this.winner)
         }
         return
@@ -338,7 +322,6 @@ class GarageGrid {
                 }),
             })
             if (update.ok) {
-                console.log('winner updated')
             }
         } else {
             const creation = await fetch(`http://127.0.0.1:3000/winners`, {
@@ -349,7 +332,6 @@ class GarageGrid {
                 body: JSON.stringify(winner),
             })
             if (creation.ok) {
-                console.log('winner created')
             }
         }
     }
