@@ -152,6 +152,13 @@ h2 {
 .winners-table-row div,
 .winners-table-row p {
     width: 90px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.active-sort {
+    background-color: lightgreen !important;
+    color: black !important;
 }
 .winner-car {
     background-color: red;

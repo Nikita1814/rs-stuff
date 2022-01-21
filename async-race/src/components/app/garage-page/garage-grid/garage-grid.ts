@@ -187,12 +187,11 @@ class GarageGrid {
         }
     }
     animateCar(car: HTMLElement, distance: number, velocity: number) {
-        console.log(`animation func started, duration = ${distance / velocity} `)
         const finishline = ((document.querySelector('.car-track-bottom') as HTMLElement).offsetWidth / 100) * 80
         console.log(car.getBoundingClientRect().left)
         const anim = car.animate(
             [
-                /*{transform: `translateX(${car.getBoundingClientRect().left}px)`},*/ {
+                 {
                     transform: `translateX(${finishline}px)`,
                 },
             ],
