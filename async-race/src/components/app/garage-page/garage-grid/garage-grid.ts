@@ -8,7 +8,7 @@ class Car {
         this.color = color
     }
 }
-interface WinnerItem {
+export interface WinnerItem {
     id: number
     wins: number
     time: number
@@ -246,7 +246,6 @@ class GarageGrid {
                             console.log('we have a winner')
                             this.addWinner(carId, Math.round(res.distance / res.velocity / 1000))
                         }
-                       
                     })
 
                     .catch((err) => {
@@ -272,6 +271,7 @@ class GarageGrid {
             car.style.transform = 'translateX(0px)'
         })
         this.winner = null
+        console.log('winner cleared', this.winner)
     }
     async deleteCar(id: number) {
         const res = await fetch(`http://127.0.0.1:3000/garage/${id}`, {
@@ -334,7 +334,7 @@ class GarageGrid {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    wins: windata + 1,
+                    wins: windata.wins + 1,
                     time: Math.min(windata.time, winner.time),
                 }),
             })

@@ -60,7 +60,7 @@ class GaragePage {
     }
     async getCars() {
         console.log('i work')
-        const res = await fetch(`http://127.0.0.1:3000/garage?_page=2&_limit=2`)
+        const res = await fetch(`http://127.0.0.1:3000/garage?_page=1&_limit=7`)
         console.log([...res.headers.entries()].find((el) => el[0] === 'x-total-count')?.[1])
         if (res.ok) {
             const arr = await res.json()
