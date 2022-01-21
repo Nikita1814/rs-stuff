@@ -8,18 +8,25 @@ class Car {
         this.color = color
     }
 }
+interface WinnerItem {
+    id: number
+    wins: number
+    time: number
+}
 class GarageGrid {
     currentPage: number
     pageTotal: number
     carBrands: Array<string>
     carModels: Array<string>
     selectedCar: CarItem | null
+    winner: WinnerItem | null
     constructor() {
         this.currentPage = 1
         this.pageTotal = 7
         this.carBrands = [`Toyota`, `BMW`, `Mercedes`, `Audi`, `Kia`, `Hyundai`, `Tesla`, `Renaul`, `Ford`, `Honda`]
         this.carModels = ['Rio', 'Focus', 'Kalina', 'Vesta', 'Spark', 'Lacetti', 'Nexia', 'Matiz', 'Cobalt', 'Captiva']
         this.selectedCar = null
+        this.winner = null
     }
     render() {
         this.getTotal()
@@ -182,10 +189,6 @@ class GarageGrid {
     animateCar(car: HTMLElement, distance: number, velocity: number) {
         console.log(`animation func started, duration = ${distance / velocity} `)
         const finishline = ((document.querySelector('.car-track-bottom') as HTMLElement).offsetWidth / 100) * 80
-        car.addEventListener('animationend', () => {})
-        car.addEventListener('animationstart', () => {
-            console.log('animation started')
-        })
         console.log(car.getBoundingClientRect().left)
         const anim = car.animate(
             [
@@ -203,10 +206,10 @@ class GarageGrid {
             car.style.transform = `translateX(${finishline}px)`
         }
     }
-    generateCars(brands: Array<String>, models: Array<String>) {
+    generateCars(brands: Array<string>, models: Array<string>) {
         console.log('started generating cars')
         for (let i = 1; i < 100; i++) {
-            let car = new Car(
+            const car = new Car(
                 `${brands[Math.floor(Math.random() * 9)]} ${models[Math.floor(Math.random() * 9)]}`,
                 `#${Math.floor(Math.random() * 16777215).toString(16)}`
             )
@@ -239,6 +242,11 @@ class GarageGrid {
                 this.toggleDrive(carId)
                     .then(() => {
                         this.toggleEngine(carId, 'stopped')
+                        if (this.winner === null) {
+                            console.log('we have a winner')
+                            this.addWinner(carId, Math.round(res.distance / res.velocity / 1000))
+                        }
+                       
                     })
 
                     .catch((err) => {
@@ -249,6 +257,10 @@ class GarageGrid {
                     })
             })
         })
+        if (this.winner !== null) {
+            console.log('we have a winner')
+            this.handleWinner(this.winner)
+        }
     }
     resetRace() {
         document.querySelectorAll('.car-track').forEach((track) => {
@@ -259,6 +271,7 @@ class GarageGrid {
             car.getAnimations().forEach((anim) => anim.cancel())
             car.style.transform = 'translateX(0px)'
         })
+        this.winner = null
     }
     async deleteCar(id: number) {
         const res = await fetch(`http://127.0.0.1:3000/garage/${id}`, {
@@ -294,6 +307,51 @@ class GarageGrid {
             document.querySelector('.update-btn')?.setAttribute('disabled', 'disabled')
             ;(document.querySelector('.update-name') as HTMLInputElement).value = ''
             ;(document.querySelector('.update-color') as HTMLInputElement).value = '#000000'
+        }
+    }
+    addWinner(carID: number, time: number) {
+        if (this.winner === null) {
+            this.winner = {
+                id: carID,
+                wins: 1,
+                time: time,
+            }
+            console.log(`Here's the winner`, this.winner)
+            this.handleWinner(this.winner)
+        }
+        return
+    }
+    async handleWinner(winner: WinnerItem) {
+        winner = winner as WinnerItem
+        const res = await fetch(`http://127.0.0.1:3000/winners/${winner.id}`, {
+            method: 'GET',
+        })
+        if (res.ok) {
+            const windata = await res.json()
+            const update = await fetch(`http://127.0.0.1:3000/winners/${winner.id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    wins: windata + 1,
+                    time: Math.min(windata.time, winner.time),
+                }),
+            })
+            if (update.ok) {
+                console.log('winner updated')
+            }
+        } else {
+            const creation = await fetch(`http://127.0.0.1:3000/winners`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(winner),
+            })
+            if (creation.ok) {
+                console.log('winner created')
+            }
         }
     }
 }

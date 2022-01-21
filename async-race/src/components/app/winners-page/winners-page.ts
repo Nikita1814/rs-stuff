@@ -1,5 +1,8 @@
 class WinnersPage {
-    constructor() {}
+    foo: string
+    constructor() {
+        this.foo = `bar`
+    }
     render() {
         ;(document.querySelector('.main') as HTMLElement).innerHTML = `
       <div class="winners-page"">
