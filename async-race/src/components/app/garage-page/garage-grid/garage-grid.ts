@@ -262,8 +262,10 @@ class GarageGrid {
         const res = await fetch(`http://127.0.0.1:3000/garage/${id}`, {
             method: 'DELETE',
         })
-        if (res.ok) {
-        }
+
+        const res2 = await fetch(`http://127.0.0.1:3000/winners/${id}`, {
+            method: 'DELETE'
+        })
     }
     async selectCar(id: number) {
         const res = await fetch(`http://127.0.0.1:3000/garage/${id}`, {
