@@ -10,6 +10,14 @@ class GaragePage {
     }
     render() {
         ;(document.querySelector('.main') as HTMLElement).innerHTML = `
+        <div class="announcement-overlay hidden">
+        <div class="announcement">
+        <div class = "announcement-flag"></div>
+         <h1 class="announcement-name">Car Won!</h1>
+         <h2 class="announcement-seconds">(s)</h2>
+         <button class="garage-button button-green close-announcement">Close</button>
+        </div>
+        </div>
       <div class="garage-page" >
         <div class="garage-menu">
             <div>
@@ -57,6 +65,9 @@ class GaragePage {
         this.garageGrid.addListeners()
         this.garageMenu.addListeners()
         document.querySelector('.generate-btn')?.addEventListener('click', this.getCars)
+        document.querySelector('.close-announcement')?.addEventListener('click', ()=>{
+            document.querySelector('.announcement-overlay')?.classList.add('hidden')
+        })
     }
     async getCars() {
         console.log('i work')

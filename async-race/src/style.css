@@ -13,6 +13,9 @@ body {
     background: transparent;
     border: 1px solid blue;
 }
+.hidden{
+    display: none !important;
+}
 .garage-menu {
     width: 350px;
     height: 300px;
@@ -190,4 +193,38 @@ h2 {
 .car-control-active {
     color: lightslategray !important;
     border-color: lightslategray !important;
+}
+.announcement-overlay{
+    width:100vw;
+    height:100vh;
+    position:fixed;
+    top:0;
+    left:0;
+    display:flex;
+    justify-content: center;
+    align-items:center;
+    z-index:100;
+}
+.announcement{
+    width:500px;
+    height:250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 100%;
+    background-color: black;
+}
+.announcement-name{
+text-align: center;
+}
+.announcement-seconds{
+text-align: center;
+}
+.announcement-flag{
+background-image:url(assets/img/finish-flags.png);
+background-size: contain;
+background-repeat: no-repeat;
+width:75px;
+height:75px;
 }

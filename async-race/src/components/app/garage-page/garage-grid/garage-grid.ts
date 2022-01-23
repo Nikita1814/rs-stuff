@@ -209,15 +209,13 @@ class GarageGrid {
         this.render()
     }
     async createCar(car: CarItem) {
-        const res = await fetch(`http://127.0.0.1:3000/garage`, {
+         await fetch(`http://127.0.0.1:3000/garage`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(car),
         })
-        if (res.ok) {
-        }
     }
     async beginRace() {
         document.querySelectorAll('.car-track').forEach((track) => {
@@ -260,11 +258,11 @@ class GarageGrid {
         this.winner = null
     }
     async deleteCar(id: number) {
-        const res = await fetch(`http://127.0.0.1:3000/garage/${id}`, {
+        await fetch(`http://127.0.0.1:3000/garage/${id}`, {
             method: 'DELETE',
         })
 
-        const res2 = await fetch(`http://127.0.0.1:3000/winners/${id}`, {
+        await fetch(`http://127.0.0.1:3000/winners/${id}`, {
             method: 'DELETE'
         })
     }
@@ -303,7 +301,9 @@ class GarageGrid {
                 wins: 1,
                 time: time,
             }
+            this.showAnnouncement(this.winner)
             this.handleWinner(this.winner)
+           
         }
         return
     }
@@ -314,7 +314,7 @@ class GarageGrid {
         })
         if (res.ok) {
             const windata = await res.json()
-            const update = await fetch(`http://127.0.0.1:3000/winners/${winner.id}`, {
+              await fetch(`http://127.0.0.1:3000/winners/${winner.id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -325,14 +325,22 @@ class GarageGrid {
                 }),
             })
         } else {
-            const creation = await fetch(`http://127.0.0.1:3000/winners`, {
+             await fetch(`http://127.0.0.1:3000/winners`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(winner),
             })
+
         }
+    }
+    showAnnouncement(car:WinnerItem){
+     const carName = (document.querySelector(`[data-car-id="${car.id}"]`) as HTMLElement)?.dataset.trackName;
+    document.querySelector('.announcement-overlay')?.classList.remove('hidden');
+    (document.querySelector('.announcement-name') as HTMLElement).innerHTML =`${carName} Won!`;
+    (document.querySelector('.announcement-seconds') as HTMLElement).innerHTML =`${(this.winner as WinnerItem).time} s`;
+
     }
 }
 
