@@ -218,6 +218,8 @@ class GarageGrid {
         })
     }
     async beginRace() {
+        document.querySelector('.header-cover')?.classList.remove('hidden')
+        console.log('cover added')
         document.querySelectorAll('.car-track').forEach((track) => {
             track.querySelectorAll(`.activation-btn`).forEach((btn) => {
                 btn.classList.toggle(`car-control-active`)
@@ -242,20 +244,24 @@ class GarageGrid {
                     })
             })
         })
+        document.querySelector('.header-cover')?.classList.add('hidden')
+        console.log('cover removed')
         if (this.winner !== null) {
             this.handleWinner(this.winner)
         }
     }
     resetRace() {
+        this.winner = null
+        console.log(this.winner)
         document.querySelectorAll('.car-track').forEach((track) => {
-            track.querySelectorAll(`.activation-btn`).forEach((btn) => {
-                btn.classList.toggle(`car-control-active`)
-            })
+            track.querySelector(`.start-btn`)?.classList.remove(`car-control-active`);
+            track.querySelector(`.stop-btn`)?.classList.add(`car-control-active`);
             const car = track.querySelector('.race-car') as HTMLElement
             car.getAnimations().forEach((anim) => anim.cancel())
+            this.toggleEngine(Number((track as HTMLElement).dataset.trackId), 'stopped')
             car.style.transform = 'translateX(0px)'
         })
-        this.winner = null
+      
     }
     async deleteCar(id: number) {
         await fetch(`http://127.0.0.1:3000/garage/${id}`, {

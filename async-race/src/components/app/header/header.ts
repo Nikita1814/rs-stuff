@@ -4,13 +4,16 @@ import WinnersPage from '../winners-page/winners-page'
 class PageHeader {
     garage: GaragePage
     winners: WinnersPage
+    activePage: WinnersPage | GaragePage
     constructor(garage: GaragePage, winners: WinnersPage) {
         this.garage = garage
         this.winners = winners
+        this.activePage = this.garage
     }
     render() {
         const header = document.createElement('header')
         header.innerHTML = `
+        <div class="header-cover hidden"></div>
     <nav class="page-navigation">
         <a href="#garage" class="page-link button-green active-link">To Garage</a>
         <a href="#winners" class="page-link button-green "> To Winners</a>
@@ -24,7 +27,12 @@ class PageHeader {
     }
     addListeners() {
         window.addEventListener('hashchange', (e) => {
+            this.garage.garageGrid.winner = null
+            if(this.activePage === this.garage){
+                this.garage.garageGrid.resetRace()
+            }
             this.switchPage(e)
+           
         })
     }
     switchPage(e: HashChangeEvent) {
