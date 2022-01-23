@@ -220,35 +220,21 @@ class GarageGrid {
     async beginRace() {
         document.querySelector('.header-cover')?.classList.remove('hidden')
         console.log('cover added')
-        document.querySelectorAll('.car-track').forEach((track) => {
-            track.querySelectorAll(`.activation-btn`).forEach((btn) => {
-                btn.classList.toggle(`car-control-active`)
-            })
+        const elemArr = [...document.querySelectorAll('.car-track')]
+        const promisArr: Array<Promise<void>> = elemArr.map((track) => {
+            track.querySelector(`.start-btn`)?.classList.add(`car-control-active`);
+            track.querySelector(`.stop-btn`)?.classList.remove(`car-control-active`);
             const carId = Number((track as HTMLElement).dataset.trackId)
             const car = track.querySelector('.race-car') as HTMLElement
-            this.toggleEngine(carId, 'started').then((res) => {
-                this.animateCar(car, res.distance, res.velocity)
-                this.toggleDrive(carId)
-                    .then(() => {
-                        this.toggleEngine(carId, 'stopped')
-                        if (this.winner === null) {
-                            this.addWinner(carId, Math.round(res.distance / res.velocity / 1000))
-                        }
-                    })
-
-                    .catch((err) => {
-                        if (err) {
-                            car.getAnimations()[0].pause()
-                            this.toggleEngine(carId, 'stopped')
-                        }
-                    })
-            })
+            return this.startCarRace(carId, car)
         })
-        document.querySelector('.header-cover')?.classList.add('hidden')
-        console.log('cover removed')
-        if (this.winner !== null) {
-            this.handleWinner(this.winner)
-        }
+        Promise.all(promisArr).then(()=>{
+            console.log('race is done now')
+            document.querySelector('.header-cover')?.classList.add('hidden')
+            console.log('cover removed')
+        })
+      
+      
     }
     resetRace() {
         this.winner = null
@@ -340,6 +326,26 @@ class GarageGrid {
             })
 
         }
+    }
+    async startCarRace(carId: number, car:HTMLElement){
+     await this.toggleEngine(carId, 'started').then((res) => {
+            this.animateCar(car, res.distance, res.velocity)
+             this.toggleDrive(carId)
+                .then(() => {
+                    this.toggleEngine(carId, 'stopped')
+                    if (this.winner === null && window.location.hash === "#garage") {
+                        console.log(window.location)
+                        this.addWinner(carId, Math.round(res.distance / res.velocity / 1000))
+                    }
+                })
+
+                .catch((err) => {
+                    if (err) {
+                        car.getAnimations()[0].pause()
+                        this.toggleEngine(carId, 'stopped')
+                    }
+                })
+        })
     }
     showAnnouncement(car:WinnerItem){
      const carName = (document.querySelector(`[data-car-id="${car.id}"]`) as HTMLElement)?.dataset.trackName;
