@@ -6,6 +6,7 @@ body {
     color: white;
     margin: 0 auto;
     font-family: Roboto;
+    overflow-x: hidden;
 }
 .button {
     outline: none;
@@ -97,7 +98,7 @@ header {
     width: 100%;
     background-image: url(assets/svg/end-flag.svg);
     background-size: 70px;
-    background-position-x: 90%;
+    background-position-x: 85%;
     background-position-y: 5%;
     height: 100px;
     border-bottom: 5px dotted white;

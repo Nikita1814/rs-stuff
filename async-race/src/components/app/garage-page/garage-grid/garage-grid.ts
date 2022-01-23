@@ -181,7 +181,8 @@ class GarageGrid {
         }
     }
     animateCar(car: HTMLElement, distance: number, velocity: number) {
-        const finishline = ((document.querySelector('.car-track-bottom') as HTMLElement).offsetWidth / 100) * 80
+        const finishline = ((document.querySelector('.car-track-bottom') as HTMLElement).offsetWidth / 100) * 76
+        /*const finishline = window.screen.width/100 * 90*/
         const anim = car.animate(
             [
                  {
@@ -323,8 +324,6 @@ class GarageGrid {
                     time: Math.min(windata.time, winner.time),
                 }),
             })
-            if (update.ok) {
-            }
         } else {
             const creation = await fetch(`http://127.0.0.1:3000/winners`, {
                 method: 'POST',
@@ -333,8 +332,6 @@ class GarageGrid {
                 },
                 body: JSON.stringify(winner),
             })
-            if (creation.ok) {
-            }
         }
     }
 }
