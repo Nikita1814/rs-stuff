@@ -1,4 +1,4 @@
-import GaragePage from './garage-page/garage-page'
+import { GaragePage } from './garage-page/garage-page'
 import PageHeader from './header/header'
 import WinnersPage from './winners-page/winners-page'
 

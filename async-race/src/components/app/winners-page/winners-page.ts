@@ -1,5 +1,4 @@
-import { WinnerItem } from '../garage-page/garage-grid/garage-grid'
-import { CarItem } from '../Interfaces/interfaces'
+import { WinnerItem } from '../garage-page/garage-page'
 
 class WinnersPage {
     currentPage: number
@@ -22,7 +21,7 @@ class WinnersPage {
                     <p>Car</p>
                     <p>Name</p>
                     <p data-sort="wins" data-order="DESC">Wins</p>
-                    <p data-sort="time" data-order="DESC">Best Time(seconds)</p>
+                    <p data-sort="time" data-order="DESC">Time (seconds)</p>
                 </div>
                 <div class="table-page" data-page-num=${this.currentPage}>
                 </div>
@@ -75,7 +74,7 @@ class WinnersPage {
             <div class="car winner-car"style="background-color:${car.color}"></div>
             <p>${car.name}</p>
             <p>${winner.wins}</p>
-            <p>${winner.time}</p>
+            <p>${winner.time} s</p>
         </div>
             `
         }

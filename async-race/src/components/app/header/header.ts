@@ -1,4 +1,4 @@
-import GaragePage from '../garage-page/garage-page'
+import { GaragePage } from '../garage-page/garage-page'
 import WinnersPage from '../winners-page/winners-page'
 
 class PageHeader {
@@ -27,12 +27,11 @@ class PageHeader {
     }
     addListeners() {
         window.addEventListener('hashchange', (e) => {
-            this.garage.garageGrid.winner = null
-            if(this.activePage === this.garage){
-                this.garage.garageGrid.resetRace()
+            this.garage.garageGrid.controller.winner = null
+            if (this.activePage === this.garage) {
+                this.garage.garageGrid.controller.resetRace()
             }
             this.switchPage(e)
-           
         })
     }
     switchPage(e: HashChangeEvent) {
@@ -47,7 +46,6 @@ class PageHeader {
             case 'winners':
                 this.winners.render()
                 break
-            
         }
     }
 }
