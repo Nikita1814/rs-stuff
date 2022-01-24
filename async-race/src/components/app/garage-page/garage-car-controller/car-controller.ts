@@ -20,14 +20,11 @@ class CarController {
             return await res.json()
         }
     }
-    async toggleDrive(carId: number, status: string): Promise<Response | undefined> {
+    async toggleDrive(carId: number): Promise<Response | undefined> {
         const resTwo = await fetch(`http://127.0.0.1:3000/engine?id=${carId}&status=drive`, {
             method: 'PATCH',
         })
         if (resTwo.status === 500) {
-            throw new Error('500')
-        }
-        if (this.raceStatus === false && status === 'race') {
             throw new Error('500')
         }
         if (resTwo.ok) {
@@ -128,12 +125,13 @@ class CarController {
     }
     async startCarRace(carId: number, car: HTMLElement): Promise<void> {
         await this.toggleEngine(carId, 'started').then((res) => {
-            this.animateCar(car, res.distance, res.velocity)
-            this.toggleDrive(carId, 'race')
+            const response = res as engineStartResp
+            this.animateCar(car, response.distance, response.velocity)
+            this.toggleDrive(carId)
                 .then(() => {
                     this.toggleEngine(carId, 'stopped')
                     if (this.winner === null && window.location.hash === '#garage' && this.raceStatus === true) {
-                        this.addWinner(carId, Math.round(res.distance / res.velocity / 1000))
+                        this.addWinner(carId, Math.round(response.distance / response.velocity / 1000))
                         this.raceStatus = false
                     }
                 })
@@ -155,9 +153,10 @@ class CarController {
 
         const car = track.querySelector('.race-car') as HTMLElement
         this.toggleEngine(carId, status).then((res) => {
+            const response = res as engineStartResp
             if (status === 'started') {
-                this.animateCar(car, res.distance, res.velocity)
-                this.toggleDrive(carId, 'manual')
+                this.animateCar(car, response.distance, response.velocity)
+                this.toggleDrive(carId)
                     .then(() => {
                         this.toggleEngine(carId, 'stopped')
                     })
