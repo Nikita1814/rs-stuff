@@ -28,7 +28,7 @@ class GaragePage {
         this.garageGrid = new GarageGrid(this.controller)
         this.garageMenu = new GarageMenu(this.garageGrid, this.controller)
     }
-    async render() {
+    async render(): Promise<void> {
         ;(document.querySelector('.main') as HTMLElement).innerHTML = `
         <div class="announcement-overlay hidden">
         <div class="announcement">
@@ -85,7 +85,7 @@ class GaragePage {
 
         this.addListeners()
     }
-    addListeners() {
+    addListeners(): void {
         this.garageGrid.addListeners()
         this.garageMenu.addListeners()
         document.querySelector('.close-announcement')?.addEventListener('click', () => {
@@ -122,7 +122,7 @@ class GaragePage {
             this.garageMenu.generateCars(this.garageMenu.carBrands, this.garageMenu.carModels)
         })
     }
-    addControls() {
+    addControls(): void {
         document.querySelectorAll('.car-select').forEach((btn) => {
             btn.addEventListener('click', (e) => {
                 this.garageMenu.selectCar(Number((e.target as HTMLElement).dataset.select))
@@ -152,7 +152,7 @@ class GaragePage {
         })
     }
 
-    switchPage(direction: string) {
+    switchPage(direction: string): void {
         direction === 'next' && this.garageGrid.currentPage
     }
 }

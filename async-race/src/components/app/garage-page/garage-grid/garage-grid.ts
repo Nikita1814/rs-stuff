@@ -10,11 +10,11 @@ class GarageGrid {
         this.currentPage = 1
         this.pageTotal = 7
     }
-    async render() {
+    async render(): Promise<void> {
         await this.getTotal()
         await this.getCars()
     }
-    addListeners() {
+    addListeners(): void {
         document.querySelector('.garage-page-controls')?.addEventListener('click', (e) => {
             const target = e.target as HTMLElement
             if (target.dataset.direction) {
@@ -23,7 +23,7 @@ class GarageGrid {
         })
     }
 
-    async getTotal() {
+    async getTotal(): Promise<void> {
         const res = await fetch(`http://127.0.0.1:3000/garage?_limit=7`)
         this.pageTotal = Math.ceil(Number([...res.headers.entries()].find((el) => el[0] === 'x-total-count')?.[1]) / 7)
     }
@@ -38,7 +38,7 @@ class GarageGrid {
         } else {
         }
     }
-    showCars(arr: Array<CarItem>) {
+    showCars(arr: Array<CarItem>): void {
         const page = document.querySelector('.garage-grid-page') as HTMLElement
         page.dataset.pageNum = `${this.currentPage}`
         page.innerHTML = `<h2>Page #${this.currentPage}</h2>`
@@ -61,7 +61,7 @@ class GarageGrid {
         `
         })
     }
-    switchPage(direction: string) {
+    switchPage(direction: string): void {
         if (direction === 'next') {
             this.getTotal()
             if (this.currentPage < this.pageTotal) {

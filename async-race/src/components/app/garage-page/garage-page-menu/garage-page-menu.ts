@@ -15,7 +15,7 @@ class GarageMenu {
         this.carModels = ['Rio', 'Focus', 'Kalina', 'Vesta', 'Spark', 'Lacetti', 'Nexia', 'Matiz', 'Cobalt', 'Captiva']
         this.selectedCar = null
     }
-    addListeners() {
+    addListeners(): void {
         document.querySelector('.race-btn')?.addEventListener('click', () => {
             if (!document.querySelector('.race-btn')?.classList.contains('inactive')) {
                 document.querySelector('.race-btn')?.classList.add('inactive')
@@ -31,7 +31,7 @@ class GarageMenu {
             }
         })
     }
-    generateCars(brands: Array<string>, models: Array<string>) {
+    generateCars(brands: Array<string>, models: Array<string>): void {
         for (let i = 1; i < 100; i++) {
             const car = new Car(
                 `${brands[Math.floor(Math.random() * 9)]} ${models[Math.floor(Math.random() * 9)]}`,
@@ -41,7 +41,7 @@ class GarageMenu {
         }
         this.grid.render()
     }
-    async createCar(car: CarItem) {
+    async createCar(car: CarItem): Promise<void> {
         await fetch(`http://127.0.0.1:3000/garage`, {
             method: 'POST',
             headers: {
@@ -50,7 +50,7 @@ class GarageMenu {
             body: JSON.stringify(car),
         })
     }
-    async deleteCar(id: number) {
+    async deleteCar(id: number): Promise<void> {
         await fetch(`http://127.0.0.1:3000/garage/${id}`, {
             method: 'DELETE',
         })
@@ -59,7 +59,7 @@ class GarageMenu {
             method: 'DELETE',
         })
     }
-    async selectCar(id: number) {
+    async selectCar(id: number): Promise<void> {
         const res = await fetch(`http://127.0.0.1:3000/garage/${id}`, {
             method: 'GET',
         })
@@ -71,7 +71,7 @@ class GarageMenu {
             ;(document.querySelector('.update-color') as HTMLInputElement).value = this.selectedCar?.color as string
         }
     }
-    async updateCar(car: CarItem, id: number) {
+    async updateCar(car: CarItem, id: number): Promise<void> {
         const res = await fetch(`http://127.0.0.1:3000/garage/${id}`, {
             method: 'PUT',
             headers: {

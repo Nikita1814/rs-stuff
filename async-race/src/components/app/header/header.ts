@@ -10,7 +10,7 @@ class PageHeader {
         this.winners = winners
         this.activePage = this.garage
     }
-    render() {
+    render(): void {
         const header = document.createElement('header')
         header.innerHTML = `
         <div class="header-cover hidden"></div>
@@ -25,7 +25,7 @@ class PageHeader {
         ;(document.querySelector('.body') as HTMLElement).append(main)
         this.addListeners()
     }
-    addListeners() {
+    addListeners(): void {
         window.addEventListener('hashchange', (e) => {
             this.garage.garageGrid.controller.winner = null
             if (this.activePage === this.garage) {
@@ -34,7 +34,7 @@ class PageHeader {
             this.switchPage(e)
         })
     }
-    switchPage(e: HashChangeEvent) {
+    switchPage(e: HashChangeEvent): void {
         document.querySelectorAll('.page-link')?.forEach((link) => {
             link.classList.remove('active-link')
         })

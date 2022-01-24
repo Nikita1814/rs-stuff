@@ -8,7 +8,7 @@ class CarController {
         this.raceStatus = false
     }
 
-    async toggleEngine(carId: number, status: 'started' | 'stopped') {
+    async toggleEngine(carId: number, status: 'started' | 'stopped'): Promise<any> {
         const res = await fetch(`http://127.0.0.1:3000/engine?id=${carId}&status=${status}`, {
             method: 'PATCH',
         })
@@ -16,7 +16,7 @@ class CarController {
             return await res.json()
         }
     }
-    async toggleDrive(carId: number, status: string) {
+    async toggleDrive(carId: number, status: string): Promise<Response | undefined> {
         status = status
         const resTwo = await fetch(`http://127.0.0.1:3000/engine?id=${carId}&status=drive`, {
             method: 'PATCH',
@@ -31,9 +31,8 @@ class CarController {
             return resTwo
         }
     }
-    animateCar(car: HTMLElement, distance: number, velocity: number) {
+    animateCar(car: HTMLElement, distance: number, velocity: number): void {
         const finishline = ((document.querySelector('.car-track-bottom') as HTMLElement).offsetWidth / 100) * 76
-        /*const finishline = window.screen.width/100 * 90*/
         const anim = car.animate(
             [
                 {
@@ -50,7 +49,7 @@ class CarController {
         }
     }
 
-    async beginRace() {
+    async beginRace(): Promise<void> {
         document.querySelector('.header-cover')?.classList.remove('hidden')
         document.querySelector('.reset-btn')?.classList.add('inactive')
         window.setTimeout(() => {
@@ -72,7 +71,7 @@ class CarController {
         })
         await Promise.allSettled(promisArr)
     }
-    resetRace() {
+    resetRace(): void {
         this.winner = null
         this.raceStatus = false
         document.querySelectorAll('.car-track').forEach((track) => {
@@ -85,7 +84,7 @@ class CarController {
         })
     }
 
-    addWinner(carID: number, time: number) {
+    addWinner(carID: number, time: number): void {
         if (this.winner === null) {
             this.winner = {
                 id: carID,
@@ -97,7 +96,7 @@ class CarController {
         }
         return
     }
-    async handleWinner(winner: WinnerItem) {
+    async handleWinner(winner: WinnerItem): Promise<void> {
         winner = winner as WinnerItem
         const res = await fetch(`http://127.0.0.1:3000/winners/${winner.id}`, {
             method: 'GET',
@@ -124,7 +123,7 @@ class CarController {
             })
         }
     }
-    async startCarRace(carId: number, car: HTMLElement) {
+    async startCarRace(carId: number, car: HTMLElement): Promise<void> {
         await this.toggleEngine(carId, 'started').then((res) => {
             this.animateCar(car, res.distance, res.velocity)
             this.toggleDrive(carId, 'race')
@@ -139,15 +138,15 @@ class CarController {
                 .catch((err) => {
                     if (err) {
                         const anim = car.getAnimations()[0]
-                        if(anim){
-                        anim.pause()
+                        if (anim) {
+                            anim.pause()
                         }
                         this.toggleEngine(carId, 'stopped')
                     }
                 })
         })
     }
-    startCarManual(id: number, status: 'started' | 'stopped') {
+    startCarManual(id: number, status: 'started' | 'stopped'): void {
         const carId = id
         const track = document.querySelector(`[data-track-id="${id}"]`) as HTMLElement
 
@@ -172,7 +171,7 @@ class CarController {
             }
         })
     }
-    timer() {
+    timer(): void {
         let counter = 12
         const interval = setInterval(() => {
             ;(document.querySelector('.race-timer') as HTMLElement).innerHTML = `Race Timer:${counter}`
@@ -182,7 +181,7 @@ class CarController {
             }
         }, 1000)
     }
-    showAnnouncement(car: WinnerItem) {
+    showAnnouncement(car: WinnerItem): void {
         const carName = (document.querySelector(`[data-car-id="${car.id}"]`) as HTMLElement)?.dataset.trackName
         document.querySelector('.announcement-overlay')?.classList.remove('hidden')
         ;(document.querySelector('.announcement-name') as HTMLElement).innerHTML = `${carName} Won!`

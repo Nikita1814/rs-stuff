@@ -11,7 +11,7 @@ class WinnersPage {
         this.sort = 'id'
         this.order = 'DESC'
     }
-    render() {
+    render(): void {
         ;(document.querySelector('.main') as HTMLElement).innerHTML = `
       <div class="winners-page"">
             <h1 class ="winner-count">Winners()!</h1>
@@ -36,7 +36,7 @@ class WinnersPage {
         this.getWinners()
         this.addListneners()
     }
-    async getWinners() {
+    async getWinners(): Promise<void> {
         const res = await fetch(
             `http://127.0.0.1:3000/winners?_page=${this.currentPage}&_sort=${this.sort}&_order=${this.order}_limit=10`
         )
@@ -50,7 +50,7 @@ class WinnersPage {
             console.log('an error occured')
         }
     }
-    async getTotal() {
+    async getTotal(): Promise<void> {
         const res = await fetch(`http://127.0.0.1:3000/winners?_limit=10`)
         this.pageTotal = Math.ceil(Number([...res.headers.entries()].find((el) => el[0] === 'x-total-count')?.[1]) / 10)
     }
@@ -62,7 +62,7 @@ class WinnersPage {
             await this.drawWinner(winner.id, winner, page)
         }
     }
-    async drawWinner(id: number, winner: WinnerItem, page: HTMLElement) {
+    async drawWinner(id: number, winner: WinnerItem, page: HTMLElement): Promise<void> {
         const res = await fetch(`http://127.0.0.1:3000/garage/${id}`, {
             method: 'GET',
         })
@@ -79,7 +79,7 @@ class WinnersPage {
             `
         }
     }
-    addListneners() {
+    addListneners(): void {
         document.querySelectorAll('[data-sort]')?.forEach((elem) => {
             elem.addEventListener('click', (e) => {
                 document.querySelectorAll('[data-sort]')?.forEach((el) => {
@@ -100,7 +100,7 @@ class WinnersPage {
             })
         })
     }
-    switchPage(direction: string) {
+    switchPage(direction: string): void {
         if (direction === 'next') {
             this.getTotal()
             if (this.currentPage < this.pageTotal) {

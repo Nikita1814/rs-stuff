@@ -11,7 +11,7 @@ class App {
         this.winnersPage = new WinnersPage()
         this.header = new PageHeader(this.garagePage, this.winnersPage)
     }
-    run() {
+    run(): void {
         console.log(` `)
         this.header.render()
         this.garagePage.render()
