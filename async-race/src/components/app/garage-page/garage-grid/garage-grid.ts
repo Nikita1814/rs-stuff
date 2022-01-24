@@ -20,6 +20,7 @@ class GarageGrid {
     carModels: Array<string>
     selectedCar: CarItem | null
     winner: WinnerItem | null
+    raceStatus: boolean
     constructor() {
         this.currentPage = 1
         this.pageTotal = 7
@@ -27,6 +28,7 @@ class GarageGrid {
         this.carModels = ['Rio', 'Focus', 'Kalina', 'Vesta', 'Spark', 'Lacetti', 'Nexia', 'Matiz', 'Cobalt', 'Captiva']
         this.selectedCar = null
         this.winner = null
+        this.raceStatus = false
     }
     render() {
         this.getTotal()
@@ -225,7 +227,7 @@ class GarageGrid {
     }
     async beginRace() {
         document.querySelector('.header-cover')?.classList.remove('hidden')
-        console.log('cover added')
+        this.raceStatus = true;
         const elemArr = [...document.querySelectorAll('.car-track')]
         const promisArr: Array<Promise<void>> = elemArr.map((track) => {
             track.querySelector(`.start-btn`)?.classList.add(`car-control-active`)
@@ -242,6 +244,7 @@ class GarageGrid {
     }
     resetRace() {
         this.winner = null
+        this.raceStatus = false
         console.log(this.winner)
         document.querySelectorAll('.car-track').forEach((track) => {
             track.querySelector(`.start-btn`)?.classList.remove(`car-control-active`)
@@ -334,9 +337,10 @@ class GarageGrid {
             this.toggleDrive(carId)
                 .then(() => {
                     this.toggleEngine(carId, 'stopped')
-                    if (this.winner === null && window.location.hash === '#garage') {
+                    if (this.winner === null && window.location.hash === '#garage' && this.raceStatus === true) {
                         console.log(window.location)
                         this.addWinner(carId, Math.round(res.distance / res.velocity / 1000))
+                        this.raceStatus = false
                     }
                 })
 
