@@ -16,11 +16,15 @@ class CarController {
             return await res.json()
         }
     }
-    async toggleDrive(carId: number) {
+    async toggleDrive(carId: number, status: string) {
+        status = status
         const resTwo = await fetch(`http://127.0.0.1:3000/engine?id=${carId}&status=drive`, {
             method: 'PATCH',
         })
         if (resTwo.status === 500) {
+            throw new Error('500')
+        }
+        if (this.raceStatus === false && status === 'race') {
             throw new Error('500')
         }
         if (resTwo.ok) {
@@ -48,6 +52,15 @@ class CarController {
 
     async beginRace() {
         document.querySelector('.header-cover')?.classList.remove('hidden')
+        document.querySelector('.reset-btn')?.classList.add('inactive')
+        window.setTimeout(() => {
+            if (this.winner !== null) {
+                this.showAnnouncement(this.winner)
+            }
+            document.querySelector('.reset-btn')?.classList.remove('inactive')
+            document.querySelector('.header-cover')?.classList.add('hidden')
+        }, 13000)
+        this.timer()
         this.raceStatus = true
         const elemArr = [...document.querySelectorAll('.car-track')]
         const promisArr: Array<Promise<void>> = elemArr.map((track) => {
@@ -57,15 +70,11 @@ class CarController {
             const car = track.querySelector('.race-car') as HTMLElement
             return this.startCarRace(carId, car)
         })
-        await Promise.all(promisArr)
-        console.log('race is done now')
-        document.querySelector('.header-cover')?.classList.add('hidden')
-        console.log('cover removed')
+        await Promise.allSettled(promisArr)
     }
     resetRace() {
         this.winner = null
         this.raceStatus = false
-        console.log(this.winner)
         document.querySelectorAll('.car-track').forEach((track) => {
             track.querySelector(`.start-btn`)?.classList.remove(`car-control-active`)
             track.querySelector(`.stop-btn`)?.classList.add(`car-control-active`)
@@ -83,7 +92,7 @@ class CarController {
                 wins: 1,
                 time: time,
             }
-            this.showAnnouncement(this.winner)
+
             this.handleWinner(this.winner)
         }
         return
@@ -118,11 +127,10 @@ class CarController {
     async startCarRace(carId: number, car: HTMLElement) {
         await this.toggleEngine(carId, 'started').then((res) => {
             this.animateCar(car, res.distance, res.velocity)
-            this.toggleDrive(carId)
+            this.toggleDrive(carId, 'race')
                 .then(() => {
                     this.toggleEngine(carId, 'stopped')
                     if (this.winner === null && window.location.hash === '#garage' && this.raceStatus === true) {
-                        console.log(window.location)
                         this.addWinner(carId, Math.round(res.distance / res.velocity / 1000))
                         this.raceStatus = false
                     }
@@ -144,7 +152,7 @@ class CarController {
         this.toggleEngine(carId, status).then((res) => {
             if (status === 'started') {
                 this.animateCar(car, res.distance, res.velocity)
-                this.toggleDrive(carId)
+                this.toggleDrive(carId, 'manual')
                     .then(() => {
                         this.toggleEngine(carId, 'stopped')
                     })
@@ -160,6 +168,16 @@ class CarController {
                 car.style.transform = 'translateX(0px)'
             }
         })
+    }
+    timer() {
+        let counter = 12
+        const interval = setInterval(() => {
+            ;(document.querySelector('.race-timer') as HTMLElement).innerHTML = `Race Timer:${counter}`
+            counter--
+            if (counter === -1) {
+                clearInterval(interval)
+            }
+        }, 1000)
     }
     showAnnouncement(car: WinnerItem) {
         const carName = (document.querySelector(`[data-car-id="${car.id}"]`) as HTMLElement)?.dataset.trackName

@@ -52,6 +52,7 @@ class GaragePage {
                 <button class="garage-button generate-btn">Generate Cars</button>
             </div>
         </div>
+       <div class="race-timer">Race Timer:12</div>
         <h1 class="car-count">Garage(7)</h1>
         <div class="garage-grid">
         <div data-page-num="1" class="garage-grid-page">
@@ -123,7 +124,6 @@ class GaragePage {
     }
     addControls() {
         document.querySelectorAll('.car-select').forEach((btn) => {
-            console.log(btn)
             btn.addEventListener('click', (e) => {
                 this.garageMenu.selectCar(Number((e.target as HTMLElement).dataset.select))
             })
@@ -151,17 +151,7 @@ class GaragePage {
             })
         })
     }
-    async getCars() {
-        console.log('i work')
-        const res = await fetch(`http://127.0.0.1:3000/garage?_page=1&_limit=7`)
-        console.log([...res.headers.entries()].find((el) => el[0] === 'x-total-count')?.[1])
-        if (res.ok) {
-            const arr = await res.json()
-            console.log(arr)
-        } else {
-            console.log('an error occured')
-        }
-    }
+
     switchPage(direction: string) {
         direction === 'next' && this.garageGrid.currentPage
     }

@@ -18,9 +18,9 @@ class GarageMenu {
     addListeners() {
         document.querySelector('.race-btn')?.addEventListener('click', () => {
             if (!document.querySelector('.race-btn')?.classList.contains('inactive')) {
-                this.controller.beginRace()
                 document.querySelector('.race-btn')?.classList.add('inactive')
                 document.querySelector('.reset-btn')?.classList.remove('inactive')
+                this.controller.beginRace()
             }
         })
         document.querySelector('.reset-btn')?.addEventListener('click', () => {
