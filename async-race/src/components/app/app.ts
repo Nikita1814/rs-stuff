@@ -12,6 +12,7 @@ class App {
         this.header = new PageHeader(this.garagePage, this.winnersPage)
     }
     run() {
+        console.log(` `)
         this.header.render()
         this.garagePage.render()
         window.location.hash = 'garage'

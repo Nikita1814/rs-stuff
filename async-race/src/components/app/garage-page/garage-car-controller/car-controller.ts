@@ -138,7 +138,10 @@ class CarController {
 
                 .catch((err) => {
                     if (err) {
-                        car.getAnimations()[0].pause()
+                        const anim = car.getAnimations()[0]
+                        if(anim){
+                        anim.pause()
+                        }
                         this.toggleEngine(carId, 'stopped')
                     }
                 })
