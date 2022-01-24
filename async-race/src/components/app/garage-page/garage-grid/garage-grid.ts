@@ -43,10 +43,19 @@ class GarageGrid {
             this.generateCars(this.carBrands, this.carModels)
         })
         document.querySelector('.race-btn')?.addEventListener('click', () => {
-            this.beginRace()
+            if (!document.querySelector('.race-btn')?.classList.contains('inactive')) {
+                this.beginRace()
+                document.querySelector('.race-btn')?.classList.add('inactive')
+                document.querySelector('.reset-btn')?.classList.remove('inactive')
+            }
+            
         })
         document.querySelector('.reset-btn')?.addEventListener('click', () => {
-            this.resetRace()
+            if (!document.querySelector('.reset-btn')?.classList.contains('inactive')) {
+                this.resetRace()
+                document.querySelector('.race-btn')?.classList.remove('inactive')
+                document.querySelector('.reset-btn')?.classList.add('inactive')
+            }
         })
     }
     addControls() {
@@ -91,7 +100,6 @@ class GarageGrid {
                         } else {
                             car.getAnimations().forEach((anim) => anim.cancel())
                             car.style.transform = 'translateX(0px)'
-                            
                         }
                     })
                 }
@@ -102,7 +110,6 @@ class GarageGrid {
     async getTotal() {
         const res = await fetch(`http://127.0.0.1:3000/garage?_limit=7`)
         this.pageTotal = Math.ceil(Number([...res.headers.entries()].find((el) => el[0] === 'x-total-count')?.[1]) / 7)
-        
     }
     async getCars() {
         const res = await fetch(`http://127.0.0.1:3000/garage?_page=${this.currentPage}&_limit=7`)
@@ -113,7 +120,6 @@ class GarageGrid {
             const arr = await res.json()
             this.showCars(arr)
         } else {
-            
         }
     }
     showCars(arr: Array<CarItem>) {
@@ -185,7 +191,7 @@ class GarageGrid {
         /*const finishline = window.screen.width/100 * 90*/
         const anim = car.animate(
             [
-                 {
+                {
                     transform: `translateX(${finishline}px)`,
                 },
             ],
@@ -209,7 +215,7 @@ class GarageGrid {
         this.render()
     }
     async createCar(car: CarItem) {
-         await fetch(`http://127.0.0.1:3000/garage`, {
+        await fetch(`http://127.0.0.1:3000/garage`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -222,32 +228,29 @@ class GarageGrid {
         console.log('cover added')
         const elemArr = [...document.querySelectorAll('.car-track')]
         const promisArr: Array<Promise<void>> = elemArr.map((track) => {
-            track.querySelector(`.start-btn`)?.classList.add(`car-control-active`);
-            track.querySelector(`.stop-btn`)?.classList.remove(`car-control-active`);
+            track.querySelector(`.start-btn`)?.classList.add(`car-control-active`)
+            track.querySelector(`.stop-btn`)?.classList.remove(`car-control-active`)
             const carId = Number((track as HTMLElement).dataset.trackId)
             const car = track.querySelector('.race-car') as HTMLElement
             return this.startCarRace(carId, car)
         })
-        Promise.all(promisArr).then(()=>{
+        Promise.all(promisArr).then(() => {
             console.log('race is done now')
             document.querySelector('.header-cover')?.classList.add('hidden')
             console.log('cover removed')
         })
-      
-      
     }
     resetRace() {
         this.winner = null
         console.log(this.winner)
         document.querySelectorAll('.car-track').forEach((track) => {
-            track.querySelector(`.start-btn`)?.classList.remove(`car-control-active`);
-            track.querySelector(`.stop-btn`)?.classList.add(`car-control-active`);
+            track.querySelector(`.start-btn`)?.classList.remove(`car-control-active`)
+            track.querySelector(`.stop-btn`)?.classList.add(`car-control-active`)
             const car = track.querySelector('.race-car') as HTMLElement
             car.getAnimations().forEach((anim) => anim.cancel())
             this.toggleEngine(Number((track as HTMLElement).dataset.trackId), 'stopped')
             car.style.transform = 'translateX(0px)'
         })
-      
     }
     async deleteCar(id: number) {
         await fetch(`http://127.0.0.1:3000/garage/${id}`, {
@@ -255,7 +258,7 @@ class GarageGrid {
         })
 
         await fetch(`http://127.0.0.1:3000/winners/${id}`, {
-            method: 'DELETE'
+            method: 'DELETE',
         })
     }
     async selectCar(id: number) {
@@ -295,7 +298,6 @@ class GarageGrid {
             }
             this.showAnnouncement(this.winner)
             this.handleWinner(this.winner)
-           
         }
         return
     }
@@ -306,7 +308,7 @@ class GarageGrid {
         })
         if (res.ok) {
             const windata = await res.json()
-              await fetch(`http://127.0.0.1:3000/winners/${winner.id}`, {
+            await fetch(`http://127.0.0.1:3000/winners/${winner.id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -317,23 +319,22 @@ class GarageGrid {
                 }),
             })
         } else {
-             await fetch(`http://127.0.0.1:3000/winners`, {
+            await fetch(`http://127.0.0.1:3000/winners`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(winner),
             })
-
         }
     }
-    async startCarRace(carId: number, car:HTMLElement){
-     await this.toggleEngine(carId, 'started').then((res) => {
+    async startCarRace(carId: number, car: HTMLElement) {
+        await this.toggleEngine(carId, 'started').then((res) => {
             this.animateCar(car, res.distance, res.velocity)
-             this.toggleDrive(carId)
+            this.toggleDrive(carId)
                 .then(() => {
                     this.toggleEngine(carId, 'stopped')
-                    if (this.winner === null && window.location.hash === "#garage") {
+                    if (this.winner === null && window.location.hash === '#garage') {
                         console.log(window.location)
                         this.addWinner(carId, Math.round(res.distance / res.velocity / 1000))
                     }
@@ -347,12 +348,13 @@ class GarageGrid {
                 })
         })
     }
-    showAnnouncement(car:WinnerItem){
-     const carName = (document.querySelector(`[data-car-id="${car.id}"]`) as HTMLElement)?.dataset.trackName;
-    document.querySelector('.announcement-overlay')?.classList.remove('hidden');
-    (document.querySelector('.announcement-name') as HTMLElement).innerHTML =`${carName} Won!`;
-    (document.querySelector('.announcement-seconds') as HTMLElement).innerHTML =`${(this.winner as WinnerItem).time} s`;
-
+    showAnnouncement(car: WinnerItem) {
+        const carName = (document.querySelector(`[data-car-id="${car.id}"]`) as HTMLElement)?.dataset.trackName
+        document.querySelector('.announcement-overlay')?.classList.remove('hidden')
+        ;(document.querySelector('.announcement-name') as HTMLElement).innerHTML = `${carName} Won!`
+        ;(document.querySelector('.announcement-seconds') as HTMLElement).innerHTML = `${
+            (this.winner as WinnerItem).time
+        } s`
     }
 }
 

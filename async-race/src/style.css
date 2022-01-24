@@ -112,8 +112,7 @@ header {
 .car-track-top {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    width: 270px;
+    justify-content: flex-start;
 }
 .activation-btns {
     width: 120px;
@@ -238,4 +237,7 @@ position: absolute;
 top:0;
 left:0;
 z-index:100;
+}
+.inactive{
+    opacity: 50% !important ;
 }

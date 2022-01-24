@@ -28,7 +28,7 @@ class GaragePage {
             </div>
             <div>
                 <button class="garage-button race-btn button-green">Race</button> 
-                <button class="garage-button reset-btn button-green">Reset</button> 
+                <button class="garage-button reset-btn button-green inactive">Reset</button> 
                 <button class="garage-button generate-btn">Generate Cars</button>
             </div>
         </div>
