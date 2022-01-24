@@ -79,7 +79,7 @@ class GaragePage {
         </div>
     </div>
       `
-        await this.garageGrid.render().then((res) => {
+        await this.garageGrid.render().then(() => {
             this.addControls()
         })
 

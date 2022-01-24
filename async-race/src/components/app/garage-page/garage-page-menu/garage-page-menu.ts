@@ -54,10 +54,14 @@ class GarageMenu {
         await fetch(`http://127.0.0.1:3000/garage/${id}`, {
             method: 'DELETE',
         })
-
-        await fetch(`http://127.0.0.1:3000/winners/${id}`, {
-            method: 'DELETE',
+        const res = await fetch(`http://127.0.0.1:3000/winners/${id}`, {
+            method: 'GET',
         })
+        if (res.ok) {
+            await fetch(`http://127.0.0.1:3000/winners/${id}`, {
+                method: 'DELETE',
+            })
+        }
     }
     async selectCar(id: number): Promise<void> {
         const res = await fetch(`http://127.0.0.1:3000/garage/${id}`, {

@@ -35,7 +35,6 @@ class GarageGrid {
             })`
             const arr = await res.json()
             this.showCars(arr)
-        } else {
         }
     }
     showCars(arr: Array<CarItem>): void {

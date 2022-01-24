@@ -1,5 +1,9 @@
 import { WinnerItem } from '../garage-page'
 
+interface engineStartResp {
+    velocity: number
+    distance: number
+}
 class CarController {
     winner: WinnerItem | null
     raceStatus: boolean
@@ -8,7 +12,7 @@ class CarController {
         this.raceStatus = false
     }
 
-    async toggleEngine(carId: number, status: 'started' | 'stopped'): Promise<any> {
+    async toggleEngine(carId: number, status: 'started' | 'stopped'): Promise<engineStartResp | undefined> {
         const res = await fetch(`http://127.0.0.1:3000/engine?id=${carId}&status=${status}`, {
             method: 'PATCH',
         })
@@ -17,7 +21,6 @@ class CarController {
         }
     }
     async toggleDrive(carId: number, status: string): Promise<Response | undefined> {
-        status = status
         const resTwo = await fetch(`http://127.0.0.1:3000/engine?id=${carId}&status=drive`, {
             method: 'PATCH',
         })
