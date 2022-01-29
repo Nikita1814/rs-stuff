@@ -87,18 +87,7 @@ class CarController {
         })
     }
 
-    addWinner(carID: number, time: number): void {
-        if (this.winner === null) {
-            this.winner = {
-                id: carID,
-                wins: 1,
-                time: time,
-            }
-
-            this.handleWinner(this.winner)
-        }
-        return
-    }
+ 
     async handleWinner(winner: WinnerItem): Promise<void> {
         winner = winner as WinnerItem
         const res = await fetch(`http://127.0.0.1:3000/winners/${winner.id}`, {
@@ -133,7 +122,12 @@ class CarController {
             await this.toggleDrive(carId)
             this.toggleEngine(carId, 'stopped')
             if (this.winner === null && window.location.hash === '#garage' && this.raceStatus === true) {
-                this.addWinner(carId, Math.round(response.distance / response.velocity / 1000))
+                this.winner = {
+                    id: carId,
+                    wins: 1,
+                    time: Math.round(response.distance / response.velocity / 1000),
+                }
+                this.handleWinner(this.winner)
                 this.raceStatus = false
             }
         } catch (err) {
