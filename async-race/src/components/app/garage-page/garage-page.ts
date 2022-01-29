@@ -2,14 +2,6 @@ import ApiService, { CarItem } from '../api-service/api-service'
 import CarController from './garage-car-controller/car-controller'
 import { GarageGrid } from './garage-grid/garage-grid'
 import GarageMenu from './garage-page-menu/garage-page-menu'
-class Car {
-    name: string | null
-    color: string | null
-    constructor(name: string | null, color: string | null) {
-        this.name = name
-        this.color = color
-    }
-}
 
 class GaragePage {
     controller: CarController
@@ -91,20 +83,14 @@ class GaragePage {
         })
         document.querySelector('.create-btn')?.addEventListener('click', async () => {
             await this.service.requestCreate(
-                new Car(
-                    (document.querySelector('.create-name') as HTMLInputElement).value,
-                    (document.querySelector('.create-color') as HTMLInputElement).value
-                )
+                {name:(document.querySelector('.create-name') as HTMLInputElement).value, color:(document.querySelector('.create-color') as HTMLInputElement).value}
             )
             await this.garageGrid.render()
             this.addControls()
         })
         document.querySelector('.update-btn')?.addEventListener('click', async () => {
             await this.garageMenu.updateCar(
-                new Car(
-                    (document.querySelector('.update-name') as HTMLInputElement).value,
-                    (document.querySelector('.update-color') as HTMLInputElement).value
-                ),
+                {name:(document.querySelector('.create-name') as HTMLInputElement).value, color:(document.querySelector('.create-color') as HTMLInputElement).value},
                 (this.garageMenu.selectedCar as CarItem).id as number
             )
 
@@ -148,4 +134,4 @@ class GaragePage {
         direction === 'next' && this.garageGrid.currentPage
     }
 }
-export { GaragePage, Car }
+export { GaragePage}

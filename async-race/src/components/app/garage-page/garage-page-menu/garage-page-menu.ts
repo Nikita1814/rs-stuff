@@ -2,7 +2,7 @@ import ApiService from '../../api-service/api-service'
 import CarController from '../garage-car-controller/car-controller'
 import { GarageGrid } from '../garage-grid/garage-grid'
 import { CarItem } from '../../interfaces'
-import { Car } from '../garage-page'
+
 
 class GarageMenu {
     grid: GarageGrid
@@ -37,10 +37,7 @@ class GarageMenu {
     }
     generateCars(brands: Array<string>, models: Array<string>): void {
         for (let i = 1; i < 100; i++) {
-            const car = new Car(
-                `${brands[Math.floor(Math.random() * 9)]} ${models[Math.floor(Math.random() * 9)]}`,
-                `#${Math.floor(Math.random() * 16777215).toString(16)}`
-            )
+            const car = {name: `${brands[Math.floor(Math.random() * 9)]} ${models[Math.floor(Math.random() * 9)]}`, color:`#${Math.floor(Math.random() * 16777215).toString(16)}` }
             this.service.requestCreate(car)
         }
         this.grid.render()
