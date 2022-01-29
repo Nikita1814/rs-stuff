@@ -1,3 +1,4 @@
+import ApiService from '../api-service/api-service'
 import CarController from './garage-car-controller/car-controller'
 import { GarageGrid } from './garage-grid/garage-grid'
 import GarageMenu from './garage-page-menu/garage-page-menu'
@@ -23,10 +24,12 @@ class GaragePage {
     controller: CarController
     garageMenu: GarageMenu
     garageGrid: GarageGrid
-    constructor() {
-        this.controller = new CarController()
-        this.garageGrid = new GarageGrid(this.controller)
-        this.garageMenu = new GarageMenu(this.garageGrid, this.controller)
+    service: ApiService
+    constructor(service: ApiService) {
+        this.service = service
+        this.controller = new CarController(this.service)
+        this.garageGrid = new GarageGrid(this.controller, this.service)
+        this.garageMenu = new GarageMenu(this.garageGrid, this.controller, this.service)
     }
     async render(): Promise<void> {
         ;(document.querySelector('.main') as HTMLElement).innerHTML = `

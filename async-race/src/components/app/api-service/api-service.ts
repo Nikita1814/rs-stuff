@@ -87,7 +87,7 @@ class ApiService {
         }
     }
 
-    async toggleDrive(carId: number): Promise<Response | undefined> {
+    async toggleDrive(carId: number): Promise<Response | Error | undefined> {
         const resTwo = await fetch(`http://127.0.0.1:3000/engine?id=${carId}&status=drive`, {
             method: 'PATCH',
         })

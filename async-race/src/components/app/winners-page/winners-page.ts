@@ -1,3 +1,4 @@
+import ApiService from '../api-service/api-service'
 import { WinnerItem } from '../garage-page/garage-page'
 
 class WinnersPage {
@@ -5,7 +6,9 @@ class WinnersPage {
     pageTotal: number
     sort: string
     order: string
-    constructor() {
+    service: ApiService
+    constructor(service: ApiService) {
+        this.service = service
         this.currentPage = 1
         this.pageTotal = 1
         this.sort = 'id'

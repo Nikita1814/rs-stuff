@@ -1,3 +1,4 @@
+import ApiService from '../../api-service/api-service'
 import CarController from '../garage-car-controller/car-controller'
 import { GarageGrid } from '../garage-grid/garage-grid'
 import { CarItem, Car } from '../garage-page'
@@ -8,7 +9,9 @@ class GarageMenu {
     controller: CarController
     carBrands: Array<string>
     carModels: Array<string>
-    constructor(garageGrid: GarageGrid, controller: CarController) {
+    service: ApiService
+    constructor(garageGrid: GarageGrid, controller: CarController, service: ApiService) {
+        this.service = service
         this.grid = garageGrid
         this.controller = controller
         this.carBrands = [`Toyota`, `BMW`, `Mercedes`, `Audi`, `Kia`, `Hyundai`, `Tesla`, `Renaul`, `Ford`, `Honda`]

@@ -1,3 +1,4 @@
+import ApiService from '../../api-service/api-service'
 import CarController from '../garage-car-controller/car-controller'
 import { CarItem } from '../garage-page'
 
@@ -5,7 +6,9 @@ class GarageGrid {
     currentPage: number
     pageTotal: number
     controller: CarController
-    constructor(controller: CarController) {
+    service: ApiService
+    constructor(controller: CarController, service: ApiService) {
+       this.service = service
         this.controller = controller
         this.currentPage = 1
         this.pageTotal = 7

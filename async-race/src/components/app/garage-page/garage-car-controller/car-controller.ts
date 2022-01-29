@@ -1,3 +1,4 @@
+import ApiService from '../../api-service/api-service'
 import { WinnerItem } from '../garage-page'
 
 interface engineStartResp {
@@ -7,7 +8,9 @@ interface engineStartResp {
 class CarController {
     winner: WinnerItem | null
     raceStatus: boolean
-    constructor() {
+    service:ApiService
+    constructor(service:ApiService) {
+        this.service = service
         this.winner = null
         this.raceStatus = false
     }
