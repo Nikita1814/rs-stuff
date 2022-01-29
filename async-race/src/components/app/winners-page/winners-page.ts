@@ -1,5 +1,5 @@
-import ApiService, { CarItem } from '../api-service/api-service'
-import { WinnerItem } from '../interfaces'
+import ApiService from '../api-service/api-service'
+import { CarItem, WinnerItem } from '../interfaces'
 
 class WinnersPage {
     currentPage: number

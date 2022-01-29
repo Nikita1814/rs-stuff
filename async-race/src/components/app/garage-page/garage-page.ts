@@ -1,4 +1,5 @@
-import ApiService, { CarItem } from '../api-service/api-service'
+import ApiService from '../api-service/api-service'
+import { CarItem } from '../interfaces'
 import CarController from './garage-car-controller/car-controller'
 import { GarageGrid } from './garage-grid/garage-grid'
 import GarageMenu from './garage-page-menu/garage-page-menu'
