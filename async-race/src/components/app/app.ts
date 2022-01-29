@@ -9,7 +9,7 @@ class App {
     header: PageHeader
     service: ApiService
     constructor() {
-        this.service = new ApiService
+        this.service = new ApiService()
         this.garagePage = new GaragePage(this.service)
         this.winnersPage = new WinnersPage(this.service)
         this.header = new PageHeader(this.garagePage, this.winnersPage)

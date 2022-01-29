@@ -8,7 +8,7 @@ class GarageGrid {
     controller: CarController
     service: ApiService
     constructor(controller: CarController, service: ApiService) {
-       this.service = service
+        this.service = service
         this.controller = controller
         this.currentPage = 1
         this.pageTotal = 7
@@ -17,15 +17,6 @@ class GarageGrid {
         await this.getTotal()
         await this.getCars()
     }
-    addListeners(): void {
-        document.querySelector('.garage-page-controls')?.addEventListener('click', (e) => {
-            const target = e.target as HTMLElement
-            if (target.dataset.direction) {
-                this.switchPage(target.dataset.direction)
-            }
-        })
-    }
-
     async getTotal(): Promise<void> {
         const res = await fetch(`http://127.0.0.1:3000/garage?_limit=7`)
         this.pageTotal = Math.ceil(Number([...res.headers.entries()].find((el) => el[0] === 'x-total-count')?.[1]) / 7)
@@ -63,24 +54,24 @@ class GarageGrid {
         `
         })
     }
-    switchPage(direction: string): void {
+    async switchPage(direction: string): Promise<void> {
         if (direction === 'next') {
             this.getTotal()
             if (this.currentPage < this.pageTotal) {
                 this.currentPage += 1
-                this.getCars()
+                await this.getCars()
             } else {
                 this.currentPage = 1
-                this.getCars()
+                await this.getCars()
             }
         } else {
             this.getTotal()
             if (this.currentPage > 1) {
                 this.currentPage -= 1
-                this.getCars()
+                await this.getCars()
             } else {
                 this.currentPage = this.pageTotal
-                this.getCars()
+                await this.getCars()
             }
         }
     }

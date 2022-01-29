@@ -8,8 +8,8 @@ interface engineStartResp {
 class CarController {
     winner: WinnerItem | null
     raceStatus: boolean
-    service:ApiService
-    constructor(service:ApiService) {
+    service: ApiService
+    constructor(service: ApiService) {
         this.service = service
         this.winner = null
         this.raceStatus = false
@@ -127,54 +127,46 @@ class CarController {
         }
     }
     async startCarRace(carId: number, car: HTMLElement): Promise<void> {
-        await this.toggleEngine(carId, 'started').then((res) => {
-            const response = res as engineStartResp
-            this.animateCar(car, response.distance, response.velocity)
-            this.toggleDrive(carId)
-                .then(() => {
-                    this.toggleEngine(carId, 'stopped')
-                    if (this.winner === null && window.location.hash === '#garage' && this.raceStatus === true) {
-                        this.addWinner(carId, Math.round(response.distance / response.velocity / 1000))
-                        this.raceStatus = false
-                    }
-                })
-
-                .catch((err) => {
-                    if (err) {
-                        const anim = car.getAnimations()[0]
-                        if (anim) {
-                            anim.pause()
-                        }
-                        this.toggleEngine(carId, 'stopped')
-                    }
-                })
-        })
+        const response = (await this.toggleEngine(carId, 'started')) as engineStartResp
+        this.animateCar(car, response.distance, response.velocity)
+        try {
+            await this.toggleDrive(carId)
+            this.toggleEngine(carId, 'stopped')
+            if (this.winner === null && window.location.hash === '#garage' && this.raceStatus === true) {
+                this.addWinner(carId, Math.round(response.distance / response.velocity / 1000))
+                this.raceStatus = false
+            }
+        } catch (err) {
+            if (err) {
+                const anim = car.getAnimations()[0]
+                if (anim) {
+                    anim.pause()
+                }
+                this.toggleEngine(carId, 'stopped')
+            }
+        }
     }
-    startCarManual(id: number, status: 'started' | 'stopped'): void {
+    async startCarManual(id: number, status: 'started' | 'stopped'): Promise<void> {
         const carId = id
         const track = document.querySelector(`[data-track-id="${id}"]`) as HTMLElement
 
         const car = track.querySelector('.race-car') as HTMLElement
-        this.toggleEngine(carId, status).then((res) => {
-            const response = res as engineStartResp
-            if (status === 'started') {
-                this.animateCar(car, response.distance, response.velocity)
-                this.toggleDrive(carId)
-                    .then(() => {
-                        this.toggleEngine(carId, 'stopped')
-                    })
-
-                    .catch((err) => {
-                        if (err) {
-                            car.getAnimations()[0].pause()
-                            this.toggleEngine(id, 'stopped')
-                        }
-                    })
-            } else {
-                car.getAnimations().forEach((anim) => anim.cancel())
-                car.style.transform = 'translateX(0px)'
+        const response = (await this.toggleEngine(carId, status)) as engineStartResp
+        if (status === 'started') {
+            this.animateCar(car, response.distance, response.velocity)
+            try {
+                await this.toggleDrive(carId)
+                this.toggleEngine(carId, 'stopped')
+            } catch (err) {
+                if (err) {
+                    car.getAnimations()[0].pause()
+                    this.toggleEngine(id, 'stopped')
+                }
             }
-        })
+        } else {
+            car.getAnimations().forEach((anim) => anim.cancel())
+            car.style.transform = 'translateX(0px)'
+        }
     }
     timer(): void {
         let counter = 12
@@ -195,5 +187,5 @@ class CarController {
         } s`
     }
 }
-/*Todo fix that*/
+
 export default CarController

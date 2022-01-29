@@ -18,7 +18,6 @@ export interface engineDriveResp {
 }
 
 class ApiService {
-    constuctor() {}
     async requestCreate(car: CarItem): Promise<void> {
         await fetch(`http://127.0.0.1:3000/garage`, {
             method: 'POST',

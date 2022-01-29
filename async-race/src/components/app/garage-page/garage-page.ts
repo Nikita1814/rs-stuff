@@ -82,44 +82,43 @@ class GaragePage {
         </div>
     </div>
       `
-        await this.garageGrid.render().then(() => {
-            this.addControls()
-        })
-
+        await this.garageGrid.render()
+        this.addControls()
         this.addListeners()
     }
     addListeners(): void {
-        this.garageGrid.addListeners()
+        document.querySelector('.garage-page-controls')?.addEventListener('click', async (e) => {
+            const target = e.target as HTMLElement
+            if (target.dataset.direction) {
+                await this.garageGrid.switchPage(target.dataset.direction)
+                this.addControls()
+            }
+        })
         this.garageMenu.addListeners()
         document.querySelector('.close-announcement')?.addEventListener('click', () => {
             document.querySelector('.announcement-overlay')?.classList.add('hidden')
         })
-        document.querySelector('.create-btn')?.addEventListener('click', () => {
-            this.garageMenu
-                .createCar(
-                    new Car(
-                        (document.querySelector('.create-name') as HTMLInputElement).value,
-                        (document.querySelector('.create-color') as HTMLInputElement).value
-                    )
+        document.querySelector('.create-btn')?.addEventListener('click', async () => {
+            await this.garageMenu.createCar(
+                new Car(
+                    (document.querySelector('.create-name') as HTMLInputElement).value,
+                    (document.querySelector('.create-color') as HTMLInputElement).value
                 )
-                .then(async () => {
-                    await this.garageGrid.render()
-                    this.addControls()
-                })
+            )
+            await this.garageGrid.render()
+            this.addControls()
         })
-        document.querySelector('.update-btn')?.addEventListener('click', () => {
-            this.garageMenu
-                .updateCar(
-                    new Car(
-                        (document.querySelector('.update-name') as HTMLInputElement).value,
-                        (document.querySelector('.update-color') as HTMLInputElement).value
-                    ),
-                    (this.garageMenu.selectedCar as CarItem).id as number
-                )
-                .then(async () => {
-                    await this.garageGrid.render()
-                    this.addControls()
-                })
+        document.querySelector('.update-btn')?.addEventListener('click', async () => {
+            await this.garageMenu.updateCar(
+                new Car(
+                    (document.querySelector('.update-name') as HTMLInputElement).value,
+                    (document.querySelector('.update-color') as HTMLInputElement).value
+                ),
+                (this.garageMenu.selectedCar as CarItem).id as number
+            )
+
+            await this.garageGrid.render()
+            this.addControls()
         })
         document.querySelector('.generate-btn')?.addEventListener('click', () => {
             this.garageMenu.generateCars(this.garageMenu.carBrands, this.garageMenu.carModels)
@@ -132,11 +131,10 @@ class GaragePage {
             })
         })
         document.querySelectorAll('.car-remove').forEach((btn) => {
-            btn.addEventListener('click', (e) => {
-                this.garageMenu.deleteCar(Number((e.target as HTMLElement).dataset.delete)).then(async () => {
-                    await this.garageGrid.render()
-                    this.addControls()
-                })
+            btn.addEventListener('click', async (e) => {
+                await this.garageMenu.deleteCar(Number((e.target as HTMLElement).dataset.delete))
+                await this.garageGrid.render()
+                this.addControls()
             })
         })
         document.querySelectorAll('.activation-btns').forEach((el) => {
