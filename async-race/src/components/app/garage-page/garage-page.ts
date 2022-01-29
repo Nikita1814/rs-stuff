@@ -1,4 +1,4 @@
-import ApiService from '../api-service/api-service'
+import ApiService, { CarItem } from '../api-service/api-service'
 import CarController from './garage-car-controller/car-controller'
 import { GarageGrid } from './garage-grid/garage-grid'
 import GarageMenu from './garage-page-menu/garage-page-menu'
@@ -10,16 +10,7 @@ class Car {
         this.color = color
     }
 }
-export interface WinnerItem {
-    id: number
-    wins: number
-    time: number
-}
-export interface CarItem {
-    name: string | null
-    color: string | null
-    id?: number
-}
+
 class GaragePage {
     controller: CarController
     garageMenu: GarageMenu
@@ -99,7 +90,7 @@ class GaragePage {
             document.querySelector('.announcement-overlay')?.classList.add('hidden')
         })
         document.querySelector('.create-btn')?.addEventListener('click', async () => {
-            await this.garageMenu.createCar(
+            await this.service.requestCreate(
                 new Car(
                     (document.querySelector('.create-name') as HTMLInputElement).value,
                     (document.querySelector('.create-color') as HTMLInputElement).value
@@ -132,7 +123,7 @@ class GaragePage {
         })
         document.querySelectorAll('.car-remove').forEach((btn) => {
             btn.addEventListener('click', async (e) => {
-                await this.garageMenu.deleteCar(Number((e.target as HTMLElement).dataset.delete))
+                await this.service.requestDelete(Number((e.target as HTMLElement).dataset.delete))
                 await this.garageGrid.render()
                 this.addControls()
             })

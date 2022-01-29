@@ -1,10 +1,6 @@
 import ApiService from '../../api-service/api-service'
-import { WinnerItem } from '../garage-page'
+import { engineStartResp, WinnerItem } from '../../interfaces'
 
-interface engineStartResp {
-    velocity: number
-    distance: number
-}
 class CarController {
     winner: WinnerItem | null
     raceStatus: boolean
@@ -15,25 +11,6 @@ class CarController {
         this.raceStatus = false
     }
 
-    async toggleEngine(carId: number, status: 'started' | 'stopped'): Promise<engineStartResp | undefined> {
-        const res = await fetch(`http://127.0.0.1:3000/engine?id=${carId}&status=${status}`, {
-            method: 'PATCH',
-        })
-        if (res.ok) {
-            return await res.json()
-        }
-    }
-    async toggleDrive(carId: number): Promise<Response | undefined> {
-        const resTwo = await fetch(`http://127.0.0.1:3000/engine?id=${carId}&status=drive`, {
-            method: 'PATCH',
-        })
-        if (resTwo.status === 500) {
-            throw new Error('500')
-        }
-        if (resTwo.ok) {
-            return resTwo
-        }
-    }
     animateCar(car: HTMLElement, distance: number, velocity: number): void {
         const finishline = ((document.querySelector('.car-track-bottom') as HTMLElement).offsetWidth / 100) * 76
         const anim = car.animate(
@@ -82,45 +59,27 @@ class CarController {
             track.querySelector(`.stop-btn`)?.classList.add(`car-control-active`)
             const car = track.querySelector('.race-car') as HTMLElement
             car.getAnimations().forEach((anim) => anim.cancel())
-            this.toggleEngine(Number((track as HTMLElement).dataset.trackId), 'stopped')
+            this.service.requestToggleEngine(Number((track as HTMLElement).dataset.trackId), 'stopped')
             car.style.transform = 'translateX(0px)'
         })
     }
 
- 
     async handleWinner(winner: WinnerItem): Promise<void> {
         winner = winner as WinnerItem
-        const res = await fetch(`http://127.0.0.1:3000/winners/${winner.id}`, {
-            method: 'GET',
-        })
-        if (res.ok) {
-            const windata = await res.json()
-            await fetch(`http://127.0.0.1:3000/winners/${winner.id}`, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    wins: windata.wins + 1,
-                    time: Math.min(windata.time, winner.time),
-                }),
-            })
-        } else {
-            await fetch(`http://127.0.0.1:3000/winners`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(winner),
-            })
+
+        try {
+            const windata = (await this.service.requestWinner(winner)) as WinnerItem
+            await this.service.requestUpdateWinner(windata, winner)
+        } catch (er) {
+            await this.service.requestAddWinner(winner)
         }
     }
     async startCarRace(carId: number, car: HTMLElement): Promise<void> {
-        const response = (await this.toggleEngine(carId, 'started')) as engineStartResp
+        const response = (await this.service.requestToggleEngine(carId, 'started')) as engineStartResp
         this.animateCar(car, response.distance, response.velocity)
         try {
-            await this.toggleDrive(carId)
-            this.toggleEngine(carId, 'stopped')
+            await this.service.requestToggleDrive(carId)
+            this.service.requestToggleEngine(carId, 'stopped')
             if (this.winner === null && window.location.hash === '#garage' && this.raceStatus === true) {
                 this.winner = {
                     id: carId,
@@ -136,7 +95,7 @@ class CarController {
                 if (anim) {
                     anim.pause()
                 }
-                this.toggleEngine(carId, 'stopped')
+                this.service.requestToggleEngine(carId, 'stopped')
             }
         }
     }
@@ -145,16 +104,16 @@ class CarController {
         const track = document.querySelector(`[data-track-id="${id}"]`) as HTMLElement
 
         const car = track.querySelector('.race-car') as HTMLElement
-        const response = (await this.toggleEngine(carId, status)) as engineStartResp
+        const response = (await this.service.requestToggleEngine(carId, status)) as engineStartResp
         if (status === 'started') {
             this.animateCar(car, response.distance, response.velocity)
             try {
-                await this.toggleDrive(carId)
-                this.toggleEngine(carId, 'stopped')
+                await this.service.requestToggleDrive(carId)
+                this.service.requestToggleEngine(carId, 'stopped')
             } catch (err) {
                 if (err) {
                     car.getAnimations()[0].pause()
-                    this.toggleEngine(id, 'stopped')
+                    this.service.requestToggleEngine(id, 'stopped')
                 }
             }
         } else {

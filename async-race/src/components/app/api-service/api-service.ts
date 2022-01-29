@@ -46,7 +46,7 @@ class ApiService {
             method: 'GET',
         })
         if (res.ok) {
-            const resp = res.json()
+            const resp = await res.json()
             return resp
         }
     }
@@ -69,11 +69,10 @@ class ApiService {
         return Math.ceil(Number([...res.headers.entries()].find((el) => el[0] === 'x-total-count')?.[1]) / 7)
     }
 
-    async requestCars(page: number) {
+    async requestCars(page: number): Promise<Response | undefined> {
         const res = await fetch(`http://127.0.0.1:3000/garage?_page=${page}&_limit=7`)
         if (res.ok) {
-            const arr = await res.json()
-            return arr
+            return res
         }
     }
     async requestToggleEngine(carId: number, status: 'started' | 'stopped'): Promise<engineStartResp | undefined> {
@@ -86,25 +85,27 @@ class ApiService {
         }
     }
 
-    async toggleDrive(carId: number): Promise<Response | Error | undefined> {
-        const resTwo = await fetch(`http://127.0.0.1:3000/engine?id=${carId}&status=drive`, {
+    async requestToggleDrive(carId: number): Promise<Response | Error | undefined> {
+        const res = await fetch(`http://127.0.0.1:3000/engine?id=${carId}&status=drive`, {
             method: 'PATCH',
         })
-        if (resTwo.status === 500) {
+        if (res.status === 500) {
             throw new Error('500')
         }
-        if (resTwo.ok) {
-            return resTwo
+        if (res.ok) {
+            return res
         }
     }
-    async requestWinner(winner: WinnerItem): Promise<Response | undefined> {
+    async requestWinner(winner: WinnerItem): Promise<WinnerItem | undefined> {
         winner = winner as WinnerItem
         const res = await fetch(`http://127.0.0.1:3000/winners/${winner.id}`, {
             method: 'GET',
         })
         if (res.ok) {
-            const windata = res.json()
+            const windata = await res.json()
             return windata
+        } else {
+            throw new Error('Er')
         }
     }
     async requestUpdateWinner(windata: WinnerItem, winner: WinnerItem) {
@@ -132,11 +133,10 @@ class ApiService {
         const res = await fetch(`http://127.0.0.1:3000/winners?_limit=10`)
         return Math.ceil(Number([...res.headers.entries()].find((el) => el[0] === 'x-total-count')?.[1]) / 10)
     }
-    async requestWinnerPage(page: number, sort: string, order: string): Promise<Array<WinnerItem> | undefined> {
+    async requestWinnerPage(page: number, sort: string, order: string): Promise<Response | undefined> {
         const res = await fetch(`http://127.0.0.1:3000/winners?_page=${page}&_sort=${sort}&_order=${order}_limit=10`)
         if (res.ok) {
-            const arr = await res.json()
-            return arr
+            return res
         }
     }
 }

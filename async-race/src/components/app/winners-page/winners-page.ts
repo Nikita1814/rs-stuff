@@ -1,5 +1,5 @@
-import ApiService from '../api-service/api-service'
-import { WinnerItem } from '../garage-page/garage-page'
+import ApiService, { CarItem } from '../api-service/api-service'
+import { WinnerItem } from '../interfaces'
 
 class WinnersPage {
     currentPage: number
@@ -40,22 +40,15 @@ class WinnersPage {
         this.addListneners()
     }
     async getWinners(): Promise<void> {
-        const res = await fetch(
-            `http://127.0.0.1:3000/winners?_page=${this.currentPage}&_sort=${this.sort}&_order=${this.order}_limit=10`
-        )
-        if (res.ok) {
-            const total = [...res.headers.entries()].find((el) => el[0] === 'x-total-count')?.[1]
-            ;(document.querySelector('.winner-count') as HTMLElement).innerHTML = `Winners(${total})`
-            this.pageTotal = Math.ceil(Number(total) / 10)
-            const arr = await res.json()
-            this.showWinners(arr)
-        } else {
-            console.log('an error occured')
-        }
+        const res = (await this.service.requestWinnerPage(this.currentPage, this.sort, this.order)) as Response
+        const total = [...res.headers.entries()].find((el) => el[0] === 'x-total-count')?.[1]
+        ;(document.querySelector('.winner-count') as HTMLElement).innerHTML = `Winners(${total})`
+        this.pageTotal = Math.ceil(Number(total) / 10)
+        const arr = await res.json()
+        this.showWinners(arr)
     }
     async getTotal(): Promise<void> {
-        const res = await fetch(`http://127.0.0.1:3000/winners?_limit=10`)
-        this.pageTotal = Math.ceil(Number([...res.headers.entries()].find((el) => el[0] === 'x-total-count')?.[1]) / 10)
+        this.pageTotal = await this.service.requestWinnerTotal()
     }
     async showWinners(winArr: Array<WinnerItem>) {
         const page = document.querySelector('.table-page') as HTMLElement
@@ -66,12 +59,8 @@ class WinnersPage {
         }
     }
     async drawWinner(id: number, winner: WinnerItem, page: HTMLElement): Promise<void> {
-        const res = await fetch(`http://127.0.0.1:3000/garage/${id}`, {
-            method: 'GET',
-        })
-        if (res.ok) {
-            const car = await res.json()
-            page.innerHTML += ` 
+        const car = (await this.service.requestCar(id)) as CarItem
+        page.innerHTML += ` 
             <div data-car-id="${car.id}" class="winners-table-winner winners-table-row">
             <p>${car.id}</p>
             <div class="car winner-car"style="background-color:${car.color}"></div>
@@ -80,11 +69,10 @@ class WinnersPage {
             <p>${winner.time} s</p>
         </div>
             `
-        }
     }
     addListneners(): void {
         document.querySelectorAll('[data-sort]')?.forEach((elem) => {
-            elem.addEventListener('click', (e) => {
+            elem.addEventListener('click', async (e) => {
                 document.querySelectorAll('[data-sort]')?.forEach((el) => {
                     el.classList.remove('active-sort')
                 })
@@ -94,7 +82,7 @@ class WinnersPage {
                 this.sort = sortCriteria.dataset.sort as string
                 this.order = sortCriteria.dataset.order as string
                 sortCriteria.dataset.order = sortCriteria.dataset.order === 'DESC' ? 'ASC' : 'DESC'
-                this.getWinners()
+                await this.getWinners()
             })
         })
         document.querySelectorAll('.winner-change')?.forEach((btn) => {
@@ -104,8 +92,8 @@ class WinnersPage {
         })
     }
     switchPage(direction: string): void {
+        this.getTotal()
         if (direction === 'next') {
-            this.getTotal()
             if (this.currentPage < this.pageTotal) {
                 this.currentPage += 1
                 this.getWinners()
@@ -114,7 +102,6 @@ class WinnersPage {
                 this.getWinners()
             }
         } else {
-            this.getTotal()
             if (this.currentPage > 1) {
                 this.currentPage -= 1
                 this.getWinners()

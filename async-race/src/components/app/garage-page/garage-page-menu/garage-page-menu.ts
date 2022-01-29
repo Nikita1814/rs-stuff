@@ -1,7 +1,8 @@
 import ApiService from '../../api-service/api-service'
 import CarController from '../garage-car-controller/car-controller'
 import { GarageGrid } from '../garage-grid/garage-grid'
-import { CarItem, Car } from '../garage-page'
+import { CarItem } from '../../interfaces'
+import { Car } from '../garage-page'
 
 class GarageMenu {
     grid: GarageGrid
@@ -40,59 +41,25 @@ class GarageMenu {
                 `${brands[Math.floor(Math.random() * 9)]} ${models[Math.floor(Math.random() * 9)]}`,
                 `#${Math.floor(Math.random() * 16777215).toString(16)}`
             )
-            this.createCar(car)
+            this.service.requestCreate(car)
         }
         this.grid.render()
     }
-    async createCar(car: CarItem): Promise<void> {
-        await fetch(`http://127.0.0.1:3000/garage`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(car),
-        })
-    }
-    async deleteCar(id: number): Promise<void> {
-        await fetch(`http://127.0.0.1:3000/garage/${id}`, {
-            method: 'DELETE',
-        })
-        const res = await fetch(`http://127.0.0.1:3000/winners/${id}`, {
-            method: 'GET',
-        })
-        if (res.ok) {
-            await fetch(`http://127.0.0.1:3000/winners/${id}`, {
-                method: 'DELETE',
-            })
-        }
-    }
+
     async selectCar(id: number): Promise<void> {
-        const res = await fetch(`http://127.0.0.1:3000/garage/${id}`, {
-            method: 'GET',
-        })
-        if (res.ok) {
-            this.selectedCar = await res.json()
-            document.querySelector('.update-name')?.removeAttribute('disabled')
-            document.querySelector('.update-btn')?.removeAttribute('disabled')
-            ;(document.querySelector('.update-name') as HTMLInputElement).value = this.selectedCar?.name as string
-            ;(document.querySelector('.update-color') as HTMLInputElement).value = this.selectedCar?.color as string
-        }
+        this.selectedCar = (await this.service.requestCar(id)) as CarItem
+        document.querySelector('.update-name')?.removeAttribute('disabled')
+        document.querySelector('.update-btn')?.removeAttribute('disabled')
+        ;(document.querySelector('.update-name') as HTMLInputElement).value = this.selectedCar?.name as string
+        ;(document.querySelector('.update-color') as HTMLInputElement).value = this.selectedCar?.color as string
     }
     async updateCar(car: CarItem, id: number): Promise<void> {
-        const res = await fetch(`http://127.0.0.1:3000/garage/${id}`, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(car),
-        })
-        if (res.ok) {
-            this.selectedCar = null
-            document.querySelector('.update-name')?.setAttribute('disabled', 'dsiabled')
-            document.querySelector('.update-btn')?.setAttribute('disabled', 'disabled')
-            ;(document.querySelector('.update-name') as HTMLInputElement).value = ''
-            ;(document.querySelector('.update-color') as HTMLInputElement).value = '#000000'
-        }
+        await this.service.RequestUpdateCar(car, id)
+        this.selectedCar = null
+        document.querySelector('.update-name')?.setAttribute('disabled', 'dsiabled')
+        document.querySelector('.update-btn')?.setAttribute('disabled', 'disabled')
+        ;(document.querySelector('.update-name') as HTMLInputElement).value = ''
+        ;(document.querySelector('.update-color') as HTMLInputElement).value = '#000000'
     }
 }
 export default GarageMenu

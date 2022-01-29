@@ -1,6 +1,6 @@
 import ApiService from '../../api-service/api-service'
 import CarController from '../garage-car-controller/car-controller'
-import { CarItem } from '../garage-page'
+import { CarItem } from '../../interfaces'
 
 class GarageGrid {
     currentPage: number
@@ -18,18 +18,15 @@ class GarageGrid {
         await this.getCars()
     }
     async getTotal(): Promise<void> {
-        const res = await fetch(`http://127.0.0.1:3000/garage?_limit=7`)
-        this.pageTotal = Math.ceil(Number([...res.headers.entries()].find((el) => el[0] === 'x-total-count')?.[1]) / 7)
+        this.pageTotal = await this.service.requestTotal()
     }
     async getCars() {
-        const res = await fetch(`http://127.0.0.1:3000/garage?_page=${this.currentPage}&_limit=7`)
-        if (res.ok) {
-            ;(document.querySelector('.car-count') as HTMLElement).innerHTML = `Garage(${
-                [...res.headers.entries()].find((el) => el[0] === 'x-total-count')?.[1]
-            })`
-            const arr = await res.json()
-            this.showCars(arr)
-        }
+        const res = (await this.service.requestCars(this.currentPage)) as Response
+        ;(document.querySelector('.car-count') as HTMLElement).innerHTML = `Garage(${
+            [...res.headers.entries()].find((el) => el[0] === 'x-total-count')?.[1]
+        })`
+        const arr = await res.json()
+        this.showCars(arr)
     }
     showCars(arr: Array<CarItem>): void {
         const page = document.querySelector('.garage-grid-page') as HTMLElement
