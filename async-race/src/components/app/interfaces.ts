@@ -1,29 +1,29 @@
-export interface engineStartResp {
-    velocity: number
-    distance: number
+export interface EngineStartResp {
+  velocity: number
+  distance: number
 }
 export interface CarItem {
-    name: string | null
-    color: string | null
-    id?: number
+  name: string | null
+  color: string | null
+  id?: number
 }
 export interface WinnerItem {
-    id: number
-    wins: number
-    time: number
+  id: number
+  wins: number
+  time: number
 }
 
-export interface engineDriveResp {
-    success: true
+export interface EngineDriveResp {
+  success: true
 }
 
 export interface WinnerItem {
-    id: number
-    wins: number
-    time: number
+  id: number
+  wins: number
+  time: number
 }
 export interface CarItem {
-    name: string | null
-    color: string | null
-    id?: number
+  name: string | null
+  color: string | null
+  id?: number
 }

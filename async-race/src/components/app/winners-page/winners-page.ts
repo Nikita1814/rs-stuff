@@ -2,20 +2,20 @@ import ApiService from '../api-service/api-service'
 import { CarItem, WinnerItem } from '../interfaces'
 
 class WinnersPage {
-    currentPage: number
-    pageTotal: number
-    sort: string
-    order: string
-    service: ApiService
-    constructor(service: ApiService) {
-        this.service = service
-        this.currentPage = 1
-        this.pageTotal = 1
-        this.sort = 'id'
-        this.order = 'DESC'
-    }
-    render(): void {
-        ;(document.querySelector('.main') as HTMLElement).innerHTML = `
+  currentPage: number
+  pageTotal: number
+  sort: string
+  order: string
+  service: ApiService
+  constructor(service: ApiService) {
+    this.service = service
+    this.currentPage = 1
+    this.pageTotal = 1
+    this.sort = 'id'
+    this.order = 'DESC'
+  }
+  render(): void {
+    document.querySelector('.main').innerHTML = `
       <div class="winners-page"">
             <h1 class ="winner-count">Winners()!</h1>
             <div class="winners-table">
@@ -36,31 +36,31 @@ class WinnersPage {
             </div>
         </div>
       `
-        this.getWinners()
-        this.addListneners()
+    this.getWinners()
+    this.addListneners()
+  }
+  async getWinners(): Promise<void> {
+    const res = (await this.service.requestWinnerPage(this.currentPage, this.sort, this.order)) as Response
+    const total = [...res.headers.entries()].find((el) => el[0] === 'x-total-count')?.[1]
+    document.querySelector('.winner-count').innerHTML = `Winners(${total})`
+    this.pageTotal = Math.ceil(Number(total) / 10)
+    const arr = await res.json()
+    this.showWinners(arr)
+  }
+  async getTotal(): Promise<void> {
+    this.pageTotal = await this.service.requestWinnerTotal()
+  }
+  async showWinners(winArr: Array<WinnerItem>) {
+    const page = document.querySelector('.table-page') as HTMLElement
+    page.innerHTML = ``
+    page.dataset.pageNum = `${this.currentPage}`
+    for (const winner of winArr) {
+      await this.drawWinner(winner.id, winner, page)
     }
-    async getWinners(): Promise<void> {
-        const res = (await this.service.requestWinnerPage(this.currentPage, this.sort, this.order)) as Response
-        const total = [...res.headers.entries()].find((el) => el[0] === 'x-total-count')?.[1]
-        ;(document.querySelector('.winner-count') as HTMLElement).innerHTML = `Winners(${total})`
-        this.pageTotal = Math.ceil(Number(total) / 10)
-        const arr = await res.json()
-        this.showWinners(arr)
-    }
-    async getTotal(): Promise<void> {
-        this.pageTotal = await this.service.requestWinnerTotal()
-    }
-    async showWinners(winArr: Array<WinnerItem>) {
-        const page = document.querySelector('.table-page') as HTMLElement
-        page.innerHTML = ``
-        page.dataset.pageNum = `${this.currentPage}`
-        for (const winner of winArr) {
-            await this.drawWinner(winner.id, winner, page)
-        }
-    }
-    async drawWinner(id: number, winner: WinnerItem, page: HTMLElement): Promise<void> {
-        const car = (await this.service.requestCar(id)) as CarItem
-        page.innerHTML += ` 
+  }
+  async drawWinner(id: number, winner: WinnerItem, page: HTMLElement): Promise<void> {
+    const car = (await this.service.requestCar(id)) as CarItem
+    page.innerHTML += ` 
             <div data-car-id="${car.id}" class="winners-table-winner winners-table-row">
             <p>${car.id}</p>
             <div class="car winner-car"style="background-color:${car.color}"></div>
@@ -69,50 +69,50 @@ class WinnersPage {
             <p>${winner.time} s</p>
         </div>
             `
-    }
-    addListneners(): void {
-        document.querySelectorAll('[data-sort]')?.forEach((elem) => {
-            elem.addEventListener('click', async (e) => {
-                document.querySelectorAll('[data-sort]')?.forEach((el) => {
-                    el.classList.remove('active-sort')
-                })
+  }
+  addListneners(): void {
+    document.querySelectorAll('[data-sort]')?.forEach((elem) => {
+      elem.addEventListener('click', async (e) => {
+        document.querySelectorAll('[data-sort]')?.forEach((el) => {
+          el.classList.remove('active-sort')
+        })
 
-                const sortCriteria = e.target as HTMLElement
-                sortCriteria.classList.add('active-sort')
-                this.sort = sortCriteria.dataset.sort as string
-                this.order = sortCriteria.dataset.order as string
-                sortCriteria.dataset.order = sortCriteria.dataset.order === 'DESC' ? 'ASC' : 'DESC'
-                await this.getWinners()
-            })
-        })
-        document.querySelectorAll('.winner-change')?.forEach((btn) => {
-            btn.addEventListener('click', (e) => {
-                this.switchPage(`${(e.target as HTMLElement)?.dataset.direction}`)
-            })
-        })
+        const sortCriteria = e.target as HTMLElement
+        sortCriteria.classList.add('active-sort')
+        this.sort = sortCriteria.dataset.sort as string
+        this.order = sortCriteria.dataset.order as string
+        sortCriteria.dataset.order = sortCriteria.dataset.order === 'DESC' ? 'ASC' : 'DESC'
+        await this.getWinners()
+      })
+    })
+    document.querySelectorAll('.winner-change')?.forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        this.switchPage(`${(e.target as HTMLElement)?.dataset.direction}`)
+      })
+    })
+  }
+  switchPage(direction: string): void {
+    this.getTotal()
+    if (direction === 'next') {
+      if (this.currentPage < this.pageTotal) {
+        this.currentPage += 1
+        this.getWinners()
+      } else {
+        this.currentPage = 1
+        this.getWinners()
+      }
+    } else {
+      if (this.currentPage > 1) {
+        this.currentPage -= 1
+        this.getWinners()
+      } else {
+        this.currentPage = this.pageTotal
+        this.getWinners()
+      }
     }
-    switchPage(direction: string): void {
-        this.getTotal()
-        if (direction === 'next') {
-            if (this.currentPage < this.pageTotal) {
-                this.currentPage += 1
-                this.getWinners()
-            } else {
-                this.currentPage = 1
-                this.getWinners()
-            }
-        } else {
-            if (this.currentPage > 1) {
-                this.currentPage -= 1
-                this.getWinners()
-            } else {
-                this.currentPage = this.pageTotal
-                this.getWinners()
-            }
-        }
-        ;(document.querySelector('.winner-page-header') as HTMLElement).innerHTML = `
+    document.querySelector('.winner-page-header').innerHTML = `
         Page #${this.currentPage}
         `
-    }
+  }
 }
 export default WinnersPage
